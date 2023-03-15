@@ -7,9 +7,9 @@ wire [3:0] p,g,c;
 pg_gen_4 u0 (a,b,p,g);
 assign c[0]=cin;
 assign c[1]= g[0]|(p[0]&cin);
-assign c[2]= g[1]|(p[1]& g[0]|(p[0]&cin));
-assign c[3]= g[2]|(p[2]& (g[1]|(p[1]& g[0]|(p[0]&cin))));
-assign cout= g[3]|(p[3]& (g[2]|(p[2]& (g[1]|(p[1]& g[0]|(p[0]&cin))))));
+assign c[2]= g[1]|(p[1]& (g[0]|(p[0]&cin)));
+assign c[3]= g[2]|(p[2]& (g[1]|(p[1]& (g[0]|(p[0]&cin)))));
+assign cout = g[3]|(p[3]& (g[2]|(p[2]& (g[1]|(p[1]& (g[0]|(p[0]&cin)))))) );
 assign sum = p^c;
 endmodule
 
