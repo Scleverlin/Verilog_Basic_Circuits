@@ -5,11 +5,12 @@ input [63:0]a,b;
 input cin,clk,rst;
 output reg cout_r;
 output reg [63:0]sum_r;
+reg cin_r;
 wire   cout;
 wire    [63:0]sum;
 wire [6:0] bit_carry;
 
-serial_8_bit_adder u0(a[7:0],b[7:0],cin,bit_carry[0],sum[7:0]);
+serial_8_bit_adder u0(a[7:0],b[7:0],cin_r,bit_carry[0],sum[7:0]);
 serial_8_bit_adder u1(a[15:8],b[15:8],bit_carry[0],bit_carry[1],sum[15:8]);
 serial_8_bit_adder u2(a[23:16],b[23:16],bit_carry[1],bit_carry[2],sum[23:16]);
 serial_8_bit_adder u3(a[31:24],b[31:24],bit_carry[2],bit_carry[3],sum[31:24]);
@@ -22,10 +23,12 @@ always @(posedge clk or negedge rst) begin
     if (~rst) begin
         sum_r<=0;
         cout_r<=0;
+        cin_r <=0;
     end
     else begin
         sum_r<=sum;
         cout_r<=cout;
+        cin_r<=cin;
 end
 end
 
