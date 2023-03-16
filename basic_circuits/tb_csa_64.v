@@ -7,7 +7,7 @@ reg rst,clk;
 reg cin;
 parameter delay=20; 
 
-C_SA_with_CLA_block_64bit    csa(
+top_4block    csa(
     a,b,cin,sum,cout,clk,rst
 );
 initial begin

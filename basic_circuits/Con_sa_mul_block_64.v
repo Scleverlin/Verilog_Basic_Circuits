@@ -1,5 +1,32 @@
 // `include "./C_select_a_block.v";
 
+module top_4block (a,b,cin,sum_r,cout_r,clk,rst);
+
+input [63:0]a,b;
+input cin,clk,rst;
+output reg [63:0]sum_r;
+output reg cout_r;
+
+wire [63:0]sum;
+wire cout;
+reg cin_r;
+// assign cin_r=cin;
+Con_sa_4_bit_block_64 csa (a,b,cin_r,sum,cout);
+
+always @(posedge clk ) begin
+    if (rst) begin
+        sum_r <= 0;
+        cout_r <= 0;
+        cin_r <=0;
+    end
+    else begin
+        sum_r  <= sum;
+        cout_r <= cout;
+        cin_r <= cin;
+    end
+end
+
+endmodule
 module top_16block (a,b,cin,sum_r,cout_r,clk,rst);
 
 input [63:0]a,b;
@@ -80,14 +107,22 @@ output [63:0]sum;
 output cout;
 wire [14:0]bit_carry;
 
-CSelectAdder_4bit  csa_4_1 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .sum(sum[3:0]), .cout(bit_carry[0]));
-CSelectAdder_4bit  csa_4_2 (.a(a[7:4]), .b(b[7:4]), bit_carry[0], .sum(sum[7:4]), .cout(bit_carry[1]));
-CSelectAdder_4bit  csa_4_2 (.a(a[11:8]), b[11:8], bit_carry[1], .sum(sum[11:7]), .cout(bit_carry[2]));
-
-
-
-
-
+CSelectAdder_4bit  csa_4_1 (a[3:0], b[3:0], cin, sum[3:0], bit_carry[0]);
+CSelectAdder_4bit  csa_4_2 (a[7:4], b[7:4], bit_carry[0], sum[7:4], bit_carry[1]);
+CSelectAdder_4bit  csa_4_3 (a[11:8], b[11:8], bit_carry[1], sum[11:8], bit_carry[2]);
+CSelectAdder_4bit  csa_4_4 (a[15:12], b[15:12], bit_carry[2], sum[15:12], bit_carry[3]);
+CSelectAdder_4bit  csa_4_5 (a[19:16], b[19:16], bit_carry[3], sum[19:16], bit_carry[4]);
+CSelectAdder_4bit  csa_4_6 (a[23:20], b[23:20], bit_carry[4], sum[23:20], bit_carry[5]);
+CSelectAdder_4bit  csa_4_7 (a[27:24], b[27:24], bit_carry[5], sum[27:24], bit_carry[6]);
+CSelectAdder_4bit  csa_4_8 (a[31:28], b[31:28], bit_carry[6], sum[31:28], bit_carry[7]);
+CSelectAdder_4bit  csa_4_9 (a[35:32], b[35:32], bit_carry[7], sum[35:32], bit_carry[8]);
+CSelectAdder_4bit  csa_4_10 (a[39:36], b[39:36], bit_carry[8], sum[39:36], bit_carry[9]);
+CSelectAdder_4bit  csa_4_11 (a[43:40], b[43:40], bit_carry[9], sum[43:40], bit_carry[10]);
+CSelectAdder_4bit  csa_4_12 (a[47:44], b[47:44], bit_carry[10], sum[47:44], bit_carry[11]);
+CSelectAdder_4bit  csa_4_13 (a[51:48], b[51:48], bit_carry[11], sum[51:48], bit_carry[12]);
+CSelectAdder_4bit  csa_4_14 (a[55:52], b[55:52], bit_carry[12], sum[55:52], bit_carry[13]);
+CSelectAdder_4bit  csa_4_15 (a[59:56], b[59:56], bit_carry[13], sum[59:56], bit_carry[14]);
+CSelectAdder_4bit  csa_4_16 (a[63:60], b[63:60], bit_carry[14], sum[63:60], cout);
 
 
 endmodule //Con_sa_8_bit_block_64
@@ -259,10 +294,10 @@ ADD_full adder_1_2(bit_carry_1[1],sum_2[1],a[1],b[1],bit_carry_1[0]);
 ADD_full adder_1_3(bit_carry_1[2],sum_2[2],a[2],b[2],bit_carry_1[1]);
 ADD_full adder_1_4(bit_carry_1[3],sum_2[3],a[3],b[3],bit_carry_1[2]);
 
-multiplexer_4_bit mul_8(sum_1,sum_2,cin,sum);
+multiplexer_4_bit mul_4(sum_1,sum_2,cin,sum);
 
-
-assign cout = (~cin&bit_carry[2] )|(cin &bit_carry_1[2]);
+// assign cout = (~cin&bit_carry[2])|(cin &bit_carry_1[2]);
+assign cout = (~cin&bit_carry[3])|(cin &bit_carry_1[3]);
 
 
 endmodule //CSelectAdder_4bit
@@ -276,6 +311,4 @@ input [3:0]a,b;
 input sel;
 output [3:0]out;
 assign out= (sel)?a:b;
-
-
 endmodule 
