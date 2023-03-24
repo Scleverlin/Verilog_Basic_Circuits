@@ -5,7 +5,7 @@ Basic circuits written in Verilog
 I use iverilog + gtkwave as the basic simulation for tesetbench, and DesignCompiler for synthesis.
 
 # Directory 
-The verilog codes in the "basic_circuits" directory are the basic training of coding, such as DFF, latch,multiplexer,etc.
+The verilog codes in the "basic_circuits" directory are the basic training of coding, such as DFF, latch,multiplexer,etc. Recently (Mar 2023), I added different types of adders' codes to this directory.
 
 Files in "./synthesizable_verilog" are some a little complex deisgns selected to do logic synthesis based on DesignCompiler.
 
@@ -40,6 +40,11 @@ write -format verilog -output /path
 May help you a little understand the FSM.
 
 Now the only example is a vending machine.
+
+# Adders
+
+There are various types of adders, ranging from 8-bit to 64-bit, each with a different design type, including Ripple Carry Adder, Carry Lookahead Adder, Carry Select Adder, Carry Save Adder, Carry Skip Adder, and Kogge-Stone Adder.
+
 
 # Multiplier
 
