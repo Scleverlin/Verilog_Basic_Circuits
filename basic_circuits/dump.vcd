@@ -1,5 +1,5 @@
 $date
-	Fri Mar 24 21:15:42 2023
+	Sun Mar 26 18:35:45 2023
 $end
 $version
 	Icarus Verilog
@@ -8,27 +8,33 @@ $timescale
 	1s
 $end
 $scope module tb_KSA_8 $end
-$var wire 8 ! sum [7:0] $end
+$var wire 64 ! sum [63:0] $end
 $var wire 1 " cout $end
-$var reg 8 # a [7:0] $end
-$var reg 8 $ b [7:0] $end
+$var reg 64 # a [63:0] $end
+$var reg 64 $ b [63:0] $end
 $var reg 1 % cin $end
 $scope module KSA $end
-$var wire 8 & a [7:0] $end
-$var wire 8 ' b [7:0] $end
+$var wire 64 & a [63:0] $end
+$var wire 64 ' b [63:0] $end
 $var wire 1 % cin $end
 $var wire 1 " cout $end
-$var wire 1 ( level_4_p $end
-$var wire 1 ) level_4_q $end
-$var wire 8 * sum [7:0] $end
-$var wire 9 + p [9:1] $end
-$var wire 9 , level_3_q [9:1] $end
-$var wire 8 - level_3_p [9:2] $end
-$var wire 9 . level_2_q [9:1] $end
-$var wire 8 / level_2_p [9:2] $end
-$var wire 9 0 level_1_q [9:1] $end
-$var wire 8 1 level_1_p [9:2] $end
-$var wire 9 2 g [9:1] $end
+$var wire 64 ( level_4_p [65:2] $end
+$var wire 64 ) level_5_p [65:2] $end
+$var wire 64 * level_6_p [65:2] $end
+$var wire 1 + level_7_p $end
+$var wire 1 , level_7_q $end
+$var wire 64 - sum [63:0] $end
+$var wire 65 . p [65:1] $end
+$var wire 65 / level_6_q [65:1] $end
+$var wire 65 0 level_5_q [65:1] $end
+$var wire 65 1 level_4_q [65:1] $end
+$var wire 65 2 level_3_q [65:1] $end
+$var wire 64 3 level_3_p [65:2] $end
+$var wire 65 4 level_2_q [65:1] $end
+$var wire 64 5 level_2_p [65:2] $end
+$var wire 65 6 level_1_q [65:1] $end
+$var wire 64 7 level_1_p [65:2] $end
+$var wire 65 8 g [65:1] $end
 $scope begin genblk1[2] $end
 $upscope $end
 $scope begin genblk1[3] $end
@@ -45,6 +51,542 @@ $scope begin genblk1[8] $end
 $upscope $end
 $scope begin genblk1[9] $end
 $upscope $end
+$scope begin genblk1[10] $end
+$upscope $end
+$scope begin genblk1[11] $end
+$upscope $end
+$scope begin genblk1[12] $end
+$upscope $end
+$scope begin genblk1[13] $end
+$upscope $end
+$scope begin genblk1[14] $end
+$upscope $end
+$scope begin genblk1[15] $end
+$upscope $end
+$scope begin genblk1[16] $end
+$upscope $end
+$scope begin genblk1[17] $end
+$upscope $end
+$scope begin genblk1[18] $end
+$upscope $end
+$scope begin genblk1[19] $end
+$upscope $end
+$scope begin genblk1[20] $end
+$upscope $end
+$scope begin genblk1[21] $end
+$upscope $end
+$scope begin genblk1[22] $end
+$upscope $end
+$scope begin genblk1[23] $end
+$upscope $end
+$scope begin genblk1[24] $end
+$upscope $end
+$scope begin genblk1[25] $end
+$upscope $end
+$scope begin genblk1[26] $end
+$upscope $end
+$scope begin genblk1[27] $end
+$upscope $end
+$scope begin genblk1[28] $end
+$upscope $end
+$scope begin genblk1[29] $end
+$upscope $end
+$scope begin genblk1[30] $end
+$upscope $end
+$scope begin genblk1[31] $end
+$upscope $end
+$scope begin genblk1[32] $end
+$upscope $end
+$scope begin genblk1[33] $end
+$upscope $end
+$scope begin genblk1[34] $end
+$upscope $end
+$scope begin genblk1[35] $end
+$upscope $end
+$scope begin genblk1[36] $end
+$upscope $end
+$scope begin genblk1[37] $end
+$upscope $end
+$scope begin genblk1[38] $end
+$upscope $end
+$scope begin genblk1[39] $end
+$upscope $end
+$scope begin genblk1[40] $end
+$upscope $end
+$scope begin genblk1[41] $end
+$upscope $end
+$scope begin genblk1[42] $end
+$upscope $end
+$scope begin genblk1[43] $end
+$upscope $end
+$scope begin genblk1[44] $end
+$upscope $end
+$scope begin genblk1[45] $end
+$upscope $end
+$scope begin genblk1[46] $end
+$upscope $end
+$scope begin genblk1[47] $end
+$upscope $end
+$scope begin genblk1[48] $end
+$upscope $end
+$scope begin genblk1[49] $end
+$upscope $end
+$scope begin genblk1[50] $end
+$upscope $end
+$scope begin genblk1[51] $end
+$upscope $end
+$scope begin genblk1[52] $end
+$upscope $end
+$scope begin genblk1[53] $end
+$upscope $end
+$scope begin genblk1[54] $end
+$upscope $end
+$scope begin genblk1[55] $end
+$upscope $end
+$scope begin genblk1[56] $end
+$upscope $end
+$scope begin genblk1[57] $end
+$upscope $end
+$scope begin genblk1[58] $end
+$upscope $end
+$scope begin genblk1[59] $end
+$upscope $end
+$scope begin genblk1[60] $end
+$upscope $end
+$scope begin genblk1[61] $end
+$upscope $end
+$scope begin genblk1[62] $end
+$upscope $end
+$scope begin genblk1[63] $end
+$upscope $end
+$scope begin genblk1[64] $end
+$upscope $end
+$scope begin genblk1[65] $end
+$upscope $end
+$scope begin genblk10[17] $end
+$upscope $end
+$scope begin genblk10[18] $end
+$upscope $end
+$scope begin genblk10[19] $end
+$upscope $end
+$scope begin genblk10[20] $end
+$upscope $end
+$scope begin genblk10[21] $end
+$upscope $end
+$scope begin genblk10[22] $end
+$upscope $end
+$scope begin genblk10[23] $end
+$upscope $end
+$scope begin genblk10[24] $end
+$upscope $end
+$scope begin genblk10[25] $end
+$upscope $end
+$scope begin genblk10[26] $end
+$upscope $end
+$scope begin genblk10[27] $end
+$upscope $end
+$scope begin genblk10[28] $end
+$upscope $end
+$scope begin genblk10[29] $end
+$upscope $end
+$scope begin genblk10[30] $end
+$upscope $end
+$scope begin genblk10[31] $end
+$upscope $end
+$scope begin genblk10[32] $end
+$upscope $end
+$scope begin genblk10[33] $end
+$upscope $end
+$scope begin genblk10[34] $end
+$upscope $end
+$scope begin genblk10[35] $end
+$upscope $end
+$scope begin genblk10[36] $end
+$upscope $end
+$scope begin genblk10[37] $end
+$upscope $end
+$scope begin genblk10[38] $end
+$upscope $end
+$scope begin genblk10[39] $end
+$upscope $end
+$scope begin genblk10[40] $end
+$upscope $end
+$scope begin genblk10[41] $end
+$upscope $end
+$scope begin genblk10[42] $end
+$upscope $end
+$scope begin genblk10[43] $end
+$upscope $end
+$scope begin genblk10[44] $end
+$upscope $end
+$scope begin genblk10[45] $end
+$upscope $end
+$scope begin genblk10[46] $end
+$upscope $end
+$scope begin genblk10[47] $end
+$upscope $end
+$scope begin genblk10[48] $end
+$upscope $end
+$scope begin genblk10[49] $end
+$upscope $end
+$scope begin genblk10[50] $end
+$upscope $end
+$scope begin genblk10[51] $end
+$upscope $end
+$scope begin genblk10[52] $end
+$upscope $end
+$scope begin genblk10[53] $end
+$upscope $end
+$scope begin genblk10[54] $end
+$upscope $end
+$scope begin genblk10[55] $end
+$upscope $end
+$scope begin genblk10[56] $end
+$upscope $end
+$scope begin genblk10[57] $end
+$upscope $end
+$scope begin genblk10[58] $end
+$upscope $end
+$scope begin genblk10[59] $end
+$upscope $end
+$scope begin genblk10[60] $end
+$upscope $end
+$scope begin genblk10[61] $end
+$upscope $end
+$scope begin genblk10[62] $end
+$upscope $end
+$scope begin genblk10[63] $end
+$upscope $end
+$scope begin genblk10[64] $end
+$upscope $end
+$scope begin genblk10[65] $end
+$upscope $end
+$scope begin genblk11[1] $end
+$upscope $end
+$scope begin genblk11[2] $end
+$upscope $end
+$scope begin genblk11[3] $end
+$upscope $end
+$scope begin genblk11[4] $end
+$upscope $end
+$scope begin genblk11[5] $end
+$upscope $end
+$scope begin genblk11[6] $end
+$upscope $end
+$scope begin genblk11[7] $end
+$upscope $end
+$scope begin genblk11[8] $end
+$upscope $end
+$scope begin genblk11[9] $end
+$upscope $end
+$scope begin genblk11[10] $end
+$upscope $end
+$scope begin genblk11[11] $end
+$upscope $end
+$scope begin genblk11[12] $end
+$upscope $end
+$scope begin genblk11[13] $end
+$upscope $end
+$scope begin genblk11[14] $end
+$upscope $end
+$scope begin genblk11[15] $end
+$upscope $end
+$scope begin genblk11[16] $end
+$upscope $end
+$scope begin genblk12[17] $end
+$upscope $end
+$scope begin genblk12[18] $end
+$upscope $end
+$scope begin genblk12[19] $end
+$upscope $end
+$scope begin genblk12[20] $end
+$upscope $end
+$scope begin genblk12[21] $end
+$upscope $end
+$scope begin genblk12[22] $end
+$upscope $end
+$scope begin genblk12[23] $end
+$upscope $end
+$scope begin genblk12[24] $end
+$upscope $end
+$scope begin genblk12[25] $end
+$upscope $end
+$scope begin genblk12[26] $end
+$upscope $end
+$scope begin genblk12[27] $end
+$upscope $end
+$scope begin genblk12[28] $end
+$upscope $end
+$scope begin genblk12[29] $end
+$upscope $end
+$scope begin genblk12[30] $end
+$upscope $end
+$scope begin genblk12[31] $end
+$upscope $end
+$scope begin genblk12[32] $end
+$upscope $end
+$scope begin genblk12[33] $end
+$upscope $end
+$scope begin genblk12[34] $end
+$upscope $end
+$scope begin genblk12[35] $end
+$upscope $end
+$scope begin genblk12[36] $end
+$upscope $end
+$scope begin genblk12[37] $end
+$upscope $end
+$scope begin genblk12[38] $end
+$upscope $end
+$scope begin genblk12[39] $end
+$upscope $end
+$scope begin genblk12[40] $end
+$upscope $end
+$scope begin genblk12[41] $end
+$upscope $end
+$scope begin genblk12[42] $end
+$upscope $end
+$scope begin genblk12[43] $end
+$upscope $end
+$scope begin genblk12[44] $end
+$upscope $end
+$scope begin genblk12[45] $end
+$upscope $end
+$scope begin genblk12[46] $end
+$upscope $end
+$scope begin genblk12[47] $end
+$upscope $end
+$scope begin genblk12[48] $end
+$upscope $end
+$scope begin genblk12[49] $end
+$upscope $end
+$scope begin genblk12[50] $end
+$upscope $end
+$scope begin genblk12[51] $end
+$upscope $end
+$scope begin genblk12[52] $end
+$upscope $end
+$scope begin genblk12[53] $end
+$upscope $end
+$scope begin genblk12[54] $end
+$upscope $end
+$scope begin genblk12[55] $end
+$upscope $end
+$scope begin genblk12[56] $end
+$upscope $end
+$scope begin genblk12[57] $end
+$upscope $end
+$scope begin genblk12[58] $end
+$upscope $end
+$scope begin genblk12[59] $end
+$upscope $end
+$scope begin genblk12[60] $end
+$upscope $end
+$scope begin genblk12[61] $end
+$upscope $end
+$scope begin genblk12[62] $end
+$upscope $end
+$scope begin genblk12[63] $end
+$upscope $end
+$scope begin genblk12[64] $end
+$upscope $end
+$scope begin genblk12[65] $end
+$upscope $end
+$scope begin genblk13[33] $end
+$upscope $end
+$scope begin genblk13[34] $end
+$upscope $end
+$scope begin genblk13[35] $end
+$upscope $end
+$scope begin genblk13[36] $end
+$upscope $end
+$scope begin genblk13[37] $end
+$upscope $end
+$scope begin genblk13[38] $end
+$upscope $end
+$scope begin genblk13[39] $end
+$upscope $end
+$scope begin genblk13[40] $end
+$upscope $end
+$scope begin genblk13[41] $end
+$upscope $end
+$scope begin genblk13[42] $end
+$upscope $end
+$scope begin genblk13[43] $end
+$upscope $end
+$scope begin genblk13[44] $end
+$upscope $end
+$scope begin genblk13[45] $end
+$upscope $end
+$scope begin genblk13[46] $end
+$upscope $end
+$scope begin genblk13[47] $end
+$upscope $end
+$scope begin genblk13[48] $end
+$upscope $end
+$scope begin genblk13[49] $end
+$upscope $end
+$scope begin genblk13[50] $end
+$upscope $end
+$scope begin genblk13[51] $end
+$upscope $end
+$scope begin genblk13[52] $end
+$upscope $end
+$scope begin genblk13[53] $end
+$upscope $end
+$scope begin genblk13[54] $end
+$upscope $end
+$scope begin genblk13[55] $end
+$upscope $end
+$scope begin genblk13[56] $end
+$upscope $end
+$scope begin genblk13[57] $end
+$upscope $end
+$scope begin genblk13[58] $end
+$upscope $end
+$scope begin genblk13[59] $end
+$upscope $end
+$scope begin genblk13[60] $end
+$upscope $end
+$scope begin genblk13[61] $end
+$upscope $end
+$scope begin genblk13[62] $end
+$upscope $end
+$scope begin genblk13[63] $end
+$upscope $end
+$scope begin genblk13[64] $end
+$upscope $end
+$scope begin genblk13[65] $end
+$upscope $end
+$scope begin genblk14[1] $end
+$upscope $end
+$scope begin genblk14[2] $end
+$upscope $end
+$scope begin genblk14[3] $end
+$upscope $end
+$scope begin genblk14[4] $end
+$upscope $end
+$scope begin genblk14[5] $end
+$upscope $end
+$scope begin genblk14[6] $end
+$upscope $end
+$scope begin genblk14[7] $end
+$upscope $end
+$scope begin genblk14[8] $end
+$upscope $end
+$scope begin genblk14[9] $end
+$upscope $end
+$scope begin genblk14[10] $end
+$upscope $end
+$scope begin genblk14[11] $end
+$upscope $end
+$scope begin genblk14[12] $end
+$upscope $end
+$scope begin genblk14[13] $end
+$upscope $end
+$scope begin genblk14[14] $end
+$upscope $end
+$scope begin genblk14[15] $end
+$upscope $end
+$scope begin genblk14[16] $end
+$upscope $end
+$scope begin genblk14[17] $end
+$upscope $end
+$scope begin genblk14[18] $end
+$upscope $end
+$scope begin genblk14[19] $end
+$upscope $end
+$scope begin genblk14[20] $end
+$upscope $end
+$scope begin genblk14[21] $end
+$upscope $end
+$scope begin genblk14[22] $end
+$upscope $end
+$scope begin genblk14[23] $end
+$upscope $end
+$scope begin genblk14[24] $end
+$upscope $end
+$scope begin genblk14[25] $end
+$upscope $end
+$scope begin genblk14[26] $end
+$upscope $end
+$scope begin genblk14[27] $end
+$upscope $end
+$scope begin genblk14[28] $end
+$upscope $end
+$scope begin genblk14[29] $end
+$upscope $end
+$scope begin genblk14[30] $end
+$upscope $end
+$scope begin genblk14[31] $end
+$upscope $end
+$scope begin genblk14[32] $end
+$upscope $end
+$scope begin genblk15[33] $end
+$upscope $end
+$scope begin genblk15[34] $end
+$upscope $end
+$scope begin genblk15[35] $end
+$upscope $end
+$scope begin genblk15[36] $end
+$upscope $end
+$scope begin genblk15[37] $end
+$upscope $end
+$scope begin genblk15[38] $end
+$upscope $end
+$scope begin genblk15[39] $end
+$upscope $end
+$scope begin genblk15[40] $end
+$upscope $end
+$scope begin genblk15[41] $end
+$upscope $end
+$scope begin genblk15[42] $end
+$upscope $end
+$scope begin genblk15[43] $end
+$upscope $end
+$scope begin genblk15[44] $end
+$upscope $end
+$scope begin genblk15[45] $end
+$upscope $end
+$scope begin genblk15[46] $end
+$upscope $end
+$scope begin genblk15[47] $end
+$upscope $end
+$scope begin genblk15[48] $end
+$upscope $end
+$scope begin genblk15[49] $end
+$upscope $end
+$scope begin genblk15[50] $end
+$upscope $end
+$scope begin genblk15[51] $end
+$upscope $end
+$scope begin genblk15[52] $end
+$upscope $end
+$scope begin genblk15[53] $end
+$upscope $end
+$scope begin genblk15[54] $end
+$upscope $end
+$scope begin genblk15[55] $end
+$upscope $end
+$scope begin genblk15[56] $end
+$upscope $end
+$scope begin genblk15[57] $end
+$upscope $end
+$scope begin genblk15[58] $end
+$upscope $end
+$scope begin genblk15[59] $end
+$upscope $end
+$scope begin genblk15[60] $end
+$upscope $end
+$scope begin genblk15[61] $end
+$upscope $end
+$scope begin genblk15[62] $end
+$upscope $end
+$scope begin genblk15[63] $end
+$upscope $end
+$scope begin genblk15[64] $end
+$upscope $end
+$scope begin genblk15[65] $end
+$upscope $end
 $scope begin genblk2[3] $end
 $upscope $end
 $scope begin genblk2[4] $end
@@ -58,6 +600,118 @@ $upscope $end
 $scope begin genblk2[8] $end
 $upscope $end
 $scope begin genblk2[9] $end
+$upscope $end
+$scope begin genblk2[10] $end
+$upscope $end
+$scope begin genblk2[11] $end
+$upscope $end
+$scope begin genblk2[12] $end
+$upscope $end
+$scope begin genblk2[13] $end
+$upscope $end
+$scope begin genblk2[14] $end
+$upscope $end
+$scope begin genblk2[15] $end
+$upscope $end
+$scope begin genblk2[16] $end
+$upscope $end
+$scope begin genblk2[17] $end
+$upscope $end
+$scope begin genblk2[18] $end
+$upscope $end
+$scope begin genblk2[19] $end
+$upscope $end
+$scope begin genblk2[20] $end
+$upscope $end
+$scope begin genblk2[21] $end
+$upscope $end
+$scope begin genblk2[22] $end
+$upscope $end
+$scope begin genblk2[23] $end
+$upscope $end
+$scope begin genblk2[24] $end
+$upscope $end
+$scope begin genblk2[25] $end
+$upscope $end
+$scope begin genblk2[26] $end
+$upscope $end
+$scope begin genblk2[27] $end
+$upscope $end
+$scope begin genblk2[28] $end
+$upscope $end
+$scope begin genblk2[29] $end
+$upscope $end
+$scope begin genblk2[30] $end
+$upscope $end
+$scope begin genblk2[31] $end
+$upscope $end
+$scope begin genblk2[32] $end
+$upscope $end
+$scope begin genblk2[33] $end
+$upscope $end
+$scope begin genblk2[34] $end
+$upscope $end
+$scope begin genblk2[35] $end
+$upscope $end
+$scope begin genblk2[36] $end
+$upscope $end
+$scope begin genblk2[37] $end
+$upscope $end
+$scope begin genblk2[38] $end
+$upscope $end
+$scope begin genblk2[39] $end
+$upscope $end
+$scope begin genblk2[40] $end
+$upscope $end
+$scope begin genblk2[41] $end
+$upscope $end
+$scope begin genblk2[42] $end
+$upscope $end
+$scope begin genblk2[43] $end
+$upscope $end
+$scope begin genblk2[44] $end
+$upscope $end
+$scope begin genblk2[45] $end
+$upscope $end
+$scope begin genblk2[46] $end
+$upscope $end
+$scope begin genblk2[47] $end
+$upscope $end
+$scope begin genblk2[48] $end
+$upscope $end
+$scope begin genblk2[49] $end
+$upscope $end
+$scope begin genblk2[50] $end
+$upscope $end
+$scope begin genblk2[51] $end
+$upscope $end
+$scope begin genblk2[52] $end
+$upscope $end
+$scope begin genblk2[53] $end
+$upscope $end
+$scope begin genblk2[54] $end
+$upscope $end
+$scope begin genblk2[55] $end
+$upscope $end
+$scope begin genblk2[56] $end
+$upscope $end
+$scope begin genblk2[57] $end
+$upscope $end
+$scope begin genblk2[58] $end
+$upscope $end
+$scope begin genblk2[59] $end
+$upscope $end
+$scope begin genblk2[60] $end
+$upscope $end
+$scope begin genblk2[61] $end
+$upscope $end
+$scope begin genblk2[62] $end
+$upscope $end
+$scope begin genblk2[63] $end
+$upscope $end
+$scope begin genblk2[64] $end
+$upscope $end
+$scope begin genblk2[65] $end
 $upscope $end
 $scope begin genblk3[3] $end
 $upscope $end
@@ -73,7 +727,117 @@ $scope begin genblk3[8] $end
 $upscope $end
 $scope begin genblk3[9] $end
 $upscope $end
-$scope begin genblk4[4] $end
+$scope begin genblk3[10] $end
+$upscope $end
+$scope begin genblk3[11] $end
+$upscope $end
+$scope begin genblk3[12] $end
+$upscope $end
+$scope begin genblk3[13] $end
+$upscope $end
+$scope begin genblk3[14] $end
+$upscope $end
+$scope begin genblk3[15] $end
+$upscope $end
+$scope begin genblk3[16] $end
+$upscope $end
+$scope begin genblk3[17] $end
+$upscope $end
+$scope begin genblk3[18] $end
+$upscope $end
+$scope begin genblk3[19] $end
+$upscope $end
+$scope begin genblk3[20] $end
+$upscope $end
+$scope begin genblk3[21] $end
+$upscope $end
+$scope begin genblk3[22] $end
+$upscope $end
+$scope begin genblk3[23] $end
+$upscope $end
+$scope begin genblk3[24] $end
+$upscope $end
+$scope begin genblk3[25] $end
+$upscope $end
+$scope begin genblk3[26] $end
+$upscope $end
+$scope begin genblk3[27] $end
+$upscope $end
+$scope begin genblk3[28] $end
+$upscope $end
+$scope begin genblk3[29] $end
+$upscope $end
+$scope begin genblk3[30] $end
+$upscope $end
+$scope begin genblk3[31] $end
+$upscope $end
+$scope begin genblk3[32] $end
+$upscope $end
+$scope begin genblk3[33] $end
+$upscope $end
+$scope begin genblk3[34] $end
+$upscope $end
+$scope begin genblk3[35] $end
+$upscope $end
+$scope begin genblk3[36] $end
+$upscope $end
+$scope begin genblk3[37] $end
+$upscope $end
+$scope begin genblk3[38] $end
+$upscope $end
+$scope begin genblk3[39] $end
+$upscope $end
+$scope begin genblk3[40] $end
+$upscope $end
+$scope begin genblk3[41] $end
+$upscope $end
+$scope begin genblk3[42] $end
+$upscope $end
+$scope begin genblk3[43] $end
+$upscope $end
+$scope begin genblk3[44] $end
+$upscope $end
+$scope begin genblk3[45] $end
+$upscope $end
+$scope begin genblk3[46] $end
+$upscope $end
+$scope begin genblk3[47] $end
+$upscope $end
+$scope begin genblk3[48] $end
+$upscope $end
+$scope begin genblk3[49] $end
+$upscope $end
+$scope begin genblk3[50] $end
+$upscope $end
+$scope begin genblk3[51] $end
+$upscope $end
+$scope begin genblk3[52] $end
+$upscope $end
+$scope begin genblk3[53] $end
+$upscope $end
+$scope begin genblk3[54] $end
+$upscope $end
+$scope begin genblk3[55] $end
+$upscope $end
+$scope begin genblk3[56] $end
+$upscope $end
+$scope begin genblk3[57] $end
+$upscope $end
+$scope begin genblk3[58] $end
+$upscope $end
+$scope begin genblk3[59] $end
+$upscope $end
+$scope begin genblk3[60] $end
+$upscope $end
+$scope begin genblk3[61] $end
+$upscope $end
+$scope begin genblk3[62] $end
+$upscope $end
+$scope begin genblk3[63] $end
+$upscope $end
+$scope begin genblk3[64] $end
+$upscope $end
+$scope begin genblk3[65] $end
 $upscope $end
 $scope begin genblk4[5] $end
 $upscope $end
@@ -84,6 +848,118 @@ $upscope $end
 $scope begin genblk4[8] $end
 $upscope $end
 $scope begin genblk4[9] $end
+$upscope $end
+$scope begin genblk4[10] $end
+$upscope $end
+$scope begin genblk4[11] $end
+$upscope $end
+$scope begin genblk4[12] $end
+$upscope $end
+$scope begin genblk4[13] $end
+$upscope $end
+$scope begin genblk4[14] $end
+$upscope $end
+$scope begin genblk4[15] $end
+$upscope $end
+$scope begin genblk4[16] $end
+$upscope $end
+$scope begin genblk4[17] $end
+$upscope $end
+$scope begin genblk4[18] $end
+$upscope $end
+$scope begin genblk4[19] $end
+$upscope $end
+$scope begin genblk4[20] $end
+$upscope $end
+$scope begin genblk4[21] $end
+$upscope $end
+$scope begin genblk4[22] $end
+$upscope $end
+$scope begin genblk4[23] $end
+$upscope $end
+$scope begin genblk4[24] $end
+$upscope $end
+$scope begin genblk4[25] $end
+$upscope $end
+$scope begin genblk4[26] $end
+$upscope $end
+$scope begin genblk4[27] $end
+$upscope $end
+$scope begin genblk4[28] $end
+$upscope $end
+$scope begin genblk4[29] $end
+$upscope $end
+$scope begin genblk4[30] $end
+$upscope $end
+$scope begin genblk4[31] $end
+$upscope $end
+$scope begin genblk4[32] $end
+$upscope $end
+$scope begin genblk4[33] $end
+$upscope $end
+$scope begin genblk4[34] $end
+$upscope $end
+$scope begin genblk4[35] $end
+$upscope $end
+$scope begin genblk4[36] $end
+$upscope $end
+$scope begin genblk4[37] $end
+$upscope $end
+$scope begin genblk4[38] $end
+$upscope $end
+$scope begin genblk4[39] $end
+$upscope $end
+$scope begin genblk4[40] $end
+$upscope $end
+$scope begin genblk4[41] $end
+$upscope $end
+$scope begin genblk4[42] $end
+$upscope $end
+$scope begin genblk4[43] $end
+$upscope $end
+$scope begin genblk4[44] $end
+$upscope $end
+$scope begin genblk4[45] $end
+$upscope $end
+$scope begin genblk4[46] $end
+$upscope $end
+$scope begin genblk4[47] $end
+$upscope $end
+$scope begin genblk4[48] $end
+$upscope $end
+$scope begin genblk4[49] $end
+$upscope $end
+$scope begin genblk4[50] $end
+$upscope $end
+$scope begin genblk4[51] $end
+$upscope $end
+$scope begin genblk4[52] $end
+$upscope $end
+$scope begin genblk4[53] $end
+$upscope $end
+$scope begin genblk4[54] $end
+$upscope $end
+$scope begin genblk4[55] $end
+$upscope $end
+$scope begin genblk4[56] $end
+$upscope $end
+$scope begin genblk4[57] $end
+$upscope $end
+$scope begin genblk4[58] $end
+$upscope $end
+$scope begin genblk4[59] $end
+$upscope $end
+$scope begin genblk4[60] $end
+$upscope $end
+$scope begin genblk4[61] $end
+$upscope $end
+$scope begin genblk4[62] $end
+$upscope $end
+$scope begin genblk4[63] $end
+$upscope $end
+$scope begin genblk4[64] $end
+$upscope $end
+$scope begin genblk4[65] $end
 $upscope $end
 $scope begin genblk5[1] $end
 $upscope $end
@@ -103,32 +979,394 @@ $scope begin genblk6[8] $end
 $upscope $end
 $scope begin genblk6[9] $end
 $upscope $end
+$scope begin genblk6[10] $end
+$upscope $end
+$scope begin genblk6[11] $end
+$upscope $end
+$scope begin genblk6[12] $end
+$upscope $end
+$scope begin genblk6[13] $end
+$upscope $end
+$scope begin genblk6[14] $end
+$upscope $end
+$scope begin genblk6[15] $end
+$upscope $end
+$scope begin genblk6[16] $end
+$upscope $end
+$scope begin genblk6[17] $end
+$upscope $end
+$scope begin genblk6[18] $end
+$upscope $end
+$scope begin genblk6[19] $end
+$upscope $end
+$scope begin genblk6[20] $end
+$upscope $end
+$scope begin genblk6[21] $end
+$upscope $end
+$scope begin genblk6[22] $end
+$upscope $end
+$scope begin genblk6[23] $end
+$upscope $end
+$scope begin genblk6[24] $end
+$upscope $end
+$scope begin genblk6[25] $end
+$upscope $end
+$scope begin genblk6[26] $end
+$upscope $end
+$scope begin genblk6[27] $end
+$upscope $end
+$scope begin genblk6[28] $end
+$upscope $end
+$scope begin genblk6[29] $end
+$upscope $end
+$scope begin genblk6[30] $end
+$upscope $end
+$scope begin genblk6[31] $end
+$upscope $end
+$scope begin genblk6[32] $end
+$upscope $end
+$scope begin genblk6[33] $end
+$upscope $end
+$scope begin genblk6[34] $end
+$upscope $end
+$scope begin genblk6[35] $end
+$upscope $end
+$scope begin genblk6[36] $end
+$upscope $end
+$scope begin genblk6[37] $end
+$upscope $end
+$scope begin genblk6[38] $end
+$upscope $end
+$scope begin genblk6[39] $end
+$upscope $end
+$scope begin genblk6[40] $end
+$upscope $end
+$scope begin genblk6[41] $end
+$upscope $end
+$scope begin genblk6[42] $end
+$upscope $end
+$scope begin genblk6[43] $end
+$upscope $end
+$scope begin genblk6[44] $end
+$upscope $end
+$scope begin genblk6[45] $end
+$upscope $end
+$scope begin genblk6[46] $end
+$upscope $end
+$scope begin genblk6[47] $end
+$upscope $end
+$scope begin genblk6[48] $end
+$upscope $end
+$scope begin genblk6[49] $end
+$upscope $end
+$scope begin genblk6[50] $end
+$upscope $end
+$scope begin genblk6[51] $end
+$upscope $end
+$scope begin genblk6[52] $end
+$upscope $end
+$scope begin genblk6[53] $end
+$upscope $end
+$scope begin genblk6[54] $end
+$upscope $end
+$scope begin genblk6[55] $end
+$upscope $end
+$scope begin genblk6[56] $end
+$upscope $end
+$scope begin genblk6[57] $end
+$upscope $end
+$scope begin genblk6[58] $end
+$upscope $end
+$scope begin genblk6[59] $end
+$upscope $end
+$scope begin genblk6[60] $end
+$upscope $end
+$scope begin genblk6[61] $end
+$upscope $end
+$scope begin genblk6[62] $end
+$upscope $end
+$scope begin genblk6[63] $end
+$upscope $end
+$scope begin genblk6[64] $end
+$upscope $end
+$scope begin genblk6[65] $end
+$upscope $end
+$scope begin genblk7[9] $end
+$upscope $end
+$scope begin genblk7[10] $end
+$upscope $end
+$scope begin genblk7[11] $end
+$upscope $end
+$scope begin genblk7[12] $end
+$upscope $end
+$scope begin genblk7[13] $end
+$upscope $end
+$scope begin genblk7[14] $end
+$upscope $end
+$scope begin genblk7[15] $end
+$upscope $end
+$scope begin genblk7[16] $end
+$upscope $end
+$scope begin genblk7[17] $end
+$upscope $end
+$scope begin genblk7[18] $end
+$upscope $end
+$scope begin genblk7[19] $end
+$upscope $end
+$scope begin genblk7[20] $end
+$upscope $end
+$scope begin genblk7[21] $end
+$upscope $end
+$scope begin genblk7[22] $end
+$upscope $end
+$scope begin genblk7[23] $end
+$upscope $end
+$scope begin genblk7[24] $end
+$upscope $end
+$scope begin genblk7[25] $end
+$upscope $end
+$scope begin genblk7[26] $end
+$upscope $end
+$scope begin genblk7[27] $end
+$upscope $end
+$scope begin genblk7[28] $end
+$upscope $end
+$scope begin genblk7[29] $end
+$upscope $end
+$scope begin genblk7[30] $end
+$upscope $end
+$scope begin genblk7[31] $end
+$upscope $end
+$scope begin genblk7[32] $end
+$upscope $end
+$scope begin genblk7[33] $end
+$upscope $end
+$scope begin genblk7[34] $end
+$upscope $end
+$scope begin genblk7[35] $end
+$upscope $end
+$scope begin genblk7[36] $end
+$upscope $end
+$scope begin genblk7[37] $end
+$upscope $end
+$scope begin genblk7[38] $end
+$upscope $end
+$scope begin genblk7[39] $end
+$upscope $end
+$scope begin genblk7[40] $end
+$upscope $end
+$scope begin genblk7[41] $end
+$upscope $end
+$scope begin genblk7[42] $end
+$upscope $end
+$scope begin genblk7[43] $end
+$upscope $end
+$scope begin genblk7[44] $end
+$upscope $end
+$scope begin genblk7[45] $end
+$upscope $end
+$scope begin genblk7[46] $end
+$upscope $end
+$scope begin genblk7[47] $end
+$upscope $end
+$scope begin genblk7[48] $end
+$upscope $end
+$scope begin genblk7[49] $end
+$upscope $end
+$scope begin genblk7[50] $end
+$upscope $end
+$scope begin genblk7[51] $end
+$upscope $end
+$scope begin genblk7[52] $end
+$upscope $end
+$scope begin genblk7[53] $end
+$upscope $end
+$scope begin genblk7[54] $end
+$upscope $end
+$scope begin genblk7[55] $end
+$upscope $end
+$scope begin genblk7[56] $end
+$upscope $end
+$scope begin genblk7[57] $end
+$upscope $end
+$scope begin genblk7[58] $end
+$upscope $end
+$scope begin genblk7[59] $end
+$upscope $end
+$scope begin genblk7[60] $end
+$upscope $end
+$scope begin genblk7[61] $end
+$upscope $end
+$scope begin genblk7[62] $end
+$upscope $end
+$scope begin genblk7[63] $end
+$upscope $end
+$scope begin genblk7[64] $end
+$upscope $end
+$scope begin genblk7[65] $end
+$upscope $end
+$scope begin genblk8[1] $end
+$upscope $end
+$scope begin genblk8[2] $end
+$upscope $end
+$scope begin genblk8[3] $end
+$upscope $end
+$scope begin genblk8[4] $end
+$upscope $end
+$scope begin genblk8[5] $end
+$upscope $end
+$scope begin genblk8[6] $end
+$upscope $end
+$scope begin genblk8[7] $end
+$upscope $end
+$scope begin genblk8[8] $end
+$upscope $end
+$scope begin genblk9[9] $end
+$upscope $end
+$scope begin genblk9[10] $end
+$upscope $end
+$scope begin genblk9[11] $end
+$upscope $end
+$scope begin genblk9[12] $end
+$upscope $end
+$scope begin genblk9[13] $end
+$upscope $end
+$scope begin genblk9[14] $end
+$upscope $end
+$scope begin genblk9[15] $end
+$upscope $end
+$scope begin genblk9[16] $end
+$upscope $end
+$scope begin genblk9[17] $end
+$upscope $end
+$scope begin genblk9[18] $end
+$upscope $end
+$scope begin genblk9[19] $end
+$upscope $end
+$scope begin genblk9[20] $end
+$upscope $end
+$scope begin genblk9[21] $end
+$upscope $end
+$scope begin genblk9[22] $end
+$upscope $end
+$scope begin genblk9[23] $end
+$upscope $end
+$scope begin genblk9[24] $end
+$upscope $end
+$scope begin genblk9[25] $end
+$upscope $end
+$scope begin genblk9[26] $end
+$upscope $end
+$scope begin genblk9[27] $end
+$upscope $end
+$scope begin genblk9[28] $end
+$upscope $end
+$scope begin genblk9[29] $end
+$upscope $end
+$scope begin genblk9[30] $end
+$upscope $end
+$scope begin genblk9[31] $end
+$upscope $end
+$scope begin genblk9[32] $end
+$upscope $end
+$scope begin genblk9[33] $end
+$upscope $end
+$scope begin genblk9[34] $end
+$upscope $end
+$scope begin genblk9[35] $end
+$upscope $end
+$scope begin genblk9[36] $end
+$upscope $end
+$scope begin genblk9[37] $end
+$upscope $end
+$scope begin genblk9[38] $end
+$upscope $end
+$scope begin genblk9[39] $end
+$upscope $end
+$scope begin genblk9[40] $end
+$upscope $end
+$scope begin genblk9[41] $end
+$upscope $end
+$scope begin genblk9[42] $end
+$upscope $end
+$scope begin genblk9[43] $end
+$upscope $end
+$scope begin genblk9[44] $end
+$upscope $end
+$scope begin genblk9[45] $end
+$upscope $end
+$scope begin genblk9[46] $end
+$upscope $end
+$scope begin genblk9[47] $end
+$upscope $end
+$scope begin genblk9[48] $end
+$upscope $end
+$scope begin genblk9[49] $end
+$upscope $end
+$scope begin genblk9[50] $end
+$upscope $end
+$scope begin genblk9[51] $end
+$upscope $end
+$scope begin genblk9[52] $end
+$upscope $end
+$scope begin genblk9[53] $end
+$upscope $end
+$scope begin genblk9[54] $end
+$upscope $end
+$scope begin genblk9[55] $end
+$upscope $end
+$scope begin genblk9[56] $end
+$upscope $end
+$scope begin genblk9[57] $end
+$upscope $end
+$scope begin genblk9[58] $end
+$upscope $end
+$scope begin genblk9[59] $end
+$upscope $end
+$scope begin genblk9[60] $end
+$upscope $end
+$scope begin genblk9[61] $end
+$upscope $end
+$scope begin genblk9[62] $end
+$upscope $end
+$scope begin genblk9[63] $end
+$upscope $end
+$scope begin genblk9[64] $end
+$upscope $end
+$scope begin genblk9[65] $end
+$upscope $end
 $scope module u0 $end
-$var wire 8 3 a [7:0] $end
-$var wire 8 4 b [7:0] $end
-$var wire 8 5 g [7:0] $end
-$var wire 8 6 p [7:0] $end
+$var wire 64 9 a [63:0] $end
+$var wire 64 : b [63:0] $end
+$var wire 64 ; g [63:0] $end
+$var wire 64 < p [63:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
 bx 6
-bx 5
+bxz 5
 bx 4
-bx 3
+bxzzz 3
 bx 2
 bx 1
 bx 0
-bxz /
-bx .
-bxzz -
-bx ,
-bx0 +
-bx *
-x)
-x(
+bx /
+bx0 .
+bx -
+x,
+0+
+b0 *
+b0 )
+b0x (
 bx '
 bx &
 x%
@@ -139,110 +1377,363 @@ bx !
 $end
 #10
 0"
-0)
-0(
-b0xzz -
+0,
+b0 (
 b111 !
-b111 *
-b11z /
-b0 ,
-b111 1
-b0 .
-b1110 +
-b111 6
-b0 5
-b0 2
+b111 -
+b0zzz 3
+b0 /
 b0 0
+b11z 5
+b0 1
+b0 2
+b111 7
+b0 4
+b1110 .
+b111 <
+b0 ;
+b0 8
+b0 6
 0%
 b101 $
 b101 '
-b101 4
+b101 :
 b10 #
 b10 &
-b10 3
+b10 9
 #30
-b0zz -
-b10 ,
-b0z /
-b10 .
-b10 !
-b10 *
+b10 /
 b10 0
-b0 1
-b0 +
-b0 6
+b10 1
 b10 2
-b1 5
+b0z 5
+b10 4
+b10 !
+b10 -
+b10 6
+b0 7
+b0 .
+b0 <
+b10 8
+b1 ;
 b1 $
 b1 '
-b1 4
+b1 :
 b1 #
 b1 &
-b1 3
+b1 9
 #50
-b101001 !
-b101001 *
-b101001 ,
-b101001 .
-b10100 5
-b101001 2
-b101001 0
+b1111 /
+b1111 0
+b11z 5
+b1111 1
+b1000 !
+b1000 -
+b1111 2
+b111 7
+b1111 4
+b1110 .
+b111 <
+b0 ;
+b1 8
+b11 6
 1%
-b10100 $
-b10100 '
-b10100 4
-b10100 #
-b10100 &
-b10100 3
+b100 $
+b100 '
+b100 :
+b11 #
+b11 &
+b11 9
 #70
-b10010111 !
-b10010111 *
-b10010111 ,
-b10010111 .
-b10010111 0
-b10010111 2
-b1001011 5
-b1001011 $
-b1001011 '
-b1001011 4
-b1001011 #
-b1001011 &
-b1001011 3
-#90
-1"
-1)
-b0 !
-b0 *
-b100000000 ,
-b100000000 .
-b10000000 5
-b100000000 2
-b100000000 0
-0%
-b10000000 $
-b10000000 '
-b10000000 4
-b10000000 #
-b10000000 &
-b10000000 3
-#110
-0"
-0)
-b0 ,
+b1011 /
+b1011 0
+b1011 1
+b1011 2
+b1011 4
+b0z 5
+b1011 !
+b1011 -
+b1011 6
+b0 7
 b0 .
-b1001100z /
-b11011100 !
-b11011100 *
-b0 0
-b11011100 1
-b110111000 +
-b11011100 6
-b0 2
-b0 5
-b10100 $
-b10100 '
-b10100 4
-b11001000 #
-b11001000 &
-b11001000 3
+b0 <
+b1011 8
+b101 ;
+b101 $
+b101 '
+b101 :
+b101 #
+b101 &
+b101 9
+#90
+b10000 !
+b10000 -
+b10000 /
+b10000 0
+b10000 1
+b10000 2
+b10000 4
+b1000 ;
+b10000 8
+b10000 6
+0%
+b1000 $
+b1000 '
+b1000 :
+b1000 #
+b1000 &
+b1000 9
+#110
+b11001000 /
+b11001000 0
+b11001000 1
+b11001000 2
+b11001000 4
+b11001010 !
+b11001010 -
+b11001000 6
+b10 7
+b100 .
+b10 <
+b11001000 8
+b1100100 ;
+b1100110 $
+b1100110 '
+b1100110 :
+b1100100 #
+b1100100 &
+b1100100 9
+#130
+b11110011 /
+b11110011 0
+b110000z 5
+b11110011 1
+b10000110 !
+b10000110 -
+b11110011 2
+b1110101 7
+b11110011 4
+b11101010 .
+b1110101 <
+b1000 ;
+b10001 8
+b110011 6
+1%
+b1001000 $
+b1001000 '
+b1001000 :
+b111101 #
+b111101 &
+b111101 9
+#150
+b1100000000111 /
+b1100000000111 0
+b1100000000111 1
+b1100000000111 2
+b1111000zzz 3
+b1100000000111 4
+b111111001z 5
+b1101111111100 !
+b1101111111100 -
+b1100000000011 6
+b1111111011 7
+b11111110110 .
+b1111111011 <
+b1100000000001 8
+b110000000000 ;
+b110000000000 $
+b110000000000 '
+b110000000000 :
+b111111111011 #
+b111111111011 &
+b111111111011 9
+#190
+b1110001111111111 /
+b1110001111111111 0
+b1110001111111111 1
+b1110001111111111 2
+b0zzz 3
+b1110001111111111 4
+b10000110011z 5
+b1110111010001000 !
+b1110111010001000 -
+b1110001100110011 6
+b110101110111 7
+b1101011101110 .
+b110101110111 <
+b1110000100010001 8
+b111000010001000 ;
+b111100011111100 $
+b111100011111100 '
+b111100011111100 :
+b111010110001011 #
+b111010110001011 &
+b111010110001011 9
+#210
+b1100111100000111111110110111111 /
+b1100111100000111111110110111111 0
+b1100111100000111111110110111111 1
+b1100111100000111111110110111111 2
+b11100000000000zzz 3
+b1100111100000000111110110111111 4
+b1000100001111100000000011z 5
+b11000100101100100000010100101000 !
+b11000100101100100000010100101000 -
+b1100011100000000001110110110011 6
+b10100011001100011111100010010111 7
+b101000110011000111111000100101110 .
+b10100011001100011111100010010111 <
+b100001100000000000110010010001 8
+b10000110000000000011001001000 ;
+b10001111000011010011011001100 $
+b10001111000011010011011001100 '
+b10001111000011010011011001100 :
+b10110010110100000101111001011011 #
+b10110010110100000101111001011011 &
+b10110010110100000101111001011011 9
+#230
+b11000100101100100000010100100111 !
+b11000100101100100000010100100111 -
+b1100111100000111111110110110000 /
+b1100111100000111111110110110000 0
+b1100111100000111111110110110000 1
+b1100111100000111111110110110000 2
+b1100111100000000111110110110000 4
+b100001100000000000110010010000 8
+b1100011100000000001110110110000 6
+0%
+#250
+b110011000010011011111110111000001111110111111100000 /
+b110011000010011011111110111000001111110111111100000 0
+b110011000010011011111110111000001111110111111100000 1
+b110011000010011011111110111000001111110111111100000 2
+b1zzz 3
+b110011000010011011111110111000001111110111111100000 4
+b1100000001100010000000000100111z 5
+b100010000110110010100010110011101001100110110001111 !
+b100010000110110010100010110011101001100110110001111 -
+b110011000010011011001110111000000111110111101100000 6
+b10001000100101001011100001011100110010001001101111 7
+b100010001001010010111000010111001100100010011011110 .
+b10001000100101001011100001011100110010001001101111 <
+b10001000010001001000110101000000011010101100100000 8
+b1000100001000100100011010100000001101010110010000 ;
+b1000100001101100101111010110100011101011111111100 $
+b1000100001101100101111010110100011101011111111100 '
+b1000100001101100101111010110100011101011111111100 :
+b11001100101000101110011011101000101111010110010011 #
+b11001100101000101110011011101000101111010110010011 &
+b11001100101000101110011011101000101111010110010011 9
+#270
+b100000000000 /
+b100000000000 0
+b100000000000 1
+b100000000000 2
+b0zzz 3
+b100000000000 4
+b0z 5
+b100000000000 !
+b100000000000 -
+b100000000000 6
+b0 7
+b0 .
+b0 <
+b100000000000 8
+b10000000000 ;
+b10000000000 $
+b10000000000 '
+b10000000000 :
+b10000000000 #
+b10000000000 &
+b10000000000 9
+#290
+b1000000000000 !
+b1000000000000 -
+b1000000000000 /
+b1000000000000 0
+b1000000000000 1
+b1000000000000 2
+b1000000000000 4
+b1000000000000 6
+b1000000000000 8
+b100000000000 ;
+b100000000000 $
+b100000000000 '
+b100000000000 :
+b100000000000 #
+b100000000000 &
+b100000000000 9
+#310
+b10000000000000 !
+b10000000000000 -
+b10000000000000 /
+b10000000000000 0
+b10000000000000 1
+b10000000000000 2
+b10000000000000 4
+b10000000000000 6
+b10000000000000 8
+b1000000000000 ;
+b1000000000000 $
+b1000000000000 '
+b1000000000000 :
+b1000000000000 #
+b1000000000000 &
+b1000000000000 9
+#330
+b100000000000000 !
+b100000000000000 -
+b100000000000000 /
+b100000000000000 0
+b100000000000000 1
+b100000000000000 2
+b100000000000000 4
+b100000000000000 6
+b100000000000000 8
+b10000000000000 ;
+b10000000000000 $
+b10000000000000 '
+b10000000000000 :
+b10000000000000 #
+b10000000000000 &
+b10000000000000 9
+#350
+b1000000000000000 !
+b1000000000000000 -
+b1000000000000000 /
+b1000000000000000 0
+b1000000000000000 1
+b1000000000000000 2
+b1000000000000000 4
+b1000000000000000 6
+b1000000000000000 8
+b100000000000000 ;
+b100000000000000 $
+b100000000000000 '
+b100000000000000 :
+b100000000000000 #
+b100000000000000 &
+b100000000000000 9
+#370
+b1111111100000 /
+b1111111100000 0
+b1111111100000 1
+b1111111100000 2
+b100000000zzz 3
+b111111100000 4
+b11100100010z 5
+b1000010000110 !
+b1000010000110 -
+b1101100000 6
+b111101100110 7
+b1111011001100 .
+b111101100110 <
+b100100000 8
+b10010000 ;
+b100010110110 $
+b100010110110 '
+b100010110110 :
+b11111010000 #
+b11111010000 &
+b11111010000 9
 #1000
