@@ -115,7 +115,7 @@ wire [65:2] level_5_p;
 wire [65:1] level_5_q;
 generate
     for (i=17;i<=65;i=i+1) begin
-       assign  level_5_p [i]= level_4_p[i] & level_4_p[i-8];// 
+       assign  level_5_p[i]= level_4_p[i] & level_4_p[i-8];// 
     end
 endgenerate
 generate
@@ -134,7 +134,7 @@ wire [65:1] level_6_q;
 
 generate
     for (i=33;i<=65;i=i+1) begin
-       assign  level_6_p [i]= level_5_p[i] & level_5_p[i-16]; // 
+       assign  level_6_p[i]= level_5_p[i] & level_5_p[i-16]; // 
     end
 endgenerate
 generate
