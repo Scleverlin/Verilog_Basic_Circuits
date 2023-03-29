@@ -64,6 +64,5 @@ module ADD_full(output c_out,sum, input a,b,cin);
 
 assign sum=a^b^cin;
 
-assign c_out=(a&b)|(cin&(a^b));
-    
+assign c_out=(a&b)|(cin&(a|b));
 endmodule
