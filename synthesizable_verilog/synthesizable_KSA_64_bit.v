@@ -97,11 +97,7 @@ wire [65:2] level_4_p;
 wire [65:1] level_4_q;
 generate
     for (i=9;i<=65;i=i+1) begin
-<<<<<<< HEAD
        assign  level_4_p[i] = level_3_p[i] & level_3_p[i-4]; // 
-=======
-       assign  level_4_p[i]  = level_3_p[i] & level_3_p[i-4]; // 
->>>>>>> 2e73473c00d94ba4dce90df4520c9048e0a8b515
     end
 endgenerate
 generate
@@ -119,11 +115,7 @@ wire [65:2] level_5_p;
 wire [65:1] level_5_q;
 generate
     for (i=17;i<=65;i=i+1) begin
-<<<<<<< HEAD
-       assign  level_5_p[i]= level_4_p[i] & level_4_p[i-8];// 
-=======
-       assign  level_5_p[i]  = level_4_p[i] & level_4_p[i-8];// 
->>>>>>> 2e73473c00d94ba4dce90df4520c9048e0a8b515
+       assign  level_5_p[i] = level_4_p[i] & level_4_p[i-8];// 
     end
 endgenerate
 generate
@@ -142,11 +134,7 @@ wire [65:1] level_6_q;
 
 generate
     for (i=33;i<=65;i=i+1) begin
-<<<<<<< HEAD
-       assign  level_6_p[i]= level_5_p[i] & level_5_p[i-16]; // 
-=======
        assign  level_6_p[i] = level_5_p[i] & level_5_p[i-16]; // 
->>>>>>> 2e73473c00d94ba4dce90df4520c9048e0a8b515
     end
 endgenerate
 generate
