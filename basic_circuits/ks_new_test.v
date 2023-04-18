@@ -25,7 +25,7 @@ endmodule //ks_op_64_bit
 module ks_adder(a, b, cin, sum, cout);
   input [7:0] a;
   input [7:0] b;
-  wire [6:0]c;
+  /* verilator lint_off UNOPTFLAT */ wire [6:0]c;
   input cin;
   output cout;
   wire [7:0] g;
