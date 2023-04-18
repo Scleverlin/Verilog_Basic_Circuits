@@ -1,5 +1,5 @@
 
-module ks_new_64_bit (
+module ks_new_test (
   a,b,cin,sum,cout
 );
 
