@@ -4,12 +4,16 @@
 #include "Vks_new_test__Syms.h"
 #include "Vks_new_test.h"
 
+
+
 // FUNCTIONS
 Vks_new_test__Syms::Vks_new_test__Syms(Vks_new_test* topp, const char* namep)
-	// Setup locals
-	: __Vm_namep(namep)
-	, __Vm_didInit(false)
-	// Setup submodule names
+    // Setup locals
+    : __Vm_namep(namep)
+    , __Vm_activity(false)
+    , __Vm_baseCode(0)
+    , __Vm_didInit(false)
+    // Setup submodule names
 {
     // Pointer to top level
     TOPp = topp;

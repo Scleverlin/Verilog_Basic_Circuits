@@ -1,1 +1,2 @@
 verilator -Wall -Wno-DECLFILENAME --cc ks_adder.v --exe --build sim_main.cpp
+verilator --trace -Wall -Wno-DECLFILENAME --cc ks_new_test.v --exe --build tb_vcd_test.cpp 

@@ -2,17 +2,18 @@
 #include <iomanip>
 #include "Vks_new_test.h"
 #include "verilated.h"
-#include "verilated_vcd_c.h"  // 添加VCD跟踪库
+#include "verilated_vcd_c.h"
 #include <cstdlib>
 
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
+    Verilated::traceEverOn(true); // 使能波形跟踪
     Vks_new_test* top = new Vks_new_test;
 
-    Verilated::traceEverOn(true);  // 打开VCD跟踪
-    VerilatedVcdC* tfp = new VerilatedVcdC;  // 创建一个VCD跟踪文件指针
+    // 创建波形跟踪文件
+    VerilatedVcdC* tfp = new VerilatedVcdC();
     top->trace(tfp, 99);  // 追踪所有信号，99是跟踪的层次
-    tfp->open("ks_new_test.vcd");  // 打开VCD文件
+    tfp->open("vcd_output.vcd"); // 打开波形文件
 
     for (int test = 0; test < 100000; ++test) {
         top->a = static_cast<uint64_t>(rand()) | (static_cast<uint64_t>(rand()) << 32);
@@ -21,7 +22,8 @@ int main(int argc, char** argv) {
 
         top->eval();
 
-        tfp->dump(test);  // 在每次循环时，将当前仿真状态记录到VCD文件中
+        // 记录波形
+        tfp->dump(test);
 
         uint64_t expected_sum = top->a + top->b + top->cin;
         uint8_t expected_cout = (expected_sum >> 64) & 0x1;
@@ -33,19 +35,16 @@ int main(int argc, char** argv) {
 
         if (top->sum != (expected_sum & 0xFFFFFFFFFFFFFFFF) || top->cout != expected_cout) {
             std::cout << "Mismatch detected!" << std::endl;
-            tfp->close();  // 关闭VCD文件
             top->final();
             delete top;
-            delete tfp;
             return 1;
         }
     }
 
     std::cout << "Random tests completed." << std::endl;
 
-    tfp->close();  // 关闭VCD文件
+    tfp->close(); // 关闭波形文件
     top->final();
     delete top;
-    delete tfp;
     return 0;
 }
