@@ -1,37 +1,34 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table internal header
 //
-// Internal details; most calling programs do not need this header,
-// unless using verilator public meta comments.
+// Internal details; most calling programs do not need this header
 
-#ifndef VERILATED_VKS_NEW_TEST__SYMS_H_
-#define VERILATED_VKS_NEW_TEST__SYMS_H_  // guard
+#ifndef _Vks_new_test__Syms_H_
+#define _Vks_new_test__Syms_H_
 
 #include "verilated.h"
 
-// INCLUDE MODEL CLASS
-
+// INCLUDE MODULE CLASSES
 #include "Vks_new_test.h"
 
-// INCLUDE MODULE CLASSES
-#include "Vks_new_test___024root.h"
-
-// SYMS CLASS (contains all model state)
-class Vks_new_test__Syms final : public VerilatedSyms {
+// SYMS CLASS
+class Vks_new_test__Syms : public VerilatedSyms {
   public:
-    // INTERNAL STATE
-    Vks_new_test* const __Vm_modelp;
-    bool __Vm_didInit = false;
-
-    // MODULE INSTANCE STATE
-    Vks_new_test___024root         TOP;
-
-    // CONSTRUCTORS
-    Vks_new_test__Syms(VerilatedContext* contextp, const char* namep, Vks_new_test* modelp);
-    ~Vks_new_test__Syms();
-
+    
+    // LOCAL STATE
+    const char* __Vm_namep;
+    bool __Vm_didInit;
+    
+    // SUBCELL STATE
+    Vks_new_test*                  TOPp;
+    
+    // CREATORS
+    Vks_new_test__Syms(Vks_new_test* topp, const char* namep);
+    ~Vks_new_test__Syms() {}
+    
     // METHODS
-    const char* name() { return TOP.name(); }
-} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+    inline const char* name() { return __Vm_namep; }
+    
+} VL_ATTR_ALIGNED(64);
 
-#endif  // guard
+#endif // guard
