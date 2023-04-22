@@ -19,7 +19,7 @@ File(s) in "./multiplier"  is(are) the example(s) of multiplier with testbench.
 
 
 # Testbench 
-Prefix "tb" means the testbench of corresponding design, almost every design has a verified testbench. Some test data in testbench is set for easy check, for serious verification, a random number is better.
+Prefix "tb" means the testbench of corresponding design, almost every design has a verified testbench. Some test data in testbench is set for easy check, for serious verification, a random-number check is better.
 
 # Synthesizable_verilog
 
