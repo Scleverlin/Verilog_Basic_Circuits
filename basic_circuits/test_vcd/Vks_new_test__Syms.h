@@ -4,34 +4,37 @@
 // Internal details; most calling programs do not need this header,
 // unless using verilator public meta comments.
 
-#ifndef _VKS_NEW_TEST__SYMS_H_
-#define _VKS_NEW_TEST__SYMS_H_  // guard
+#ifndef VERILATED_VKS_NEW_TEST__SYMS_H_
+#define VERILATED_VKS_NEW_TEST__SYMS_H_  // guard
 
 #include "verilated.h"
 
-// INCLUDE MODULE CLASSES
+// INCLUDE MODEL CLASS
+
 #include "Vks_new_test.h"
 
-// SYMS CLASS
-class Vks_new_test__Syms : public VerilatedSyms {
+// INCLUDE MODULE CLASSES
+#include "Vks_new_test___024root.h"
+
+// SYMS CLASS (contains all model state)
+class Vks_new_test__Syms final : public VerilatedSyms {
   public:
-    
-    // LOCAL STATE
-    const char* __Vm_namep;
-    bool __Vm_activity;  ///< Used by trace routines to determine change occurred
-    uint32_t __Vm_baseCode;  ///< Used by trace routines when tracing multiple models
-    bool __Vm_didInit;
-    
-    // SUBCELL STATE
-    Vks_new_test*                  TOPp;
-    
-    // CREATORS
-    Vks_new_test__Syms(Vks_new_test* topp, const char* namep);
-    ~Vks_new_test__Syms() {}
-    
+    // INTERNAL STATE
+    Vks_new_test* const __Vm_modelp;
+    bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
+    uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
+    VlDeleter __Vm_deleter;
+    bool __Vm_didInit = false;
+
+    // MODULE INSTANCE STATE
+    Vks_new_test___024root         TOP;
+
+    // CONSTRUCTORS
+    Vks_new_test__Syms(VerilatedContext* contextp, const char* namep, Vks_new_test* modelp);
+    ~Vks_new_test__Syms();
+
     // METHODS
-    inline const char* name() { return __Vm_namep; }
-    
+    const char* name() { return TOP.name(); }
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 #endif  // guard

@@ -1,6 +1,10 @@
 tb_vcd_test.o: ../tb_vcd_test.cpp Vks_new_test.h \
- /usr/share/verilator/include/verilated.h \
- /usr/share/verilator/include/verilatedos.h \
- /usr/share/verilator/include/verilated_vcd_c.h \
- /usr/share/verilator/include/verilated.h \
- /usr/share/verilator/include/verilated_trace.h
+ /usr/local/share/verilator/include/verilated.h \
+ /usr/local/share/verilator/include/verilatedos.h \
+ /usr/local/share/verilator/include/verilated_config.h \
+ /usr/local/share/verilator/include/verilated_types.h \
+ /usr/local/share/verilator/include/verilated_funcs.h \
+ /usr/local/share/verilator/include/verilated_vcd_c.h \
+ /usr/local/share/verilator/include/verilated.h \
+ /usr/local/share/verilator/include/verilated_trace.h \
+ /usr/local/share/verilator/include/verilated_trace_defs.h
