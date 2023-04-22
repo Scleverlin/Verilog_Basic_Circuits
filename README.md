@@ -2,7 +2,7 @@
 Basic circuits written in Verilog
 
 # Tools
-I use iverilog + gtkwave as the basic simulation for tesetbench, and DesignCompiler for synthesis.
+I use verilator+iverilog + gtkwave as the basic simulation for tesetbench, and DesignCompiler for synthesis.
 
 # Directory 
 The verilog codes in the "basic_circuits" directory are the basic training of coding, such as DFF, latch,multiplexer,etc. Recently (Mar 2023), I added different types of adders' codes to this directory.
