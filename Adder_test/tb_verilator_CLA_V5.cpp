@@ -2,14 +2,14 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
-#include "VCLA_V4.h"
+#include "VCLA_V5.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
-    VCLA_V4* top = new VCLA_V4;
+    VCLA_V5* top = new VCLA_V5;
 
     std::mt19937_64 rng(std::random_device{}());
     std::uniform_int_distribution<uint64_t> distribution(0, UINT64_MAX);
