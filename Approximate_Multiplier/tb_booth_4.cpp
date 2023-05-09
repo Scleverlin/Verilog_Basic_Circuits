@@ -26,22 +26,22 @@ int main(int argc, char** argv) {
 
            std::cout << "a = " << static_cast<int>(a)
                       << ", b = " << static_cast<int>(b)
-                      << ", 期望结果 = " << expected_result
-                      << ", 实际结果 = " << actual_result
+                      << ", expected_result = " << expected_result
+                      << ", real_result = " << actual_result
                       << std::endl;
           
         if (expected_result != actual_result) {
             std::cout << "测试失败: a = " << static_cast<int>(a)
                       << ", b = " << static_cast<int>(b)
-                      << ", 期望结果 = " << expected_result
-                      << ", 实际结果 = " << actual_result
+                      << ", expected_result = " << expected_result
+                      << ", expected_result = " << actual_result
                       << std::endl;
             delete top;
             exit(1);
         }
     }
 
-    std::cout << "测试通过！" << std::endl;
+    std::cout << "Test Pass!" << std::endl;
     delete top;
     return 0;
 }
