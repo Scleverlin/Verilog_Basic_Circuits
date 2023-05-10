@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
                       << std::endl;
           
         if (expected_result != actual_result) {
-            std::cout << "测试失败: a = " << static_cast<int>(a)
+            std::cout << "Failed test: a = " << static_cast<int>(a)
                       << ", b = " << static_cast<int>(b)
                       << ", expected_result = " << expected_result
                       << ", expected_result = " << actual_result

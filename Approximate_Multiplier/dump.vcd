@@ -1,0 +1,174 @@
+$date
+	Tue May  9 18:11:44 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_booth_4_8_bit $end
+$var wire 16 ! c [15:0] $end
+$var reg 8 " a [7:0] $end
+$var reg 8 # b [7:0] $end
+$scope module u1 $end
+$var wire 8 $ a [7:0] $end
+$var wire 8 % b [7:0] $end
+$var wire 16 & c [15:0] $end
+$scope module p0 $end
+$var wire 8 ' input1 [7:0] $end
+$var wire 3 ( segment [2:0] $end
+$var reg 16 ) output1 [15:0] $end
+$upscope $end
+$scope module p1 $end
+$var wire 8 * input1 [7:0] $end
+$var wire 3 + segment [2:0] $end
+$var reg 16 , output1 [15:0] $end
+$upscope $end
+$scope module p2 $end
+$var wire 8 - input1 [7:0] $end
+$var wire 3 . segment [2:0] $end
+$var reg 16 / output1 [15:0] $end
+$upscope $end
+$scope module p3 $end
+$var wire 8 0 input1 [7:0] $end
+$var wire 3 1 segment [2:0] $end
+$var reg 16 2 output1 [15:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx0 (
+bx '
+bx &
+bx %
+bx $
+bx #
+bx "
+bx !
+$end
+#10
+b1010 !
+b1010 &
+b10 )
+b10 ,
+b0 /
+b0 2
+b10 (
+b10 +
+b0 .
+b0 1
+b101 #
+b101 %
+b10 "
+b10 $
+b10 '
+b10 *
+b10 -
+b10 0
+#30
+b0 +
+b1 !
+b1 &
+b1 )
+b0 ,
+b1 #
+b1 %
+b1 "
+b1 $
+b1 '
+b1 *
+b1 -
+b1 0
+#50
+b1111111111110100 ,
+b1100 /
+b0 (
+b110 +
+b1 .
+b10010000 !
+b10010000 &
+b0 )
+b1100 #
+b1100 %
+b1100 "
+b1100 $
+b1100 '
+b1100 *
+b1100 -
+b1100 0
+#70
+b10011100 !
+b10011100 &
+b1100 )
+b10 (
+b1101 #
+b1101 %
+#90
+b1001011 2
+b110 (
+b101 +
+b10 1
+b1010111111001 !
+b1010111111001 &
+b1111111110110101 )
+b1111111110110101 ,
+b1001011 /
+b1001011 #
+b1001011 %
+b1001011 "
+b1001011 $
+b1001011 '
+b1001011 *
+b1001011 -
+b1001011 0
+#110
+b10 (
+b100 +
+b11 .
+b0 1
+b1111110110001111 !
+b1111110110001111 &
+b1111111111100111 )
+b110010 ,
+b1111111111001110 /
+b0 2
+b11001 #
+b11001 %
+b11100111 "
+b11100111 $
+b11100111 '
+b11100111 *
+b11100111 -
+b11100111 0
+#150
+b110 (
+b11 +
+b100 .
+b111 1
+b1111110110001111 !
+b1111110110001111 &
+b1111111111100111 )
+b110010 ,
+b1111111111001110 /
+b11100111 #
+b11100111 %
+b11001 "
+b11001 $
+b11001 '
+b11001 *
+b11001 -
+b11001 0
+#1000
