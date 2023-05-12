@@ -1,5 +1,5 @@
 $date
-	Tue May  9 18:11:44 2023
+	Fri May 12 17:11:55 2023
 $end
 $version
 	Icarus Verilog
@@ -7,168 +7,290 @@ $end
 $timescale
 	1s
 $end
-$scope module tb_booth_4_8_bit $end
-$var wire 16 ! c [15:0] $end
-$var reg 8 " a [7:0] $end
-$var reg 8 # b [7:0] $end
+$scope module tb_aca $end
+$var wire 16 ! sum [15:0] $end
+$var wire 1 " cout $end
+$var reg 16 # a [15:0] $end
+$var reg 16 $ b [15:0] $end
+$var reg 1 % cin $end
+$scope module br $end
+$var wire 16 & a [16:1] $end
+$var wire 16 ' b [16:1] $end
+$var wire 1 % cin $end
+$var wire 1 ( for_5423 $end
+$var wire 1 ) for_6543 $end
+$var wire 1 * tmp1 $end
+$var wire 1 + tmp2 $end
+$var wire 1 , tmp3 $end
+$var wire 1 - tmp4 $end
+$var wire 16 . sum [16:1] $end
+$var wire 10 / pppp [9:0] $end
+$var wire 16 0 pp [15:0] $end
+$var wire 17 1 p [16:0] $end
+$var wire 14 2 gnpg_level2 [13:0] $end
+$var wire 16 3 gnpg_level1 [15:0] $end
+$var wire 17 4 g [16:0] $end
+$var wire 1 " cout $end
+$var wire 10 5 complex_gnpg [9:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk1[4] $end
+$upscope $end
+$scope begin genblk1[5] $end
+$upscope $end
+$scope begin genblk1[6] $end
+$upscope $end
+$scope begin genblk1[7] $end
+$upscope $end
+$scope begin genblk1[8] $end
+$upscope $end
+$scope begin genblk1[9] $end
+$upscope $end
+$scope begin genblk1[10] $end
+$upscope $end
+$scope begin genblk1[11] $end
+$upscope $end
+$scope begin genblk1[12] $end
+$upscope $end
+$scope begin genblk1[13] $end
+$upscope $end
+$scope begin genblk1[14] $end
+$upscope $end
+$scope begin genblk1[15] $end
+$upscope $end
+$scope begin genblk2[0] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk2[4] $end
+$upscope $end
+$scope begin genblk2[5] $end
+$upscope $end
+$scope begin genblk2[6] $end
+$upscope $end
+$scope begin genblk2[7] $end
+$upscope $end
+$scope begin genblk2[8] $end
+$upscope $end
+$scope begin genblk2[9] $end
+$upscope $end
+$scope begin genblk2[10] $end
+$upscope $end
+$scope begin genblk2[11] $end
+$upscope $end
+$scope begin genblk2[12] $end
+$upscope $end
+$scope begin genblk2[13] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$scope begin genblk3[2] $end
+$upscope $end
+$scope begin genblk3[3] $end
+$upscope $end
+$scope begin genblk3[4] $end
+$upscope $end
+$scope begin genblk3[5] $end
+$upscope $end
+$scope begin genblk3[6] $end
+$upscope $end
+$scope begin genblk3[7] $end
+$upscope $end
+$scope begin genblk3[8] $end
+$upscope $end
+$scope begin genblk3[9] $end
+$upscope $end
+$scope begin genblk4[0] $end
+$upscope $end
+$scope begin genblk4[1] $end
+$upscope $end
+$scope begin genblk4[2] $end
+$upscope $end
+$scope begin genblk4[3] $end
+$upscope $end
+$scope begin genblk4[4] $end
+$upscope $end
+$scope begin genblk4[5] $end
+$upscope $end
+$scope begin genblk4[6] $end
+$upscope $end
+$scope begin genblk4[7] $end
+$upscope $end
+$scope begin genblk4[8] $end
+$upscope $end
+$scope begin genblk4[9] $end
+$upscope $end
 $scope module u1 $end
-$var wire 8 $ a [7:0] $end
-$var wire 8 % b [7:0] $end
-$var wire 16 & c [15:0] $end
-$scope module p0 $end
-$var wire 8 ' input1 [7:0] $end
-$var wire 3 ( segment [2:0] $end
-$var reg 16 ) output1 [15:0] $end
-$upscope $end
-$scope module p1 $end
-$var wire 8 * input1 [7:0] $end
-$var wire 3 + segment [2:0] $end
-$var reg 16 , output1 [15:0] $end
-$upscope $end
-$scope module p2 $end
-$var wire 8 - input1 [7:0] $end
-$var wire 3 . segment [2:0] $end
-$var reg 16 / output1 [15:0] $end
-$upscope $end
-$scope module p3 $end
-$var wire 8 0 input1 [7:0] $end
-$var wire 3 1 segment [2:0] $end
-$var reg 16 2 output1 [15:0] $end
+$var wire 16 6 a [16:1] $end
+$var wire 16 7 b [16:1] $end
+$var wire 1 % cin $end
+$var wire 17 8 p [16:0] $end
+$var wire 17 9 g [16:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx 9
+bx0 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
 bx 2
-bx 1
-bx 0
+bx0 1
+bx0 0
 bx /
-bx .
-bx -
-bx ,
-bx +
-bx *
-bx )
-bx0 (
+bxzxxxxx .
+x-
+x,
+x+
+x*
+x)
+x(
 bx '
 bx &
-bx %
+x%
 bx $
 bx #
-bx "
-bx !
+x"
+bxzxxxxx !
 $end
 #10
-b1010 !
-b1010 &
-b10 )
-b10 ,
+0"
+b0 5
+0-
+0,
+1*
+b1 2
 b0 /
-b0 2
-b10 (
-b10 +
-b0 .
-b0 1
-b101 #
-b101 %
-b10 "
-b10 $
-b10 '
-b10 *
-b10 -
-b10 0
+0)
+0(
+0+
+b1 3
+b0z01000 !
+b0z01000 .
+b110 0
+b1110 1
+b1110 8
+b1 4
+b1 9
+1%
+b101 $
+b101 '
+b101 7
+b10 #
+b10 &
+b10 6
 #30
-b0 +
-b1 !
-b1 &
-b1 )
-b0 ,
-b1 #
-b1 %
-b1 "
+b0 2
+0*
+b0 0
+b0z00010 !
+b0z00010 .
+b0 1
+b0 8
+b10 4
+b10 9
+0%
 b1 $
 b1 '
-b1 *
-b1 -
-b1 0
+b1 7
+b1 #
+b1 &
+b1 6
 #50
-b1111111111110100 ,
-b1100 /
-b0 (
-b110 +
-b1 .
-b10010000 !
-b10010000 &
-b0 )
-b1100 #
-b1100 %
-b1100 "
-b1100 $
-b1100 '
-b1100 *
-b1100 -
-b1100 0
+1-
+b1111 5
+1,
+b11111110 2
+0*
+1+
+b1111111000 3
+b1010110z00111 !
+b1010110z00111 .
+b110 0
+b1101010000 4
+b1101010000 9
+b10010010101110 1
+b10010010101110 8
+b1000111101011 $
+b1000111101011 '
+b1000111101011 7
+b1110111100 #
+b1110111100 &
+b1110111100 6
 #70
-b10011100 !
-b10011100 &
-b1100 )
-b10 (
-b1101 #
-b1101 %
+b10011 5
+b100000111 2
+b11 /
+1)
+1+
+1*
+b10000000110 3
+b1101100z00000 !
+b1101100z00000 .
+b11111000 0
+b100000000100 4
+b100000000100 9
+b10010111111000 1
+b10010111111000 8
+b1011000101110 $
+b1011000101110 '
+b1011000101110 7
+b10011010010 #
+b10011010010 &
+b10011010010 6
 #90
-b1001011 2
-b110 (
-b101 +
-b10 1
-b1010111111001 !
-b1010111111001 &
-b1111111110110101 )
-b1111111110110101 ,
-b1001011 /
-b1001011 #
-b1001011 %
-b1001011 "
-b1001011 $
-b1001011 '
-b1001011 *
-b1001011 -
-b1001011 0
+0+
+b1110011 5
+0,
+b11100110100 2
+b0 /
+0)
+0*
+b110011010000 3
+b10001110z01011 !
+b10001110z01011 .
+b1000000000010 0
+b100110100000 4
+b100110100000 9
+b11010000010110 1
+b11010000010110 8
+b1111011011001 $
+b1111011011001 '
+b1111011011001 7
 #110
-b10 (
-b100 +
-b11 .
-b0 1
-b1111110110001111 !
-b1111110110001111 &
-b1111111111100111 )
-b110010 ,
-b1111111111001110 /
-b0 2
-b11001 #
-b11001 %
-b11100111 "
-b11100111 $
-b11100111 '
-b11100111 *
-b11100111 -
-b11100111 0
-#150
-b110 (
-b11 +
-b100 .
-b111 1
-b1111110110001111 !
-b1111110110001111 &
-b1111111111100111 )
-b110010 ,
-b1111111111001110 /
-b11100111 #
-b11100111 %
-b11001 "
-b11001 $
-b11001 '
-b11001 *
-b11001 -
-b11001 0
+b110 5
+0-
+b1100010 2
+1+
+b110001000 3
+b11011001z10101 !
+b11011001z10101 .
+b10000001000000 0
+b100010000 4
+b100010000 9
+b110101011001010 1
+b110101011001010 8
+b1000111101101 $
+b1000111101101 '
+b1000111101101 7
+b10010010001000 #
+b10010010001000 &
+b10010010001000 6
 #1000
