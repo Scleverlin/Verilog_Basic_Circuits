@@ -13,27 +13,26 @@ p_g_gen p_g_gen_0(a,b,p,g,cin);
 wire [3:0]gnpg_level1;
 wire [3:0]pp;
 
+genvar i;
+generate
+   for (i = 1;i<5 ;i=i+1 ) begin
+     assign gnpg_level1[i-1]=g[2*i-1]|p[2*i-1]&g[2*i-2];
+     assign pp[i-1]=p[2*i-1]&p[2*i-2];
+   end
+endgenerate
 
-
-assign gnpg_level1[0]=g[1]|p[1]&g[0];
-assign gnpg_level1[1]=g[3]|p[3]&g[2];
-assign gnpg_level1[2]=g[5]|p[5]&g[4];
-assign gnpg_level1[3]=g[7]|p[7]&g[6];
-
-assign pp[0]=p[1]&p[0];
-assign pp[1]=p[3]&p[2];
-assign pp[2]=p[5]&p[4];
-assign pp[3]=p[7]&p[6];
 
 
 
 //level2
 wire [1:0]gnpg_level2;
 wire pppp;
+generate
+   for (i = 1;i<3 ;i=i+1 ) begin
+     assign  gnpg_level2[i-1]=gnpg_level1[2*i-1]|(pp[2*i-1]&gnpg_level1[2*i-2]);
 
-
-assign gnpg_level2[0]=gnpg_level1[1]|(pp[1]&gnpg_level1[0]);
-assign gnpg_level2[1]=gnpg_level1[3]|(pp[3]&gnpg_level1[2]);
+   end
+endgenerate
 assign pppp=pp[3]&pp[2];
 
 //level3
