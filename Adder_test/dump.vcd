@@ -1,0 +1,173 @@
+$date
+	Mon May 15 18:34:42 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_bka_8 $end
+$var wire 8 ! sum [7:0] $end
+$var wire 1 " cout $end
+$var reg 8 # a [7:0] $end
+$var reg 8 $ b [7:0] $end
+$var reg 1 % cin $end
+$scope module bka $end
+$var wire 8 & a [8:1] $end
+$var wire 8 ' b [8:1] $end
+$var wire 1 % cin $end
+$var wire 1 ( complex_gnpg $end
+$var wire 1 " cout $end
+$var wire 1 ) pppp $end
+$var wire 1 * tmp1 $end
+$var wire 1 + tmp2 $end
+$var wire 1 , tmp3 $end
+$var wire 1 - tmp4 $end
+$var wire 8 . sum [8:1] $end
+$var wire 4 / pp [3:0] $end
+$var wire 9 0 p [8:0] $end
+$var wire 2 1 gnpg_level2 [1:0] $end
+$var wire 4 2 gnpg_level1 [3:0] $end
+$var wire 9 3 g [8:0] $end
+$scope module p_g_gen_0 $end
+$var wire 8 4 a [8:1] $end
+$var wire 8 5 b [8:1] $end
+$var wire 1 % cin $end
+$var wire 9 6 p [8:0] $end
+$var wire 9 7 g [8:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 7
+bx0 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx0 0
+bx0 /
+bx .
+x-
+x,
+x+
+x*
+x)
+x(
+bx '
+bx &
+x%
+bx $
+bx #
+x"
+bx !
+$end
+#10
+0(
+0*
+0,
+b0 1
+0)
+0-
+0+
+0"
+b0 2
+b111 !
+b111 .
+b10 /
+b1110 0
+b1110 6
+b0 3
+b0 7
+0%
+b101 $
+b101 '
+b101 5
+b10 #
+b10 &
+b10 4
+#30
+b1 2
+b10 !
+b10 .
+b0 /
+b10 3
+b10 7
+b0 0
+b0 6
+b1 $
+b1 '
+b1 5
+b1 #
+b1 &
+b1 4
+#50
+1,
+b1 1
+b110 2
+b101001 !
+b101001 .
+b101001 3
+b101001 7
+1%
+b10100 $
+b10100 '
+b10100 5
+b10100 #
+b10100 &
+b10100 4
+#70
+1(
+0,
+b10 1
+b10010111 !
+b10010111 .
+1+
+1*
+b1001 2
+b10010111 3
+b10010111 7
+b1001011 $
+b1001011 '
+b1001011 5
+b1001011 #
+b1001011 &
+b1001011 4
+#90
+0(
+b0 1
+0+
+0*
+1"
+b0 2
+b0 !
+b0 .
+b100000000 3
+b100000000 7
+0%
+b10000000 $
+b10000000 '
+b10000000 5
+b10000000 #
+b10000000 &
+b10000000 4
+#110
+0"
+b11011100 !
+b11011100 .
+b100 /
+b0 3
+b0 7
+b110111000 0
+b110111000 6
+b10100 $
+b10100 '
+b10100 5
+b11001000 #
+b11001000 &
+b11001000 4
+#1000
