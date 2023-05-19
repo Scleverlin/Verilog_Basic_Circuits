@@ -1,13 +1,13 @@
-module tb_bka_8 (
+module tb_bka_16 (
     
 );
-reg [7:0] a,b;
-output [7:0] sum;
+reg [15:0] a,b;
+output [15:0] sum;
 output  cout;
 reg cin;
 parameter delay=20; 
 
-CLA_BKA_PG_8_bit shi (a,b,cin,sum,cout);
+CLA_HAN_PG_16 shi (a,b,cin,sum,cout);
 
 initial begin
    $dumpfile("dump.vcd"); 
@@ -21,7 +21,12 @@ initial begin
 #delay a=20;b=20;cin=1;
 #delay a=75;b=75;cin=1;
 #delay a=128;b=128;cin=0;
-#delay a=200;b=20;cin=0;                                                                                 
+#delay a=200;b=20;cin=0;   
+#delay a=2000;b=2000;cin=0;   
+#delay a=6500;b=2000;cin=0;   
+#delay a=65000;b=200;cin=1;
+
+
 end 
 // initial begin
 //   clk=0;

@@ -1,5 +1,5 @@
 $date
-	Fri May 19 19:45:32 2023
+	Sat May 20 00:43:25 2023
 $end
 $version
 	Icarus Verilog
@@ -7,36 +7,40 @@ $end
 $timescale
 	1s
 $end
-$scope module tb_bka_8 $end
-$var wire 8 ! sum [7:0] $end
+$scope module tb_bka_16 $end
+$var wire 16 ! sum [15:0] $end
 $var wire 1 " cout $end
-$var reg 8 # a [7:0] $end
-$var reg 8 $ b [7:0] $end
+$var reg 16 # a [15:0] $end
+$var reg 16 $ b [15:0] $end
 $var reg 1 % cin $end
 $scope module shi $end
-$var wire 8 & a [8:1] $end
-$var wire 8 ' b [8:1] $end
+$var wire 16 & a [16:1] $end
+$var wire 16 ' b [16:1] $end
 $var wire 1 % cin $end
 $var wire 1 " cout $end
-$var wire 8 ( sum [8:1] $end
-$var wire 8 ) pp [7:0] $end
-$var wire 8 * p [8:1] $end
-$var wire 8 + gnpg [7:0] $end
-$var wire 7 , c [7:1] $end
-$scope module pg_gen $end
-$var wire 8 - a [8:1] $end
-$var wire 8 . b [8:1] $end
+$var wire 16 ( sum [16:1] $end
+$var wire 16 ) pp [15:0] $end
+$var wire 16 * p [16:1] $end
+$var wire 16 + gnpg [15:0] $end
+$var wire 16 , c [15:0] $end
+$scope module u0 $end
+$var wire 16 - a [16:1] $end
+$var wire 16 . b [16:1] $end
 $var wire 1 % cin $end
-$var wire 8 / g [8:1] $end
-$var wire 8 0 p [8:1] $end
-$var wire 4 1 pp_level3 [3:0] $end
-$var wire 6 2 pp_level2 [5:0] $end
-$var wire 8 3 pp_level1 [7:0] $end
-$var wire 8 4 pp [7:0] $end
-$var wire 4 5 gnpg_level3 [3:0] $end
-$var wire 6 6 gnpg_level2 [5:0] $end
-$var wire 8 7 gnpg_level1 [7:0] $end
-$var wire 8 8 gnpg [7:0] $end
+$var wire 16 / g [16:1] $end
+$var wire 16 0 p [16:1] $end
+$var wire 4 1 pp_level4 [3:0] $end
+$var wire 8 2 pp_level3 [7:0] $end
+$var wire 8 3 pp_level2 [7:0] $end
+$var wire 8 4 pp_level1 [7:0] $end
+$var wire 16 5 pp [15:0] $end
+$var wire 4 6 gnpg_level4 [3:0] $end
+$var wire 8 7 gnpg_level3 [7:0] $end
+$var wire 8 8 gnpg_level2 [7:0] $end
+$var wire 8 9 gnpg_level1 [7:0] $end
+$var wire 16 : gnpg [15:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
 $scope begin genblk1[1] $end
 $upscope $end
 $scope begin genblk1[2] $end
@@ -51,12 +55,48 @@ $scope begin genblk1[6] $end
 $upscope $end
 $scope begin genblk1[7] $end
 $upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk2[4] $end
+$upscope $end
+$scope begin genblk2[5] $end
+$upscope $end
+$scope begin genblk2[6] $end
+$upscope $end
+$scope begin genblk2[7] $end
+$upscope $end
+$scope begin genblk3[2] $end
+$upscope $end
+$scope begin genblk3[3] $end
+$upscope $end
+$scope begin genblk3[4] $end
+$upscope $end
+$scope begin genblk3[5] $end
+$upscope $end
+$scope begin genblk3[6] $end
+$upscope $end
+$scope begin genblk3[7] $end
+$upscope $end
+$scope begin genblk4[0] $end
+$upscope $end
+$scope begin genblk4[1] $end
+$upscope $end
+$scope begin genblk4[2] $end
+$upscope $end
+$scope begin genblk4[3] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx :
+bx 9
 bx 8
 bx 7
 bx 6
@@ -84,22 +124,24 @@ bx !
 $end
 #10
 0"
-b0 5
-b0 1
-b0 ,
-b1 2
 b0 6
-b111 )
-b111 4
+b0 1
+b1 2
+b0 7
+b1 3
+b0 8
+b1 4
+b0 9
 b111 !
 b111 (
+b111 )
+b111 5
 b0 +
-b0 8
-b111 3
-b0 7
+b0 :
 b111 *
 b111 0
 b0 /
+b0 ,
 0%
 b101 $
 b101 '
@@ -108,17 +150,16 @@ b10 #
 b10 &
 b10 -
 #30
-b0 6
-b1 ,
 b0 2
-b0 )
+b0 3
+b10 ,
 b0 4
 b10 !
 b10 (
+b0 )
+b0 5
 b1 +
-b1 8
-b0 3
-b1 7
+b1 :
 b0 *
 b0 0
 b1 /
@@ -129,15 +170,12 @@ b1 #
 b1 &
 b1 -
 #50
-b1 5
-b10100 ,
-b101 6
-b10100 +
-b10100 8
-b10100 7
 b101001 !
 b101001 (
+b10100 +
+b10100 :
 b10100 /
+b101001 ,
 1%
 b10100 $
 b10100 '
@@ -146,14 +184,14 @@ b10100 #
 b10100 &
 b10100 -
 #70
-b100 5
 b10010111 !
 b10010111 (
-b1001011 ,
-b10010 6
+b11 7
+b11 8
+b10010111 ,
+b11 9
 b1001011 +
-b1001011 8
-b1001011 7
+b1001011 :
 b1001011 /
 b1001011 $
 b1001011 '
@@ -162,16 +200,15 @@ b1001011 #
 b1001011 &
 b1001011 -
 #90
-1"
-b1000 5
-b100000 6
-b0 ,
+b1000 7
+b1000 8
+b1000 9
+b100000000 !
+b100000000 (
 b10000000 +
-b10000000 8
-b10000000 7
-b0 !
-b0 (
+b10000000 :
 b10000000 /
+b100000000 ,
 0%
 b10000000 $
 b10000000 '
@@ -180,16 +217,15 @@ b10000000 #
 b10000000 &
 b10000000 -
 #110
-0"
+b0 ,
 b0 +
+b0 :
+b0 7
 b0 8
-b0 5
-b0 6
-b100 2
-b10011000 3
+b1010 4
 b11011100 !
 b11011100 (
-b0 7
+b0 9
 b11011100 *
 b11011100 0
 b0 /
@@ -199,4 +235,64 @@ b10100 .
 b11001000 #
 b11001000 &
 b11001000 -
+#130
+b1 6
+b11000 7
+b11000 8
+b111110100000 ,
+b0 4
+b111110100000 !
+b111110100000 (
+b11000 9
+b11111010000 +
+b11111010000 :
+b0 *
+b0 0
+b11111010000 /
+b11111010000 $
+b11111010000 '
+b11111010000 .
+b11111010000 #
+b11111010000 &
+b11111010000 -
+#150
+b11 6
+b111000 7
+b111000 8
+b11111110000000 ,
+b100100 4
+b10000100110100 !
+b10000100110100 (
+b11000 9
+b1111111000000 +
+b1111111000000 :
+b1111010110100 *
+b1111010110100 0
+b101000000 /
+b1100101100100 #
+b1100101100100 &
+b1100101100100 -
+#170
+0"
+b0 6
+b1010 7
+b11000000 3
+b1010 8
+b11100000 4
+b1010 9
+b111001000 +
+b111001000 :
+b1111111010110001 !
+b1111111010110001 (
+b1111110100100000 *
+b1111110100100000 0
+b11001000 /
+b1110010001 ,
+1%
+b11001000 $
+b11001000 '
+b11001000 .
+b1111110111101000 #
+b1111110111101000 &
+b1111110111101000 -
 #1000
