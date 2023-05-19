@@ -7,9 +7,7 @@ output  cout;
 reg cin;
 parameter delay=20; 
 
-BK_adder_8bit bka(
-    a,b,cin,sum,cout
-);
+CLA_BKA_PG_8_bit shi (a,b,cin,sum,cout);
 
 initial begin
    $dumpfile("dump.vcd"); 
