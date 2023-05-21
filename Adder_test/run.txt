@@ -1,0 +1,1 @@
+verilator -Wall -j 0 -Wno-DECLFILENAME --cc ks_adder.v --exe --build sim_main.cpp

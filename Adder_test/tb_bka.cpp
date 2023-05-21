@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdlib>
-#include "VBK_adder_8bit.h"
+#include "VCLA_new_AO_8bit.h"
 #include "verilated.h"
 
 int main(int argc, char** argv, char** env) {
     Verilated::commandArgs(argc, argv);
-    VBK_adder_8bit* top = new VBK_adder_8bit;
+    VCLA_new_AO_8bit* top = new VCLA_new_AO_8bit;
     int error_count = 0;
     int test_num = 100;
     for (int i = 0; i < test_num; i++) {

@@ -1,4 +1,4 @@
-tb_bka.o: ../tb_bka.cpp VBK_adder_8bit.h \
+tb_bka.o: ../tb_bka.cpp VCLA_new_AO_8bit.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
  /usr/local/share/verilator/include/verilated_config.h \
