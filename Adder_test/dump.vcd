@@ -1,5 +1,5 @@
 $date
-	Sun May 21 19:08:45 2023
+	Tue May 23 13:20:18 2023
 $end
 $version
 	Icarus Verilog
@@ -8,35 +8,42 @@ $timescale
 	1s
 $end
 $scope module tb_bka_16 $end
-$var wire 8 ! sum [7:0] $end
+$var wire 64 ! sum [63:0] $end
 $var wire 1 " cout $end
-$var reg 8 # a [7:0] $end
-$var reg 8 $ b [7:0] $end
+$var reg 64 # a [63:0] $end
+$var reg 64 $ b [63:0] $end
 $var reg 1 % cin $end
 $scope module shi $end
-$var wire 8 & a [8:1] $end
-$var wire 8 ' b [8:1] $end
+$var wire 64 & a [63:0] $end
+$var wire 64 ' b [63:0] $end
 $var wire 1 % cin $end
+$var wire 64 ( sum [63:0] $end
 $var wire 1 " cout $end
-$var wire 8 ( sum [8:1] $end
-$var wire 8 ) pp [7:0] $end
-$var wire 8 * p [8:1] $end
-$var wire 8 + gnpg [7:0] $end
-$var wire 8 , c [7:0] $end
+$var wire 7 ) c [6:0] $end
 $scope module u0 $end
-$var wire 8 - a [8:1] $end
-$var wire 8 . b [8:1] $end
+$var wire 8 * a [8:1] $end
+$var wire 8 + b [8:1] $end
 $var wire 1 % cin $end
-$var wire 8 / g [8:1] $end
-$var wire 8 0 p [8:1] $end
-$var wire 2 1 pp_level3 [1:0] $end
-$var wire 4 2 pp_level2 [3:0] $end
-$var wire 4 3 pp_level1 [3:0] $end
-$var wire 8 4 pp [7:0] $end
-$var wire 2 5 gnpg_level3 [1:0] $end
-$var wire 4 6 gnpg_level2 [3:0] $end
-$var wire 4 7 gnpg_level1 [3:0] $end
-$var wire 8 8 gnpg [7:0] $end
+$var wire 1 , cout $end
+$var wire 8 - sum [8:1] $end
+$var wire 8 . pp [7:0] $end
+$var wire 8 / p [8:1] $end
+$var wire 8 0 gnpg [7:0] $end
+$var wire 8 1 c [7:0] $end
+$scope module u0 $end
+$var wire 8 2 a [8:1] $end
+$var wire 8 3 b [8:1] $end
+$var wire 1 % cin $end
+$var wire 8 4 g [8:1] $end
+$var wire 8 5 p [8:1] $end
+$var wire 2 6 pp_level3 [1:0] $end
+$var wire 4 7 pp_level2 [3:0] $end
+$var wire 4 8 pp_level1 [3:0] $end
+$var wire 8 9 pp [7:0] $end
+$var wire 2 : gnpg_level3 [1:0] $end
+$var wire 4 ; gnpg_level2 [3:0] $end
+$var wire 4 < gnpg_level1 [3:0] $end
+$var wire 8 = gnpg [7:0] $end
 $scope begin genblk1[0] $end
 $upscope $end
 $scope begin genblk1[1] $end
@@ -49,6 +56,316 @@ $scope begin genblk2[1] $end
 $upscope $end
 $scope begin genblk2[2] $end
 $upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u1 $end
+$var wire 8 > a [8:1] $end
+$var wire 8 ? b [8:1] $end
+$var wire 1 @ cin $end
+$var wire 1 A cout $end
+$var wire 8 B sum [8:1] $end
+$var wire 8 C pp [7:0] $end
+$var wire 8 D p [8:1] $end
+$var wire 8 E gnpg [7:0] $end
+$var wire 8 F c [7:0] $end
+$scope module u0 $end
+$var wire 8 G a [8:1] $end
+$var wire 8 H b [8:1] $end
+$var wire 1 @ cin $end
+$var wire 8 I g [8:1] $end
+$var wire 8 J p [8:1] $end
+$var wire 2 K pp_level3 [1:0] $end
+$var wire 4 L pp_level2 [3:0] $end
+$var wire 4 M pp_level1 [3:0] $end
+$var wire 8 N pp [7:0] $end
+$var wire 2 O gnpg_level3 [1:0] $end
+$var wire 4 P gnpg_level2 [3:0] $end
+$var wire 4 Q gnpg_level1 [3:0] $end
+$var wire 8 R gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u2 $end
+$var wire 8 S a [8:1] $end
+$var wire 8 T b [8:1] $end
+$var wire 1 U cin $end
+$var wire 1 V cout $end
+$var wire 8 W sum [8:1] $end
+$var wire 8 X pp [7:0] $end
+$var wire 8 Y p [8:1] $end
+$var wire 8 Z gnpg [7:0] $end
+$var wire 8 [ c [7:0] $end
+$scope module u0 $end
+$var wire 8 \ a [8:1] $end
+$var wire 8 ] b [8:1] $end
+$var wire 1 U cin $end
+$var wire 8 ^ g [8:1] $end
+$var wire 8 _ p [8:1] $end
+$var wire 2 ` pp_level3 [1:0] $end
+$var wire 4 a pp_level2 [3:0] $end
+$var wire 4 b pp_level1 [3:0] $end
+$var wire 8 c pp [7:0] $end
+$var wire 2 d gnpg_level3 [1:0] $end
+$var wire 4 e gnpg_level2 [3:0] $end
+$var wire 4 f gnpg_level1 [3:0] $end
+$var wire 8 g gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u3 $end
+$var wire 8 h a [8:1] $end
+$var wire 8 i b [8:1] $end
+$var wire 1 j cin $end
+$var wire 1 k cout $end
+$var wire 8 l sum [8:1] $end
+$var wire 8 m pp [7:0] $end
+$var wire 8 n p [8:1] $end
+$var wire 8 o gnpg [7:0] $end
+$var wire 8 p c [7:0] $end
+$scope module u0 $end
+$var wire 8 q a [8:1] $end
+$var wire 8 r b [8:1] $end
+$var wire 1 j cin $end
+$var wire 8 s g [8:1] $end
+$var wire 8 t p [8:1] $end
+$var wire 2 u pp_level3 [1:0] $end
+$var wire 4 v pp_level2 [3:0] $end
+$var wire 4 w pp_level1 [3:0] $end
+$var wire 8 x pp [7:0] $end
+$var wire 2 y gnpg_level3 [1:0] $end
+$var wire 4 z gnpg_level2 [3:0] $end
+$var wire 4 { gnpg_level1 [3:0] $end
+$var wire 8 | gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u4 $end
+$var wire 8 } a [8:1] $end
+$var wire 8 ~ b [8:1] $end
+$var wire 1 !" cin $end
+$var wire 1 "" cout $end
+$var wire 8 #" sum [8:1] $end
+$var wire 8 $" pp [7:0] $end
+$var wire 8 %" p [8:1] $end
+$var wire 8 &" gnpg [7:0] $end
+$var wire 8 '" c [7:0] $end
+$scope module u0 $end
+$var wire 8 (" a [8:1] $end
+$var wire 8 )" b [8:1] $end
+$var wire 1 !" cin $end
+$var wire 8 *" g [8:1] $end
+$var wire 8 +" p [8:1] $end
+$var wire 2 ," pp_level3 [1:0] $end
+$var wire 4 -" pp_level2 [3:0] $end
+$var wire 4 ." pp_level1 [3:0] $end
+$var wire 8 /" pp [7:0] $end
+$var wire 2 0" gnpg_level3 [1:0] $end
+$var wire 4 1" gnpg_level2 [3:0] $end
+$var wire 4 2" gnpg_level1 [3:0] $end
+$var wire 8 3" gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u5 $end
+$var wire 8 4" a [8:1] $end
+$var wire 8 5" b [8:1] $end
+$var wire 1 6" cin $end
+$var wire 1 7" cout $end
+$var wire 8 8" sum [8:1] $end
+$var wire 8 9" pp [7:0] $end
+$var wire 8 :" p [8:1] $end
+$var wire 8 ;" gnpg [7:0] $end
+$var wire 8 <" c [7:0] $end
+$scope module u0 $end
+$var wire 8 =" a [8:1] $end
+$var wire 8 >" b [8:1] $end
+$var wire 1 6" cin $end
+$var wire 8 ?" g [8:1] $end
+$var wire 8 @" p [8:1] $end
+$var wire 2 A" pp_level3 [1:0] $end
+$var wire 4 B" pp_level2 [3:0] $end
+$var wire 4 C" pp_level1 [3:0] $end
+$var wire 8 D" pp [7:0] $end
+$var wire 2 E" gnpg_level3 [1:0] $end
+$var wire 4 F" gnpg_level2 [3:0] $end
+$var wire 4 G" gnpg_level1 [3:0] $end
+$var wire 8 H" gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u6 $end
+$var wire 8 I" a [8:1] $end
+$var wire 8 J" b [8:1] $end
+$var wire 1 K" cin $end
+$var wire 1 L" cout $end
+$var wire 8 M" sum [8:1] $end
+$var wire 8 N" pp [7:0] $end
+$var wire 8 O" p [8:1] $end
+$var wire 8 P" gnpg [7:0] $end
+$var wire 8 Q" c [7:0] $end
+$scope module u0 $end
+$var wire 8 R" a [8:1] $end
+$var wire 8 S" b [8:1] $end
+$var wire 1 K" cin $end
+$var wire 8 T" g [8:1] $end
+$var wire 8 U" p [8:1] $end
+$var wire 2 V" pp_level3 [1:0] $end
+$var wire 4 W" pp_level2 [3:0] $end
+$var wire 4 X" pp_level1 [3:0] $end
+$var wire 8 Y" pp [7:0] $end
+$var wire 2 Z" gnpg_level3 [1:0] $end
+$var wire 4 [" gnpg_level2 [3:0] $end
+$var wire 4 \" gnpg_level1 [3:0] $end
+$var wire 8 ]" gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$scope begin genblk3[0] $end
+$upscope $end
+$scope begin genblk3[1] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u7 $end
+$var wire 8 ^" a [8:1] $end
+$var wire 8 _" b [8:1] $end
+$var wire 1 `" cin $end
+$var wire 1 " cout $end
+$var wire 8 a" sum [8:1] $end
+$var wire 8 b" pp [7:0] $end
+$var wire 8 c" p [8:1] $end
+$var wire 8 d" gnpg [7:0] $end
+$var wire 8 e" c [7:0] $end
+$scope module u0 $end
+$var wire 8 f" a [8:1] $end
+$var wire 8 g" b [8:1] $end
+$var wire 1 `" cin $end
+$var wire 8 h" g [8:1] $end
+$var wire 8 i" p [8:1] $end
+$var wire 2 j" pp_level3 [1:0] $end
+$var wire 4 k" pp_level2 [3:0] $end
+$var wire 4 l" pp_level1 [3:0] $end
+$var wire 8 m" pp [7:0] $end
+$var wire 2 n" gnpg_level3 [1:0] $end
+$var wire 4 o" gnpg_level2 [3:0] $end
+$var wire 4 p" gnpg_level1 [3:0] $end
+$var wire 8 q" gnpg [7:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
 $scope begin genblk3[0] $end
 $upscope $end
 $scope begin genblk3[1] $end
@@ -56,22 +373,174 @@ $upscope $end
 $upscope $end
 $upscope $end
 $upscope $end
+$upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx q"
+bx p"
+bx o"
+bx n"
+bx m"
+bx l"
+bx k"
+bx j"
+bx i"
+bx h"
+bx g"
+bx f"
+bx e"
+bx d"
+bx c"
+bx b"
+bx a"
+x`"
+bx _"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+bx Y"
+bx X"
+bx W"
+bx V"
+bx U"
+bx T"
+bx S"
+bx R"
+bx Q"
+bx P"
+bx O"
+bx N"
+bx M"
+xL"
+xK"
+bx J"
+bx I"
+bx H"
+bx G"
+bx F"
+bx E"
+bx D"
+bx C"
+bx B"
+bx A"
+bx @"
+bx ?"
+bx >"
+bx ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+x7"
+x6"
+bx 5"
+bx 4"
+bx 3"
+bx 2"
+bx 1"
+bx 0"
+bx /"
+bx ."
+bx -"
+bx ,"
+bx +"
+bx *"
+bx )"
+bx ("
+bx '"
+bx &"
+bx %"
+bx $"
+bx #"
+x""
+x!"
+bx ~
+bx }
+bx |
+bx {
+bx z
+bx y
+bx x
+bx w
+bx v
+bx u
+bx t
+bx s
+bx r
+bx q
+bx p
+bx o
+bx n
+bx m
+bx l
+xk
+xj
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx Z
+bx Y
+bx X
+bx W
+xV
+xU
+bx T
+bx S
+bx R
+bx Q
+bx P
+bx O
+bx N
+bx M
+bx L
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+xA
+x@
+bx ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+bx 9
 bx 8
 bx 7
-bzxxx 6
+bx 6
 bx 5
 bx 4
 bx 3
-bzxxx 2
+bx 2
 bx 1
 bx 0
 bx /
 bx .
 bx -
-bx ,
+x,
 bx +
 bx *
 bx )
@@ -85,105 +554,474 @@ x"
 bx !
 $end
 #10
-bx0 5
-b0 1
-bz001 2
-bz000 6
-b1 3
-b0 7
+0@
+0U
+0j
+0!"
+06"
+0K"
+0`"
+0,
+0A
+0V
+0k
+0""
+07"
+b0 )
+0L"
+0"
+b0 :
+b0 B
+b0 O
+b0 W
+b0 d
+b0 l
+b0 y
+b0 #"
+b0 0"
+b0 8"
+b0 E"
+b0 M"
+b0 Z"
+b0 a"
+b0 n"
+b0 6
+b0 K
+b0 `
+b0 u
+b0 ,"
+b0 A"
+b0 V"
+b0 j"
+b0 F
+b0 [
+b0 p
+b0 '"
+b0 <"
+b0 Q"
+b0 e"
+b1 7
+b0 ;
+b0 L
+b0 P
+b0 a
+b0 e
+b0 v
+b0 z
+b0 -"
+b0 1"
+b0 B"
+b0 F"
+b0 W"
+b0 ["
+b0 k"
+b0 o"
+b1 8
 b111 !
 b111 (
-b111 )
-b111 4
-bx0000000 +
-bx0000000 8
-b111 *
-b111 0
-b0 /
-b0 ,
+b111 -
+b0 <
+b0 M
+b0 Q
+b0 b
+b0 f
+b0 w
+b0 {
+b0 ."
+b0 2"
+b0 C"
+b0 G"
+b0 X"
+b0 \"
+b0 l"
+b0 p"
+b111 .
+b111 9
+b0 0
+b0 =
+b0 C
+b0 N
+b0 E
+b0 R
+b0 X
+b0 c
+b0 Z
+b0 g
+b0 m
+b0 x
+b0 o
+b0 |
+b0 $"
+b0 /"
+b0 &"
+b0 3"
+b0 9"
+b0 D"
+b0 ;"
+b0 H"
+b0 N"
+b0 Y"
+b0 P"
+b0 ]"
+b0 b"
+b0 m"
+b0 d"
+b0 q"
+b111 /
+b111 5
+b0 4
+b0 D
+b0 J
+b0 I
+b0 Y
+b0 _
+b0 ^
+b0 n
+b0 t
+b0 s
+b0 %"
+b0 +"
+b0 *"
+b0 :"
+b0 @"
+b0 ?"
+b0 O"
+b0 U"
+b0 T"
+b0 c"
+b0 i"
+b0 h"
+b101 +
+b101 3
+b0 ?
+b0 H
+b0 T
+b0 ]
+b0 i
+b0 r
+b0 ~
+b0 )"
+b0 5"
+b0 >"
+b0 J"
+b0 S"
+b0 _"
+b0 g"
+b10 *
+b10 2
+b0 >
+b0 G
+b0 S
+b0 \
+b0 h
+b0 q
+b0 }
+b0 ("
+b0 4"
+b0 ="
+b0 I"
+b0 R"
+b0 ^"
+b0 f"
+b0 1
 0%
 b101 $
 b101 '
-b101 .
 b10 #
 b10 &
-b10 -
 #30
-bz000 2
-b10 ,
-b0 3
+b0 7
+b10 1
+b0 8
 b10 !
 b10 (
-b0 )
-b0 4
-bx0000001 +
-bx0000001 8
-b0 *
-b0 0
-b1 /
+b10 -
+b0 .
+b0 9
+b1 0
+b1 =
+b0 /
+b0 5
+b1 4
+b1 +
+b1 3
+b1 *
+b1 2
 b1 $
 b1 '
-b1 .
 b1 #
 b1 &
-b1 -
 #50
+b10100 0
+b10100 =
+b10100 4
 b101001 !
 b101001 (
-bx0010100 +
-bx0010100 8
-b10100 /
-b101001 ,
+b101001 -
+b10100 +
+b10100 3
+b10100 *
+b10100 2
+b101001 1
 1%
 b10100 $
 b10100 '
-b10100 .
 b10100 #
 b10100 &
-b10100 -
 #70
 b10010111 !
 b10010111 (
-bz011 6
-b10010111 ,
-b11 7
-bx1001011 +
-bx1001011 8
-b1001011 /
+b10010111 -
+b11 ;
+b10010111 1
+b11 <
+b1001011 0
+b1001011 =
+b1001011 4
+b1001011 +
+b1001011 3
+b1001011 *
+b1001011 2
 b1001011 $
 b1001011 '
-b1001011 .
 b1001011 #
 b1001011 &
-b1001011 -
 #90
-bz000 6
-b1000 7
-b0 !
-b0 (
-bx0000000 +
-bx0000000 8
-b10000000 /
-b0 ,
+b1 B
+b1 F
+1@
+b1 )
+1,
+b10 :
+b1000 ;
+b1000 <
+b10000000 0
+b10000000 =
+b10000000 4
+b100000000 !
+b100000000 (
+b0 -
+b10000000 +
+b10000000 3
+b10000000 *
+b10000000 2
+b0 1
 0%
 b10000000 $
 b10000000 '
-b10000000 .
 b10000000 #
 b10000000 &
-b10000000 -
 #110
-b1010 3
+b0 B
+b0 F
+0@
+b0 )
+0,
+b0 0
+b0 =
+b0 :
+b0 ;
+b1010 8
 b11011100 !
 b11011100 (
-b0 7
-b11011100 *
-b11011100 0
-b0 /
+b11011100 -
+b0 <
+b11011100 /
+b11011100 5
+b0 4
+b10100 +
+b10100 3
+b11001000 *
+b11001000 2
 b10100 $
 b10100 '
-b10100 .
 b11001000 #
 b11001000 &
-b11001000 -
+#130
+1@
+b1 )
+1,
+b10 :
+b1111 B
+b1000 ;
+b10100000 1
+b1 P
+b1111 F
+b0 8
+b111110100000 !
+b111110100000 (
+b10100000 -
+b1000 <
+b11010000 0
+b11010000 =
+b1 Q
+b111 E
+b111 R
+b0 /
+b0 5
+b11010000 4
+b111 I
+b11010000 +
+b11010000 3
+b111 ?
+b111 H
+b11010000 *
+b11010000 2
+b111 >
+b111 G
+b11111010000 $
+b11111010000 '
+b11111010000 #
+b11111010000 &
+#150
+1@
+b1 )
+1,
+b10 :
+b1000 ;
+b10000000 1
+b111111 F
+b11 P
+b100 8
+b110100 -
+b1000 <
+b11000000 0
+b11000000 =
+b10 M
+b10000100110100 !
+b10000100110100 (
+b100001 B
+b1 Q
+b11111 E
+b11111 R
+b10110100 /
+b10110100 5
+b1000000 4
+b11110 D
+b11110 J
+b1 I
+b1100100 *
+b1100100 2
+b11001 >
+b11001 G
+b1100101100100 #
+b1100101100100 &
+#170
+b11001000 0
+b11001000 =
+b1010 ;
+b1100 L
+b0 P
+b0 Q
+b11 F
+b0 8
+b1010 <
+b1110 M
+b11111110 B
+b1 C
+b1 N
+b0 E
+b0 R
+b100000 /
+b100000 5
+b11001000 4
+b11111101 D
+b11111101 J
+b0 I
+b1111111010110001 !
+b1111111010110001 (
+b10110001 -
+b11001000 +
+b11001000 3
+b0 ?
+b0 H
+b11101000 *
+b11101000 2
+b11111101 >
+b11111101 G
+b10010001 1
+1%
+b11001000 $
+b11001000 '
+b1111110111101000 #
+b1111110111101000 &
+#190
+0@
+1U
+0,
+b10 )
+1A
+b10000000 E
+b10000000 R
+b1 d
+b0 :
+b10 O
+b100 e
+b0 ;
+b1 1
+b0 L
+b0 F
+b1000 P
+b1100001 [
+b100 f
+b10000001 -
+b0 <
+b0 0
+b0 =
+b10 M
+b1101100 B
+b1000 Q
+b10 b
+b1001111 W
+b110000 Z
+b110000 g
+b1100110 l
+b1000 ."
+b11101001 #"
+b1011110100101100110010011110110110010000001 !
+b1011110100101100110010011110110110010000001 (
+b101 8"
+b0 C
+b0 N
+b1 $"
+b1 /"
+b1 9"
+b1 D"
+b10000000 /
+b10000000 5
+b0 4
+b1101100 D
+b1101100 J
+b10000000 I
+b101110 Y
+b101110 _
+b10000 ^
+b1100110 n
+b1100110 t
+b11101001 %"
+b11101001 +"
+b101 :"
+b101 @"
+b10000000 +
+b10000000 3
+b10000100 ?
+b10000100 H
+b11110 T
+b11110 ]
+b0 *
+b0 2
+b11101000 >
+b11101000 G
+b110000 S
+b110000 \
+b1100110 h
+b1100110 q
+b11101001 }
+b11101001 ("
+b101 4"
+b101 ="
+b111101000010010000000 $
+b111101000010010000000 '
+b1011110100101100110001100001110100000000000 #
+b1011110100101100110001100001110100000000000 &
 #1000
