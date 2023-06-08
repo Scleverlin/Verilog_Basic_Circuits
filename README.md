@@ -43,12 +43,21 @@ Now the only example is a vending machine.
 
 # Adders
 
-There are various types of adders, ranging from 8-bit to 64-bit, each with a different design type, including Ripple Carry Adder, Carry Lookahead Adder, Carry Select Adder, Carry Save Adder, Carry Skip Adder, and Kogge-Stone Adder.
+There are various types of adders, ranging from 8-bit to 64-bit, each with a different design type, including Ripple Carry Adder, Carry Lookahead Adder, Carry Select Adder, Carry Save Adder, Carry Skip Adder, Kogge-Stone Adder and etc.
+
+There are also some novel adder design in the "Addter_test" directory.
 
 
 # Multiplier
 
-Now there is an example of 3-stage pipelined 8-bit multiplier.
+Now there is an example of 3-stage pipelined 8-bit multiplier and a booth-4 based multiplier.
+
+# Approximate_Multiplier
+
+Now there is an approximate adder based on the paper of DATE2012.
+
+For the design of AM, it is still under development.
+
 
 # Single Cycle CPU
 
