@@ -3,7 +3,7 @@
 `define INPUTSIZE 64		//set the input size n
 `define GROUPSIZE 1		//set the group size = 1, 2, 4 or 8
 
-module Brent_Kung_Adder(A,B,Cin,S,cout);
+module BK_64 (A,B,Cin,S,cout);
 	input	[`INPUTSIZE - 1:0]	A;
 	input	[`INPUTSIZE - 1:0]	B;
 	input	Cin;

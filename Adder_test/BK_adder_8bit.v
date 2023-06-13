@@ -21,16 +21,12 @@ generate
    end
 endgenerate
 
-
-
-
 //level2
 wire [1:0]gnpg_level2;
 wire pppp;
 generate
    for (i = 1;i<3 ;i=i+1 ) begin
      assign  gnpg_level2[i-1]=gnpg_level1[2*i-1]|(pp[2*i-1]&gnpg_level1[2*i-2]);
-
    end
 endgenerate
 assign pppp=pp[3]&pp[2];
@@ -39,7 +35,6 @@ assign pppp=pp[3]&pp[2];
 
 wire complex_gnpg;
 assign complex_gnpg=gnpg_level2[1]|gnpg_level2[0]&pppp;
-
 
 assign cout =g[8]|p[8]&complex_gnpg;
 assign sum[1]=p[1]^cin;
@@ -58,8 +53,6 @@ wire tmp4;
 assign tmp4=g[6]|p[6]& tmp3 ;//c6
 assign sum[7]=p[7]^tmp4;
 assign sum[8]=p[8]^complex_gnpg;//c7
-
-
 
 endmodule //BK_adder_8bit
 
