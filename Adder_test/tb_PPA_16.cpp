@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdlib>
-#include "VCLA_HAN_PG_16.h"
+#include "VHC_16.h"
 #include "verilated.h"
 
 int main(int argc, char** argv, char** env) {
     Verilated::commandArgs(argc, argv);
-    VCLA_HAN_PG_16* top = new VCLA_HAN_PG_16;
+    VHC_16* top = new VHC_16;
     int error_count = 0;
     int test_num = 1000;
     for (int i = 0; i < test_num; i++) {
