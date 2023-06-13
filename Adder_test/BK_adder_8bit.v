@@ -21,16 +21,12 @@ generate
    end
 endgenerate
 
-
-
-
 //level2
 wire [1:0]gnpg_level2;
 wire pppp;
 generate
    for (i = 1;i<3 ;i=i+1 ) begin
      assign  gnpg_level2[i-1]=gnpg_level1[2*i-1]|(pp[2*i-1]&gnpg_level1[2*i-2]);
-
    end
 endgenerate
 assign pppp=pp[3]&pp[2];
