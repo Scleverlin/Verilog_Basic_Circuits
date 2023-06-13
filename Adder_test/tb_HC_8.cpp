@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdlib>
-#include "VCLA_new_AO_8bit.h"
+#include "VHC_8.h"
 #include "verilated.h"
 
 int main(int argc, char** argv, char** env) {
     Verilated::commandArgs(argc, argv);
-    VCLA_new_AO_8bit* top = new VCLA_new_AO_8bit;
+    VHC_8* top = new VHC_8;
     int error_count = 0;
     int test_num = 100;
     for (int i = 0; i < test_num; i++) {
