@@ -102,7 +102,7 @@ assign sum[40]= gnpg_level6[0]^p[40];
 assign sum[48]= gnpg_level6[1]^p[48];
 assign sum[56]= gnpg_level6[2]^p[56];
 assign sum[64]= gnpg_level6[3]^p[64];
-
+// unfinished
 
 
 endmodule
