@@ -92,7 +92,7 @@ generate
    end
 endgenerate
 
-//level 5 
+//level 6
 wire [31:0]gnpg_level6;
 
 generate 
