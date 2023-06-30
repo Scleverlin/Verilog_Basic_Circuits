@@ -2,14 +2,14 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
-#include "VCS_64_index_4.h"
+#include "VCS_64_index_3.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
-    VCS_64_index_4 * top = new VCS_64_index_4 ;
+    VCS_64_index_3 * top = new VCS_64_index_3 ;
 
     std::mt19937_64 rng(std::random_device{}());
     std::uniform_int_distribution<uint64_t> distribution(0, UINT64_MAX);
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
         //           << std::endl;
             // printf("a = %llu, b = %llu, sum = %llu\n", top->a, top->b, top->sum);
 
-    printf("Test %4d: a = %20lu, b = %20lu, cin = %u, sum = %20lu, cout = %u\n",
+    printf("Test %4d: a = %20lu, b = %20lu, cin = %u, sum = %20lu, cout = %u, Pass\n",
        test + 1, top->a, top->b, static_cast<unsigned>(top->cin), top->sum, static_cast<unsigned>(top->cout));
 
         if (top->sum != (expected_sum & 0xFFFFFFFFFFFFFFFF) || top->cout != expected_cout) {

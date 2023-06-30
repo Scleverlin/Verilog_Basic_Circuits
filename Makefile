@@ -1,9 +1,9 @@
 .DEFAULT_GOAL := push
 #test
-commit_msg = "update"
+commit = "update"
 ifeq ($(strip $(m)),)
 else
-    commit_msg = $(m)
+    commit = $(m)
 endif
 
 pull:
@@ -13,7 +13,7 @@ add:
 	git add ./
 
 commit:
-	git commit -m $(commit_msg)
+	git commit -m $(commit)
 
 push: pull add commit
 	git push origin main
