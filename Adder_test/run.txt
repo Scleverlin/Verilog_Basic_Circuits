@@ -1,1 +1,1 @@
-verilator -Wall -j 0 -Wno-DECLFILENAME --cc CS_64_index_3.v --exe --build tb_CS.cpp
+verilator -Wall -j 0 -Wno-DECLFILENAME --cc /home/shi/verilog/Adder_test/CLA_index_4_32.v --exe --build /home/shi/verilog/Adder_test/tb_CLA_index_4.cpp
