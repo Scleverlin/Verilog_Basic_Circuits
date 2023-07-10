@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     // top->trace(tfp, 99);
     // tfp->open("vcd_output.vcd");
 
-    for (int test = 0; test < 1000; ++test) {
+    for (int test = 0; test < 10000; ++test) {
         top->a = distribution(rng);
         top->b = distribution(rng);
         top->cin = rand() & 0x1;
