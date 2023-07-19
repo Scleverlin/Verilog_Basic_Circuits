@@ -7,7 +7,7 @@ output  cout;
 reg cin;
 parameter delay=20; 
 
-CLA_HAN_shi_8  shi (a,b,cin,sum,cout);
+CS_Index_8_mod  shi (a,b,cin,sum,cout);
 
 initial begin
    $dumpfile("dump.vcd"); 
@@ -22,6 +22,7 @@ initial begin
 #delay a=75;b=75;cin=1;
 #delay a=128;b=128;cin=0;
 #delay a=200;b=20;cin=0;   
+#delay a=1024;b=1500;cin=0;   
 #delay a=2000;b=2000;cin=0;   
 #delay a=6500;b=2000;cin=0;   
 #delay a=65000;b=200;cin=1;
