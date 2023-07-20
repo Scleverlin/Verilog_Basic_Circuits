@@ -2,14 +2,14 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
-#include "VCS_index4_mod_v2.h"
+#include "VCS_index4_mod_v3.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
-    VCS_index4_mod_v2 * top = new VCS_index4_mod_v2 ;
+    VCS_index4_mod_v3 * top = new VCS_index4_mod_v3 ;
 
     std::mt19937_64 rng(std::random_device{}());
     std::uniform_int_distribution<uint64_t> distribution(0, UINT64_MAX);
