@@ -1,5 +1,5 @@
 $date
-	Sat Apr 15 17:38:52 2023
+	Sat Jul 29 19:04:40 2023
 $end
 $version
 	Icarus Verilog
@@ -7,656 +7,233 @@ $end
 $timescale
 	1s
 $end
-$scope module tb_ksop_8 $end
-$var wire 8 ! sum [7:0] $end
-$var wire 1 " cout $end
-$var reg 8 # a [7:0] $end
-$var reg 8 $ b [7:0] $end
-$var reg 1 % cin $end
-$scope module ksop $end
-$var wire 8 & a [7:0] $end
-$var wire 8 ' b [7:0] $end
-$var wire 1 % cin $end
-$var wire 8 ( sum [7:0] $end
-$var wire 7 ) pp [6:0] $end
-$var wire 8 * p [7:0] $end
-$var wire 1 + g7_p7g6 $end
-$var wire 1 , g6_p6g5 $end
-$var wire 1 - g5_p5g4 $end
-$var wire 1 . g4_p4g3 $end
-$var wire 1 / g3_p3g2 $end
-$var wire 1 0 g2_p2g1 $end
-$var wire 1 1 g1_p1g0 $end
-$var wire 8 2 g [7:0] $end
-$var wire 1 " cout $end
-$var wire 1 3 c6 $end
-$var wire 1 4 c5 $end
-$var wire 1 5 c4 $end
-$var wire 1 6 c3 $end
-$var wire 1 7 c2 $end
-$var wire 1 8 c1 $end
-$var wire 1 9 c0 $end
-$scope module AO_1 $end
-$var wire 1 : a $end
-$var wire 1 % b $end
-$var wire 1 ; c $end
-$var wire 1 9 out $end
-$var wire 1 < aoi $end
-$scope module aoi_gate $end
-$var wire 1 : a $end
-$var wire 1 = ab $end
-$var wire 1 % b $end
-$var wire 1 ; c $end
-$var wire 1 < out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 < a $end
-$var wire 1 9 out $end
-$upscope $end
-$upscope $end
-$scope module AO_2 $end
-$var wire 1 > a $end
-$var wire 1 % b $end
-$var wire 1 8 out $end
-$var wire 1 1 c $end
-$var wire 1 ? aoi $end
-$scope module aoi_gate $end
-$var wire 1 > a $end
-$var wire 1 @ ab $end
-$var wire 1 % b $end
-$var wire 1 ? out $end
-$var wire 1 1 c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 ? a $end
-$var wire 1 8 out $end
-$upscope $end
-$upscope $end
-$scope module AO_3 $end
-$var wire 1 A a $end
-$var wire 1 9 b $end
-$var wire 1 7 out $end
-$var wire 1 0 c $end
-$var wire 1 B aoi $end
-$scope module aoi_gate $end
-$var wire 1 A a $end
-$var wire 1 C ab $end
-$var wire 1 9 b $end
-$var wire 1 B out $end
-$var wire 1 0 c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 B a $end
-$var wire 1 7 out $end
-$upscope $end
-$upscope $end
-$scope module AO_4 $end
-$var wire 1 D a $end
-$var wire 1 8 b $end
-$var wire 1 6 out $end
-$var wire 1 / c $end
-$var wire 1 E aoi $end
-$scope module aoi_gate $end
-$var wire 1 D a $end
-$var wire 1 F ab $end
-$var wire 1 8 b $end
-$var wire 1 E out $end
-$var wire 1 / c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 E a $end
-$var wire 1 6 out $end
-$upscope $end
-$upscope $end
-$scope module AO_5 $end
-$var wire 1 G a $end
-$var wire 1 7 b $end
-$var wire 1 5 out $end
-$var wire 1 . c $end
-$var wire 1 H aoi $end
-$scope module aoi_gate $end
-$var wire 1 G a $end
-$var wire 1 I ab $end
-$var wire 1 7 b $end
-$var wire 1 H out $end
-$var wire 1 . c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 H a $end
-$var wire 1 5 out $end
-$upscope $end
-$upscope $end
-$scope module AO_6 $end
-$var wire 1 J a $end
-$var wire 1 6 b $end
-$var wire 1 4 out $end
-$var wire 1 - c $end
-$var wire 1 K aoi $end
-$scope module aoi_gate $end
-$var wire 1 J a $end
-$var wire 1 L ab $end
-$var wire 1 6 b $end
-$var wire 1 K out $end
-$var wire 1 - c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 K a $end
-$var wire 1 4 out $end
-$upscope $end
-$upscope $end
-$scope module AO_7 $end
-$var wire 1 M a $end
-$var wire 1 5 b $end
-$var wire 1 3 out $end
-$var wire 1 , c $end
-$var wire 1 N aoi $end
-$scope module aoi_gate $end
-$var wire 1 M a $end
-$var wire 1 O ab $end
-$var wire 1 5 b $end
-$var wire 1 N out $end
-$var wire 1 , c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 N a $end
-$var wire 1 3 out $end
-$upscope $end
-$upscope $end
-$scope module AO_8 $end
-$var wire 1 P a $end
-$var wire 1 4 b $end
-$var wire 1 " out $end
-$var wire 1 + c $end
-$var wire 1 Q aoi $end
-$scope module aoi_gate $end
-$var wire 1 P a $end
-$var wire 1 R ab $end
-$var wire 1 4 b $end
-$var wire 1 Q out $end
-$var wire 1 + c $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 Q a $end
-$var wire 1 " out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_1 $end
-$var wire 1 S a $end
-$var wire 1 T b $end
-$var wire 1 U c $end
-$var wire 1 1 out $end
-$var wire 1 V aoi $end
-$scope module aoi_gate $end
-$var wire 1 S a $end
-$var wire 1 W ab $end
-$var wire 1 T b $end
-$var wire 1 U c $end
-$var wire 1 V out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 V a $end
-$var wire 1 1 out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_2 $end
-$var wire 1 X a $end
-$var wire 1 Y b $end
-$var wire 1 Z c $end
-$var wire 1 0 out $end
-$var wire 1 [ aoi $end
-$scope module aoi_gate $end
-$var wire 1 X a $end
-$var wire 1 \ ab $end
-$var wire 1 Y b $end
-$var wire 1 Z c $end
-$var wire 1 [ out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 [ a $end
-$var wire 1 0 out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_3 $end
-$var wire 1 ] a $end
-$var wire 1 ^ b $end
-$var wire 1 _ c $end
-$var wire 1 / out $end
-$var wire 1 ` aoi $end
-$scope module aoi_gate $end
-$var wire 1 ] a $end
-$var wire 1 a ab $end
-$var wire 1 ^ b $end
-$var wire 1 _ c $end
-$var wire 1 ` out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 ` a $end
-$var wire 1 / out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_4 $end
-$var wire 1 b a $end
-$var wire 1 c b $end
-$var wire 1 d c $end
-$var wire 1 . out $end
-$var wire 1 e aoi $end
-$scope module aoi_gate $end
-$var wire 1 b a $end
-$var wire 1 f ab $end
-$var wire 1 c b $end
-$var wire 1 d c $end
-$var wire 1 e out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 e a $end
-$var wire 1 . out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_5 $end
-$var wire 1 g a $end
-$var wire 1 h b $end
-$var wire 1 i c $end
-$var wire 1 - out $end
-$var wire 1 j aoi $end
-$scope module aoi_gate $end
-$var wire 1 g a $end
-$var wire 1 k ab $end
-$var wire 1 h b $end
-$var wire 1 i c $end
-$var wire 1 j out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 j a $end
-$var wire 1 - out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_6 $end
-$var wire 1 l a $end
-$var wire 1 m b $end
-$var wire 1 n c $end
-$var wire 1 , out $end
-$var wire 1 o aoi $end
-$scope module aoi_gate $end
-$var wire 1 l a $end
-$var wire 1 p ab $end
-$var wire 1 m b $end
-$var wire 1 n c $end
-$var wire 1 o out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 o a $end
-$var wire 1 , out $end
-$upscope $end
-$upscope $end
-$scope module AO_P_G_7 $end
-$var wire 1 q a $end
-$var wire 1 r b $end
-$var wire 1 s c $end
-$var wire 1 + out $end
-$var wire 1 t aoi $end
-$scope module aoi_gate $end
-$var wire 1 q a $end
-$var wire 1 u ab $end
-$var wire 1 r b $end
-$var wire 1 s c $end
-$var wire 1 t out $end
-$upscope $end
-$scope module inv_gate $end
-$var wire 1 t a $end
-$var wire 1 + out $end
-$upscope $end
-$upscope $end
-$scope module p_g_gen_inst $end
-$var wire 8 v a [7:0] $end
-$var wire 8 w b [7:0] $end
-$var wire 8 x g [7:0] $end
-$var wire 8 y p [7:0] $end
-$upscope $end
+$scope module tb_DFF $end
+$var wire 1 ! q $end
+$var reg 1 " clk $end
+$var reg 1 # data $end
+$scope module u0 $end
+$var wire 1 # D $end
+$var wire 1 " clk $end
+$var reg 1 ! Q $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx y
-bx x
-bx w
-bx v
-xu
-xt
-xs
-xr
-xq
-xp
-xo
-xn
-xm
-xl
-xk
-xj
-xi
-xh
-xg
-xf
-xe
-xd
-xc
-xb
-xa
-x`
-x_
-x^
-x]
-x\
-x[
-xZ
-xY
-xX
-xW
-xV
-xU
-xT
-xS
-xR
-xQ
-xP
-xO
-xN
-xM
-xL
-xK
-xJ
-xI
-xH
-xG
-xF
-xE
-xD
-xC
-xB
-xA
-x@
-x?
-x>
-x=
-x<
-x;
-x:
-x9
-x8
-x7
-x6
-x5
-x4
-x3
-bx 2
-x1
-x0
-x/
-x.
-x-
-x,
-x+
-bx *
-bx )
-bx (
-bx '
-bx &
-x%
-bx $
-bx #
-x"
-bx !
-$end
-#10
+x#
 0"
-03
-04
-05
-06
-1Q
-1N
-1K
-1H
-1E
-07
-08
-0R
-0O
-0L
-0I
-0F
-1B
-1?
-0C
-0P
-0M
-0J
-0G
-0D
-1A
-1>
-0+
-0,
-0-
-0.
-0/
-00
-01
-09
-b111 !
-b111 (
-b11 )
-1t
-0u
-1o
-0p
-1j
-0k
-1e
-0f
-1`
-0a
-1[
-0\
-1V
-0W
-1<
-1:
-0q
-0l
-0g
-0b
-0]
-1X
-1S
-0;
-0s
-0r
-0n
-0m
-0i
-0h
-0d
-0c
-0_
-0^
-0Z
-0Y
-0U
-0T
-0=
-0@
-b111 *
-b111 y
-b0 2
-b0 x
-0%
-b101 $
-b101 '
-b101 w
-b10 #
-b10 &
-b10 v
+x!
+$end
+#5
+0#
+#10
+1!
+1#
+1"
+#20
+0#
+0"
 #30
-0A
-0>
-19
-b10 !
-b10 (
-b0 )
-0<
-0:
-0X
-0S
-1;
-1T
-b0 *
-b0 y
-b1 2
-b1 x
-b1 $
-b1 '
-b1 w
-b1 #
-b1 &
-b1 v
+1#
+1"
+#40
+0#
+0"
 #50
-15
-17
-0H
-0B
-09
-1.
-10
-1<
-0e
-0[
-0;
-1h
-1d
-1^
-1Z
-0T
-b101001 !
-b101001 (
-b10100 2
-b10100 x
-1%
-b10100 $
-b10100 '
-b10100 w
-b10100 #
-b10100 &
-b10100 v
+1#
+1"
+#60
+0#
+0"
 #70
-13
-05
-16
-07
-18
-b10010111 !
-b10010111 (
-0N
-1H
-0E
-1B
-0?
-19
-1,
-0.
-1/
-00
-11
-0<
-0o
-1e
-0`
-1[
-0V
-1;
-1r
-1n
-0h
-0d
-1c
-1_
-0^
-0Z
-1Y
-1U
-1T
-b1001011 2
-b1001011 x
-b1001011 $
-b1001011 '
-b1001011 w
-b1001011 #
-b1001011 &
-b1001011 v
+1#
+1"
+#80
+0"
 #90
 1"
-03
-06
-08
-0Q
-1N
-1E
-1?
-09
-1+
-0,
-0/
-01
-1<
-0t
-1o
-1`
-1V
-0;
-1s
-0r
-0n
-0c
-0_
-0Y
-0U
-0T
-b0 !
-b0 (
-b10000000 2
-b10000000 x
-0%
-b10000000 $
-b10000000 '
-b10000000 w
-b10000000 #
-b10000000 &
-b10000000 v
-#110
+#100
 0"
-1Q
-1P
-1G
-1D
-0+
-b11011100 !
-b11011100 (
-b1001100 )
-1t
-1q
-1l
-1b
-1]
-1X
-0s
-b11011100 *
-b11011100 y
-b0 2
-b0 x
-b10100 $
-b10100 '
-b10100 w
-b11001000 #
-b11001000 &
-b11001000 v
+#110
+1"
+#120
+0"
+#125
+0#
+#130
+0!
+1"
+#140
+0"
+#150
+1"
+#160
+0"
+#170
+1"
+#180
+0"
+#190
+1"
+#200
+0"
+#210
+1"
+#220
+0"
+#230
+1"
+#240
+0"
+#250
+1"
+#260
+0"
+#270
+1"
+#280
+0"
+#290
+1"
+#300
+0"
+#310
+1"
+#320
+0"
+#330
+1"
+#340
+0"
+#350
+1"
+#360
+0"
+#370
+1"
+#380
+0"
+#390
+1"
+#400
+0"
+#410
+1"
+#420
+0"
+#430
+1"
+#440
+0"
+#450
+1"
+#460
+0"
+#470
+1"
+#480
+0"
+#490
+1"
+#500
+0"
+#510
+1"
+#520
+0"
+#530
+1"
+#540
+0"
+#550
+1"
+#560
+0"
+#570
+1"
+#580
+0"
+#590
+1"
+#600
+0"
+#610
+1"
+#620
+0"
+#630
+1"
+#640
+0"
+#650
+1"
+#660
+0"
+#670
+1"
+#680
+0"
+#690
+1"
+#700
+0"
+#710
+1"
+#720
+0"
+#730
+1"
+#740
+0"
+#750
+1"
+#760
+0"
+#770
+1"
+#780
+0"
+#790
+1"
+#800
+0"
+#810
+1"
+#820
+0"
+#830
+1"
+#840
+0"
+#850
+1"
+#860
+0"
+#870
+1"
+#880
+0"
+#890
+1"
+#900
+0"
+#910
+1"
+#920
+0"
+#930
+1"
+#940
+0"
+#950
+1"
+#960
+0"
+#970
+1"
+#980
+0"
+#990
+1"
 #1000
+0"

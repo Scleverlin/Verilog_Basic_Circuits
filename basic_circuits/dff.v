@@ -1,10 +1,11 @@
-module dff(q,q_bar,data,clk);
-output reg q;
-output q_bar;
-input data ,clk;
-assign q_bar=!q;
-always @ (posedge clk)
- begin
-    q<=data;
- end
-endmodule
+module dff(data,clk,q);
+input reg data; // Data input 
+input clk; // clock input 
+output reg q; // output Q 
+
+always @(posedge clk) 
+begin
+ q <= data; 
+end
+ 
+endmodule 

@@ -1,8 +1,8 @@
 module tb_DFF();
 reg data,clk;
-wire q,q_bar;
+wire q;
 
-dff dff(q,q_bar,data,clk);
+RisingEdge_DFlipFlop u0(data,clk,q);
 
 initial begin
   clk=0;
@@ -16,14 +16,20 @@ initial begin
     #1000 $finish;
 end
 initial begin
-    #100 data=0;
-    #100 data=1;
-    #100 data=1;
-    #100 data=0;
-    #100 data=0;
-    #100 data=0;
-    #100 data=1;
-    #100 data=1;
+    #5 data=0;
+    #5 data=1;
+    #5 data=1;
+    #5 data=0;
+    #5 data=0;
+    #5 data=1;
+    #5 data=1;
+    #5 data=0;
+    #5 data=0;    #5 data=1;
+    #5 data=1;
+    #5 data=0;
+    #5 data=0;    #5 data=1;
+    #5 data=1;
+    #50 data=0;
 end
 
 endmodule 
