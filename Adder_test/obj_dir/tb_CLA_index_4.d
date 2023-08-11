@@ -1,5 +1,5 @@
 tb_CLA_index_4.o: /home/shi/verilog/Adder_test/tb_CLA_index_4.cpp \
- VHC_64_BK0_KS6.h /usr/local/share/verilator/include/verilated.h \
+ VHC_64_BK1_KS5.h /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
  /usr/local/share/verilator/include/verilated_config.h \
  /usr/local/share/verilator/include/verilated_types.h \
