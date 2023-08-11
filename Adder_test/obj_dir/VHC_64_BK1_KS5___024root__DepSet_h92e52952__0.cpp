@@ -1551,43 +1551,45 @@ VL_INLINE_OPT void VHC_64_BK1_KS5___024root___ico_sequent__TOP__0(VHC_64_BK1_KS5
                                                          (__VdfgTmp_h37e33924__0 
                                                           >> 0x3fU)) 
                                                  & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1263dcfd__0))));
-    vlSelf->sum = ((((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1263dcfd__0)) 
-                     << 0x3fU) | (((QData)((IData)(
-                                                   (1U 
-                                                    & ((IData)(
-                                                               (__VdfgTmp_hece3181c__0 
-                                                                >> 0x3dU)) 
-                                                       | ((IData)(
-                                                                  (__VdfgTmp_h37e33924__0 
-                                                                   >> 0x3dU)) 
-                                                          & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1726c003__0)))))) 
-                                   << 0x3eU) | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1726c003__0)) 
-                                                 << 0x3dU) 
-                                                | (((QData)((IData)(
-                                                                    (1U 
-                                                                     & ((IData)(
+    vlSelf->sum = (__VdfgTmp_h37e33924__0 ^ (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1263dcfd__0)) 
+                                              << 0x3fU) 
+                                             | (((QData)((IData)(
+                                                                 (1U 
+                                                                  & ((IData)(
+                                                                             (__VdfgTmp_hece3181c__0 
+                                                                              >> 0x3dU)) 
+                                                                     | ((IData)(
+                                                                                (__VdfgTmp_h37e33924__0 
+                                                                                >> 0x3dU)) 
+                                                                        & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1726c003__0)))))) 
+                                                 << 0x3eU) 
+                                                | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_h1726c003__0)) 
+                                                    << 0x3dU) 
+                                                   | (((QData)((IData)(
+                                                                       (1U 
+                                                                        & ((IData)(
                                                                                 (__VdfgTmp_hece3181c__0 
                                                                                 >> 0x3bU)) 
-                                                                        | ((IData)(
+                                                                           | ((IData)(
                                                                                 (__VdfgTmp_h37e33924__0 
                                                                                 >> 0x3bU)) 
-                                                                           & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hd513a5a7__0)))))) 
-                                                    << 0x3cU) 
-                                                   | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hd513a5a7__0)) 
-                                                       << 0x3bU) 
-                                                      | (((QData)((IData)(
-                                                                          (1U 
-                                                                           & ((IData)(
+                                                                              & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hd513a5a7__0)))))) 
+                                                       << 0x3cU) 
+                                                      | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hd513a5a7__0)) 
+                                                          << 0x3bU) 
+                                                         | (((QData)((IData)(
+                                                                             (1U 
+                                                                              & ((IData)(
                                                                                 (__VdfgTmp_hece3181c__0 
                                                                                 >> 0x39U)) 
-                                                                              | ((IData)(
+                                                                                | ((IData)(
                                                                                 (__VdfgTmp_h37e33924__0 
                                                                                 >> 0x39U)) 
                                                                                 & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hf81e6556__0)))))) 
-                                                          << 0x3aU) 
-                                                         | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hf81e6556__0)) 
-                                                             << 0x39U) 
-                                                            | (((QData)((IData)(
+                                                             << 0x3aU) 
+                                                            | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hf81e6556__0)) 
+                                                                << 0x39U) 
+                                                               | (((QData)((IData)(
                                                                                 (1U 
                                                                                 & ((IData)(
                                                                                 (__VdfgTmp_hece3181c__0 
@@ -1596,10 +1598,10 @@ VL_INLINE_OPT void VHC_64_BK1_KS5___024root___ico_sequent__TOP__0(VHC_64_BK1_KS5
                                                                                 (__VdfgTmp_h37e33924__0 
                                                                                 >> 0x37U)) 
                                                                                 & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hb81cfa28__0)))))) 
-                                                                << 0x38U) 
-                                                               | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hb81cfa28__0)) 
-                                                                   << 0x37U) 
-                                                                  | (((QData)((IData)(
+                                                                   << 0x38U) 
+                                                                  | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hb81cfa28__0)) 
+                                                                      << 0x37U) 
+                                                                     | (((QData)((IData)(
                                                                                 (1U 
                                                                                 & ((IData)(
                                                                                 (__VdfgTmp_hece3181c__0 
@@ -1608,10 +1610,10 @@ VL_INLINE_OPT void VHC_64_BK1_KS5___024root___ico_sequent__TOP__0(VHC_64_BK1_KS5
                                                                                 (__VdfgTmp_h37e33924__0 
                                                                                 >> 0x35U)) 
                                                                                 & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_ha27aeaa8__0)))))) 
-                                                                      << 0x36U) 
-                                                                     | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_ha27aeaa8__0)) 
-                                                                         << 0x35U) 
-                                                                        | (((QData)((IData)(
+                                                                         << 0x36U) 
+                                                                        | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_ha27aeaa8__0)) 
+                                                                            << 0x35U) 
+                                                                           | (((QData)((IData)(
                                                                                 (1U 
                                                                                 & ((IData)(
                                                                                 (__VdfgTmp_hece3181c__0 
@@ -1620,10 +1622,10 @@ VL_INLINE_OPT void VHC_64_BK1_KS5___024root___ico_sequent__TOP__0(VHC_64_BK1_KS5
                                                                                 (__VdfgTmp_h37e33924__0 
                                                                                 >> 0x33U)) 
                                                                                 & (IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hb20a062a__0)))))) 
-                                                                            << 0x34U) 
-                                                                           | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hb20a062a__0)) 
-                                                                               << 0x33U) 
-                                                                              | (((QData)((IData)(
+                                                                               << 0x34U) 
+                                                                              | (((QData)((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_hb20a062a__0)) 
+                                                                                << 0x33U) 
+                                                                                | (((QData)((IData)(
                                                                                 (1U 
                                                                                 & ((IData)(
                                                                                 (__VdfgTmp_hece3181c__0 
@@ -1909,8 +1911,7 @@ VL_INLINE_OPT void VHC_64_BK1_KS5___024root___ico_sequent__TOP__0(VHC_64_BK1_KS5
                                                                                 << 2U)) 
                                                                                 | (((IData)(HC_64_BK1_KS5__DOT____VdfgTmp_he4db5a5d__0) 
                                                                                 << 1U) 
-                                                                                | (IData)(vlSelf->cin)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) 
-                   ^ __VdfgTmp_h37e33924__0);
+                                                                                | (IData)(vlSelf->cin)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))));
 }
 
 void VHC_64_BK1_KS5___024root___eval_ico(VHC_64_BK1_KS5___024root* vlSelf) {
