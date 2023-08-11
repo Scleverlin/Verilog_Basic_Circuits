@@ -2,14 +2,14 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
-#include "VHC_64_BK2_KS4.h"
+#include "VHC_64_BK3_KS3.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
 int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
-    VHC_64_BK2_KS4 * top = new VHC_64_BK2_KS4 ;
+    VHC_64_BK3_KS3 * top = new VHC_64_BK3_KS3 ;
 
     std::mt19937_64 rng(std::random_device{}());
     std::uniform_int_distribution<uint64_t> distribution(0, UINT64_MAX);
