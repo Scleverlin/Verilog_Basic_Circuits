@@ -990,14 +990,15 @@ assign cout= g[64]|p[64]&gnpg_level6[63];
 
 wire [63:0] gnpg_level7;
 generate
-   for (i = 1;i<65 ;i=i+1 ) begin
-          assign gnpg_level7[2*i]=gnpg_level6[2*i]|pp_level6[2*i]&gnpg_level6[2*i-1];
+   for (i = 1;i<32;i=i+1 ) begin
+         assign gnpg_level7[2*i]=gnpg_level6[2*i]|pp_level6[2*i]&gnpg_level6[2*i-1];
          assign gnpg_level7[2*i-1]=gnpg_level6[2*i-1];           
    end
 endgenerate
 assign gnpg_level7[0]=gnpg_level6[0];
-
+assign gnpg_level7[63]=gnpg_level6[63];
 assign sum[64:1]=gnpg_level7[63:0]^p[64:1];
+
 
 endmodule
 
