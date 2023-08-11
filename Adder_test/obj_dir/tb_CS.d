@@ -1,4 +1,4 @@
-tb_CS.o: ../tb_CS.cpp VCS_64_index_3.h \
+tb_CS.o: /home/shi/verilog/Adder_test/tb_CS.cpp VHC_64_BK0_KS6.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
  /usr/local/share/verilator/include/verilated_config.h \
