@@ -1,1 +1,1 @@
-verilator -Wall -j 0 -Wno-DECLFILENAME --cc /home/shi/verilog/Adder_test/Hybrid_64_BK0_SA6.v --exe --build /home/shi/verilog/Adder_test/tb_CLA_index_4.cpp
+verilator -Wall -j 0 -Wno-DECLFILENAME --cc /home/shi/verilog/Adder_test/Hybrid_64_BK4_SA2.v --exe --build /home/shi/verilog/Adder_test/tb_CLA_index_4.cpp
