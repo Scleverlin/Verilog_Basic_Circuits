@@ -5,7 +5,6 @@
 #include "verilated.h"
 
 #include "VHC_64_BK0_KS6__Syms.h"
-#include "VHC_64_BK0_KS6__Syms.h"
 #include "VHC_64_BK0_KS6___024root.h"
 
 void VHC_64_BK0_KS6___024root___ctor_var_reset(VHC_64_BK0_KS6___024root* vlSelf);

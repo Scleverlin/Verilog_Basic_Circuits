@@ -1,28 +1,4 @@
 /* verilator lint_off UNUSEDSIGNAL */
-module HC_64_BK1_KS5_top (a,b,cin,sum,cout,clk,rst);
-input [63:0]a;
-input [63:0]b;
-input cin;
-output reg [63:0]sum;
-output reg cout;
-input clk;
-input rst;
-wire [63:0] sum_w;
-wire cout_w;
-reg cin_r;
-HC_64_BK1_KS5 u0 (a,b,cin_r,sum_w,cout_w);
-always @(posedge clk ) begin
-    if (rst) begin
-        sum<=0;
-        cout<=0;
-    end
-    else begin
-        sum<=sum_w;
-        cout<=cout_w; 
-        cin_r <= cin;
-    end
-end
-endmodule
 
 module P_G_gen_hc_64 (a,b,cin,p,g);
 input [63:0]a;
@@ -1009,8 +985,10 @@ wire [63:0] pp_level6;
                assign pp_level6[i]=pp_level5[i];
             end
             endgenerate
-         
+        
 wire [63:0] gnpg_level7;
+wire [63:0] pp_level7;
+ 
 assign gnpg_level7[0]=gnpg_level6[0];
 assign gnpg_level7[64-1]=gnpg_level6[64-1];
 
@@ -1022,6 +1000,7 @@ generate
  endgenerate   
 assign sum[64:1]=p[64:1]^gnpg_level7[64-1:0];
 assign cout =g[64]|p[64]&gnpg_level7[64-1];
-   
+
+
 endmodule
 

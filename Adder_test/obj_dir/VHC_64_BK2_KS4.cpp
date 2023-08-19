@@ -10,8 +10,10 @@
 VHC_64_BK2_KS4::VHC_64_BK2_KS4(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new VHC_64_BK2_KS4__Syms(contextp(), _vcname__, this)}
+    , clk{vlSymsp->TOP.clk}
     , cin{vlSymsp->TOP.cin}
     , cout{vlSymsp->TOP.cout}
+    , rst{vlSymsp->TOP.rst}
     , a{vlSymsp->TOP.a}
     , b{vlSymsp->TOP.b}
     , sum{vlSymsp->TOP.sum}

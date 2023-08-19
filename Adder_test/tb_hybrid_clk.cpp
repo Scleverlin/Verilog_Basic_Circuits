@@ -18,6 +18,16 @@ int main(int argc, char** argv) {
         top->a = distribution(rng);
         top->b = distribution(rng);
         top->cin = rand() & 0x1;
+
+        // Toggle clock twice to account for the cin_r delay
+        top->clk = 0;
+        top->rst = 0;
+        top->eval();
+        top->clk = 1;
+        top->eval();
+        top->clk = 0;
+        top->eval();
+        top->clk = 1;
         top->eval();
 
         unsigned __int128 expected_sum = static_cast<unsigned __int128>(top->a) + static_cast<unsigned __int128>(top->b) + static_cast<unsigned __int128>(top->cin);
@@ -37,6 +47,7 @@ int main(int argc, char** argv) {
                 }
             }
 
+            // Uncomment the lines below if you want to stop the test and exit on mismatch
             top->final();
             delete top;
             return 1;

@@ -4,7 +4,6 @@
 
 #include "verilated.h"
 
-#include "VHC_64_BK0_KS6__Syms.h"
 #include "VHC_64_BK0_KS6___024root.h"
 
 VL_ATTR_COLD void VHC_64_BK0_KS6___024root___eval_static(VHC_64_BK0_KS6___024root* vlSelf) {
@@ -67,7 +66,7 @@ VL_ATTR_COLD void VHC_64_BK0_KS6___024root___dump_triggers__stl(VHC_64_BK0_KS6__
     if ((1U & (~ (IData)(vlSelf->__VstlTriggered.any())))) {
         VL_DBG_MSGF("         No triggers active\n");
     }
-    if ((1ULL & vlSelf->__VstlTriggered.word(0U))) {
+    if (vlSelf->__VstlTriggered.at(0U)) {
         VL_DBG_MSGF("         'stl' region trigger index 0 is active: Internal 'stl' trigger - first iteration\n");
     }
 }
@@ -80,7 +79,7 @@ VL_ATTR_COLD void VHC_64_BK0_KS6___024root___eval_stl(VHC_64_BK0_KS6___024root* 
     VHC_64_BK0_KS6__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VHC_64_BK0_KS6___024root___eval_stl\n"); );
     // Body
-    if ((1ULL & vlSelf->__VstlTriggered.word(0U))) {
+    if (vlSelf->__VstlTriggered.at(0U)) {
         VHC_64_BK0_KS6___024root___ico_sequent__TOP__0(vlSelf);
     }
 }
@@ -94,7 +93,7 @@ VL_ATTR_COLD void VHC_64_BK0_KS6___024root___dump_triggers__ico(VHC_64_BK0_KS6__
     if ((1U & (~ (IData)(vlSelf->__VicoTriggered.any())))) {
         VL_DBG_MSGF("         No triggers active\n");
     }
-    if ((1ULL & vlSelf->__VicoTriggered.word(0U))) {
+    if (vlSelf->__VicoTriggered.at(0U)) {
         VL_DBG_MSGF("         'ico' region trigger index 0 is active: Internal 'ico' trigger - first iteration\n");
     }
 }

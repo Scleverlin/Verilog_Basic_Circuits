@@ -14,7 +14,7 @@ class VHC_64_BK0_KS6__Syms;
 class VHC_64_BK0_KS6___024root;
 
 // This class is the main interface to the Verilated model
-class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK0_KS6 VL_NOT_FINAL : public VerilatedModel {
+class VHC_64_BK0_KS6 VL_NOT_FINAL : public VerilatedModel {
   private:
     // Symbol table holding complete model state (owned by this class)
     VHC_64_BK0_KS6__Syms* const vlSymsp;
@@ -72,6 +72,6 @@ class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK0_KS6 VL_NOT_FINAL : public Verilate
     const char* hierName() const override final;
     const char* modelName() const override final;
     unsigned threads() const override final;
-};
+} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 #endif  // guard

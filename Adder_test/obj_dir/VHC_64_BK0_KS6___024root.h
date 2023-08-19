@@ -7,10 +7,9 @@
 
 #include "verilated.h"
 
-
 class VHC_64_BK0_KS6__Syms;
 
-class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK0_KS6___024root final : public VerilatedModule {
+class VHC_64_BK0_KS6___024root final : public VerilatedModule {
   public:
 
     // DESIGN SPECIFIC STATE
@@ -38,7 +37,7 @@ class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK0_KS6___024root final : public Veril
 
     // INTERNAL METHODS
     void __Vconfigure(bool first);
-};
+} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 
 #endif  // guard

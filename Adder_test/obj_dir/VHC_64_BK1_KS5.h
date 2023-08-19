@@ -14,7 +14,7 @@ class VHC_64_BK1_KS5__Syms;
 class VHC_64_BK1_KS5___024root;
 
 // This class is the main interface to the Verilated model
-class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK1_KS5 VL_NOT_FINAL : public VerilatedModel {
+class VHC_64_BK1_KS5 VL_NOT_FINAL : public VerilatedModel {
   private:
     // Symbol table holding complete model state (owned by this class)
     VHC_64_BK1_KS5__Syms* const vlSymsp;
@@ -24,11 +24,13 @@ class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK1_KS5 VL_NOT_FINAL : public Verilate
     // PORTS
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
+    VL_IN8(&clk,0,0);
     VL_IN8(&cin,0,0);
     VL_OUT8(&cout,0,0);
-    VL_IN64(&a,64,1);
-    VL_IN64(&b,64,1);
-    VL_OUT64(&sum,64,1);
+    VL_IN8(&rst,0,0);
+    VL_IN64(&a,63,0);
+    VL_IN64(&b,63,0);
+    VL_OUT64(&sum,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
@@ -72,6 +74,6 @@ class alignas(VL_CACHE_LINE_BYTES) VHC_64_BK1_KS5 VL_NOT_FINAL : public Verilate
     const char* hierName() const override final;
     const char* modelName() const override final;
     unsigned threads() const override final;
-};
+} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 #endif  // guard

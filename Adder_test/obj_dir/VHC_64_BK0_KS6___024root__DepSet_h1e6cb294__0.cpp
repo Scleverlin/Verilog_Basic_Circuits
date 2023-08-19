@@ -4,7 +4,6 @@
 
 #include "verilated.h"
 
-#include "VHC_64_BK0_KS6__Syms.h"
 #include "VHC_64_BK0_KS6___024root.h"
 
 VL_INLINE_OPT void VHC_64_BK0_KS6___024root___ico_sequent__TOP__0(VHC_64_BK0_KS6___024root* vlSelf) {
@@ -3348,7 +3347,7 @@ void VHC_64_BK0_KS6___024root___eval_ico(VHC_64_BK0_KS6___024root* vlSelf) {
     VHC_64_BK0_KS6__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VHC_64_BK0_KS6___024root___eval_ico\n"); );
     // Body
-    if ((1ULL & vlSelf->__VicoTriggered.word(0U))) {
+    if (vlSelf->__VicoTriggered.at(0U)) {
         VHC_64_BK0_KS6___024root___ico_sequent__TOP__0(vlSelf);
     }
 }
@@ -3426,7 +3425,7 @@ void VHC_64_BK0_KS6___024root___eval(VHC_64_BK0_KS6___024root* vlSelf) {
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
                 __VpreTriggered.andNot(vlSelf->__VactTriggered, vlSelf->__VnbaTriggered);
-                vlSelf->__VnbaTriggered.thisOr(vlSelf->__VactTriggered);
+                vlSelf->__VnbaTriggered.set(vlSelf->__VactTriggered);
                 VHC_64_BK0_KS6___024root___eval_act(vlSelf);
             }
         }
