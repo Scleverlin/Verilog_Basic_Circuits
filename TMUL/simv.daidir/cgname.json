@@ -1,0 +1,44 @@
+{
+    "std": [
+        "std",
+        "reYIK",
+        "module",
+        1
+    ],
+    "wallace_mulp_32x32": [
+        "wallace_mulp_32x32",
+        "FZEKI",
+        "module",
+        2
+    ],
+    "HC_64_BK0_KS6_0000": [
+        "HC_64_BK0_KS6_0000",
+        "ZgqWJ",
+        "module",
+        3
+    ],
+    "FMA_32": [
+        "FMA_32",
+        "nSH2P",
+        "module",
+        4
+    ],
+    "easy_mul": [
+        "easy_mul",
+        "eDns6",
+        "module",
+        5
+    ],
+    "TMUL_32_8mul8": [
+        "TMUL_32_8mul8",
+        "UTYn6",
+        "module",
+        6
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module",
+        7
+    ]
+}
