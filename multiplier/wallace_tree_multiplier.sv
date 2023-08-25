@@ -1,11 +1,11 @@
-module wallace_mulp_32x32 (a, b, p);
-	input [31:0] a,
-	input [31:0] b,
-	output [63:0] out;
+module wallace_mulp_32x32 (a, b, out);
+input [31:0] a;
+input [31:0] b;
+output [63:0] out;
 
-	  
-function [31:0][63:0] partial_products_function(input [31:0] a, input [31:0] b);
-    [31:0][63:0] result_p_prods;
+typedef logic [63:0] array_type [0:31];
+function array_type partial_products_function (input [31:0] a, input [31:0] b);
+    reg [63:0] result_p_prods[31:0];
     integer i;
 
     for(i = 0; i < 32; i = i + 1) begin
@@ -15,19 +15,23 @@ function [31:0][63:0] partial_products_function(input [31:0] a, input [31:0] b);
             result_p_prods[i] = 64'h00000000;
         end
     end
+
     return result_p_prods;
 endfunction
 
+
+
+
 // 定义函数
 function [127:0] FA_function ([63:0] x, [63:0] y, [63:0] z);
-    [127:0] result;
+    reg [127:0] result;
     result[63:0] = x^y^z;
     result[64] = 0;
     result[127:65] = (x&y) | (y&z) | (z&x);
     return result;
 endfunction
 
-wire [31:0][63:0]p_prods = partial_products_function(a, b);
+logic [63:0]p_prods [31:0] = partial_products_function(a, b);
 
 wire [63:0] u_l11, v_l11, u_l12, v_l12, u_l13, v_l13, u_l14, v_l14, u_l15, v_l15, u_l16, v_l16, u_l17, v_l17, u_l18, v_l18, u_l19, v_l19, u_l110, v_l110;
 wire [63:0] u_l21, v_l21, u_l22, v_l22, u_l23, v_l23, u_l24, v_l24, u_l25, v_l25, u_l26, v_l26, u_l27, v_l27;
@@ -157,8 +161,7 @@ wire [127:0] l81_result = FA_function(u_l71, v_l71, v_l35);
 assign u_l81 = l81_result[63:0];
 assign v_l81 = l81_result[127:64];
 
-assign out = v_181+u_181;
-
+assign out = v_l81+u_l81;
 
 endmodule 
 
