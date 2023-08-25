@@ -160,7 +160,7 @@ module partial_products (
 	begin
 		for(i=0; i<32; i=i+1)begin
 			if(b[i] == 1)begin
-				p_prods[i] <= a << i;
+				p_prods[i] = a << i;
 			end
 			else
 				p_prods[i] = 64'h00000000;
