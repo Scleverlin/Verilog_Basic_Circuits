@@ -35,6 +35,12 @@
         "module",
         6
     ],
+    "wal_mul_tb": [
+        "wal_mul_tb",
+        "CAV78",
+        "module",
+        8
+    ],
     "...MASTER...": [
         "SIM",
         "amcQw",

@@ -1,5 +1,5 @@
 hsDirType                          	1
-fHsimDesignHasDebugNodes           	0
+fHsimDesignHasDebugNodes           	5
 fNSParam                           	1024
 fLargeSizeSdfTest                  	0
 fHsimDelayGateMbme                 	0
@@ -225,7 +225,7 @@ fHsimEvcdDbgFlags                  	0
 fHsimNewEvcdmxdonut                	1
 fHsimNewEvcdpesupport              	1
 fHsimNewEvcdMultiDrvFmt            	1
-fHsimDumpOffsetData                	0
+fHsimDumpOffsetData                	1
 fFlopGlitchDetect                  	0
 fHsimClkGlitch                     	0
 fHsimGlitchDumpOnce                	0
@@ -755,7 +755,7 @@ fFgpUvmPushButton                  	0
 fHsimChargeDecay                   	0
 fFgpUseAltEgLayout                 	0
 fHsCgOptFixLeaf                    	1
-fHsimDumpVars                      	0
+fHsimDumpVars                      	1
 fFgpTbReactiveLite                 	1
 fSkipMpTsUpdateOnStr               	0
 fHsCgOptCongLite                   	0

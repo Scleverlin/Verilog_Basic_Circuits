@@ -268,7 +268,7 @@ fHsimNewEvcdpesupport              	1
 fHsimNewEvcdMultiDrvFmt            	1
 fHsimDumpElabData                  	1
 fHsimNoDeposit                     	0
-fHsimDumpOffsetData                	0
+fHsimDumpOffsetData                	1
 fNoOfsOpt                          	0
 fFlopGlitchDetect                  	0
 fHsimClkGlitch                     	0
@@ -1298,7 +1298,7 @@ fHsimChargeDecay                   	0
 fFgpUseAltEgLayout                 	0
 fHsimNoOneDriverOneLoad            	0
 fHsCgOptFixLeaf                    	1
-fHsimDumpVars                      	0
+fHsimDumpVars                      	1
 fFgpTbReactiveLite                 	1
 fHsimCcnUnion                      	0
 fSkipMpTsUpdateOnStr               	0
