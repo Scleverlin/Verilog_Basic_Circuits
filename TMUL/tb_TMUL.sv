@@ -1,4 +1,4 @@
-`include "TMUL.sv"
+`include "TMUL_dff.sv"
 
 module wal_mul_tb;
 

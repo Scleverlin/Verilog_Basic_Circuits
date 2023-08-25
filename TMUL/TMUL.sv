@@ -1,4 +1,5 @@
 `include "FMA.v"
+// wrong version 
 module TMUL_32_8mul8 (a,b,c,clk,rst);
 
 input logic [31:0] a [7:0];

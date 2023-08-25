@@ -5,12 +5,6 @@
         "module",
         1
     ],
-    "wallace_mulp_32x32": [
-        "wallace_mulp_32x32",
-        "FZEKI",
-        "module",
-        2
-    ],
     "HC_64_BK0_KS6_0000": [
         "HC_64_BK0_KS6_0000",
         "ZgqWJ",
@@ -22,12 +16,6 @@
         "nSH2P",
         "module",
         4
-    ],
-    "easy_mul": [
-        "easy_mul",
-        "eDns6",
-        "module",
-        5
     ],
     "TMUL_32_8mul8": [
         "TMUL_32_8mul8",
