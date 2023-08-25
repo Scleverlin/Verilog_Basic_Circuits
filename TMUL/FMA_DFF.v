@@ -11,21 +11,21 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 // easy_mul   mul (a,b,tmp);
 
 wire cout;
-wire [63:0] out_w;
+// wire [63:0] out_w;
 reg [63:0] tmp_reg;
 HC_64_BK0_KS6 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-HC_64_BK0_KS6 hca2 (tmp_reg,c_reg,1'b0,out_w,cout);
+HC_64_BK0_KS6 hca2 (tmp_reg,c_reg,1'b0,out,cout);
 
 always @(posedge clk or negedge rst)
  begin
  if(~rst)begin
     tmp_reg <= 0;
-    out <=0;
+   //  out <=0;
     c_reg <= 0;
  end
  else begin
     tmp_reg <= tmp;
-    out <= out_w;
+   //  out <= out_w;
    c_reg <= c;
  end
  end
