@@ -6,7 +6,7 @@ reg [31:0] a [7:0];
 logic [31:0] b [7:0][7:0];
 reg clk, rst;
 wire [63:0] c [7:0];
-integer i, j, k; 
+integer i, j, k,m; 
 logic [255:0] tmp_b [7:0];
 assign tmp_b[0][31:0]=b[0][0];
 assign tmp_b[0][63:32]=b[0][1];
@@ -87,8 +87,8 @@ end
 initial begin
     // 初始化
     clk = 0;
-    rst = 1;
-    #10 rst = 0; // 在10个时间单位后释放复位
+    // rst = 1;
+    #10 rst = 1; // 在10个时间单位后释放复位
 
     // 初始化a和b为0
     for(j = 0; j < 8; j++) begin
@@ -99,7 +99,7 @@ initial begin
         end
     end
 
-    for(i = 0; i <10; i = i+1) begin // 10 cycles
+    for(i = 0; i <10000; i = i+1) begin // 10 cycles
 
         for(j = 0; j < 8; j++) begin
             a[j] = j + 1 + i; // 这将为a赋值 1,2,3...等
@@ -108,11 +108,13 @@ initial begin
                 b[j][k] = k + 1 + i; // 这将为b的每个元素赋值1,2,3...等
                 $display("b[%d][%d]=%d", j, k, b[j][k]);
             end
-         $display("c[%d]=%d", j, c[j]);
+        for (m=0;m<8;m=m+1)begin
+        $display("c[%d]=%d", m, c[m]);
+         end
         #10; // 等待一个时钟周期
     end
 
-    $stop; // 结束仿真
+    // $stop; // 结束仿真
 end
 end
 
