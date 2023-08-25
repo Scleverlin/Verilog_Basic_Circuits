@@ -166,5 +166,4 @@ module partial_products (
 				p_prods[i] = 64'h00000000;
 		end
 	end
-
 endmodule
