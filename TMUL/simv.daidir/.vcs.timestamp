@@ -75,11 +75,11 @@ CDS_AUTO_64BIT=ALL
 1692965227 __wallace_tree_multiplier.sv
 1692965227 FMA.v
 1692965227 TMUL.sv
-1692978057 ./tb_TMUL.sv
+1692980257 ./tb_TMUL.sv
 4
 1590809634 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libvirsim.so
 1590809310 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/liberrorinf.so
 1590809251 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libsnpsmalloc.so
 1590809285 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libvfs.so
-1692978060 simv.daidir
+1692980260 simv.daidir
 -1 partitionlib
