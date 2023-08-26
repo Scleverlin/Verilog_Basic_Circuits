@@ -26,7 +26,7 @@ always @(posedge clk or negedge rst)
  else begin
     tmp_reg <= tmp;
    //  out <= out_w;
-   c_reg <= c;
+     c_reg <= c;
  end
  end
 endmodule
@@ -40,10 +40,10 @@ input clk,rst;
 wire [63:0] tmp1,tmp2,tmp;
 wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 // easy_mul   mul (a,b,tmp);
-
+wire [127:0]tmp_wire;
 wire cout;
 // wire [63:0] out_w;
-reg [127:0] tmp_reg;
+reg [127:0]tmp_reg;
 HC_64_BK0_KS6 hca1 (tmp1,tmp2,1'b0,tmp,cout);
 HC_64_BK0_KS6 hca2 (tmp_reg,c_reg,1'b0,out,cout);
 
@@ -51,13 +51,10 @@ always @(posedge clk or negedge rst)
  begin
  if(~rst)begin
     tmp_reg <= 0;
-   //  out <=0;
     c_reg <= 0;
  end
  else begin
-    tmp_reg[127:64] <= tmp;
-   //  out <= out_w;
-   tmp_reg <= tmp_reg >> 64;
+   tmp_reg <= {tmp, tmp_reg[127:64]};
    c_reg <= c;
  end
  end
@@ -88,13 +85,13 @@ always @(posedge clk or negedge rst)
     c_reg <= 0;
  end
  else begin
-    tmp_reg[191:128] <= tmp;
+   //  tmp_reg[191:128] <= tmp;
    //  out <= out_w;
-    tmp_reg <= tmp_reg >> 64;
+   //  tmp_reg <= tmp_reg >> 64;
+   tmp_reg <= {tmp, tmp_reg[191:64]};
    c_reg <= c;
  end
  end
-
 endmodule
 
 module FMA_32_256 (a,b,c,out,clk,rst);
@@ -106,12 +103,12 @@ input clk,rst;
 wire [63:0] tmp1,tmp2,tmp;
 wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 // easy_mul   mul (a,b,tmp);
-
 wire cout;
 // wire [63:0] out_w;
 reg [255:0] tmp_reg;
 HC_64_BK0_KS6 hca1 (tmp1,tmp2,1'b0,tmp,cout);
 HC_64_BK0_KS6 hca2 (tmp_reg,c_reg,1'b0,out,cout);
+
 
 always @(posedge clk or negedge rst)
  begin
@@ -121,10 +118,8 @@ always @(posedge clk or negedge rst)
     c_reg <= 0;
  end
  else begin
-    tmp_reg[255:192] <= tmp;
-   //  out <= out_w;
-    tmp_reg <= tmp_reg >> 64;
-   c_reg <= c;
+   tmp_reg <= {tmp, tmp_reg[255:64]};
+    c_reg <= c;
  end
  end
 endmodule
@@ -153,9 +148,7 @@ always @(posedge clk or negedge rst)
     c_reg <= 0;
  end
  else begin
-    tmp_reg[319:256] <= tmp;
-   //  out <= out_w;
-    tmp_reg <= tmp_reg >> 64;
+   tmp_reg <= {tmp, tmp_reg[319:64]};
    c_reg <= c;
  end
  end
@@ -171,13 +164,11 @@ input clk,rst;
 wire [63:0] tmp1,tmp2,tmp;
 wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 // easy_mul   mul (a,b,tmp);
-
 wire cout;
 // wire [63:0] out_w;
 reg [383:0] tmp_reg;
 HC_64_BK0_KS6 hca1 (tmp1,tmp2,1'b0,tmp,cout);
 HC_64_BK0_KS6 hca2 (tmp_reg,c_reg,1'b0,out,cout);
-
 always @(posedge clk or negedge rst)
  begin
  if(~rst)begin
@@ -186,9 +177,8 @@ always @(posedge clk or negedge rst)
     c_reg <= 0;
  end
  else begin
-    tmp_reg[383:320] <= tmp;
-   //  out <= out_w;
-    tmp_reg <= tmp_reg >> 64;
+
+   tmp_reg <= {tmp, tmp_reg[383:64]};
    c_reg <= c;
  end
  end
@@ -219,9 +209,7 @@ always @(posedge clk or negedge rst)
     c_reg <= 0;
  end
  else begin
-    tmp_reg[447:383] <= tmp;
-   //  out <= out_w;
-    tmp_reg <= tmp_reg >> 64;
+   tmp_reg <= {tmp, tmp_reg[447:64]};
    c_reg <= c;
  end
  end
@@ -243,7 +231,6 @@ wire cout;
 reg [511:0] tmp_reg;
 HC_64_BK0_KS6 hca1 (tmp1,tmp2,1'b0,tmp,cout);
 HC_64_BK0_KS6 hca2 (tmp_reg,c_reg,1'b0,out,cout);
-
 always @(posedge clk or negedge rst)
  begin
  if(~rst)begin
@@ -252,9 +239,7 @@ always @(posedge clk or negedge rst)
     c_reg <= 0;
  end
  else begin
-    tmp_reg[511:448] <= tmp;
-   //  out <= out_w;
-    tmp_reg <= tmp_reg >> 64;
+    tmp_reg <= {tmp, tmp_reg[511:64]};
    c_reg <= c;
  end
  end

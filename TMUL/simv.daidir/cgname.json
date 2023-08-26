@@ -5,17 +5,65 @@
         "module",
         1
     ],
+    "wallace_tree_32x32": [
+        "wallace_tree_32x32",
+        "PpYbs",
+        "module",
+        5
+    ],
     "HC_64_BK0_KS6_0000": [
         "HC_64_BK0_KS6_0000",
         "ZgqWJ",
         "module",
         3
     ],
-    "FMA_32": [
-        "FMA_32",
-        "nSH2P",
+    "FMA_32_64": [
+        "FMA_32_64",
+        "i4Kim",
         "module",
-        4
+        2
+    ],
+    "FMA_32_128": [
+        "FMA_32_128",
+        "yCBmx",
+        "module",
+        9
+    ],
+    "FMA_32_192": [
+        "FMA_32_192",
+        "NZH21",
+        "module",
+        10
+    ],
+    "FMA_32_256": [
+        "FMA_32_256",
+        "JiGxS",
+        "module",
+        11
+    ],
+    "FMA_32_320": [
+        "FMA_32_320",
+        "i9xWA",
+        "module",
+        12
+    ],
+    "FMA_32_384": [
+        "FMA_32_384",
+        "TSH7g",
+        "module",
+        13
+    ],
+    "FMA_32_448": [
+        "FMA_32_448",
+        "vNSTq",
+        "module",
+        14
+    ],
+    "FMA_32_512": [
+        "FMA_32_512",
+        "GM0Zw",
+        "module",
+        15
     ],
     "TMUL_32_8mul8": [
         "TMUL_32_8mul8",

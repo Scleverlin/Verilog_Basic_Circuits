@@ -2509,26 +2509,31 @@ static inline U asm_bsf (U in)
 extern "C" {
 #endif
 void  hs_0_M_0_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_1_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_2_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_3_0__simv_daidir (UB  * pcode, scalar  val);
-void  hs_0_M_3_5__simv_daidir (UB  * pcode, UB  val);
-void  hs_0_M_4_0__simv_daidir (UB  * pcode, scalar  val);
-void  hs_0_M_4_9__simv_daidir (UB  * pcode, scalar  val);
-void  hs_0_M_5_21__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_1_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_1_5__simv_daidir (UB  * pcode, UB  val);
+void  hs_0_M_2_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_2_9__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_3_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_4_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
 void  hs_0_M_5_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_5_6__simv_daidir (UB  * pcode, scalar  val, U  I914);
-void  hs_0_M_5_7__simv_daidir (UB  * pcode, vec32  * I1403, U  I914, U  I1413);
-void  hs_0_M_5_10__simv_daidir (UB  * pcode, vec32  * I1034);
 void  hs_0_M_6_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_7_0__simv_daidir (UB  * pcode, scalar  val);
-void  hs_0_M_8_0__simv_daidir (UB  * pcode, scalar  val);
-void  hs_0_M_9_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_7_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_8_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_9_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_10_21__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
 void  hs_0_M_10_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_10_6__simv_daidir (UB  * pcode, scalar  val, U  I914);
+void  hs_0_M_10_7__simv_daidir (UB  * pcode, vec32  * I1403, U  I914, U  I1413);
+void  hs_0_M_10_10__simv_daidir (UB  * pcode, vec32  * I1034);
 void  hs_0_M_11_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_12_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_13_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
-void  hs_0_M_14_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_12_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_13_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_14_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_15_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_16_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_17_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_18_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
+void  hs_0_M_19_0__simv_daidir (UB  * pcode, vec32  * I1034, U  I939);
 void  hsG_0__0 (struct dummyq_struct * I1328, EBLK  * I1323, U  I696);
 #ifdef __cplusplus
 }

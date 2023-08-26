@@ -104,12 +104,15 @@ initial begin
         for(j = 0; j < 8; j++) begin
             a[j] = j + 1 + i; // 这将为a赋值 1,2,3...等
             $display("a[%d]=%d", j, a[j]);
-            for(k = 0; k < 8; k++) begin
-                b[j][k] = k + 1 + i; // 这将为b的每个元素赋值1,2,3...等
-             $display("b[%d][%d]=%d", j, k, b[j][k]);
-            end
+
         for (m=0;m<8;m=m+1)begin
         $display("c[%d]=%d", m, c[m]);
+         end
+    end
+     for(k = 0; k < 8; k++) begin
+         for(j = 0; j < 8; j++) begin
+          b[j][k] = k + 1; // 这将为b的每个元素赋值1,2,3...等
+          $display("b[%d][%d]=%d", j, k, b[j][k]);
          end
     end
     #10; // 等待一个时钟周期

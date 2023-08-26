@@ -8,7 +8,6 @@ output [63:0] c [7:0];
 
 wire [63:0] tmp_level0 [7:0];
 typedef logic [63:0] mnarray [7:0];
-typedef logic [31:0] mnarray_32 [7:0];
 
 function mnarray transport_array (input mnarray data);
 mnarray output_tmp;
@@ -25,20 +24,7 @@ end
 return output_tmp;
 endfunction
 
-function mnarray_32 transport_array (input mnarray_32 data);
-mnarray output_tmp;
-begin
-    output_tmp[0]=data[0];
-    output_tmp[1]=data[1];
-    output_tmp[2]=data[2];
-    output_tmp[3]=data[3];
-    output_tmp[4]=data[4];
-    output_tmp[5]=data[5];
-    output_tmp[6]=data[6];
-    output_tmp[7]=data[7];
-end
-return output_tmp;
-endfunction
+
 
 FMA_32_64 level_0_0 (a[0],b[0][31:0],64'b0,tmp_level0[0],clk,rst);
 FMA_32_64 level_0_1 (a[0],b[0][63:32],64'b0,tmp_level0[1],clk,rst);
