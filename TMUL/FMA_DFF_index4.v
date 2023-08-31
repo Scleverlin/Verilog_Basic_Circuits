@@ -1,5 +1,5 @@
 `include "__wallace_tree_multiplier.sv"
-`include "Hybrid_64_BK2_KL4_Fanout2.v"
+`include "HC_64_BK2_KS4.v"
 module FMA_32_64 (a,b,c,out,clk,rst);
 input [31:0] a,b;
 input [63:0] c;
@@ -13,8 +13,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [63:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 
 always @(posedge clk or negedge rst)
  begin
@@ -44,8 +44,8 @@ wire [127:0]tmp_wire;
 wire cout;
 // wire [63:0] out_w;
 reg [127:0]tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 
 always @(posedge clk or negedge rst)
  begin
@@ -74,8 +74,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [191:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 
 always @(posedge clk or negedge rst)
  begin
@@ -106,8 +106,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [255:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 
 
 always @(posedge clk or negedge rst)
@@ -137,8 +137,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [319:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 
 always @(posedge clk or negedge rst)
  begin
@@ -167,8 +167,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [383:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 always @(posedge clk or negedge rst)
  begin
  if(~rst)begin
@@ -198,8 +198,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [447:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 
 always @(posedge clk or negedge rst)
  begin
@@ -229,8 +229,8 @@ wallace_tree_32x32   w_tree(a, b,tmp1,tmp2);
 wire cout;
 // wire [63:0] out_w;
 reg [511:0] tmp_reg;
-Hybrid_64_BK2_KL4_Fanout2 hca1 (tmp1,tmp2,1'b0,tmp,cout);
-Hybrid_64_BK2_KL4_Fanout2 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
+HC_64_BK2_KS4 hca1 (tmp1,tmp2,1'b0,tmp,cout);
+HC_64_BK2_KS4 hca2 (tmp_reg[63:0],c_reg,1'b0,out,cout);
 always @(posedge clk or negedge rst)
  begin
  if(~rst)begin
