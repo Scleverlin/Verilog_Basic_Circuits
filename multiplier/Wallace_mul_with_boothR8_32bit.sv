@@ -3,20 +3,10 @@
 module partial_product_generator(a,b,pp0,pp1,pp2,pp3,pp4,pp5,pp6,pp7,pp8,pp9,pp10);
 input [31:0] a,b;
 output [63:0] pp0,pp1,pp2,pp3,pp4,pp5,pp6,pp7,pp8,pp9,pp10;
-wire [63:0] pp_tmp0,pp_tmp1,pp_tmp2,pp_tmp3,pp_tmp4,pp_tmp5,pp_tmp6,pp_tmp7,pp_tmp8,pp_tmp9,pp_tmp10;
+wire [63:0] pp_tmp1,pp_tmp2,pp_tmp3,pp_tmp4,pp_tmp5,pp_tmp6,pp_tmp7,pp_tmp8,pp_tmp9,pp_tmp10;
 
-booth4_radix_8_32bit_encoder  boothencode1 (a,{b[2:0],1'b0},pp_tmp0);
-booth4_radix_8_32bit_encoder  boothencode2 (a,b[5:2],pp_tmp1);
-booth4_radix_8_32bit_encoder   boothencode3 (a,b[8:5],pp_tmp2);
-booth4_radix_8_32bit_encoder   boothencode4(a,b[11:8],pp_tmp3);
-booth4_radix_8_32bit_encoder  boothencode5 (a,b[14:11],pp_tmp4);
-booth4_radix_8_32bit_encoder boothencode6 (a,b[17:14],pp_tmp5);
-booth4_radix_8_32bit_encoder   boothencode7 (a,b[20:17],pp_tmp6);
-booth4_radix_8_32bit_encoder  boothencode8 (a,b[23:20],pp_tmp7);
-booth4_radix_8_32bit_encoder   boothencode9 (a,b[26:23],pp_tmp8);
-booth4_radix_8_32bit_encoder  boothencode10 (a,b[29:26],pp_tmp9);
-booth4_radix_8_32bit_encoder   boothencode11  (a,{1'b0,b[31:29]},pp_tmp10);
-assign pp0 = pp_tmp0;
+booth4_radix_8_32bit_encoder  boothencode1 (a,b,pp0,pp_tmp1,pp_tmp2,pp_tmp3,pp_tmp4,pp_tmp5,pp_tmp6,pp_tmp7,pp_tmp8,pp_tmp9,pp_tmp10);
+
 assign pp1 = {pp_tmp1[60:0],3'b0};
 assign pp2 = {pp_tmp2[57:0],6'b0};
 assign pp3 = {pp_tmp3[54:0],9'b0};
