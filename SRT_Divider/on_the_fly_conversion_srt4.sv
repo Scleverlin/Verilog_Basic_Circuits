@@ -25,7 +25,7 @@ always_comb begin
         quotient_radix_4 == `POS_one || 
         quotient_radix_4 == `NEG_one || 
         quotient_radix_4 == `POS_zero) begin
-        // 你的原始逻辑
+      
         Q_pos_next = ~quotient_radix_4[2] ? {Q_pos[`INTWIDTH-3:0], quotient_radix_4[1:0]} : {Q_neg[`INTWIDTH-3:0], quotient_radix_4[1:0]};
         Q_neg_next = (~quotient_radix_4[2] & (quotient_radix_4[1] ^ quotient_radix_4[0])) ? {Q_pos[`INTWIDTH-3:0], quotient_radix_4[2:1]} : {Q_neg[`INTWIDTH-3:0], ~(quotient_radix_4[1] ^ quotient_radix_4[0]), ~quotient_radix_4[0]};
     end else begin
