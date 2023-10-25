@@ -14,7 +14,7 @@ wire r_ge_0010, r_ge_0011, r_ge_0110, r_ge_0111, r_ge_1000,
 logic  q0, q2;		    // quotient value(abs)
 assign ops_sign = r_idx[4] ; // if remainder is negative, so does the quotient
 assign r_ori = r_idx[4] ? ~r_idx + 1 : r_idx;
-assign d_ori = d_idx //dont need to care the sign of divisor,  divisor is forced to be positive
+assign d_ori = d_idx ;//dont need to care the sign of divisor,  divisor is forced to be positive
 assign r_ge_0010 = (r_ori[3:0]>=4'b0010); // here we use complement code to represent negative number
 assign r_ge_0011 = (r_ori[3:0]>=4'b0011);
 assign r_ge_0100 = (r_ori[3:0]>=4'b0100);
