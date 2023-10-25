@@ -268,7 +268,7 @@ fHsimNewEvcdpesupport              	1
 fHsimNewEvcdMultiDrvFmt            	1
 fHsimDumpElabData                  	1
 fHsimNoDeposit                     	0
-fHsimDumpOffsetData                	1
+fHsimDumpOffsetData                	0
 fNoOfsOpt                          	0
 fFlopGlitchDetect                  	0
 fHsimClkGlitch                     	0
