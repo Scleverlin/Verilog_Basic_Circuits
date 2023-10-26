@@ -3,7 +3,8 @@
 `include "normalization.sv"
 
 
-module SRT_divider_FP32 ();
+module SRT_divider_FP32 (dividend,divisor,clk,rst,result,result_valid);//prototype input and output
+
 input logic  [31:0] dividend,divisor;
 input logic clk,rst;
 // output logic [31:0] quotient;

@@ -14,7 +14,7 @@ normalizer norm (dividend,divisor);
 // 时钟生成器
 // always begin
 //     #5 clk = ~clk;
-// end
+// enda
 initial begin
    $dumpfile("dump.vcd"); 
    $dumpvars(0, norm); // 0表示记录所有层次，wal_mul_tb是模块的实例名
