@@ -9,13 +9,13 @@
         "SRT_divider_FP32",
         "Sb0Lc",
         "module",
-        3
-    ],
-    "tb_prototype": [
-        "tb_prototype",
-        "NTD4i",
-        "module",
         2
+    ],
+    "tb_SRT_divider_FP32": [
+        "tb_SRT_divider_FP32",
+        "iAyr7",
+        "module",
+        5
     ],
     "...MASTER...": [
         "SIM",
