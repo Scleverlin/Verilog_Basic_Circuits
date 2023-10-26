@@ -1,5 +1,5 @@
 $date
-	Wed Oct 25 16:56:31 2023
+	Thu Oct 26 14:45:42 2023
 $end
 $version
 	Icarus Verilog
@@ -12,42 +12,70 @@ $scope module norm $end
 $var wire 32 ! dividend [31:0] $end
 $var wire 32 " divisor [31:0] $end
 $var wire 1 # result_sign $end
-$var wire 25 $ divisor_mantissa_normalized [24:0] $end
-$var wire 25 % dividend_mantissa_normalized [24:0] $end
-$var wire 8 & current_exponent [7:0] $end
+$var wire 5 $ divisor_shift [4:0] $end
+$var wire 25 % divisor_mantissa_normalized [24:0] $end
+$var wire 5 & dividend_shift [4:0] $end
+$var wire 25 ' dividend_mantissa_normalized [24:0] $end
+$var wire 8 ( current_exponent [7:0] $end
 $scope module exp $end
-$var wire 32 ' dividend [31:0] $end
-$var wire 32 ( divisor [31:0] $end
-$var wire 8 ) result_exp [7:0] $end
-$var wire 8 * exp_divisor [7:0] $end
-$var wire 8 + exp_dividend [7:0] $end
+$var wire 32 ) dividend [31:0] $end
+$var wire 32 * divisor [31:0] $end
+$var wire 8 + result_exp [7:0] $end
+$var wire 8 , exp_divisor [7:0] $end
+$var wire 8 - exp_dividend [7:0] $end
 $upscope $end
 $scope module mfm $end
-$var wire 32 , dividend [31:0] $end
-$var wire 32 - divisor [31:0] $end
+$var wire 32 . dividend [31:0] $end
+$var wire 32 / divisor [31:0] $end
 $var wire 1 # result_sign $end
-$var wire 1 . divisor_sign $end
-$var wire 25 / divisor_mantissa_normalized [24:0] $end
-$var wire 23 0 divisor_mantissa [22:0] $end
-$var wire 8 1 divisor_exponent [7:0] $end
-$var wire 1 2 dividend_sign $end
-$var wire 25 3 dividend_mantissa_normalized [24:0] $end
-$var wire 23 4 dividend_mantissa [22:0] $end
-$var wire 8 5 dividend_exponent [7:0] $end
+$var wire 24 0 divisor_tmp [23:0] $end
+$var wire 1 1 divisor_sign $end
+$var wire 5 2 divisor_shift [4:0] $end
+$var wire 25 3 divisor_mantissa_normalized [24:0] $end
+$var wire 23 4 divisor_mantissa [22:0] $end
+$var wire 8 5 divisor_exponent [7:0] $end
+$var wire 24 6 dividend_tmp [23:0] $end
+$var wire 1 7 dividend_sign $end
+$var wire 5 8 dividend_shift [4:0] $end
+$var wire 25 9 dividend_mantissa_normalized [24:0] $end
+$var wire 23 : dividend_mantissa [22:0] $end
+$var wire 8 ; dividend_exponent [7:0] $end
+$scope module mng $end
+$var wire 25 < data [24:0] $end
+$var wire 5 = shift [4:0] $end
+$var wire 25 > outdata [24:0] $end
+$upscope $end
+$scope module mng2 $end
+$var wire 25 ? data [24:0] $end
+$var wire 5 @ shift [4:0] $end
+$var wire 25 A outdata [24:0] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx A
+bx @
+b0xxxxxxxxxxxxxxxxxxxxxxxx ?
+bx >
+bx =
+b0xxxxxxxxxxxxxxxxxxxxxxxx <
+bx ;
+bx :
+bx 9
+bx 8
+x7
+bx 6
 bx 5
 bx 4
-b0xxxxxxxxxxxxxxxxxxxxxxxx 3
-x2
-bx 1
+bx 3
+bx 2
+x1
 bx 0
-b0xxxxxxxxxxxxxxxxxxxxxxxx /
-x.
+bx /
+bx .
 bx -
 bx ,
 bx +
@@ -56,56 +84,80 @@ bx )
 bx (
 bx '
 bx &
-b0xxxxxxxxxxxxxxxxxxxxxxxx %
-b0xxxxxxxxxxxxxxxxxxxxxxxx $
+bx %
+bx $
 x#
 bx "
 bx !
 $end
 #5
-b0 $
-b0 /
-0#
 b0 %
 b0 3
-b1111111 &
-b1111111 )
-b0 *
-0.
+b0 A
+b0 $
+b0 2
+b0 @
+b0 '
+b0 9
+b0 >
+b0 &
+b0 8
+b0 =
+b0 ?
 b0 0
-b0 1
-b0 +
-02
+0#
+b0 <
+b0 6
+b1111111 (
+b1111111 +
+b0 ,
+01
 b0 4
 b0 5
-b0 "
-b0 (
 b0 -
+07
+b0 :
+b0 ;
+b0 "
+b0 *
+b0 /
 b0 !
-b0 '
-b0 ,
+b0 )
+b0 .
 #10
-1.
-12
+11
+17
 b10000000000000000000000000000000 "
-b10000000000000000000000000000000 (
-b10000000000000000000000000000000 -
+b10000000000000000000000000000000 *
+b10000000000000000000000000000000 /
 b10000000000000000000000000000000 !
-b10000000000000000000000000000000 '
-b10000000000000000000000000000000 ,
+b10000000000000000000000000000000 )
+b10000000000000000000000000000000 .
 #15
-b100000000 $
-b100000000 /
-b100000000 %
-b100000000 3
-0.
+b10000 $
+b10000 2
+b10000 @
+b10000 &
+b10000 8
+b10000 =
+b1000000000000000000000000 %
+b1000000000000000000000000 3
+b1000000000000000000000000 A
+b100000000 ?
 b100000000 0
-02
+b1000000000000000000000000 '
+b1000000000000000000000000 9
+b1000000000000000000000000 >
+b100000000 <
+b100000000 6
+01
 b100000000 4
+07
+b100000000 :
 b100000000 "
-b100000000 (
-b100000000 -
+b100000000 *
+b100000000 /
 b100000000 !
-b100000000 '
-b100000000 ,
+b100000000 )
+b100000000 .
 #115

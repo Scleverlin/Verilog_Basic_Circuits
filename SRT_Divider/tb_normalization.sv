@@ -8,7 +8,8 @@ logic [24:0] dividend_mantissa_normalized;
 logic [24:0] divisor_mantissa_normalized;
 logic [7:0]current_exponent;
 logic result_sign;
-
+logic [4:0] dividend_shift;
+logic [4:0] divisor_shift;  
 normalizer norm (dividend,divisor);
 // 时钟生成器
 // always begin
