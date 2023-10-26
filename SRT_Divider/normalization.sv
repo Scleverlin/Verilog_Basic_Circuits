@@ -3,8 +3,8 @@
 module normalizer (dividend,divisor,dividend_mantissa_normalized, divisor_mantissa_normalized,current_exponent,result_sign,dividend_shift,divisor_shift);
 input logic  [31:0] dividend,divisor;
 
-output logic [24:0] dividend_mantissa_normalized;
-output logic [24:0] divisor_mantissa_normalized;
+output logic [23:0] dividend_mantissa_normalized;
+output logic [23:0] divisor_mantissa_normalized;
 
 output logic [7:0]current_exponent;
 output logic result_sign;
@@ -20,8 +20,8 @@ endmodule
 module man_float_normalize (
     input logic [31:0] dividend,  // 32-bit single-precision float
     input logic [31:0] divisor,   
-    output logic [24:0] dividend_mantissa_normalized,
-    output logic [24:0] divisor_mantissa_normalized,
+    output logic [23:0] dividend_mantissa_normalized,
+    output logic [23:0] divisor_mantissa_normalized,
     output logic [4:0] dividend_shift, // Shift amount for the dividend
     output logic [4:0] divisor_shift,  // Shift amount for the divisor
     output logic result_sign      // Sign of the division result

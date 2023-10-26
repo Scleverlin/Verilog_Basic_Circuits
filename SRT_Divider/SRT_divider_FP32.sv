@@ -11,8 +11,8 @@ input logic clk,rst;
 output logic [23:0] result;
 output logic result_valid;
 
-logic [24:0] dividend_mantissa_normalized;
-logic [24:0] divisor_mantissa_normalized;
+logic [23:0] dividend_mantissa_normalized;
+logic [23:0] divisor_mantissa_normalized;
 
 logic [7:0]current_exponent;
 logic result_sign;
@@ -44,7 +44,7 @@ assign d_idx = current_divisor[25:21];
 logic [23:0] Q_pos,Q_neg;
 logic [23:0] Q_pos_next ,Q_neg_next;
 
-always_ff @(posedge clk or negedge rst) begin
+always @(posedge clk or negedge rst) begin
   if (~rst) begin
     r_idx <= 0;
     flag <= 12'd1;              // Initial value for flag
@@ -73,9 +73,9 @@ assign current_q_d=(mid_quotient[1:0]==2'b00)?26'b0:
                    (mid_quotient[1:0]==2'b10)?{current_divisor[24:0],1'b0}:
                    current_divisor;
 
-
-adder_26 adder (current_remainder,current_q_d,1'b0,next_remainder_p,1'b0);// q is positive
-adder_26 adder (current_remainder,~current_q_d,1'b1,next_remainder_n,1'b0);// q is negative
+logic cout,cout2;
+adder_26 adder_pos (current_remainder,current_q_d,1'b0,next_remainder_p,cout);// q is positive
+adder_26 adder_neg (current_remainder,~current_q_d,1'b1,next_remainder_n,cout2);// q is negative
 
 assign next_remainder_before_shift=(mid_quotient[2]==1'b0)?next_remainder_p:next_remainder_n;
 assign next_remainder={next_remainder_before_shift[23:0],2'b00};
