@@ -5,17 +5,17 @@
         "module",
         1
     ],
-    "qds": [
-        "qds",
-        "f9MSu",
+    "SRT_divider_FP32": [
+        "SRT_divider_FP32",
+        "Sb0Lc",
         "module",
-        5
+        3
     ],
-    "tb_qst": [
-        "tb_qst",
-        "zdHLh",
+    "tb_prototype": [
+        "tb_prototype",
+        "NTD4i",
         "module",
-        6
+        2
     ],
     "...MASTER...": [
         "SIM",

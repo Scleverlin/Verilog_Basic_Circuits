@@ -21,7 +21,8 @@ logic [4:0] dividend_shift;
 logic [4:0] divisor_shift;
 // final quotient=2^(m-n)*q
 
-logic [4:0] final_shift=(dividend_shift >= divisor_shift)?dividend_shift-divisor_shift:dividend_shift-divisor_shift;
+logic [4:0] final_shift; 
+assign final_shift=(dividend_shift >= divisor_shift)?dividend_shift-divisor_shift:dividend_shift-divisor_shift;
 logic right_shift=(dividend_shift >= divisor_shift)?1'b1:1'b0;
 
 
@@ -38,33 +39,51 @@ logic [4:0] r_idx;		// remainder index
 logic [4:0] d_idx;		// divisor index
 logic [2:0]mid_quotient;        // middle quotient
 
-logic [12:0] flag;
-logic [12:0]flag_shift;
-assign flag_shift=flag<<1;
+logic [11:0] flag;
+// logic [11:0]flag_shift;
+// assign flag_shift=flag<<1;
 assign d_idx = current_divisor[25:21];
 logic [23:0] Q_pos,Q_neg;
 logic [23:0] Q_pos_next ,Q_neg_next;
 
-always @(posedge clk or negedge rst) begin
+// always @(posedge clk or negedge rst) begin
+//   if (~rst) begin
+//     r_idx <= 0;
+//     flag <= 12'd1;              // Initial value for flag
+//     current_remainder <= current_dividend;
+//     result_valid <= 1'b0;       // Signal to indicate when the result is ready
+//   end 
+//   else if (flag != 12'd2048) begin   // Check if all iterations are not yet done
+//     r_idx <= current_remainder[25:21];
+//     current_remainder <= next_remainder;
+//     flag <= flag_shift;          // Left shift the flag
+//     Q_pos<=Q_pos_next;
+//     Q_neg<=Q_neg_next;
+//   end
+//   else begin
+//     result_valid <= 1'b1;       // After all iterations, set result valid
+//   end
+// end
+
+always_ff @(posedge clk or negedge rst) begin
   if (~rst) begin
     r_idx <= 0;
-    flag <= 12'd1;              // Initial value for flag
+    flag <= 12'd1;
     current_remainder <= current_dividend;
-    result_valid <= 1'b0;       // Signal to indicate when the result is ready
   end 
-  else if (flag != 12'd2048) begin   // Check if all iterations are not yet done
-    r_idx <= current_remainder[25:21];
-    current_remainder <= next_remainder;
-    flag <= flag << 1;          // Left shift the flag
-    Q_pos<=Q_pos_next;
-    Q_neg<=Q_neg_next;
-  end
   else begin
-    result_valid <= 1'b1;       // After all iterations, set result valid
+    if (flag != 12'd2048) begin   // Check if all iterations are not yet done
+      r_idx <= current_remainder[25:21];
+      current_remainder <= next_remainder;
+      flag <= {flag[10:0],1'b0};
+    end 
+    // if (flag == 12'd2048) begin
+    //   result_valid <= 1'b1;
+    // end
   end
 end
 
-
+assign result_valid = (flag == 12'd2048) ? 1'b1 : 1'b0; 
 
 qds  q_selelct_table (r_idx, d_idx, mid_quotient);
 

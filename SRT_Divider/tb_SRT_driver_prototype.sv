@@ -1,4 +1,4 @@
-`include "normalization.sv"
+`include "SRT_divider_FP32.sv"
 
 module tb_prototype();
 logic  [31:0] dividend,divisor;
@@ -19,6 +19,7 @@ end
 
 // 测试向量生成
 initial begin
+    clk = 0;
     #1 rst=1;
     #1 rst=0;
     #5 dividend=0;divisor=0;
