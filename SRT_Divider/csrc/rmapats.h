@@ -2510,6 +2510,10 @@ extern "C" {
 #endif
 void  hs_0_M_0_0__simv_daidir (UB  * pcode, scalar  val);
 void  hs_0_M_1_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_2_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_3_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_4_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_5_0__simv_daidir (UB  * pcode, scalar  val);
 void  hsG_0__0 (struct dummyq_struct * I1328, EBLK  * I1323, U  I696);
 #ifdef __cplusplus
 }

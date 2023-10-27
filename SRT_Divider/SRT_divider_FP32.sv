@@ -1,15 +1,16 @@
 `include "quo_sel_tab.sv"
 // `include "on_the_fly_conversion_srt4.sv" // integrated in the main module
 `include "normalization.sv"
+`include "post_processing.sv"
 
 
-module SRT_divider_FP32 (dividend,divisor,clk,rst,result);//prototype input and output
+module SRT_divider_FP32 (dividend,divisor,clk,rst,quotient);//prototype input and output
 
 input logic  [31:0] dividend,divisor;
 input logic clk,rst;
 // output logic [31:0] quotient;
 // output logic [31:0] remainder;// currently not used
-output logic [23:0] result;
+output logic [31:0] quotient;
 // output logic result_valid;
 
 logic [23:0] dividend_mantissa_normalized;
@@ -21,8 +22,10 @@ logic [4:0] dividend_shift;
 logic [4:0] divisor_shift;
 // final quotient=2^(m-n)*q
 
-logic [4:0] final_shift; 
-assign final_shift=(dividend_shift >= divisor_shift)?dividend_shift-divisor_shift:dividend_shift-divisor_shift;
+logic [4:0] final_shift,compl_divisor_shift,compl_dividend_shift;
+assign compl_dividend_shift=~dividend_shift+1;
+assign compl_divisor_shift=~divisor_shift+1; 
+assign final_shift=(dividend_shift >= divisor_shift)?dividend_shift+compl_divisor_shift:divisor_shift+compl_dividend_shift;
 logic right_shift=(dividend_shift >= divisor_shift)?1'b1:1'b0;
 
 normalizer norm (dividend,divisor,dividend_mantissa_normalized, divisor_mantissa_normalized,current_exponent,result_sign,dividend_shift,divisor_shift);
@@ -69,7 +72,17 @@ next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remai
 
 assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[24-3:0], mid_quotient[1:0]} : {Q_neg[24-3:0], mid_quotient[1:0]};
 assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[24-3:0], mid_quotient[2:1]} : {Q_neg[24-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
-assign result=Q_pos;
+logic [23:0]result_before_ieee;
+assign result_before_ieee=Q_pos;
+
+post_processing dut (
+        .result(result_before_ieee),
+        .shift_nums(final_shift),
+        .right_shift(right_shift),
+        .resultsign(result_sign),
+        .current_exponent(current_exponent),
+        .quotient(quotient)
+    );
 
 
 // assign result_valid = ;

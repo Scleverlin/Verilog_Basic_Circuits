@@ -6,7 +6,7 @@ module tb_SRT_divider_FP32();
     // 定义测试台使用的信号
     logic [31:0] dividend, divisor;
     logic clk, rst;
-    logic [23:0] result;
+    logic [31:0] result;
 
     // 实例化待测模块
     SRT_divider_FP32 uut (
@@ -14,7 +14,7 @@ module tb_SRT_divider_FP32();
         .divisor(divisor),
         .clk(clk),
         .rst(rst),
-        .result(result)
+        .quotient(result)
     );
 
     // 时钟生成器
