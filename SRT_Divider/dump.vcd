@@ -1,68 +1,63 @@
 $date
-	Fri Oct 27 15:48:18 2023
+	Fri Oct 27 15:49:44 2023
 $end
-
 $version
-	Synopsys VCS version Q-2020.03-SP1_Full64
+	Icarus Verilog
 $end
-
 $timescale
 	1s
 $end
-
-$comment Csum: 1 ee488a378a003d08 $end
-
-
 $scope module tb_post_processing $end
-
 $scope module dut $end
-$var reg 24 ! result [23:0] $end
-$var reg 5 " shift_nums [4:0] $end
-$var reg 1 # right_shift $end
-$var reg 1 $ resultsign $end
-$var reg 8 % current_exponent [7:0] $end
-$var reg 32 & quotient [31:0] $end
-$var reg 24 ' result_temp [23:0] $end
-$var reg 5 ( exponent_addend [4:0] $end
-$var reg 24 ) result_shifted [23:0] $end
-$var reg 8 * exponent_final [7:0] $end
-$var reg 8 + addend_copmplement [7:0] $end
-
+$var wire 8 ! current_exponent [7:0] $end
+$var wire 24 " result [23:0] $end
+$var wire 1 # resultsign $end
+$var wire 1 $ right_shift $end
+$var wire 5 % shift_nums [4:0] $end
+$var wire 24 & result_temp [23:0] $end
+$var wire 24 ' result_shifted [23:0] $end
+$var wire 32 ( quotient [31:0] $end
+$var wire 8 ) exponent_final [7:0] $end
+$var wire 5 * exponent_addend [4:0] $end
+$var wire 8 + addend_copmplement [7:0] $end
 $scope module mngen $end
-$var reg 24 ' data [23:0] $end
-$var reg 24 ) outdata [23:0] $end
-$var reg 5 ( shift [4:0] $end
+$var wire 24 , data [23:0] $end
+$var wire 5 - shift [4:0] $end
+$var wire 24 . outdata [23:0] $end
 $upscope $end
-
 $upscope $end
-
 $upscope $end
-
 $enddefinitions $end
-
 #0
 $dumpvars
-bxxxxxxxx +
-bxxxxxxxx %
-bxxxxx (
-bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx &
-bxxxxxxxxxxxxxxxxxxxxxxxx !
-bxxxxxxxxxxxxxxxxxxxxxxxx '
-bxxxxx "
-bxxxxxxxxxxxxxxxxxxxxxxxx )
-bxxxxxxxx *
-x#
+bx .
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
 x$
+x#
+bx "
+bx !
 $end
 #10
-b00001 "
-b01111111 %
+b1111111 )
+b0 +
+b100000000000000000000000 '
+b100000000000000000000000 .
+b0 *
+b0 -
+b100000000000000000000000 &
+b100000000000000000000000 ,
+b10000000000000000000000 "
+b111111100000000000000000000000 (
 0#
 0$
-b010000000000000000000000 !
-b100000000000000000000000 '
-b00000 (
-b100000000000000000000000 )
-b00000000 +
-b01111111 *
-b00111111100000000000000000000000 &
+b1111111 !
+b1 %
+#110
