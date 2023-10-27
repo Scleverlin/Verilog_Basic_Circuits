@@ -1,5 +1,5 @@
 $date
-	Fri Oct 27 14:43:33 2023
+	Fri Oct 27 15:26:45 2023
 $end
 
 $version
@@ -10,155 +10,28 @@ $timescale
 	1s
 $end
 
-$comment Csum: 1 986b9b72d1fc85b3 $end
+$comment Csum: 1 83cd4625021bf5b8 $end
 
 
-$scope module tb_SRT_divider_FP32 $end
+$scope module tb_pp_q $end
 
-$scope module uut $end
-$var reg 32 ! dividend [31:0] $end
-$var reg 32 " divisor [31:0] $end
-$var reg 1 # clk $end
-$var reg 1 $ rst $end
-$var reg 24 % result [23:0] $end
-$var reg 24 & dividend_mantissa_normalized [23:0] $end
-$var reg 24 ' divisor_mantissa_normalized [23:0] $end
-$var reg 8 ( current_exponent [7:0] $end
-$var reg 1 ) result_sign $end
-$var reg 5 * dividend_shift [4:0] $end
-$var reg 5 + divisor_shift [4:0] $end
-$var reg 5 , final_shift [4:0] $end
-$var reg 1 - right_shift $end
-$var reg 26 . current_dividend [25:0] $end
-$var reg 26 / current_divisor [25:0] $end
-$var reg 26 0 current_remainder [25:0] $end
-$var reg 26 1 current_q_d [25:0] $end
-$var reg 26 2 next_remainder [25:0] $end
-$var reg 26 3 next_remainder_p [25:0] $end
-$var reg 26 4 next_remainder_n [25:0] $end
-$var reg 26 5 next_remainder_before_shift [25:0] $end
-$var reg 5 6 r_idx [4:0] $end
-$var reg 5 7 d_idx [4:0] $end
-$var reg 3 8 mid_quotient [2:0] $end
-$var reg 24 9 Q_pos [23:0] $end
-$var reg 24 : Q_neg [23:0] $end
-$var reg 24 ; Q_pos_next [23:0] $end
-$var reg 24 < Q_neg_next [23:0] $end
+$scope module pp $end
+$var reg 24 ! result [23:0] $end
+$var reg 5 " shift_nums [4:0] $end
+$var reg 1 # right_shift $end
+$var reg 1 $ resultsign $end
+$var reg 8 % current_exponent [7:0] $end
+$var reg 32 & quotient [31:0] $end
+$var reg 24 ' result_temp [23:0] $end
+$var reg 5 ( exponent_addend [4:0] $end
+$var reg 24 ) result_shifted [23:0] $end
+$var reg 8 * exponent_final [7:0] $end
+$var reg 8 + addend_copmplement [7:0] $end
 
-$scope module norm $end
-$var reg 32 ! dividend [31:0] $end
-$var reg 32 " divisor [31:0] $end
-$var reg 24 & dividend_mantissa_normalized [23:0] $end
-$var reg 24 ' divisor_mantissa_normalized [23:0] $end
-$var reg 8 ( current_exponent [7:0] $end
-$var reg 1 ) result_sign $end
-$var reg 5 * dividend_shift [4:0] $end
-$var reg 5 + divisor_shift [4:0] $end
-
-$scope module mfm $end
-$var reg 32 ! dividend [31:0] $end
-$var reg 32 " divisor [31:0] $end
-$var reg 24 & dividend_mantissa_normalized [23:0] $end
-$var reg 24 ' divisor_mantissa_normalized [23:0] $end
-$var reg 5 * dividend_shift [4:0] $end
-$var reg 5 + divisor_shift [4:0] $end
-$var reg 1 ) result_sign $end
-$var reg 8 = dividend_exponent [7:0] $end
-$var reg 8 > divisor_exponent [7:0] $end
-$var reg 1 ? dividend_sign $end
-$var reg 1 @ divisor_sign $end
-$var reg 23 A dividend_mantissa [22:0] $end
-$var reg 23 B divisor_mantissa [22:0] $end
-$var reg 24 C dividend_tmp [23:0] $end
-$var reg 24 D divisor_tmp [23:0] $end
-
-$scope module mng $end
-$var reg 24 C data [23:0] $end
-$var reg 24 & outdata [23:0] $end
-$var reg 5 * shift [4:0] $end
-$upscope $end
-
-
-$scope module mng2 $end
-$var reg 24 D data [23:0] $end
-$var reg 24 ' outdata [23:0] $end
-$var reg 5 + shift [4:0] $end
-$upscope $end
-
-$upscope $end
-
-
-$scope module exp $end
-$var reg 32 ! dividend [31:0] $end
-$var reg 32 " divisor [31:0] $end
-$var reg 8 ( result_exp [7:0] $end
-$var reg 8 E exp_dividend [7:0] $end
-$var reg 8 F exp_divisor [7:0] $end
-$upscope $end
-
-$upscope $end
-
-
-$scope module q_selelct_table $end
-$var reg 5 G r_idx [4:0] $end
-$var reg 5 H d_idx [4:0] $end
-$var reg 3 8 quotient [2:0] $end
-$var reg 2 I q [1:0] $end
-$var reg 1 J neg $end
-$var wire 1 K ops_sign $end
-$var wire 5 L r_ori [4:0] $end
-$var wire 5 H d_ori [4:0] $end
-$var wire 1 M r_ge_0010 $end
-$var wire 1 N r_ge_0011 $end
-$var wire 1 O r_ge_0110 $end
-$var wire 1 P r_ge_0111 $end
-$var wire 1 Q r_ge_1000 $end
-$var wire 1 R r_ge_1001 $end
-$var wire 1 S r_ge_1010 $end
-$var wire 1 T r_ge_1011 $end
-$var wire 1 U r_ge_1100 $end
-$var reg 1 V q0 $end
-$var reg 1 W q2 $end
-$var wire 1 X r_ge_0100 $end
-$var wire 1 Y r_ge_0101 $end
-$upscope $end
-
-
-$scope module qd_gen1 $end
-$var reg 26 / current_divisor [25:0] $end
-$var reg 3 8 mid_quotient [2:0] $end
-$var reg 26 1 current_q_d [25:0] $end
-$upscope $end
-
-
-$scope module next_remainder_gen1 $end
-$var reg 26 0 current_remainder [25:0] $end
-$var reg 26 1 current_q_d [25:0] $end
-$var reg 26 2 next_remainder [25:0] $end
-$var reg 3 8 mid_quotient [2:0] $end
-$var reg 26 Z next_remainder_p [25:0] $end
-$var reg 26 [ next_remainder_n [25:0] $end
-$var reg 1 \ cout $end
-$var reg 1 ] cout2 $end
-$var reg 26 ^ next_remainder_before_shift [25:0] $end
-
-$scope module adder_pos $end
-$var reg 26 0 a [25:0] $end
-$var reg 26 1 b [25:0] $end
-$var reg 1 _ cin $end
-$var reg 26 Z sum [25:0] $end
-$var reg 1 \ cout $end
-$upscope $end
-
-
-$scope module adder_neg $end
-$var reg 26 0 a [25:0] $end
-$var reg 26 ` b [25:0] $end
-$var reg 1 a cin $end
-$var reg 26 b sum [25:0] $end
-$var reg 1 ] cout $end
-$upscope $end
-
+$scope module m_n_gen_2 $end
+$var reg 24 ' data [23:0] $end
+$var reg 24 ) outdata [23:0] $end
+$var reg 5 ( shift [4:0] $end
 $upscope $end
 
 $upscope $end
@@ -169,344 +42,27 @@ $enddefinitions $end
 
 #0
 $dumpvars
-x]
-0J
-0K
-1V
-0W
-xM
-xN
-xX
-xY
-xO
-xP
-xQ
-xR
-xS
-xT
-xU
-x)
-x-
-x\
-x?
-x@
-b000000000000000000000000 :
-b000000000000000000000011 <
-b000000000000000000000000 9
-b000000000000000000000000 ;
-bxxxxxxxx (
-b00000000000000000000000000 1
-b00xxxxxxxxxxxxxxxxxxxxxxxx 0
-b0xxxx H
-bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx !
-bxxxxxxxxxxxxxxxxxxxxxxxx &
-bxxxxx *
-bxxxxxxxxxxxxxxxxxxxxxxxx C
-bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "
+bxxxxxxxx +
+bxxxxxxxx %
+bxxxxx (
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx &
+bxxxxxxxxxxxxxxxxxxxxxxxx !
 bxxxxxxxxxxxxxxxxxxxxxxxx '
-bxxxxx +
-bxxxxxxxxxxxxxxxxxxxxxxxx D
-bxxxxxxxx E
-bxxxxxxxx F
-bxxxxx ,
-b000 8
-b00 I
-b00xxx G
-b00xxx L
-b000000000000000000000000 %
-bxxxxxxxxxxxxxxxxxxxxxxxxxx /
-bxxxxxxxxxxxxxxxxxxxxxxxxxx ^
-bxxxxxxxxxxxxxxxxxxxxxxxxxx 2
-bxxxxxxxxxxxxxxxxxxxxxxxxxx b
-bxxxxxxxxxxxxxxxxxxxxxxxxxx Z
-bxxxxxxxxxxxxxxxxxxxxxxxxxx `
-bxxxxxxxx =
-bxxxxxxxxxxxxxxxxxxxxxxx A
-bxxxxxxxx >
-bxxxxxxxxxxxxxxxxxxxxxxx B
-bxxxxxxxxxxxxxxxxxxxxxxxxxx .
-bxxxxx 7
-bxxxxx 6
-bxxxxxxxxxxxxxxxxxxxxxxxxxx [
-1a
-0_
-bxxxxxxxxxxxxxxxxxxxxxxxxxx 5
-bxxxxxxxxxxxxxxxxxxxxxxxxxx 4
-bxxxxxxxxxxxxxxxxxxxxxxxxxx 3
-0#
-0$
+bxxxxx "
+bxxxxxxxxxxxxxxxxxxxxxxxx )
+bxxxxxxxx *
+x#
+x$
 $end
-b0xxxx 7
-b00xxx 6
-b11111111111111111111111111 `
-bxxxxxxxxxxxxxxxxxxxxxxxx00 2
-b00xxxxxxxxxxxxxxxxxxxxxxxx .
-b00xxxxxxxxxxxxxxxxxxxxxxxx /
-#5
-1#
 #10
-1$
+b00001 "
+b01111111 %
 0#
-#15
-1#
-bxxxxxxxxxxxxxxxxxxxxxxxx00 0
-bxxxxx 6
-xK
-bxxxxx G
-b000000000000000000000011 :
-bxxxxx L
-b000000000000000000001111 <
-#20
-b01000000100000000000000000000000 !
-b10000001 =
-0?
-b00000000000000000000000 A
-b10000001 E
-b01000000000000000000000000000000 "
-b10000000 >
-0@
-b00000000000000000000000 B
-0)
-b10000000 F
-b10000000 (
-0#
-b100000000000000000000000 C
-b100000000000000000000000 D
-b00000 *
-b100000000000000000000000 &
-b00100000000000000000000000 .
-b00000 +
-b100000000000000000000000 '
-b00100000000000000000000000 /
-b01000 7
-b01000 H
-b00000 ,
-xV
-b0x I
-xJ
-xW
-bxx I
-bxxx 8
-b00000000000000000000xxxx <
-b0xx00000000000000000000000 1
-b1xx11111111111111111111111 `
-b00000000000000000000xxxx ;
-#25
-1#
-b00000000000000000000xxxx 9
-b00000000000000000000xxxx %
-b00000000000000000000xxxx :
-b000000000000000000xxxxxx ;
-b000000000000000000xxxxxx <
-#30
 0$
-0#
-b00100000000000000000000000 0
-b00100 6
-0K
-0J
-b00100 G
-b000000000000000000000000 9
-b000000000000000000000000 %
-b000000000000000000000000 :
-b0xx 8
-b00100 L
-1M
-1N
-1X
-0Y
-0O
-0P
-0Q
-0R
-0S
-0T
-0U
-b0000000000000000000000xx ;
-b0000000000000000000000xx <
-0V
-0W
-b01 I
-b001 8
-b000000000000000000000000 <
-b00100000000000000000000000 1
-b11011111111111111111111111 `
-b00000000000000000000000000 [
-b00000000000000000000000000 b
-1]
-b01000000000000000000000000 ^
-0\
-b01000000000000000000000000 Z
-b00000000000000000000000000 2
-b000000000000000000000001 ;
-#35
-1#
-#40
-1$
-0#
-#45
-1#
-b00000000000000000000000000 0
-b00000 6
-b11100000000000000000000000 [
-b11100000000000000000000000 b
-b00000 G
-0]
-b00100000000000000000000000 ^
-b00100000000000000000000000 Z
-b10000000000000000000000000 2
-b000000000000000000000001 9
-b000000000000000000000001 %
-b00000 L
-0M
-0N
-0X
-b000000000000000000000101 ;
-b000000000000000000000100 <
-1V
-b00 I
-b000 8
-b000000000000000000000011 <
-b00000000000000000000000000 1
-b11111111111111111111111111 `
-b00000000000000000000000000 [
-b00000000000000000000000000 b
-1]
-b00000000000000000000000000 ^
-b00000000000000000000000000 Z
-b00000000000000000000000000 2
-b000000000000000000000100 ;
-#50
-0#
-#55
-1#
-b000000000000000000000100 9
-b000000000000000000000100 %
-b000000000000000000000011 :
-b000000000000000000010000 ;
-b000000000000000000001111 <
-#60
-0#
-#65
-1#
-b000000000000000000010000 9
-b000000000000000000010000 %
-b000000000000000000001111 :
-b000000000000000001000000 ;
-b000000000000000000111111 <
-#70
-0#
-#75
-1#
-b000000000000000001000000 9
-b000000000000000001000000 %
-b000000000000000000111111 :
-b000000000000000100000000 ;
-b000000000000000011111111 <
-#80
-0#
-#85
-1#
-b000000000000000100000000 9
-b000000000000000100000000 %
-b000000000000000011111111 :
-b000000000000010000000000 ;
-b000000000000001111111111 <
-#90
-0#
-#95
-1#
-b000000000000010000000000 9
-b000000000000010000000000 %
-b000000000000001111111111 :
-b000000000001000000000000 ;
-b000000000000111111111111 <
-#100
-0#
-#105
-1#
-b000000000001000000000000 9
-b000000000001000000000000 %
-b000000000000111111111111 :
-b000000000100000000000000 ;
-b000000000011111111111111 <
-#110
-0#
-#115
-1#
-b000000000100000000000000 9
-b000000000100000000000000 %
-b000000000011111111111111 :
-b000000010000000000000000 ;
-b000000001111111111111111 <
-#120
-0#
-#125
-1#
-b000000010000000000000000 9
-b000000010000000000000000 %
-b000000001111111111111111 :
-b000001000000000000000000 ;
-b000000111111111111111111 <
-#130
-0#
-#135
-1#
-b000001000000000000000000 9
-b000001000000000000000000 %
-b000000111111111111111111 :
-b000100000000000000000000 ;
-b000011111111111111111111 <
-#140
-0#
-#145
-1#
-b000100000000000000000000 9
-b000100000000000000000000 %
-b000011111111111111111111 :
-b010000000000000000000000 ;
-b001111111111111111111111 <
-#150
-0#
-#155
-1#
-b010000000000000000000000 9
-b010000000000000000000000 %
-b001111111111111111111111 :
-b000000000000000000000000 ;
-b111111111111111111111111 <
-#160
-0#
-#165
-1#
-b000000000000000000000000 9
-b000000000000000000000000 %
-b111111111111111111111111 :
-#170
-0#
-#175
-1#
-#180
-0#
-#185
-1#
-#190
-0#
-#195
-1#
-#200
-0#
-#205
-1#
-#210
-0#
-#215
-1#
-#220
-0#
-#225
-1#
-#230
-0#
-#235
-1#
+b010000000000000000000000 !
+b100000000000000000000000 '
+b00000 (
+b100000000000000000000000 )
+b00000000 +
+b01111111 *
+b00111111100000000000000000000000 &

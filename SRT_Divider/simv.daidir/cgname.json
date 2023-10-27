@@ -5,17 +5,17 @@
         "module",
         1
     ],
-    "SRT_divider_FP32": [
-        "SRT_divider_FP32",
-        "Sb0Lc",
+    "post_processing": [
+        "post_processing",
+        "StY4y",
         "module",
-        2
+        3
     ],
-    "tb_SRT_divider_FP32": [
-        "tb_SRT_divider_FP32",
-        "iAyr7",
+    "tb_pp_q": [
+        "tb_pp_q",
+        "DKeZi",
         "module",
-        5
+        6
     ],
     "...MASTER...": [
         "SIM",

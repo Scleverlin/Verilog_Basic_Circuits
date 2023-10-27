@@ -22,7 +22,7 @@
 -picarchive
 -sverilog
 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/bin/vcs1
-./tb_SRT_driver_prototype.sv
+./tb_post_processing.sv
 45
 XDG_SESSION_ID=9419
 XDG_RUNTIME_DIR=/run/user/1001
@@ -70,16 +70,13 @@ CDS_Netlisting_Mode=Analog
 CDS_LIC_FILE=5280@vdec-cad1:5280@vdec-cad2:5280@vdec-cad3
 CDS_AUTO_64BIT=ALL
 0
-5
-1698234733 prepare_exponet.sv
-1698309171 normalization.sv
-1698237577 quo_sel_tab.sv
-1698325021 SRT_divider_FP32.sv
-1698385401 ./tb_SRT_driver_prototype.sv
+2
+1698387997 post_processing.sv
+1698387964 ./tb_post_processing.sv
 4
 1590809634 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libvirsim.so
 1590809310 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/liberrorinf.so
 1590809251 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libsnpsmalloc.so
 1590809285 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libvfs.so
-1698385410 simv.daidir
+1698388000 simv.daidir
 -1 partitionlib
