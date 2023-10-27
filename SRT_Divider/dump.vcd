@@ -1,5 +1,5 @@
 $date
-	Fri Oct 27 15:34:29 2023
+	Fri Oct 27 15:48:18 2023
 $end
 
 $version
@@ -10,12 +10,12 @@ $timescale
 	1s
 $end
 
-$comment Csum: 1 03e191d87885a3b9 $end
+$comment Csum: 1 ee488a378a003d08 $end
 
 
-$scope module tb_pp_q $end
+$scope module tb_post_processing $end
 
-$scope module pp $end
+$scope module dut $end
 $var reg 24 ! result [23:0] $end
 $var reg 5 " shift_nums [4:0] $end
 $var reg 1 # right_shift $end
@@ -42,17 +42,27 @@ $enddefinitions $end
 
 #0
 $dumpvars
-b00000000 +
-b01111111 %
-b00000 (
-b00111111100000000000000000000000 &
-b010000000000000000000000 !
-b100000000000000000000000 '
-b00001 "
+bxxxxxxxx +
+bxxxxxxxx %
+bxxxxx (
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx &
+bxxxxxxxxxxxxxxxxxxxxxxxx !
+bxxxxxxxxxxxxxxxxxxxxxxxx '
+bxxxxx "
 bxxxxxxxxxxxxxxxxxxxxxxxx )
 bxxxxxxxx *
+x#
+x$
+$end
+#10
+b00001 "
+b01111111 %
 0#
 0$
-$end
-b01111111 *
+b010000000000000000000000 !
+b100000000000000000000000 '
+b00000 (
 b100000000000000000000000 )
+b00000000 +
+b01111111 *
+b00111111100000000000000000000000 &
