@@ -32,7 +32,7 @@ module tb_SRT_divider_FP32();
   initial begin
         clk = 0; rst = 0; // 初始化并激活复位
         #10 rst = 1; // 延迟10个时间单位后释放复位
-        #10 dividend = 32'h40800000;  // 浮点数1.0的IEEE表示
+        #10 dividend = 32'h40800000;  // 浮点数4.0的IEEE表示
              divisor = 32'h40000000;   // 浮点数2.0的IEEE表示
         #10 rst = 0; // 异步复位
         #10 rst = 1; // 释放复位
