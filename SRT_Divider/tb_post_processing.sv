@@ -25,15 +25,12 @@ end
 
     // 测试向量生成
   initial begin
-
-        #10 shift_nums = 5'b00001;
-            current_exponent = 8'd127;
-            right_shift = 1'b0;
-            resultsign = 1'b0;
-            result = {1'b0,1'b1,22'b0};
-
-
-        #200 $finish; // 结束仿真
+shift_nums = 5'b00001;
+    current_exponent = 8'd127;
+    right_shift = 1'b0;
+    resultsign = 1'b0;
+    result = {1'b0,1'b1,22'b0};
+#200 $finish; // 结束仿真
     end
 
 endmodule

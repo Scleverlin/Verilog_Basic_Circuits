@@ -13,7 +13,7 @@ assign result_temp=(right_shift)?result>>shift_nums:result<<shift_nums;
 logic [4:0] exponent_addend;
 logic [23:0] result_shifted;
 
-m_n_gen_2 ( result_temp,result_shifted,exponent_addend);
+m_n_gen_2 mngen( result_temp,result_shifted,exponent_addend);
 logic [7:0]exponent_final;
 
 logic [7:0] addend_copmplement;
