@@ -68,7 +68,9 @@ always_comb begin
 end
 assign q = q0 ? 2'b00 : (q2 ? 2'b10 : 2'b01);
 assign neg = ~q0 & ops_sign;
+logic [2:0] quotient_temp;
+assign quotient_temp={neg,q};
 
-assign quotient = neg ? (~q + 1) : q;
+assign quotient = (quotient_temp==3'b101)?3'b111:quotient_temp; 
 
 endmodule
