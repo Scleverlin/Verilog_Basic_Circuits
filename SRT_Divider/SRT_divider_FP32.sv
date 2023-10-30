@@ -45,11 +45,12 @@ logic [2:0]mid_quotient;        // middle quotient
 assign d_idx = current_divisor[24:20];
 logic [23:0] Q_pos,Q_neg;
 logic [23:0] Q_pos_next ,Q_neg_next;
-
-
+logic [5:0] flag;
+logic [5:0]flag_1;
 always_ff @(posedge clk or negedge rst) begin
 if (~rst)begin
     // flag <= 12'd1;
+    flag<=6'd0;
     current_remainder <= current_dividend;
     Q_pos<=0;
     Q_neg<=0;
@@ -58,12 +59,14 @@ if (~rst)begin
     current_remainder<=next_remainder;
     Q_pos<=Q_pos_next;
     Q_neg<=Q_neg_next;
+    flag<=flag_1;
 end
 end
 
 assign r_idx = current_remainder[25:21];
 // assign result_valid = (flag == 12'd2048) ? 1'b1 : 1'b0; 
 
+assign flag_1=flag+1;
 
 qds  q_selelct_table (r_idx, d_idx, mid_quotient);
 qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
