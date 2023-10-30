@@ -80,8 +80,9 @@ logic [23:0]q_rounding;
 logic [23:0]rounding_data;
 
 rounding rounding_module (current_remainder,current_divisor,rounding_data);
-
-assign q_rounding=(flag==6'd13)?rounding_data+Q_pos[24:1]:Q_pos[24:1];
+logic [23:0]q_pos_cut;
+assign q_pos_cut=Q_pos[24:1];
+assign q_rounding=(flag==6'd13)?rounding_data+q_pos_cut:Q_pos[24:1];
 
 logic [23:0]result_before_ieee;
 
