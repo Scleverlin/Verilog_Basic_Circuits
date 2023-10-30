@@ -38,6 +38,9 @@ module remainder_divisor_check(
   logic [25:0] abs_r, d2, d3;
   logic r_is_negative;
   logic [25:0] one = 26'b1;
+
+  // Intermediate signals to store comparison results
+  logic abs_is_2d_3d, abs_is_d_2d, abs_is_0_d;
   
   // Determine if r is positive or negative
   assign r_is_negative = current_remainder[25];
@@ -50,13 +53,17 @@ module remainder_divisor_check(
   assign d3 = current_divisor + d2;   // 3 * d
   
   // Check range of abs_r against d, 2d, and 3d
-  assign is_2d_3d = !r_is_negative && (abs_r >= d2) && (abs_r < d3);
-  assign is_d_2d = !r_is_negative && (abs_r >= current_divisor) && (abs_r < d2);
-  assign is_0_d = !r_is_negative && abs_r < current_divisor;
+  assign abs_is_2d_3d = (abs_r >= d2) && (abs_r < d3);
+  assign abs_is_d_2d = (abs_r >= current_divisor) && (abs_r < d2);
+  assign abs_is_0_d = abs_r < current_divisor;
   
-  // Use the sign of r to determine the negative outputs
-  assign is_negd_0 = r_is_negative && is_0_d;
-  assign is_neg2d_negd = r_is_negative && is_d_2d;
-  assign is_neg3d_neg2d = r_is_negative && is_2d_3d;
+  // Use the sign of r and the intermediate signals to determine the final outputs
+  assign is_2d_3d = !r_is_negative && abs_is_2d_3d;
+  assign is_d_2d = !r_is_negative && abs_is_d_2d;
+  assign is_0_d = !r_is_negative && abs_is_0_d;
+  assign is_negd_0 = r_is_negative && abs_is_0_d;
+  assign is_neg2d_negd = r_is_negative && abs_is_d_2d;
+  assign is_neg3d_neg2d = r_is_negative && abs_is_2d_3d;
 
 endmodule
+
