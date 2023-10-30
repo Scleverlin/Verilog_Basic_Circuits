@@ -1,6 +1,6 @@
 module rounding(current_remainder,current_divisor,rounding_data);
 input logic [25:0] current_remainder,current_divisor;
-output logic [25:0] rounding_data;
+output logic [23:0] rounding_data;
 
 
 logic is_2d_3d;
@@ -12,12 +12,12 @@ logic is_neg3d_neg2d;
 
 remainder_divisor_check check( current_remainder, current_divisor, is_2d_3d, is_d_2d, is_0_d, is_negd_0, is_neg2d_negd, is_neg3d_neg2d);
 
-logic [25:0] one = 26'b1;
-logic [25:0] two = 26'b10;
-logic [25:0] three = 26'b11;
-logic [25:0] minus_three= ~three+one;
-logic [25:0] minus_two= ~two+one;
-logic [25:0] minus_one= ~one+one;
+logic [25:0] one = {24'b1,2'b00};
+logic [25:0] two = {24'b10,2'b00};
+logic [25:0] three = {24'b11,2'b00};
+logic [25:0] minus_three= {~three+one,2'b00};
+logic [25:0] minus_two= {~two+one,2'b00};
+logic [25:0] minus_one= {~one+one,2'b00};
 
 assign rounding_data= (is_2d_3d)?two:(is_d_2d)?one:(is_0_d)?0:(is_negd_0)?minus_one:(is_neg2d_negd)?minus_two:(is_neg3d_neg2d)?minus_three:0;
 
