@@ -52,8 +52,8 @@ if (~rst)begin
     // flag <= 12'd1;
     flag<=6'd0;
     current_remainder <= current_dividend;
-    Q_pos<=0;
-    Q_neg<=0;
+    Q_pos<=26'b0;
+    Q_neg<=26'b0;
   end 
   else begin
     current_remainder<=next_remainder;
