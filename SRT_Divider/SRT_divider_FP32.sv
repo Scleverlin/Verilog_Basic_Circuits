@@ -76,16 +76,16 @@ next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remai
 
 assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[26-3:0], mid_quotient[1:0]} : {Q_neg[26-3:0], mid_quotient[1:0]};
 assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[26-3:0], mid_quotient[2:1]} : {Q_neg[26-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
-logic [25:0]q_rounding;
-logic [25:0]rounding_data;
+logic [23:0]q_rounding;
+logic [23:0]rounding_data;
 
 rounding rounding_module (current_remainder,current_divisor,rounding_data);
 
-assign q_rounding=(flag==6'd13)?rounding_data+Q_pos:Q_pos;
+assign q_rounding=(flag==6'd13)?rounding_data+Q_pos[24:1]:Q_pos[24:1];
 
 logic [23:0]result_before_ieee;
 
-assign result_before_ieee=q_rounding[24:1];
+assign result_before_ieee=q_rounding;
 
 
 
