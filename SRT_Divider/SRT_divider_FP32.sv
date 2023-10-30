@@ -76,7 +76,7 @@ next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remai
 assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[26-3:0], mid_quotient[1:0]} : {Q_neg[26-3:0], mid_quotient[1:0]};
 assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[26-3:0], mid_quotient[2:1]} : {Q_neg[26-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
 logic [23:0]result_before_ieee;
-assign result_before_ieee=Q_pos[25:2];
+assign result_before_ieee=Q_pos[24:1];
 
 post_processing dut (
         .result(result_before_ieee),
