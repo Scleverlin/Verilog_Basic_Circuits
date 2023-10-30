@@ -75,7 +75,7 @@ CDS_AUTO_64BIT=ALL
 1698642803 post_processing.sv
 1698234733 prepare_exponet.sv
 1698309171 normalization.sv
-1698639735 quo_sel_tab.sv
+1698655454 quo_sel_tab.sv
 1698650671 SRT_divider_FP32.sv
 1698636982 ./tb_SRT_driver_prototype.sv
 4
@@ -83,5 +83,5 @@ CDS_AUTO_64BIT=ALL
 1590809310 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/liberrorinf.so
 1590809251 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libsnpsmalloc.so
 1590809285 /opt/eda/synopsys/vcs/Q-2020.03-SP1/linux64/lib/libvfs.so
-1698651928 simv.daidir
+1698655462 simv.daidir
 -1 partitionlib
