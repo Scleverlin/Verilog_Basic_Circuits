@@ -32,29 +32,30 @@ module m_n_gen_2 (
     output logic [23:0] outdata,
     output logic [4:0] shift
 );
-assign shift = (data[22] == 1) ? 0 :
-               (data[21] == 1) ? 1 :
-               (data[20] == 1) ? 2 :
-               (data[19] == 1) ? 3 :
-               (data[18] == 1) ? 4 :
-               (data[17] == 1) ? 5 :
-               (data[16] == 1) ? 6 :
-               (data[15] == 1) ? 7 :
-               (data[14] == 1) ? 8 :
-               (data[13] == 1) ? 9 :
-               (data[12] == 1) ? 10 :
-               (data[11] == 1) ? 11 :
-               (data[10] == 1) ? 12 :
-               (data[9] == 1) ? 13 :
-               (data[8] == 1) ? 14 :
-               (data[7] == 1) ? 15 :
-               (data[6] == 1) ? 16 :
-               (data[5] == 1) ? 17 :
-               (data[4] == 1) ? 18 :
-               (data[3] == 1) ? 19 :
-               (data[2] == 1) ? 20 :
-               (data[1] == 1) ? 21 :
-               (data[0] == 1) ? 22 : 0;
+assign shift = (data[23] == 1) ? 0 :
+               (data[22] == 1) ? 1 :
+               (data[21] == 1) ? 2 :
+               (data[20] == 1) ? 3 :
+               (data[19] == 1) ? 4 :
+               (data[18] == 1) ? 5 :
+               (data[17] == 1) ? 6 :
+               (data[16] == 1) ? 7 :
+               (data[15] == 1) ? 8 :
+               (data[14] == 1) ? 9 :
+               (data[13] == 1) ? 10 :
+               (data[12] == 1) ? 11 :
+               (data[11] == 1) ? 12 :
+               (data[10] == 1) ? 13 :
+               (data[9] == 1) ? 14 :
+               (data[8] == 1) ? 15 :
+               (data[7] == 1) ? 16 :
+               (data[6] == 1) ? 17 :
+               (data[5] == 1) ? 18 :
+               (data[4] == 1) ? 19 :
+               (data[3] == 1) ? 20 :
+               (data[2] == 1) ? 21 :
+               (data[1] == 1) ? 22 :
+               (data[0] == 1) ? 23 : 0;
 
 assign outdata = data << shift;
 endmodule
