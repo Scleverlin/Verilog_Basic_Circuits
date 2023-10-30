@@ -50,16 +50,13 @@ module remainder_divisor_check(
   assign d3 = current_divisor + d2;   // 3 * d
   
   // Check range of abs_r against d, 2d, and 3d
-  assign is_2d_3d = (abs_r >= d2) && (abs_r < d3);
-  assign is_d_2d = (abs_r >= current_divisor) && (abs_r < d2);
-  assign is_0_d = abs_r < current_divisor;
+  assign is_2d_3d = !r_is_negative && (abs_r >= d2) && (abs_r < d3);
+  assign is_d_2d = !r_is_negative && (abs_r >= current_divisor) && (abs_r < d2);
+  assign is_0_d = !r_is_negative && abs_r < current_divisor;
   
-  // Use the sign of r to determine the final output
+  // Use the sign of r to determine the negative outputs
   assign is_negd_0 = r_is_negative && is_0_d;
   assign is_neg2d_negd = r_is_negative && is_d_2d;
   assign is_neg3d_neg2d = r_is_negative && is_2d_3d;
-
-  // For positive ranges, we simply use the results of the comparisons
-  // No need to assign them again, they are already defined
 
 endmodule

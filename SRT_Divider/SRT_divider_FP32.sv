@@ -81,7 +81,7 @@ logic [25:0]rounding_data;
 
 rounding rounding_module (current_remainder,current_divisor,rounding_data);
 
-assign q_rounding=(flag_1==6'd13)?rounding_data:Q_pos;
+assign q_rounding=(flag==6'd13)?rounding_data:Q_pos;
 
 logic [23:0]result_before_ieee;
 
