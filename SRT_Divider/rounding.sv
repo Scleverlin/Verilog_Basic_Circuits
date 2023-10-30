@@ -35,33 +35,31 @@ module remainder_divisor_check(
     output logic is_neg3d_neg2d
 );
 
-  logic [25:0] r, d2, d3, negd, negd2, negd3;
+  logic [25:0] abs_r, d2, d3;
   logic r_is_negative;
   logic [25:0] one = 26'b1;
   
   // Determine if r is positive or negative
   assign r_is_negative = current_remainder[25];
   
-  // Convert to two's complement for negative values of r
-  assign r = r_is_negative ? (one + ~current_remainder) : current_remainder;  // two's complement
+  // Convert r to its absolute value
+  assign abs_r = r_is_negative ? (one + ~current_remainder) : current_remainder;
   
   // Calculate multiples of current_divisor
   assign d2 = current_divisor << 1;   // 2 * d
   assign d3 = current_divisor + d2;   // 3 * d
   
-  // Calculate negations using two's complement
-  assign negd = one + ~current_divisor;  // -d
-  assign negd2 = one + ~(d2);           // -2d
-  assign negd3 = one + ~(d3);           // -3d
+  // Check range of abs_r against d, 2d, and 3d
+  assign is_2d_3d = (abs_r >= d2) && (abs_r < d3);
+  assign is_d_2d = (abs_r >= current_divisor) && (abs_r < d2);
+  assign is_0_d = abs_r < current_divisor;
   
-  // Check range of r for positive cases
-  assign is_2d_3d = (!r_is_negative && (r >= d2) && (r < d3));
-  assign is_d_2d = (!r_is_negative && (r >= current_divisor) && (r < d2));
-  assign is_0_d = (!r_is_negative && (r < current_divisor));
-  
-  // Check range of r for negative cases
-  assign is_negd_0 = (r_is_negative && (r >= negd));
-  assign is_neg2d_negd = (r_is_negative && (r >= negd2) && (r < negd));
-  assign is_neg3d_neg2d = (r_is_negative && (r >= negd3) && (r < negd2));
+  // Use the sign of r to determine the final output
+  assign is_negd_0 = r_is_negative && is_0_d;
+  assign is_neg2d_negd = r_is_negative && is_d_2d;
+  assign is_neg3d_neg2d = r_is_negative && is_2d_3d;
+
+  // For positive ranges, we simply use the results of the comparisons
+  // No need to assign them again, they are already defined
 
 endmodule
