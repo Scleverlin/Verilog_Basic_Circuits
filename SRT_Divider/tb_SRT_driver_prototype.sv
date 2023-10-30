@@ -43,7 +43,7 @@ module tb_SRT_divider_FP32();
              divisor = 32'h48004ABC;   
         #10 rst = 0; // 异步复位
         #10 rst = 1; // 释放复位
-        #200 $finish; // 结束仿真
+        #2000 $finish; // 结束仿真
     end
 
 endmodule
