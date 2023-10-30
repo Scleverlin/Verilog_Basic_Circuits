@@ -15,30 +15,30 @@ logic  q0, q2;		    // quotient value(abs)
 assign ops_sign = r_idx[4] ; 
 assign r_ori = r_idx[4] ? ~r_idx + 1 : r_idx;
 assign d_ori = d_idx ;//dont need to care the sign of divisor,  divisor is forced to be positive
-// assign r_ge_0010 = (r_ori[3:0]>=4'b0010); // here we use complement code to represent negative number
-// assign r_ge_0011 = (r_ori[3:0]>=4'b0011);
-// assign r_ge_0100 = (r_ori[3:0]>=4'b0100);
-// assign r_ge_0101 = (r_ori[3:0]>=4'b0101);
-// assign r_ge_0110 = (r_ori[3:0]>=4'b0110);
-// assign r_ge_0111 = (r_ori[3:0]>=4'b0111);
-// assign r_ge_1000 = (r_ori[3:0]>=4'b1000);
-// assign r_ge_1001 = (r_ori[3:0]>=4'b1001);
-// assign r_ge_1010 = (r_ori[3:0]>=4'b1010);
-// assign r_ge_1011 = (r_ori[3:0]>=4'b1011);
-// assign r_ge_1100 = (r_ori[3:0]>=4'b1100);
+assign r_ge_0010 = (r_ori[3:0]>=4'b0010); // here we use complement code to represent negative number
+assign r_ge_0011 = (r_ori[3:0]>=4'b0011);
+assign r_ge_0100 = (r_ori[3:0]>=4'b0100);
+assign r_ge_0101 = (r_ori[3:0]>=4'b0101);
+assign r_ge_0110 = (r_ori[3:0]>=4'b0110);
+assign r_ge_0111 = (r_ori[3:0]>=4'b0111);
+assign r_ge_1000 = (r_ori[3:0]>=4'b1000);
+assign r_ge_1001 = (r_ori[3:0]>=4'b1001);
+assign r_ge_1010 = (r_ori[3:0]>=4'b1010);
+assign r_ge_1011 = (r_ori[3:0]>=4'b1011);
+assign r_ge_1100 = (r_ori[3:0]>=4'b1100);
 
 
-assign r_ge_0010 = (r_ori[3:0]>4'b0010); // here we use complement code to represent negative number
-assign r_ge_0011 = (r_ori[3:0]>4'b0011);
-assign r_ge_0100 = (r_ori[3:0]>4'b0100);
-assign r_ge_0101 = (r_ori[3:0]>4'b0101);
-assign r_ge_0110 = (r_ori[3:0]>4'b0110);
-assign r_ge_0111 = (r_ori[3:0]>4'b0111);
-assign r_ge_1000 = (r_ori[3:0]>4'b1000);
-assign r_ge_1001 = (r_ori[3:0]>4'b1001);
-assign r_ge_1010 = (r_ori[3:0]>4'b1010);
-assign r_ge_1011 = (r_ori[3:0]>4'b1011);
-assign r_ge_1100 = (r_ori[3:0]>4'b1100);
+// assign r_ge_0010 = (r_ori[3:0]>4'b0010); // here we use complement code to represent negative number
+// assign r_ge_0011 = (r_ori[3:0]>4'b0011);
+// assign r_ge_0100 = (r_ori[3:0]>4'b0100);
+// assign r_ge_0101 = (r_ori[3:0]>4'b0101);
+// assign r_ge_0110 = (r_ori[3:0]>4'b0110);
+// assign r_ge_0111 = (r_ori[3:0]>4'b0111);
+// assign r_ge_1000 = (r_ori[3:0]>4'b1000);
+// assign r_ge_1001 = (r_ori[3:0]>4'b1001);
+// assign r_ge_1010 = (r_ori[3:0]>4'b1010);
+// assign r_ge_1011 = (r_ori[3:0]>4'b1011);
+// assign r_ge_1100 = (r_ori[3:0]>4'b1100);
 // assign r_ge_0010_r=(r_ori[3:0]>4'b0010);
 // assign r_ge_0110_r=(r_ori[3:0]>4'b0110);
 always_comb begin
