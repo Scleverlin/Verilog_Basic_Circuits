@@ -1,0 +1,1 @@
+ vcs -full64 -sverilog ./tb_SRT_driver_prototype.sv 
