@@ -22,9 +22,9 @@ remainder_divisor_check check( current_remainder, current_divisor, is_2d_3d, is_
 logic [23:0] one = {22'b1,2'b00};
 logic [23:0] two = {22'b10,2'b00};
 logic [23:0] three = {22'b11,2'b00};
-logic [23:0] minus_three= {~three+one,2'b00};
-logic [23:0] minus_two= {~two+one,2'b00};
-logic [23:0] minus_one= {~one+one,2'b00};
+logic [23:0] minus_three= ~three+one;
+logic [23:0] minus_two= ~two+one;
+logic [23:0] minus_one= ~one+one;
 assign rounding_data= (is_2d_3d)?two:(is_d_2d)?one:(is_0_d)?0:(is_negd_0)?minus_one:(is_neg2d_negd)?minus_two:(is_neg3d_neg2d)?minus_three:0;
 
 
