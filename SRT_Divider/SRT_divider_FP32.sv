@@ -42,7 +42,7 @@ logic [4:0] r_idx;		// remainder index
 logic [4:0] d_idx;		// divisor index
 logic [2:0]mid_quotient;        // middle quotient
 
-assign d_idx = current_divisor[25:21];
+assign d_idx = current_divisor[24:20];
 logic [23:0] Q_pos,Q_neg;
 logic [23:0] Q_pos_next ,Q_neg_next;
 logic [5:0] flag;
