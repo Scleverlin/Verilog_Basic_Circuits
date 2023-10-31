@@ -1,0 +1,1 @@
+verilator -Wall -cc -j 0 -Irtl SRT_divider_FP32.sv --exe --build   tb_SRT_divider_FP32.cpp -CFLAGS "-std=c++11" --trace

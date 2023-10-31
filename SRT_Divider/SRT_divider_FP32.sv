@@ -1,3 +1,6 @@
+/* verilator lint_off EOFNEWLINE */
+/* verilator lint_off WIDTHEXPAND */
+/* verilator lint_off UNUSEDSIGNAL */
 `include "quo_sel_tab.sv"
 // `include "on_the_fly_conversion_srt4.sv" // integrated in the main module
 `include "normalization.sv"

@@ -1,3 +1,4 @@
+/* verilator lint_off EOFNEWLINE */
 module post_processing(  //convert the final quotient to be IEEE-754
 input logic [23:0] result,
 input logic [4:0]shift_nums,
@@ -59,3 +60,4 @@ assign shift = (data[23] == 1) ? 0 :
 
 assign outdata = data << shift;
 endmodule
+

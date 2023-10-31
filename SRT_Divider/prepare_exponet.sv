@@ -1,3 +1,5 @@
+/* verilator lint_off DECLFILENAME */
+/* verilator lint_off WIDTHCONCAT */
 // `define FP_WIDTH 32
 // `define EXP_WIDTH 8
 // `define MANT_WIDTH 23
@@ -59,3 +61,4 @@ output logic cout;
 assign {cout,sum} = a + b;
 
 endmodule
+
