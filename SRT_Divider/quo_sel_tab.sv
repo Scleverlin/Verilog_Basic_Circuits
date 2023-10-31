@@ -1,5 +1,5 @@
 /* verilator lint_off DECLFILENAME */
-module qds (r_idx, d_idx, quotient);
+module quo_sel_tab(r_idx, d_idx, quotient);
 // borrowed and slightly modified from https://github.com/devindang/openip-hdl/blob/main/srt_div/rtl/srt_r4.v 
 input logic [4:0] r_idx;		// remainder index
 input  logic [4:0] d_idx;		// divisor index

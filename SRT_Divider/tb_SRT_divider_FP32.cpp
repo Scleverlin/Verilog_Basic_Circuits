@@ -20,27 +20,46 @@ int main(int argc, char** argv) {
     top->rst = 0;
 
     int main_time = 0;
-    while (main_time < 2330 && !Verilated::gotFinish()) { // Added an end time to the simulation
+    while (main_time < 2390 && !Verilated::gotFinish()) {
         // Toggle the clock
-        bool clk_rising_edge = (main_time % 10) == 0;
-        bool clk_falling_edge = (main_time % 10) == 5;
+        bool clk_rising_edge = (main_time % 20) == 0;
+        bool clk_falling_edge = (main_time % 20) == 10;
 
         if (clk_rising_edge) {
-            top->clk = 1;  // Clock rising edge
+            top->clk = 1;
         } else if (clk_falling_edge) {
-            top->clk = 0;  // Clock falling edge
+            top->clk = 0;
         }
 
         if (main_time == 10) {
             top->rst = 1;
+        } else if (main_time == 20) {
             top->dividend = 0x40800000;
             top->divisor = 0x40000000;
-        } else if (main_time == 170) {
+        } else if (main_time == 30) {
+            top->rst = 0;
+        } else if (main_time == 40) {
+            top->rst = 1;
+        } else if (main_time == 200) {
+            top->rst = 0;
+        } else if (main_time == 210) {
+            top->rst = 1;
+        } else if (main_time == 220) {
             top->dividend = 0x420098BA;
             top->divisor = 0x48004ABC;
-        } else if (main_time == 320) {
+        } else if (main_time == 230) {
+            top->rst = 0;
+        } else if (main_time == 240) {
+            top->rst = 1;
+        } else if (main_time == 400) {
             top->dividend = 0x42BA98BA;
             top->divisor = 0x48004ABC;
+        } else if (main_time == 410) {
+            top->rst = 0;
+        } else if (main_time == 420) {
+            top->rst = 1;
+        } else if (main_time == 2420) {
+            break;  // End the simulation
         }
 
         // Evaluate the design

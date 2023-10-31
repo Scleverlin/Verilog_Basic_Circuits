@@ -72,7 +72,7 @@ assign r_idx = current_remainder[25:21];
 
 assign flag_1=flag+1;
 
-qds  q_selelct_table (r_idx, d_idx, mid_quotient);
+quo_sel_tab  q_selelct_table (r_idx, d_idx, mid_quotient);
 qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
 
 next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
