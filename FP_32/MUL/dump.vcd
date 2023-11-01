@@ -1,0 +1,327 @@
+$date
+	Wed Nov  1 16:53:56 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_FP32_mul $end
+$scope module mul $end
+$var wire 32 ! mul1 [31:0] $end
+$var wire 32 " mul2 [31:0] $end
+$var wire 1 # result_sign $end
+$var wire 32 $ product [31:0] $end
+$var wire 5 % mul2_shift [4:0] $end
+$var wire 24 & mul2_mantissa_normalized [23:0] $end
+$var wire 5 ' mul1_shift [4:0] $end
+$var wire 24 ( mul1_mantissa_normalized [23:0] $end
+$var wire 8 ) final_shift_comple [7:0] $end
+$var wire 8 * final_shift [7:0] $end
+$var wire 23 + final_mantissa [22:0] $end
+$var wire 8 , final_exponent [7:0] $end
+$var wire 24 - f1f2_plus [23:0] $end
+$var wire 8 . exponent_add_comple [7:0] $end
+$var wire 1 / exponent_add $end
+$var wire 8 0 current_exponent [7:0] $end
+$scope module man_solving $end
+$var wire 24 1 f2_plus [23:0] $end
+$var wire 24 2 f1f2_plus [23:0] $end
+$var wire 24 3 f1_plus [23:0] $end
+$var wire 48 4 f1_f2_48 [47:0] $end
+$var wire 1 / exponent_add $end
+$scope module mul_24 $end
+$var wire 24 5 f2 [23:0] $end
+$var wire 48 6 f1f2 [47:0] $end
+$var wire 24 7 f1 [23:0] $end
+$upscope $end
+$upscope $end
+$scope module norm $end
+$var wire 32 8 mul1 [31:0] $end
+$var wire 32 9 mul2 [31:0] $end
+$var wire 1 # result_sign $end
+$var wire 5 : mul2_shift [4:0] $end
+$var wire 24 ; mul2_mantissa_normalized [23:0] $end
+$var wire 5 < mul1_shift [4:0] $end
+$var wire 24 = mul1_mantissa_normalized [23:0] $end
+$var wire 8 > current_exponent [7:0] $end
+$scope module exp $end
+$var wire 9 ? bias [8:0] $end
+$var wire 32 @ mul1 [31:0] $end
+$var wire 32 A mul2 [31:0] $end
+$var wire 9 B result_tmp2 [8:0] $end
+$var wire 9 C result_tmp [8:0] $end
+$var wire 8 D result_exp [7:0] $end
+$var wire 9 E mul2_sign [8:0] $end
+$var wire 9 F mul1_sign [8:0] $end
+$var wire 8 G exp_mul2 [7:0] $end
+$var wire 8 H exp_mul1 [7:0] $end
+$var wire 1 I cout2 $end
+$var wire 1 J cout $end
+$scope module adder $end
+$var wire 9 K a [8:0] $end
+$var wire 9 L b [8:0] $end
+$var wire 9 M sum [8:0] $end
+$var wire 1 J cout $end
+$upscope $end
+$scope module adder2 $end
+$var wire 9 N a [8:0] $end
+$var wire 9 O b [8:0] $end
+$var wire 9 P sum [8:0] $end
+$var wire 1 I cout $end
+$upscope $end
+$upscope $end
+$scope module mfm $end
+$var wire 32 Q mul1 [31:0] $end
+$var wire 32 R mul2 [31:0] $end
+$var wire 1 # result_sign $end
+$var wire 24 S mul2_tmp [23:0] $end
+$var wire 1 T mul2_sign $end
+$var wire 5 U mul2_shift [4:0] $end
+$var wire 24 V mul2_mantissa_normalized [23:0] $end
+$var wire 23 W mul2_mantissa [22:0] $end
+$var wire 8 X mul2_exponent [7:0] $end
+$var wire 24 Y mul1_tmp [23:0] $end
+$var wire 1 Z mul1_sign $end
+$var wire 5 [ mul1_shift [4:0] $end
+$var wire 24 \ mul1_mantissa_normalized [23:0] $end
+$var wire 23 ] mul1_mantissa [22:0] $end
+$var wire 8 ^ mul1_exponent [7:0] $end
+$scope module mng $end
+$var wire 24 _ data [23:0] $end
+$var wire 5 ` shift [4:0] $end
+$var wire 24 a outdata [23:0] $end
+$upscope $end
+$scope module mng2 $end
+$var wire 24 b data [23:0] $end
+$var wire 5 c shift [4:0] $end
+$var wire 24 d outdata [23:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+xZ
+bx Y
+bx X
+bx W
+bx V
+bx U
+xT
+bx S
+bx R
+bx Q
+bx P
+b110000001 O
+bx N
+bx M
+b0xxxxxxxx L
+b0xxxxxxxx K
+xJ
+xI
+bx H
+bx G
+b0xxxxxxxx F
+b0xxxxxxxx E
+bx D
+bx C
+bx B
+bx A
+bx @
+b110000001 ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+x/
+bx .
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
+bx $
+x#
+bx "
+bx !
+$end
+#10
+b0 +
+b10000010 ,
+b0 )
+b100000000000000000000000 -
+b100000000000000000000000 2
+b0 *
+b0 .
+0/
+b10000000000000000000000000000000000000000000000 4
+b10000000000000000000000000000000000000000000000 6
+b100000000000000000000000 &
+b100000000000000000000000 1
+b100000000000000000000000 5
+b100000000000000000000000 ;
+b100000000000000000000000 V
+b100000000000000000000000 d
+b0 %
+b0 :
+b0 U
+b0 c
+b100000000000000000000000 (
+b100000000000000000000000 3
+b100000000000000000000000 7
+b100000000000000000000000 =
+b100000000000000000000000 \
+b100000000000000000000000 a
+b0 '
+b0 <
+b0 [
+b0 `
+b10000010 0
+b10000010 >
+b10000010 D
+b10000010 B
+b10000010 P
+1I
+b100000001 C
+b100000001 M
+b100000001 N
+0J
+b100000000000000000000000 S
+b100000000000000000000000 b
+b1000001000000000000000000000000 $
+0#
+b100000000000000000000000 Y
+b100000000000000000000000 _
+b10000000 E
+b10000000 L
+b10000000 G
+0T
+b0 W
+b10000000 X
+b10000001 F
+b10000001 K
+b10000001 H
+0Z
+b0 ]
+b10000001 ^
+b1000000000000000000000000000000 "
+b1000000000000000000000000000000 9
+b1000000000000000000000000000000 A
+b1000000000000000000000000000000 R
+b1000000100000000000000000000000 !
+b1000000100000000000000000000000 8
+b1000000100000000000000000000000 @
+b1000000100000000000000000000000 Q
+#20
+b1110001111001111 +
+b1001010100000001110001111001111 $
+b10010101 ,
+b10010101 0
+b10010101 >
+b10010101 D
+b100000001110001111001111 -
+b100000001110001111001111 2
+b10010101 B
+b10010101 P
+b100000000100101010111100 &
+b100000000100101010111100 1
+b100000000100101010111100 5
+b100000000100101010111100 ;
+b100000000100101010111100 V
+b100000000100101010111100 d
+b100000000100101010111100 S
+b100000000100101010111100 b
+b100010100 C
+b100010100 M
+b100010100 N
+b10000000111000111100111100101011110110010011000 4
+b10000000111000111100111100101011110110010011000 6
+b100000001001100010111010 (
+b100000001001100010111010 3
+b100000001001100010111010 7
+b100000001001100010111010 =
+b100000001001100010111010 \
+b100000001001100010111010 a
+b100000001001100010111010 Y
+b100000001001100010111010 _
+b10010000 E
+b10010000 L
+b10010000 G
+b100101010111100 W
+b10010000 X
+b10000100 F
+b10000100 K
+b10000100 H
+b1001100010111010 ]
+b10000100 ^
+b1001000000000000100101010111100 "
+b1001000000000000100101010111100 9
+b1001000000000000100101010111100 A
+b1001000000000000100101010111100 R
+b1000010000000001001100010111010 !
+b1000010000000001001100010111010 8
+b1000010000000001001100010111010 @
+b1000010000000001001100010111010 Q
+#30
+b1110110000010110101100 +
+b1001011001110110000010110101100 $
+b10010110 ,
+b10010110 0
+b10010110 >
+b10010110 D
+b101110110000010110101100 -
+b101110110000010110101100 2
+b10010110 B
+b10010110 P
+b100010101 C
+b100010101 M
+b100010101 N
+b10111011000001011010110001011011110110010011000 4
+b10111011000001011010110001011011110110010011000 6
+b101110101001100010111010 (
+b101110101001100010111010 3
+b101110101001100010111010 7
+b101110101001100010111010 =
+b101110101001100010111010 \
+b101110101001100010111010 a
+b101110101001100010111010 Y
+b101110101001100010111010 _
+b10000101 F
+b10000101 K
+b10000101 H
+b1110101001100010111010 ]
+b10000101 ^
+b1000010101110101001100010111010 !
+b1000010101110101001100010111010 8
+b1000010101110101001100010111010 @
+b1000010101110101001100010111010 Q
+#2030

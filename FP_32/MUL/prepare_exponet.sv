@@ -15,13 +15,13 @@ module fp_mul_exp(
     logic [`EXP_WIDTH:0] mul1_sign;
     logic [`EXP_WIDTH:0] mul2_sign;
 
-    assign mul1_sign={0'b0,exp_mul1};
-    assign mul2_sign= {0'b0,exp_mul2};
+    assign mul1_sign={1'b0,exp_mul1};
+    assign mul2_sign= {1'b0,exp_mul2};
     logic cout,cout2;
     logic [`EXP_WIDTH:0] result_tmp,result_tmp2;
     logic [`EXP_WIDTH:0] bias;
 
-    assign bias=~{0'b0,8'd127}+1'b1; //-127
+    assign bias=~{1'b0,8'd127}+9'b1; //-127
 
     adder_width adder(mul1_sign,mul2_sign,result_tmp,cout);
     adder_width adder2(result_tmp,bias,result_tmp2,cout2);
