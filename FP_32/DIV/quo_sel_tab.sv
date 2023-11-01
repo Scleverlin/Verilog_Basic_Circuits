@@ -41,7 +41,7 @@ assign r_ge_1100 = (r_ori[3:0]>=4'b1101);
 // assign r_ge_1100_r = (r_ori[3:0]>4'b1100);
 // assign r_ge_0010_r = (r_ori[3:0]>4'b0010);
 // assign r_ge_0110_r =(r_ori[3:0]>4'b0110);
-always_comb begin
+always @(*)begin
 	case(d_ori[3:0])
 		4'b1000: begin
 			q0 = ops_sign ? ~r_ge_0011: ~r_ge_0010;

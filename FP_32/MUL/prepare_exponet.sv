@@ -1,8 +1,6 @@
 `define FP_WIDTH 32
 `define EXP_WIDTH 8
 `define MANT_WIDTH 23
-`define BIAS 127
-
 module fp_mul_exp(
     input logic[`FP_WIDTH-1:0] mul1, 
     input logic[`FP_WIDTH-1:0] mul2,  
@@ -23,7 +21,7 @@ module fp_mul_exp(
     logic [`EXP_WIDTH:0] result_tmp,result_tmp2;
     logic [`EXP_WIDTH:0] bias;
 
-    assign bias=~{0'b0,7'd127}+1'b1; //-127
+    assign bias=~{0'b0,8'd127}+1'b1; //-127
 
     adder_width adder(mul1_sign,mul2_sign,result_tmp,cout);
     adder_width adder2(result_tmp,bias,result_tmp2,cout2);
