@@ -24,7 +24,7 @@
 `define FP_WIDTH 32
 `define EXP_WIDTH 8
 `define MANT_WIDTH 23
-`define BIAS 127
+`define BIAS 9'd127
 
 module fp_div_exp(
     input logic[`FP_WIDTH-1:0] dividend, 
@@ -40,8 +40,8 @@ module fp_div_exp(
     logic [`EXP_WIDTH:0] dividend_sign;
     logic [`EXP_WIDTH:0] divisor_sign,divisor_comple;
 
-    assign dividend_sign={0'b0,exp_dividend};
-    assign divisor_sign= {0'b0,exp_divisor};
+    assign dividend_sign={1'b0,exp_dividend};
+    assign divisor_sign= {1'b0,exp_divisor};
     assign divisor_comple = ~divisor_sign+1;
     logic cout,cout2;
     logic [`EXP_WIDTH:0] result_tmp,result_tmp2;
