@@ -1,0 +1,134 @@
+$date
+	Thu Nov  2 16:18:26 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_FP32_add $end
+$scope module norm $end
+$var wire 1 ! add $end
+$var wire 32 " add1 [31:0] $end
+$var wire 32 # add2 [31:0] $end
+$var wire 1 $ sub $end
+$var wire 1 % result_sign $end
+$var wire 2 & mode [1:0] $end
+$var wire 24 ' man_b [23:0] $end
+$var wire 24 ( man_a [23:0] $end
+$var wire 8 ) exponent_b [7:0] $end
+$var wire 8 * exponent_a [7:0] $end
+$var wire 1 + add_or_sub $end
+$scope module pre_processing $end
+$var wire 32 , a [31:0] $end
+$var wire 1 ! add $end
+$var wire 32 - b [31:0] $end
+$var wire 1 $ sub $end
+$var wire 1 % result_sign $end
+$var wire 2 . mode [1:0] $end
+$var wire 1 / abs_a_ht_b $end
+$scope module mode_judge $end
+$var wire 32 0 a [31:0] $end
+$var wire 1 ! add $end
+$var wire 32 1 b [31:0] $end
+$var wire 1 $ sub $end
+$var wire 2 2 mode [1:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 2
+bx 1
+bx 0
+x/
+bx .
+bx -
+bx ,
+x+
+bx *
+bx )
+b1xxxxxxxxxxxxxxxxxxxxxxx (
+b1xxxxxxxxxxxxxxxxxxxxxxx '
+bx &
+x%
+x$
+bx #
+bx "
+x!
+$end
+#10
+1+
+b100000000000000000000000 '
+b100000000000000000000000 (
+b10000000 )
+b10000001 *
+0%
+1/
+b0 &
+b0 .
+b0 2
+0$
+1!
+b1000000000000000000000000000000 #
+b1000000000000000000000000000000 -
+b1000000000000000000000000000000 1
+b1000000100000000000000000000000 "
+b1000000100000000000000000000000 ,
+b1000000100000000000000000000000 0
+#20
+0+
+0%
+b1 &
+b1 .
+b1 2
+0!
+1$
+#30
+1%
+b100000000100101010111100 '
+b100000001001100010111010 (
+b10010000 )
+b10000100 *
+0/
+b1001000000000000100101010111100 #
+b1001000000000000100101010111100 -
+b1001000000000000100101010111100 1
+b1000010000000001001100010111010 "
+b1000010000000001001100010111010 ,
+b1000010000000001001100010111010 0
+#40
+b101110101001100010111010 (
+b10000101 *
+b1000010101110101001100010111010 "
+b1000010101110101001100010111010 ,
+b1000010101110101001100010111010 0
+#50
+1+
+0%
+b0 &
+b0 .
+b0 2
+b101110101001100010111010 '
+b100000000100101010111100 (
+b10000101 )
+b10010000 *
+1/
+b1001000000000000100101010111100 "
+b1001000000000000100101010111100 ,
+b1001000000000000100101010111100 0
+b11000010101110101001100010111010 #
+b11000010101110101001100010111010 -
+b11000010101110101001100010111010 1
+#60
+0+
+0%
+b1 &
+b1 .
+b1 2
+1!
+0$
+#2060

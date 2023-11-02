@@ -23,7 +23,11 @@ module fp_div_exp(
     logic cout,cout2;
     logic [`EXP_WIDTH:0] result_tmp,result_tmp2;
     adder_width adder(dividend_sign,divisor_comple,result_tmp,cout);
-    adder_width adder2(result_tmp,`BIAS,result_tmp2,cout2);
+    logic [`EXP_WIDTH:0]extra_bias;
+    assign extra_bias=9'd126;
+    logic [`EXP_WIDTH:0] bias;
+    assign bias=exp_divisor==8'b0?extra_bias:`BIAS;
+    adder_width adder2(result_tmp,bias,result_tmp2,cout2);
     assign  result_exp = result_tmp2[`EXP_WIDTH-1:0]; 
 
 

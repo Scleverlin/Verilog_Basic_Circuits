@@ -20,8 +20,10 @@ module fp_mul_exp(
     logic cout,cout2;
     logic [`EXP_WIDTH:0] result_tmp,result_tmp2;
     logic [`EXP_WIDTH:0] bias;
+    logic [`EXP_WIDTH:0] zero_detect;
+    assign zero_detect = (exp_mul1==8'b0 || exp_mul1==8'b0)?9'b1:9'b0;
 
-    assign bias=~{1'b0,8'd127}+9'b1; //-127
+    assign bias=~{1'b0,8'd127}+9'b1+zero_detect; //-127 or -126
 
     adder_width adder(mul1_sign,mul2_sign,result_tmp,cout);
     adder_width adder2(result_tmp,bias,result_tmp2,cout2);
