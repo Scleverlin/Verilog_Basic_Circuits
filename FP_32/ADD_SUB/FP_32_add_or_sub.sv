@@ -23,7 +23,11 @@ normalization norm (add1,add2,current_add,current_sub,man_a,man_b,exponent_a,exp
 // both exponent == 0, dont need to shift, unless, there is an one in 24th bit
 // if only one exponent == 0, just normal, but need add one in exponent. // E1-E2 or E1-1-0
 
+logic [7:0]e1_e2,e1_e2_0; // how about E1=0 and E2=0?
+logic [7:0]shift;
 
+assign e1_e2=exponent_a+ ~exponent_b+8'b1;
+assign e1_e2_0=exponent_a+ ~{8'b1}+8'b1;
 
 
 
