@@ -26,7 +26,8 @@ module fp_div_exp(
     logic [`EXP_WIDTH:0]extra_bias;
     assign extra_bias=9'd126;
     logic [`EXP_WIDTH:0] bias;
-    assign bias=exp_divisor==8'b0?extra_bias:`BIAS;
+    assign bias=(exp_divisor==8'b0 && exp_dividend!=8'b0)?extra_bias:(exp_divisor !=8'b0 && exp_dividend==8'b0)?9'd128:`BIAS;
+
     adder_width adder2(result_tmp,bias,result_tmp2,cout2);
     assign  result_exp = result_tmp2[`EXP_WIDTH-1:0]; 
 
