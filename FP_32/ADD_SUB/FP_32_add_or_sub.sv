@@ -1,6 +1,6 @@
 `include "normalization.sv"
 
-module FP_32_add_or_sub();
+module FP_32_add_or_sub(add1,add2,command,result);
 input logic [31:0] add1;
 input logic [31:0] add2;
 input logic command;//1 is add, 0 is sub
@@ -52,7 +52,7 @@ assign extent_a={23'b0,man_a};
 
 assign extent_a_shift=extent_a<<e1_e2;
 
-assign extent_b=add_or_sub?{23'b0,man_b}:{23'b1,~man_b+24'b1};
+assign extent_b=add_or_sub?{23'b0,man_b}:{20'hFFFFF,3'b111,~man_b+24'b1};
 
 logic [47:0]final_f_add,fianl_f_shift;
 logic [7:0]shift_nums;
