@@ -14,7 +14,7 @@ assign mode = (add) ? {a[31], b[31]} :
 
 endmodule
 
-module preprocessing(a,b,add,sub,result_sign,mode);
+module preprocessing(a,b,add,sub,result_sign,mode,abs_a_ht_b);
 input logic [31:0]a;
 input logic [31:0]b;
 input logic add;
@@ -22,7 +22,7 @@ input logic sub;
 output logic result_sign;
 output logic [1:0]mode;
 mode_judge mode_judge(a,b,add,sub,mode);
-logic abs_a_ht_b;//abs a higher than abs b
+output abs_a_ht_b;//abs a higher than abs b
 
 assign abs_a_ht_b = (a[30:23]>b[30:23])?1'b1:((a[30:23]==b[30:23])&&(a[22:0]>=b[22:0]))?1'b1:1'b0;
 assign result_sign = (mode == `plus) ? 1'b0 :

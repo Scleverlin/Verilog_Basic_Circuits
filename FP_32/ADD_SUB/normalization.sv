@@ -13,19 +13,19 @@ output logic result_sign;
 output logic add_or_sub;//1 is add, 0 is sub
 
 logic [1:0]mode;
-
-preprocessing pre_processing (add1,add2,add,sub,result_sign,mode);
+logic abs_a_ht_b;
+preprocessing pre_processing (add1,add2,add,sub,result_sign,mode,abs_a_ht_b);
 
 assign add_or_sub= (mode==`plus || mode==`plus_then_mius)?1'b1:1'b0;
 
 logic [23:0] man_a_tmp, man_b_tmp;
 
-assign {man_a_tmp[22:0],man_b_tmp[22:0]}=(mode==`reverse_minus)?{add2[22:0],add1[22:0]}:{add1[22:0],add2[22:0]};
+assign {man_a_tmp[22:0],man_b_tmp[22:0]}=((mode==`reverse_minus)||(mode==`plus && ~abs_a_ht_b))?{add2[22:0],add1[22:0]}:{add1[22:0],add2[22:0]};
 
 
 
 
-assign  {exponent_a,exponent_b}=(mode==`reverse_minus)?{add2[30:23],add1[30:23]}:{add1[30:23],add2[30:23]};
+assign  {exponent_a,exponent_b}=((mode==`reverse_minus)||(mode==`plus && ~abs_a_ht_b))?{add2[30:23],add1[30:23]}:{add1[30:23],add2[30:23]};
 
 assign man_a_tmp[23] = (exponent_a == 8'd0) ? 1'b0 : 1'b1;
 assign man_b_tmp[23] = (exponent_b == 8'd0) ? 1'b0:  1'b1;

@@ -21,11 +21,13 @@ normalization norm (add1,add2,current_add,current_sub,man_a,man_b,exponent_a,exp
 
 // need consider exponent == 0
 // both exponent == 0, dont need to shift, but may need to add one in exponent if there is an one in 24th bit
-// if only one exponent == 0, just normal, but need add one in exponent. // E1-E2 or E1-1-0
+// if only one exponent == 0, just normal, but need add one in exponent. // E1-E2 or E1-1-0 
 logic [7:0]e1_e2,e1_e2_0; // how about E1=0 and E2=0?
 logic [7:0]shift_before_add;
+logic [8:0]e1_e2_tmp;
 
-assign e1_e2=exponent_a+ ~exponent_b+8'b1;
+assign e1_e2_tmp={1'b0,exponent_a}+ ~{1'b0,exponent_b}+9'b1;
+assign e1_e2=e1_e2_tmp[7:0];
 assign e1_e2_0=exponent_a+ ~{8'b1}+8'b1;
 
 
@@ -52,13 +54,15 @@ assign extent_a={23'b0,man_a};
 
 assign extent_a_shift=extent_a<<e1_e2;
 
-assign extent_b=add_or_sub?{23'b0,man_b}:{20'hFFFFF,3'b111,~man_b+24'b1};
-
-logic [47:0]final_f_add,fianl_f_shift;
+assign extent_b=add_or_sub?{23'b0,man_b}:{20'hFFFFF,2'b11,~{1'b0,man_b}+25'b1};
+logic [46:0]final_f_add;
+logic [47:0]fianl_f_shift;
 logic [7:0]shift_nums;
 logic [23:0]final_f_concat;
-
-adder_46 adder (extent_a_shift,extent_b,final_f_add);
+logic [47:0]final_f_add_tmp;
+logic cout;
+adder_46 adder (extent_a_shift,extent_b,final_f_add,cout);
+assign final_f_add_tmp=add_or_sub?{cout,final_f_add}:{1'b0,final_f_add};    
 m_n_gen m_n (final_f_add,fianl_f_shift,shift_nums);
 logic [23:0] final_man_e1_eq_e2_eq_zero;
 adder_24 adder_24(man_a,man_b,final_man_e1_eq_e2_eq_zero);
@@ -79,17 +83,17 @@ assign final_result_concat={result_sign,exponent_a,final_f_concat[22:0]};
 assign final_result_add_or_sub={result_sign,final_exponent,fianl_f_shift[46:24]};// ignore rounding temporarily
 assign final_result_e1e2eqzero={result_sign,final_exponent_e1e2eqzero,final_man_e1_eq_e2_eq_zero[22:0]};
 
-assign result=add_or_not?final_result_concat:result_shift_or_not?final_result_add_or_sub:final_result_e1e2eqzero;
+assign result=~add_or_not?final_result_concat:result_shift_or_not?final_result_add_or_sub:final_result_e1e2eqzero;
 endmodule
 
 
-module adder_46(a,b,sum);
+module adder_46(a,b,sum,cout);
 input logic [46:0] a;
 input logic [46:0] b;
+output logic cout;
+output logic [46:0] sum;
 
-output logic [47:0] sum;
-
-assign sum=a+b;
+assign {cout,sum}=a+b;
 
 endmodule
 
@@ -123,7 +127,9 @@ assign shift_tmp = (data[47] == 1) ? 0 :
                (data[27] == 1) ? 20 :
                (data[26] == 1) ? 21 :
                (data[25] == 1) ? 22 :
-               (data[24] == 1) ? 23 : 0;
+               (data[24] == 1) ? 23 : 
+               (data[23] == 1) ? 24 :
+               0;
 
 assign outdata = data << shift_tmp;
 assign shift=8'd24+ ~shift_tmp+8'd1;
