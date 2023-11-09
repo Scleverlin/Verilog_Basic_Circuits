@@ -1,6 +1,5 @@
 // `include "/home/shi/verilog/FP_32/ADD_SUB/FP_32_add_or_sub.sv"
 // `include "/home/shi/verilog/FP_32/MUL/FP32_mul.sv"
-`define limit_rounding 9'd126
 
 module FMA_32(a,b,c,result);
 input logic [31:0]a,b,c;
@@ -90,8 +89,8 @@ rounding rounding(add_man, guard,round, sticky,rounded_man,exp_add);
 
 logic [8:0]final_exponent_tmp,final_exponent;
 
-assign final_exponent_tmp= true_exp_ab_signed+{8'b0,exp_add}+{1'b0,exp_add_first};
-assign final_exponent=result_head_is_zero?final_exponent_tmp+ ~{1'b0,exp_minus_from_copy}+1'b1:final_exponent_tmp;
+assign final_exponent_tmp= true_exp_ab_signed+{8'b0,exp_add}+{1'b0,exp_add_first}+9'd127;
+assign final_exponent=close_to_zero?8'b0:result_head_is_zero?final_exponent_tmp+ ~{1'b0,exp_minus_from_copy}+1'b1:final_exponent_tmp;
 logic final_sign;
 
 assign final_sign= ~((~(sign_a^sign_b))^sign_of_add);
