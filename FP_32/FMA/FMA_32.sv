@@ -19,12 +19,17 @@ mul_24 mul(man_a,man_b,mul_a_b);
 pre_processing preprocessing (exp_a,exp_b,exp_c,true_exp_ab_signed,true_exp_c_minus_ab_signed);
 
 logic [71:0] ext_mul_ab, ext_man_c_tmp,ext_man_c;
-assign ext_mul_ab={24'b0,mul_a_b};
-assign ext_man_c_tmp={}
-
+assign ext_mul_ab={26'b0,mul_a_b};
+assign ext_man_c_tmp={27'b0,man_c,23'b0};
+logic [7:0]shift;
+logic [8:0]comple_exp_c;
+assign comple_exp_c=~true_exp_c_minus_ab_signed+1'b1;
+assign shift=true_exp_ab_signed[8]?comple_exp_c[7:0]:true_exp_ab_signed[7:0];
+assign ext_man_c= true_exp_c_minus_ab_signed[8]?ext_man_c_tmp>>shift:ext_man_c_tmp<<shift;
 
 logic guard,round,sticky;
-adder_74 adder_74 ();  // when shift <=25, need add
+logic [74:0] add_result;
+adder_76 adder_76 ( ext_mul_ab,ext_man_c,add_result,sign_c,sign_of_add);  // when shift <=27, need add
 
 // above adder neeed be changed to suit g r s.
 
@@ -67,20 +72,20 @@ assign man=(exp==8'b0)?{1'b0,a[22:0]}:{1'b1,a[22:0]};
 
 endmodule
 
-module adder_74(a,b,result,add_or_sub,sign);
-input logic [71:0]a,b;
-output logic [72:0]result;
+module adder_76(a,b,result,add_or_sub,sign);
+input logic [73:0]a,b;
+output logic [74:0]result;
 input logic add_or_sub;//1 is sub, 0 is add
 output logic sign;
 logic abs_a_h_b;
 assign abs_a_h_b= (a>=b) ?1'b1:1'b0;
 assign sign = (add_or_sub==1'b1 && abs_a_h_b==1'b0)?1'b1:1'b0;// a<b and sub, sign=1
-logic [73:0]a_ext,b_ext;
+logic [75:0]a_ext,b_ext;
 assign a_ext=sign?{2'b0,b}:{2'b0,a};
 assign b_ext=(abs_a_h_b&&add_or_sub)?~{2'b0,b}+1'b1:sign?~{2'b0,a}+1'b1:{2'b0,b}; // a-b and a>b, b=-b; a-b and a<b,b=-a; other b=b
-logic [73:0]add_result;
+logic [75:0]add_result;
 assign add_result=a_ext+b_ext;
-assign result=add_result[72:0]
+assign result=add_result[74:0]
 endmodule
 
 
@@ -103,5 +108,10 @@ assign true_c=(exp_c==8'b0)?~data_126+1'b1:{1'b0,exp_c}+~data_127+1'b1;
 assign true_exp_ab_signed=true_a+true_b;
 
 assign true_exp_c_minus_ab_signed=true_c+ ~true_exp_ab_signed + 1'b1;
+
+endmodule
+
+module rounding(man,exp_add,guard,round,sticky);
+
 
 endmodule
