@@ -111,7 +111,31 @@ assign true_exp_c_minus_ab_signed=true_c+ ~true_exp_ab_signed + 1'b1;
 
 endmodule
 
-module rounding(man,exp_add,guard,round,sticky);
+module rounding (
+    input logic [23:0] man,     // 24-bit mantissa with implicit leading bit
+    input logic guard,          // Guard bit
+    input logic round,          // Round bit
+    input logic sticky,         // Sticky bit (OR of all the bits shifted out)
+    output logic [23:0] rounded_man, // Rounded mantissa
+    output logic exp_add        // Set to 1 if there's a carry-out that increases exponent
+);
 
+    // Detect if the number is exactly halfway between two floating-point numbers
+    // This happens when guard is 1 and round and sticky are both 0
+    logic halfway_case;
+    assign halfway_case = guard && !(round || sticky);
+
+    // Calculate if rounding up should occur
+    // Rounding up happens when guard is 1 and (round is 1 or sticky is 1 or the LSB of man is 1)
+    logic round_up;
+    assign round_up = guard && (round || sticky || man[0]);
+
+    // Compute the new mantissa with potential rounding
+    logic [23:0] tmp_man;
+    assign tmp_man = man + round_up;
+
+    // If there's a carry-out, set exp_add to 1 and right-shift the mantissa to adjust it
+    assign exp_add = tmp_man[24];
+    assign rounded_man = exp_add ? tmp_man >> 1 : tmp_man[23:0];
 
 endmodule
