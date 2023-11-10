@@ -1,0 +1,39 @@
+`include "FMA_32.sv"
+
+module FMA_32_tb;
+
+    // 输入和输出
+    reg [31:0] a, b, c;
+    wire [31:0] result;
+
+    // 实例化FMA_32模块
+    FMA_32 uut(
+        .a(a),
+        .b(b),
+        .c(c),
+        .result(result)
+    );
+real a_real, b_real, c_real, result_real;
+    // 生成波形文件
+    initial begin
+        // 创建VCD文件
+        $dumpfile("dump.vcd");
+        // 跟踪所有信号
+        $dumpvars(0, FMA_32_tb);
+        // 初始化输入
+        a = 32'b0;
+        b = 32'b0;
+        c = 32'b0;
+    //    #10 $display("Test 0: a = %h, b = %h, c = %h, result = %h", a, b, c, result);
+        // 简单的测试案例
+        #10 a = 32'h3f800000; // 1.0
+            b = 32'h40000000; // 2.0
+            c = 32'h40400000; // 3.0
+        // 更多测试案例...
+        // 这里可以添加更多测试案例来验证不同的输入组合
+
+        // 测试结束
+        #10 $finish;
+    end
+
+endmodule

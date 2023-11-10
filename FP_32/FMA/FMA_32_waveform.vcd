@@ -1,0 +1,308 @@
+$date
+	Fri Nov 10 21:55:33 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module FMA_32_tb $end
+$var wire 32 ! result [31:0] $end
+$var reg 32 " a [31:0] $end
+$var reg 32 # b [31:0] $end
+$var reg 32 $ c [31:0] $end
+$scope module uut $end
+$var wire 32 % a [31:0] $end
+$var wire 32 & b [31:0] $end
+$var wire 32 ' c [31:0] $end
+$var wire 1 ( final_sign $end
+$var wire 1 ) result_head_is_zero $end
+$var wire 9 * true_exp_c_minus_ab_signed [8:0] $end
+$var wire 9 + true_exp_ab_signed [8:0] $end
+$var wire 1 , sticky $end
+$var wire 1 - sign_of_add $end
+$var wire 1 . sign_c $end
+$var wire 1 / sign_b $end
+$var wire 1 0 sign_a $end
+$var wire 1 1 shift_l_27 $end
+$var wire 8 2 shift [7:0] $end
+$var wire 24 3 rounded_man [23:0] $end
+$var wire 1 4 round $end
+$var wire 32 5 result [31:0] $end
+$var wire 48 6 mul_a_b [47:0] $end
+$var wire 8 7 max_shift [7:0] $end
+$var wire 24 8 man_c [23:0] $end
+$var wire 24 9 man_b [23:0] $end
+$var wire 24 : man_a [23:0] $end
+$var wire 1 ; guard $end
+$var wire 75 < final_result [74:0] $end
+$var wire 9 = final_exponent_tmp [8:0] $end
+$var wire 9 > final_exponent [8:0] $end
+$var wire 74 ? ext_mul_ab [73:0] $end
+$var wire 74 @ ext_man_c_tmp [73:0] $end
+$var wire 74 A ext_man_c [73:0] $end
+$var wire 8 B exp_minus_from_copy [7:0] $end
+$var wire 1 C exp_is_n126 $end
+$var wire 9 D exp_comple [8:0] $end
+$var wire 8 E exp_c [7:0] $end
+$var wire 8 F exp_b [7:0] $end
+$var wire 8 G exp_add_first [7:0] $end
+$var wire 1 H exp_add $end
+$var wire 8 I exp_a [7:0] $end
+$var wire 9 J comple_exp_c [8:0] $end
+$var wire 1 K close_to_zero $end
+$var wire 75 L add_result_shifted [74:0] $end
+$var wire 75 M add_result_copy_shifted [74:0] $end
+$var wire 75 N add_result [74:0] $end
+$var wire 24 O add_man [23:0] $end
+$var reg 75 P add_result_copy [74:0] $end
+$scope module adder_76 $end
+$var wire 74 Q a [73:0] $end
+$var wire 74 R b [73:0] $end
+$var wire 1 - sign $end
+$var wire 75 S result [74:0] $end
+$var wire 76 T b_ext [75:0] $end
+$var wire 76 U add_result [75:0] $end
+$var wire 1 . add_or_sub $end
+$var wire 1 V abs_a_h_b $end
+$var wire 76 W a_ext [75:0] $end
+$upscope $end
+$scope module ex_a $end
+$var wire 32 X a [31:0] $end
+$var wire 1 0 sign $end
+$var wire 24 Y man [23:0] $end
+$var wire 8 Z exp [7:0] $end
+$upscope $end
+$scope module ex_b $end
+$var wire 32 [ a [31:0] $end
+$var wire 1 / sign $end
+$var wire 24 \ man [23:0] $end
+$var wire 8 ] exp [7:0] $end
+$upscope $end
+$scope module ex_c $end
+$var wire 32 ^ a [31:0] $end
+$var wire 1 . sign $end
+$var wire 24 _ man [23:0] $end
+$var wire 8 ` exp [7:0] $end
+$upscope $end
+$scope module m_n_gen2 $end
+$var wire 75 a data [74:0] $end
+$var wire 8 b max_shift [7:0] $end
+$var wire 8 c shift_tmp [7:0] $end
+$var wire 8 d shift [7:0] $end
+$var wire 75 e outdata [74:0] $end
+$var wire 1 f bigger_than_max $end
+$upscope $end
+$scope module mn_gen $end
+$var wire 75 g data [74:0] $end
+$var wire 8 h shift_tmp [7:0] $end
+$var wire 8 i shift [7:0] $end
+$var wire 75 j outdata [74:0] $end
+$upscope $end
+$scope module mul $end
+$var wire 24 k a [23:0] $end
+$var wire 24 l b [23:0] $end
+$var wire 48 m result [47:0] $end
+$upscope $end
+$scope module preprocessing $end
+$var wire 9 n data_126 [8:0] $end
+$var wire 9 o data_127 [8:0] $end
+$var wire 8 p exp_a [7:0] $end
+$var wire 8 q exp_b [7:0] $end
+$var wire 8 r exp_c [7:0] $end
+$var wire 9 s true_exp_c_minus_ab_signed [8:0] $end
+$var wire 9 t true_exp_ab_signed [8:0] $end
+$var wire 9 u true_c [8:0] $end
+$var wire 9 v true_b [8:0] $end
+$var wire 9 w true_a [8:0] $end
+$upscope $end
+$scope module rounding $end
+$var wire 1 H exp_add $end
+$var wire 1 ; guard $end
+$var wire 1 x halfway $end
+$var wire 1 y increment $end
+$var wire 24 z man [23:0] $end
+$var wire 1 4 round $end
+$var wire 1 , sticky $end
+$var wire 24 { rounded_man [23:0] $end
+$var wire 24 | new_man [23:0] $end
+$var wire 1 } lsb $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x}
+bx |
+bx {
+bx z
+0y
+0x
+b110000010 w
+b110000010 v
+b110000010 u
+b100000100 t
+b1111110 s
+b0 r
+b0 q
+b0 p
+b1111111 o
+b1111110 n
+b0 m
+b0 l
+b0 k
+b0 j
+b0 i
+b11100 h
+b0 g
+xf
+bx e
+bx d
+b0xxxxx c
+b11111100 b
+bz a
+b0 `
+b0 _
+b0 ^
+b0 ]
+b0 \
+b0 [
+b0 Z
+b0 Y
+b0 X
+b0 W
+1V
+b0 U
+b0 T
+b0 S
+b0 R
+b0 Q
+bz P
+bx O
+b0 N
+bx M
+b0 L
+0K
+b110000010 J
+b0 I
+0H
+b0 G
+b0 F
+b0 E
+b110000010 D
+0C
+bx B
+b0 A
+b0 @
+b0 ?
+bx >
+b110000011 =
+bx <
+0;
+b0 :
+b0 9
+b0 8
+b11111100 7
+b0 6
+b0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 5
+04
+bx 3
+b10000010 2
+01
+00
+0/
+0.
+0-
+x,
+b100000100 +
+b1111110 *
+1)
+0(
+b0 '
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx !
+$end
+#10
+b10 G
+b10 i
+b11010 h
+0,
+0}
+b1000001000000000000000000000000 !
+b1000001000000000000000000000000 5
+0H
+b100000000000000000000000 3
+b100000000000000000000000 {
+0x
+b100000000000000000000001 |
+b100000000000000000000000 O
+b100000000000000000000000 z
+b10000010 >
+0y
+b100000000000000000000000000000000000000000000000000000000000000000000000000 <
+b110000000000000000000000000000000000000000000000 T
+0;
+04
+0)
+0V
+11
+b110000000000000000000000000000000000000000000000 A
+b110000000000000000000000000000000000000000000000 R
+b1111110 7
+b1111110 b
+b100000000000000000000000000000000000000000000000000000000000000000000000000 L
+b100000000000000000000000000000000000000000000000000000000000000000000000000 j
+b1000000000000000000000000000000000000000000000000 N
+b1000000000000000000000000000000000000000000000000 S
+b1000000000000000000000000000000000000000000000000 g
+b1 2
+b0 D
+b0 J
+b1000000000000000000000000000000000000000000000000 U
+b10000000000000000000000000000000000000000000000 W
+b0 *
+b0 s
+b1 u
+b11000000000000000000000000000000000000000000000 @
+b110000000000000000000000 8
+b110000000000000000000000 _
+b10000000000000000000000000000000000000000000000 ?
+b10000000000000000000000000000000000000000000000 Q
+b10000000000000000000000000000000000000000000000 6
+b10000000000000000000000000000000000000000000000 m
+b100000000000000000000000 9
+b100000000000000000000000 \
+b100000000000000000000000 l
+b1 v
+b100000000000000000000000 :
+b100000000000000000000000 Y
+b100000000000000000000000 k
+b10000010 =
+b1 +
+b1 t
+b0 w
+b10000000 E
+b10000000 `
+b10000000 r
+b10000000 F
+b10000000 ]
+b10000000 q
+b1111111 I
+b1111111 Z
+b1111111 p
+b1000000010000000000000000000000 $
+b1000000010000000000000000000000 '
+b1000000010000000000000000000000 ^
+b1000000000000000000000000000000 #
+b1000000000000000000000000000000 &
+b1000000000000000000000000000000 [
+b111111100000000000000000000000 "
+b111111100000000000000000000000 %
+b111111100000000000000000000000 X
+#20

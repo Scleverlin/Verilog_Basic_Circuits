@@ -17,17 +17,17 @@ extractor_FP_32 ex_c(c,sign_c,exp_c,man_c);
 mul_24 mul(man_a,man_b,mul_a_b);
 pre_processing preprocessing (exp_a,exp_b,exp_c,true_exp_ab_signed,true_exp_c_minus_ab_signed);
 
-logic [71:0] ext_mul_ab, ext_man_c_tmp,ext_man_c;
+logic [73:0] ext_mul_ab, ext_man_c_tmp,ext_man_c;
 assign ext_mul_ab={26'b0,mul_a_b};
 assign ext_man_c_tmp={27'b0,man_c,23'b0};
 logic [7:0]shift;
 logic [8:0]comple_exp_c;
 assign comple_exp_c=~true_exp_c_minus_ab_signed+1'b1;
-assign shift=true_exp_ab_signed[8]?comple_exp_c[7:0]:true_exp_ab_signed[7:0];
+assign shift=true_exp_c_minus_ab_signed[8]?comple_exp_c[7:0]:true_exp_c_minus_ab_signed[7:0];
 assign ext_man_c= true_exp_c_minus_ab_signed[8]?ext_man_c_tmp>>shift:ext_man_c_tmp<<shift;
 
 logic guard,round,sticky,sign_of_add;
-logic [7:0] exp_add_first
+logic [7:0] exp_add_first;
 logic [74:0] add_result,add_result_shifted;
 
 adder_76 adder_76 (ext_mul_ab,ext_man_c,add_result,sign_c,sign_of_add);  // when shift <=27, need add
@@ -81,7 +81,7 @@ assign final_result= result_head_is_zero?add_result_copy_shifted:add_result_shif
 
 assign guard = shift_l_27? final_result[50]:1'b0;
 assign round = shift_l_27? final_result[49]:1'b0;
-assign sticky = shift_l_27? final_result[48:0]==49'b0?1'b0:1'b1; 
+assign sticky = final_result[48:0]==49'b0 ? 1'b0:1'b1; 
 
 assign add_man=final_result[74:51];
 
@@ -132,7 +132,7 @@ assign a_ext=sign?{2'b0,b}:{2'b0,a};
 assign b_ext=(abs_a_h_b&&add_or_sub)?~{2'b0,b}+1'b1:sign?~{2'b0,a}+1'b1:{2'b0,b}; // a-b and a>b, b=-b; a-b and a<b,b=-a; other b=b
 logic [75:0]add_result;
 assign add_result=a_ext+b_ext;
-assign result=add_result[74:0]
+assign result=add_result[74:0];
 endmodule
 
 
