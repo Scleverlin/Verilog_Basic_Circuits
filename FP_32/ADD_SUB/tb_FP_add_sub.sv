@@ -29,7 +29,9 @@ logic [31:0] result;
         #10 add2=32'hC2BA98BA;
             add1=32'h48004ABC;
             command=1'b0;
-
+        #10  command=1'b1;
+              add1=32'h3FC00001;
+             add2=32'h3FC02000;;  
         // #10 sub=1'b0;add=1'b1;
         #2000 $finish; // 结束仿真
     end

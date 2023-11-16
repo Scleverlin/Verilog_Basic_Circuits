@@ -87,7 +87,7 @@ assign rounding_man=add_or_not?final_f_shift[50:27]:man_a;
 rounding_grs rounding_grs (rounding_man,guard,round,sticky,final_f_rounded,exp_add);
 
 // assign final_exponent_e1e2eqzero=final_man_e1_eq_e2_eq_zero[23]? current_exponent_tmp+add_one_in_exponent:current_exponent_tmp;
-assign final_exponent=current_exponent_tmp+shift_nums+exp_add;
+assign final_exponent=add_or_not?current_exponent_tmp+shift_nums+exp_add:exponent_a+exp_add;
 
 logic [23:0]final_man;
 // assign final_f_concat=man_a; // ignore rounding temporarily
