@@ -29,8 +29,10 @@ logic [31:0] product;
              mul2 = 32'h40000000;   // 浮点数2.0的IEEE表示
         #10 mul1 = 32'h420098BA;  
              mul2 = 32'h48004ABC;   
-        #10 mul1 = 32'h42BA98BA;;  
-             mul2 = 32'h48004ABC;   
+        #10 mul1 = 32'h42BA98BA;
+             mul2 = 32'h48004ABC;
+        #10 mul1=32'h3FC00000;
+             mul2=32'h3FC00000;;  
         #2000 $finish; // 结束仿真
     end
 

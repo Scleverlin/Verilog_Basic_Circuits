@@ -2,6 +2,7 @@
 module post_processing(  //convert the final quotient to be IEEE-754
 input logic [23:0] result,
 input logic [4:0]shift_nums,
+input logic exp_add,
 input logic right_shift,
 input logic resultsign,
 input logic [7:0] current_exponent,
@@ -21,7 +22,7 @@ logic [7:0] addend_copmplement;
 
 assign addend_copmplement=~exponent_addend+1;
 
-assign exponent_final=current_exponent+addend_copmplement;
+assign exponent_final=current_exponent+addend_copmplement+exp_add;
 
 assign quotient={resultsign,exponent_final,result_shifted[22:0]};
 

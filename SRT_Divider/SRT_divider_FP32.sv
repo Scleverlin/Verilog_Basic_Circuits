@@ -47,8 +47,8 @@ logic [4:0] d_idx;		// divisor index
 logic [2:0]mid_quotient;        // middle quotient
 
 assign d_idx = current_divisor[24:20];
-logic [25:0] Q_pos,Q_neg;
-logic [25:0] Q_pos_next ,Q_neg_next;
+logic [29:0] Q_pos,Q_neg;
+logic [29:0] Q_pos_next ,Q_neg_next;
 logic [5:0] flag;
 logic [5:0]flag_1;
 always_ff @(posedge clk or negedge rst) begin
@@ -77,27 +77,35 @@ qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
 
 next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
 
-assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[26-3:0], mid_quotient[1:0]} : {Q_neg[26-3:0], mid_quotient[1:0]};
-assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[26-3:0], mid_quotient[2:1]} : {Q_neg[26-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
+assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[30-3:0], mid_quotient[1:0]} : {Q_neg[30-3:0], mid_quotient[1:0]};
+assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[30-3:0], mid_quotient[2:1]} : {Q_neg[30-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
 logic [23:0]q_rounding;
-logic [23:0]rounding_data;
+// logic [23:0]rounding_data;
 
-rounding rounding_module_1 (current_remainder,current_divisor,rounding_data);
-logic [23:0]q_pos_cut;
-assign q_pos_cut=Q_pos[24:1];
-assign q_rounding=(flag==6'd13)?rounding_data+q_pos_cut:Q_pos[24:1];
+// rounding rounding_module_1 (current_remainder,current_divisor,rounding_data);
+// logic [23:0]q_pos_cut;
+// assign q_pos_cut=Q_pos[28:5];
+// assign q_rounding=(flag==6'd15)?rounding_data+q_pos_cut:Q_pos[28:5];
+
+logic guard;
+logic round;
+logic sticky;
+logic exp_add;
+assign guard=Q_pos[4];
+assign round=Q_pos[3];
+assign sticky=Q_pos[2]|Q_pos[1]|Q_pos[0];
+
+rounding_grs rounding_grs_1 (Q_pos[28:5],guard,round,sticky,q_rounding,exp_add);
+
 
 logic [23:0]result_before_ieee;
 
-assign result_before_ieee=q_rounding;
-
-
-
-
+assign result_before_ieee=(flag == 6'd15)?q_rounding:24'b0;
 
 post_processing dut (
         .result(result_before_ieee),
         .shift_nums(final_shift),
+        .exp_add(exp_add),
         .right_shift(right_shift),
         .resultsign(result_sign),
         .current_exponent(current_exponent),
@@ -143,4 +151,24 @@ assign current_q_d=(mid_quotient[1:0]==2'b00)?26'b0:
                    (mid_quotient[1:0]==2'b10)?{current_divisor[24:0],1'b0}:
                    current_divisor;
 
+endmodule
+
+module rounding_grs(
+  input wire [23:0] man,  // 24-bit mantissa with implicit bit
+  input wire guard,       // Guard bit
+  input wire round,       // Round bit
+  input wire sticky,      // Sticky bit
+  output wire [23:0] rounded_man,  // Rounded mantissa
+  output wire exp_add              // Set if there's a carry that affects the exponent
+);
+  wire halfway = guard && !round && !sticky;  // Exactly between two representable values
+  wire lsb = man[0];  // Least Significant Bit of the mantissa
+  // Increment the mantissa if guard bit is set and (round or sticky bit is set or the mantissa is odd)
+  wire increment = guard && (round || sticky || lsb);
+  // Calculate the potential new mantissa with the increment
+  wire [23:0] new_man = man + 24'd1;
+  // Check if an increment would cause a carry, which implies the exponent needs to be incremented
+  assign exp_add = increment && (new_man[23] == 1'b0);
+  // Select the final rounded mantissa
+  assign rounded_man = increment ? new_man : man;
 endmodule
