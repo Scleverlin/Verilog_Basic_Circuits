@@ -60,7 +60,7 @@ logic  close_to_zero; // when true_E1+E2-254 is -126, and result head is zero;
 logic exp_is_n126;
 logic [8:0] exp_comple;
 assign exp_comple=~true_exp_c_minus_ab_signed+1'b1;
-assign exp_is_n126= exp_comple==9'd126?1'b1:1'b0;
+assign exp_is_n126= (exp_comple==9'd126)?1'b1:1'b0;
 
 assign close_to_zero= (exp_is_n126 && result_head_is_zero)?1'b1:1'b0;// exp=-126 , man=0.xxxxx
 

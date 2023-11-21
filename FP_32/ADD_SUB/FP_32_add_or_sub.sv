@@ -1,8 +1,9 @@
-`include "normalization.sv"
+`include "/home/shi/verilog/FP_32/ADD_SUB/normalization.sv"
 
 module FP_32_add_or_sub(add1,add2,command,result);
 input logic [31:0] add1;
 input logic [31:0] add2;
+input clk;
 input logic command;//1 is add, 0 is sub
 output logic [31:0] result;
 
@@ -56,16 +57,27 @@ assign extent_a_shift=extent_a<<e1_e2;
 
 assign extent_b=add_or_sub?{26'b0,man_b}:{24'hFFFFFF,1'b1,~{1'b0,man_b}+25'b1};
 logic [49:0]final_f_add;
-logic [50:0]final_f_shift;
-logic [7:0]shift_nums;
+logic [50:0]final_f_shift_tmp,final_f_shift,final_f_shift_tmp_2;
+logic [7:0]shift_nums1,shift_nums2,shift_nums;
 logic [23:0]final_f_rounded;
 logic [50:0]final_f_add_tmp;
 logic cout;
 adder_50 adder (extent_a_shift,extent_b,final_f_add,cout);
 assign final_f_add_tmp=add_or_sub?{cout,final_f_add}:{1'b0,final_f_add};    
-m_n_gen m_n (final_f_add_tmp,final_f_shift,shift_nums);
+m_n_gen_add m_n (final_f_add_tmp,final_f_shift_tmp,shift_nums1);
 // logic [23:0] final_man_e1_eq_e2_eq_zero;
 // adder_24 adder_24(man_a,man_b,final_man_e1_eq_e2_eq_zero);
+logic first_zero;
+assign first_zero=(final_f_shift_tmp[50]==1'b0)?1'b1:1'b0;
+logic [7:0]max_shift;
+assign max_shift=current_exponent_tmp+shift_nums1;
+
+// assign final_f_shift_
+m_n_gen_second_time m_n_second_time (final_f_shift_tmp,final_f_shift_tmp_2,shift_nums2,max_shift);
+assign final_f_shift=final_f_shift_tmp_2;
+assign shift_nums=shift_nums1-shift_nums2;
+
+
 
 logic [7:0]final_exponent;
 
@@ -84,20 +96,24 @@ assign sticky=add_or_not?sticky_add:sticky_not_add;
 logic [23:0]rounding_man;
 assign rounding_man=add_or_not?final_f_shift[50:27]:man_a;
 
-rounding_grs rounding_grs (rounding_man,guard,round,sticky,final_f_rounded,exp_add);
+rounding_grs_add rounding_grs_add (rounding_man,guard,round,sticky,final_f_rounded,exp_add);
 
 // assign final_exponent_e1e2eqzero=final_man_e1_eq_e2_eq_zero[23]? current_exponent_tmp+add_one_in_exponent:current_exponent_tmp;
 assign final_exponent=add_or_not?current_exponent_tmp+shift_nums+exp_add:exponent_a+exp_add;
 
 logic [23:0]final_man;
 // assign final_f_concat=man_a; // ignore rounding temporarily
-
-assign result={result_sign,final_exponent,final_f_rounded[22:0]};
+logic [31:0]result_wire;
+assign result_wire={result_sign,final_exponent,final_f_rounded[22:0]};
 // assign final_result_concat={result_sign,exponent_a,final_f_concat[22:0]};
 // assign final_result_add_or_sub={result_sign,final_exponent,final_f_shift[46:24]};// ignore rounding temporarily
 // assign final_result_e1e2eqzero={result_sign,final_exponent_e1e2eqzero,final_man_e1_eq_e2_eq_zero[22:0]};
 
 // assign result=~add_or_not?final_result_concat:result_shift_or_not?final_result_add_or_sub:final_result_e1e2eqzero;
+
+always @(posedge clk) begin
+    result<=result_wire;
+end
 
 endmodule
 
@@ -113,7 +129,7 @@ assign {cout,sum}=a+b;
 endmodule
 
 
-module m_n_gen (
+module m_n_gen_add (
     input logic [50:0] data,
     output logic [50:0] outdata,
     output logic [7:0] shift
@@ -153,6 +169,44 @@ assign outdata = data << shift_tmp;
 assign shift=8'd27+ ~shift_tmp+8'd1;
 endmodule
 
+module m_n_gen_second_time (
+  input logic [50:0] data,
+  output logic [50:0] outdata,
+  output logic [7:0] shift,
+  input logic [7:0] max_shift
+);
+logic [7:0]shift_tmp;
+assign shift_tmp = (data[50] == 1) ? 0 :
+                 (data[49] == 1) ? 1 :
+                 (data[48] == 1) ? 2 :
+             (data[47] == 1) ? 3 :
+             (data[46] == 1) ? 4 :
+             (data[45] == 1) ? 5 :
+             (data[44] == 1) ? 6 :
+             (data[43] == 1) ? 7 :
+             (data[32] == 1) ? 8 :
+             (data[31] == 1) ? 9 :
+             (data[30] == 1) ? 10 :
+             (data[39] == 1) ? 11 :
+             (data[38] == 1) ? 12 :
+             (data[37] == 1) ? 13 :
+             (data[36] == 1) ? 14 :
+             (data[35] == 1) ? 15 :
+             (data[34] == 1) ? 16 :
+             (data[33] == 1) ? 17 :
+             (data[32] == 1) ? 18 :
+             (data[31] == 1) ? 19 :
+             (data[30] == 1) ? 20 :
+             (data[29] == 1) ? 21 :
+             (data[28] == 1) ? 22 :
+             (data[27] == 1) ? 23 : 
+             23;
+logic shift_tmp2;
+assign shift_tmp2=(shift_tmp>max_shift)?max_shift:shift_tmp;
+assign outdata = data << shift_tmp2;
+assign shift=shift_tmp2;
+endmodule
+
 // module adder_24(a,b,sum);
 // input logic [23:0] a;
 // input logic [23:0] b;
@@ -164,7 +218,7 @@ endmodule
 // endmodule
 
 
-module rounding_grs(
+module rounding_grs_add(
     input wire [23:0] man,  // 24-bit mantissa with implicit bit
     input wire guard,       // Guard bit
     input wire round,       // Round bit

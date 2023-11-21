@@ -19,7 +19,7 @@ assign guard = f1_f2_48[23];
 assign round = f1_f2_48[22];
 assign sticky = (f1_f2_48[21:0]==22'b0) ?1'b0:1'b1; 
 
-rounding_grs round_grs(f1f2_plus[47:24],guard,round,sticky,f1f2_plus_rounding,exp_add_from_rounding);
+rounding_grs_mul round_grs(f1f2_plus[47:24],guard,round,sticky,f1f2_plus_rounding,exp_add_from_rounding);
 
 endmodule
 
@@ -34,7 +34,7 @@ assign f1f2 = f1 * f2;
 
 endmodule
 
-module rounding_grs(
+module rounding_grs_mul(
     input wire [23:0] man,  // 24-bit mantissa with implicit bit
     input wire guard,       // Guard bit
     input wire round,       // Round bit

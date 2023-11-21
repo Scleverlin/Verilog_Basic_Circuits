@@ -1,5 +1,4 @@
-`include "preprocessing.sv"
-
+`include "/home/shi/verilog/FP_32/ADD_SUB/preprocessing.sv"
 module normalization(add1,add2,add,sub,man_a,man_b,exponent_a,exponent_b,result_sign,add_or_sub);
 input logic [31:0] add1;
 input logic [31:0] add2;

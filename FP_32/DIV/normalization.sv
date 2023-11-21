@@ -1,4 +1,4 @@
-`include "prepare_exponet.sv"
+`include "/home/shi/verilog/FP_32/DIV/prepare_exponet.sv"
 
 module normalizer (dividend,divisor,dividend_mantissa_normalized, divisor_mantissa_normalized,current_exponent,result_sign,dividend_shift,divisor_shift);
 input logic  [31:0] dividend,divisor;
@@ -49,15 +49,15 @@ module man_float_normalize (
     assign divisor_tmp = (divisor_exponent == 8'd0) ? {1'b0,divisor_mantissa} : {1'b1, divisor_mantissa};
    
  
-    m_n_gen mng (dividend_tmp,dividend_mantissa_normalized,dividend_shift);
-    m_n_gen mng2 (divisor_tmp,divisor_mantissa_normalized,divisor_shift);
+    m_n_gen_div mng (dividend_tmp,dividend_mantissa_normalized,dividend_shift);
+    m_n_gen_div mng2 (divisor_tmp,divisor_mantissa_normalized,divisor_shift);
 
  // Determine the sign of the result
     assign result_sign = dividend_sign ^ divisor_sign;
 
 endmodule
 
-module m_n_gen (
+module m_n_gen_div (
     input logic [23:0] data,
     output logic [23:0] outdata,
     output logic [4:0] shift

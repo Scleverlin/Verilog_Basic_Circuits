@@ -1,29 +1,30 @@
 module post_processing(  //convert the final quotient to be IEEE-754
-input logic [23:0] result,
-input logic [4:0]shift_nums,
-input logic right_shift,
-input logic resultsign,
-input logic [7:0] current_exponent,
-output logic [31:0]quotient
-);
-
-logic [23:0] result_temp;
-assign result_temp=(right_shift)?result>>shift_nums:result<<shift_nums;
-
-logic [4:0] exponent_addend;
-logic [23:0] result_shifted;
-
-m_n_gen_2 mngen( result_temp,result_shifted,exponent_addend);
-logic [7:0]exponent_final;
-
-logic [7:0] addend_copmplement;
-
-assign addend_copmplement=~exponent_addend+1;
-
-assign exponent_final=current_exponent+addend_copmplement;
-
-assign quotient={resultsign,exponent_final,result_shifted[22:0]};
-
+    input logic [23:0] result,
+    input logic [4:0]shift_nums,
+    input logic exp_add,
+    input logic right_shift,
+    input logic resultsign,
+    input logic [7:0] current_exponent,
+    output logic [31:0]quotient
+    );
+    
+    logic [23:0] result_temp;
+    assign result_temp=(right_shift)?result>>shift_nums:result<<shift_nums;
+    
+    logic [4:0] exponent_addend;
+    logic [23:0] result_shifted;
+    
+    m_n_gen_2 mngen( result_temp,result_shifted,exponent_addend);
+    logic [7:0]exponent_final;
+    
+    logic [7:0] addend_copmplement;
+    
+    assign addend_copmplement=~exponent_addend+1;
+    
+    assign exponent_final=current_exponent+addend_copmplement+exp_add;
+    
+    assign quotient={resultsign,exponent_final,result_shifted[22:0]};
+    
 endmodule
 
 

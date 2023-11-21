@@ -1,20 +1,21 @@
 /* verilator lint_off EOFNEWLINE */
 /* verilator lint_off WIDTHEXPAND */
 /* verilator lint_off UNUSEDSIGNAL */
-`include "quo_sel_tab.sv"
+`include "/home/shi/verilog/FP_32/DIV/quo_sel_tab.sv"
 // `include "on_the_fly_conversion_srt4.sv" // integrated in the main module
-`include "normalization.sv"
-`include "post_processing.sv"
+`include "/home/shi/verilog/FP_32/DIV/normalization.sv"
+`include "/home/shi/verilog/FP_32/DIV/post_processing.sv"
 // `include "rounding.sv"
 
 
-module SRT_divider_FP32 (dividend,divisor,clk,rst,quotient);//prototype input and output
+module SRT_divider_FP32 (dividend,divisor,clk,rst,quotient,flag_w);//prototype input and output
 
 input logic  [31:0] dividend,divisor;
 input logic clk,rst;
 // output logic [31:0] quotient;
 // output logic [31:0] remainder;// currently not used
 output logic [31:0] quotient;
+output logic [5:0]flag_w;
 // output logic result_valid;
 
 logic [23:0] dividend_mantissa_normalized;
@@ -72,7 +73,7 @@ assign r_idx = current_remainder[25:21];
 
 assign flag_1=flag+1;
 
-quo_sel_tab  q_selelct_table (r_idx, d_idx, mid_quotient);
+qds  q_selelct_table (r_idx, d_idx, mid_quotient);
 qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
 
 next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
@@ -96,7 +97,7 @@ assign round=Q_pos[3];
 assign sticky=Q_pos[2]|Q_pos[1]|Q_pos[0];
 
 rounding_grs rounding_grs_1 (Q_pos[28:5],guard,round,sticky,q_rounding,exp_add);
-
+assign flag_w=flag;
 
 logic [23:0]result_before_ieee;
 

@@ -25,12 +25,12 @@ module fp_mul_exp(
 
     assign bias=~{1'b0,8'd127}+9'b1+zero_detect; //-127 or -126
 
-    adder_width adder(mul1_sign,mul2_sign,result_tmp,cout);
-    adder_width adder2(result_tmp,bias,result_tmp2,cout2);
+    adder_width_mul adder(mul1_sign,mul2_sign,result_tmp,cout);
+    adder_width_mul adder2(result_tmp,bias,result_tmp2,cout2);
     assign  result_exp = result_tmp2[`EXP_WIDTH-1:0]; 
 endmodule
 
-module adder_width (a,b,sum,cout);
+module adder_width_mul (a,b,sum,cout);
 input logic [`EXP_WIDTH:0]a,b;
 output logic [`EXP_WIDTH:0]sum;
 

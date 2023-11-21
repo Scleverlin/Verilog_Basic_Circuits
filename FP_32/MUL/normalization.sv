@@ -1,6 +1,6 @@
-`include "prepare_exponet.sv"
+`include "/home/shi/verilog/FP_32/MUL/prepare_exponet.sv"
 
-module normalizer (mul1,mul2,mul1_mantissa_normalized, mul2_mantissa_normalized,current_exponent,result_sign,mul1_shift,mul2_shift);
+module normalizer_mul (mul1,mul2,mul1_mantissa_normalized, mul2_mantissa_normalized,current_exponent,result_sign,mul1_shift,mul2_shift);
 input logic  [31:0] mul1,mul2;
 
 output logic [23:0] mul1_mantissa_normalized;
@@ -11,13 +11,13 @@ output logic result_sign;
 output logic [4:0] mul1_shift; // Shift amount for the mul1
 output logic [4:0] mul2_shift; // Shift amount for the mul2
 
-man_float_normalize mfm (mul1,mul2,mul1_mantissa_normalized,mul2_mantissa_normalized,mul1_shift,mul2_shift,result_sign );
+man_float_normalize_mul mfm (mul1,mul2,mul1_mantissa_normalized,mul2_mantissa_normalized,mul1_shift,mul2_shift,result_sign );
 fp_mul_exp exp (mul1,mul2,current_exponent);
 
 endmodule
 
 
-module man_float_normalize (
+module man_float_normalize_mul (
     input logic [31:0] mul1,  // 32-bit single-precision float
     input logic [31:0] mul2,   
     output logic [23:0] mul1_mantissa_normalized,
