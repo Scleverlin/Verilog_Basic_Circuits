@@ -1,6 +1,6 @@
 `include "/home/shi/verilog/FP_32/ADD_SUB/normalization.sv"
 
-module FP_32_add_or_sub(add1,add2,command,result);
+module FP_32_add_or_sub(add1,add2,command,result,clk);
 input logic [31:0] add1;
 input logic [31:0] add2;
 input clk;
