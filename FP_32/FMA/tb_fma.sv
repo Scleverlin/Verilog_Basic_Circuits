@@ -32,6 +32,9 @@ real a_real, b_real, c_real, result_real;
      #10    a = 32'h48004ABC;   
              b = 32'h42BA98BA;;  
              c = 32'h40400000; // 3.0
+     #10   a = 32'h3f800000; 
+            b = 32'h41F00000; // 30.0
+            c = 32'hC1A00000; // -20.0
         // 更多测试案例...
         // 这里可以添加更多测试案例来验证不同的输入组合
      #10 $display("Test 0: a = %h, b = %h, c = %h, result = %b", a, b, c, result);

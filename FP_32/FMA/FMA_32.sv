@@ -65,7 +65,8 @@ assign exp_is_n126= (exp_comple==9'd126)?1'b1:1'b0;
 assign close_to_zero= (exp_is_n126 && result_head_is_zero)?1'b1:1'b0;// exp=-126 , man=0.xxxxx
 
 
-logic [74:0] add_result_copy = add_result_shifted;
+logic [74:0] add_result_copy ;
+assign add_result_copy= add_result_shifted;
 logic [74:0] add_result_copy_shifted;
 logic [7:0] exp_minus_from_copy;
 logic [7:0] max_shift;
@@ -76,7 +77,7 @@ m_n_gen_2 m_n_gen2(add_result_copy,max_shift,add_result_copy_shifted,exp_minus_f
 
 logic [74:0] final_result;
 
-assign final_result= result_head_is_zero?add_result_copy_shifted:add_result_shifted;
+assign final_result= add_result_copy_shifted;
 
 
 assign guard = shift_l_27? final_result[50]:1'b0;
@@ -89,8 +90,8 @@ rounding rounding(add_man, guard,round, sticky,rounded_man,exp_add);
 
 logic [8:0]final_exponent_tmp,final_exponent;
 
-assign final_exponent_tmp= true_exp_ab_signed+{8'b0,exp_add}+{1'b0,exp_add_first}+9'd127;
-assign final_exponent=close_to_zero?8'b0:result_head_is_zero?final_exponent_tmp+ ~{1'b0,exp_minus_from_copy}+1'b1:final_exponent_tmp;
+assign final_exponent_tmp= true_exp_ab_signed+{8'b0,exp_add}+{1'b0,exp_add_first}+9'd127+~{1'b0,exp_minus_from_copy}+1'b1;
+assign final_exponent=close_to_zero?8'b0:final_exponent_tmp[8:0];
 logic final_sign;
 
 assign final_sign= ~((~(sign_a^sign_b))^sign_of_add);
@@ -259,6 +260,6 @@ assign shift_tmp =
 logic bigger_than_max;
 assign bigger_than_max= shift_tmp>max_shift?1'b1:1'b0;
 assign outdata = bigger_than_max?data<<max_shift:data << shift_tmp;
-assign shift=bigger_than_max?8'd23+ ~max_shift+8'd1:8'd23+ ~shift_tmp+8'd1;
+assign shift=shift_tmp;
 endmodule
 
