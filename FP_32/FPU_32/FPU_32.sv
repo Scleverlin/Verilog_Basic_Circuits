@@ -1,7 +1,7 @@
 `include "FP_32_add_or_sub.sv"
 `include "SRT_divider_FP32.sv"
 `include "FP32_mul.sv"
-// RNE rounding mode
+// RNE rounding mode````
 
 module decoder(func_code,op_code,mode);
 input logic [6:0]func_code;
