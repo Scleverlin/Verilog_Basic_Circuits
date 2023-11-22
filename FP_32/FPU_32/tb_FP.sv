@@ -1,5 +1,5 @@
 // `timescale 
-`include "/home/shi/verilog/FP_32/FPU_32/FPU_32.sv"
+`include "FPU_32.sv"
 module FPU_32_testbench;
 
     // 测试平台输入和输出
@@ -19,7 +19,8 @@ module FPU_32_testbench;
     );
 
     // 生成时钟信号
-    always #10 clk = ~clk;
+    always begin #10 clk = ~clk;end
+    
     initial begin
         $dumpfile("dump.vcd");
         $dumpvars(0, uut); 
