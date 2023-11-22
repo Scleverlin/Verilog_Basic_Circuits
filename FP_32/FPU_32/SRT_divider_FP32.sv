@@ -68,7 +68,7 @@ if (~rst)begin
 end
 end
 
-assign r_idx = current_remainder[25:21];
+assign r_idx = (flag==6'd0)?current_dividend[25:21]:current_remainder[25:21];
 // assign result_valid = (flag == 12'd2048) ? 1'b1 : 1'b0; 
 
 assign flag_1=flag+1;
@@ -78,7 +78,7 @@ qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
 
 logic [25:0] input_remainder;
 assign input_remainder=(flag==6'd0)?current_dividend:current_remainder;
-next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
+next_remainder_gen next_remainder_gen1 (input_remainder,current_q_d,next_remainder,mid_quotient);
 
 assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[30-3:0], mid_quotient[1:0]} : {Q_neg[30-3:0], mid_quotient[1:0]};
 assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[30-3:0], mid_quotient[2:1]} : {Q_neg[30-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};

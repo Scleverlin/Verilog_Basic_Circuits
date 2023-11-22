@@ -81,10 +81,10 @@ always @(*) begin
 end
 endmodule
 
-module func_selector(mode,gated_clk_mul,gated_clk_add_or_sub,gated_clk_div,clk,mul,add,sub,div);
+module func_selector (mode,gated_clk_mul,gated_clk_add_or_sub,gated_clk_div,clk,mul,add,sub,div);
 input logic [2:0] mode;
 input logic clk;
-output gated_clk_mul,gated_clk_add_or_sub,gated_clk_sub;
+output gated_clk_mul,gated_clk_add_or_sub,gated_clk_div;
 output mul;
 output add;
 output div;
