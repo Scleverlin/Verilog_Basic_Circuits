@@ -91,3 +91,21 @@ assign quotient = (quotient_temp==3'b101)?3'b111:quotient_temp;
 
 endmodule
 
+// module qds( 
+//         input logic [5:0] rem,
+//         input logic [3:0] div,
+// 		output logic [2:0]q 
+// );
+//         reg[5:0] th12 ;
+// 		assign th12= div < 1 ? 6 : div < 2 ? 7 : div < 4 ? 8 : div < 5 ? 9 : div < 6 ? 10 : 11;
+//         reg[5:0] th01;
+// 		assign th01 =               div < 2 ? 2 :                             div < 6 ?  3 :  4;
+
+//     always @(*) begin
+//              if($signed(rem) < $signed(-th12)) q = -2;
+//         else if($signed(rem) < $signed(-th01)) q = -1;
+//         else if($signed(rem) < $signed( th01)) q =  0;
+//         else if($signed(rem) < $signed( th12)) q =  1;
+//         else                                   q =  2;
+// 	end
+// endmodule
