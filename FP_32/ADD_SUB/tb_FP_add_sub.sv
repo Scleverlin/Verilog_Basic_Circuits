@@ -1,4 +1,5 @@
-`include "FP_32_add_or_sub.sv"
+// `include "FP_32_add_or_sub.sv"
+`include  "FP_32_AddSub_v2.sv"
 module tb_add_sub();
   // 定义测试台使用的信号
 logic [31:0] add1;
