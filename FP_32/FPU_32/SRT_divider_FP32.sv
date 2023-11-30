@@ -31,7 +31,8 @@ logic [4:0] final_shift,compl_divisor_shift,compl_dividend_shift;
 assign compl_dividend_shift=~dividend_shift+1;
 assign compl_divisor_shift=~divisor_shift+1; 
 assign final_shift=(dividend_shift >= divisor_shift)?dividend_shift+compl_divisor_shift:divisor_shift+compl_dividend_shift;
-logic right_shift=(dividend_shift >= divisor_shift)?1'b1:1'b0;
+logic right_shift;
+assign right_shift=(dividend_shift >= divisor_shift)?1'b1:1'b0;
 
 div_normalizer norm (dividend,divisor,dividend_mantissa_normalized, divisor_mantissa_normalized,current_exponent,result_sign,dividend_shift,divisor_shift);
 

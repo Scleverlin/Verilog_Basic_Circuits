@@ -32,7 +32,7 @@ output logic [31:0]result;
 
 logic [31:0]result_mul,result_add,result_div;
 // reg [31:0]a,b;
-logic gated_clk_mul,gated_clk_add_or_sub,gated_clk_sub;
+logic gated_clk_mul,gated_clk_add_or_sub,gated_clk_div;
 logic mul;
 // assign mul=(mode==3'b000)?1'b1:1'b0;
 logic add;
