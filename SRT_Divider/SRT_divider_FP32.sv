@@ -47,8 +47,8 @@ logic [4:0] d_idx;		// divisor index
 logic [2:0]mid_quotient;        // middle quotient
 
 assign d_idx = current_divisor[24:20];
-logic [29:0] Q_pos,Q_neg;
-logic [29:0] Q_pos_next ,Q_neg_next;
+logic [27:0] Q_pos,Q_neg;
+logic [27:0] Q_pos_next ,Q_neg_next;
 logic [5:0] flag;
 logic [5:0]flag_1;
 always_ff @(posedge clk or negedge rst) begin
@@ -56,8 +56,8 @@ if (~rst)begin
     // flag <= 12'd1;
     flag<=6'd0;
     current_remainder <= current_dividend;
-    Q_pos<=26'b0;
-    Q_neg<=26'b0;
+    Q_pos<=28'b0;
+    Q_neg<=28'b0;
   end 
   else begin
     current_remainder<=next_remainder;
@@ -77,8 +77,8 @@ qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
 
 next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
 
-assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[30-3:0], mid_quotient[1:0]} : {Q_neg[30-3:0], mid_quotient[1:0]};
-assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[30-3:0], mid_quotient[2:1]} : {Q_neg[30-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
+assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[28-3:0], mid_quotient[1:0]} : {Q_neg[28-3:0], mid_quotient[1:0]};
+assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[28-3:0], mid_quotient[2:1]} : {Q_neg[28-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
 logic [23:0]q_rounding;
 // logic [23:0]rounding_data;
 
@@ -91,16 +91,16 @@ logic guard;
 logic round;
 logic sticky;
 logic exp_add;
-assign guard=Q_pos[4];
-assign round=Q_pos[3];
-assign sticky=Q_pos[2]|Q_pos[1]|Q_pos[0];
+assign guard=Q_pos[2];
+assign round=Q_pos[1];
+assign sticky=Q_pos[0];
 
-rounding_grs rounding_grs_1 (Q_pos[28:5],guard,round,sticky,q_rounding,exp_add);
+rounding_grs rounding_grs_1 (Q_pos[26:3],guard,round,sticky,q_rounding,exp_add);
 
 
 logic [23:0]result_before_ieee;
 
-assign result_before_ieee=(flag == 6'd15)?q_rounding:24'b0;
+assign result_before_ieee=(flag == 6'd14)?q_rounding:24'b0;
 
 post_processing dut (
         .result(result_before_ieee),
@@ -136,10 +136,11 @@ input logic [2:0] mid_quotient;
 logic [25:0] next_remainder_p,next_remainder_n;
 logic cout,cout2;
 logic [25:0] next_remainder_before_shift;
-adder_26 adder_pos (current_remainder,current_q_d,1'b0,next_remainder_p,cout);// q is positive
-adder_26 adder_neg (current_remainder,~current_q_d,1'b1,next_remainder_n,cout2);// q is negative
-assign next_remainder_before_shift=(mid_quotient[2]==1'b0)?next_remainder_p:next_remainder_n;
-assign next_remainder={next_remainder_p[23:0],2'b00};
+// adder_26 adder_pos (current_remainder,~current_q_d,1'b1,next_remainder_p,cout);// q is positive
+// adder_26 adder_neg (current_remainder,current_q_d,1'b0,next_remainder_n,cout2);// q is negative
+assign next_remainder_before_shift=(mid_quotient[2]==1'b0)?current_remainder-current_q_d:current_remainder+current_q_d;
+// assign next_remainder_before_shift=(mid_quotient[2]==1'b0)?next_remainder_p:next_remainder_n;
+assign next_remainder={next_remainder_before_shift[23:0],2'b00};
 endmodule
 
 module qd_gen (current_q_d,mid_quotient,current_divisor);
@@ -154,21 +155,33 @@ assign current_q_d=(mid_quotient[1:0]==2'b00)?26'b0:
 endmodule
 
 module rounding_grs(
-  input wire [23:0] man,  // 24-bit mantissa with implicit bit
-  input wire guard,       // Guard bit
-  input wire round,       // Round bit
-  input wire sticky,      // Sticky bit
-  output wire [23:0] rounded_man,  // Rounded mantissa
-  output wire exp_add              // Set if there's a carry that affects the exponent
+   input wire [23:0] man,  // 24-bit mantissa with implicit bit
+    input wire guard,       // Guard bit
+    input wire round,       // Round bit
+    input wire sticky,      // Sticky bit
+    output reg [23:0] rounded_man,  // Rounded mantissa
+    output reg exp_add              // Set if there's a carry that affects the exponent
 );
-  wire halfway = guard && !round && !sticky;  // Exactly between two representable values
-  wire lsb = man[0];  // Least Significant Bit of the mantissa
-  // Increment the mantissa if guard bit is set and (round or sticky bit is set or the mantissa is odd)
-  wire increment = guard && (round || sticky || lsb);
-  // Calculate the potential new mantissa with the increment
-  wire [23:0] new_man = man + 24'd1;
-  // Check if an increment would cause a carry, which implies the exponent needs to be incremented
-  assign exp_add = increment && (new_man[23] == 1'b0);
-  // Select the final rounded mantissa
-  assign rounded_man = increment ? new_man : man;
+
+    wire tie; // 平局情况：保护位为1，而舍入位和粘滞位都为0
+    assign tie = guard && !round && !sticky;
+
+    always @(*) begin
+        if (tie) begin
+            // 平局到偶数：如果尾数最后一位是0，保持不变；如果是1，则向上舍入
+            if (man[0]) begin
+                {exp_add, rounded_man} = man + 24'h1;
+            end else begin
+                exp_add = 1'b0;
+                rounded_man = man;
+            end
+        end else if (guard && (round || sticky)) begin
+            // 非平局情况且需要向上舍入
+            {exp_add, rounded_man} = man + 24'h1;
+        end else begin
+            // 不需要舍入
+            exp_add = 1'b0;
+            rounded_man = man;
+        end
+    end
 endmodule
