@@ -8,14 +8,13 @@
 // `include "rounding.sv"
 
 
-module SRT_divider_FP32 (dividend,divisor,clk,rst,quotient,flag_w);//prototype input and output
+module SRT_divider_FP32 (dividend,divisor,clk,rst,quotient);//prototype input and output
 
 input logic  [31:0] dividend,divisor;
 input logic clk,rst;
 // output logic [31:0] quotient;
 // output logic [31:0] remainder;// currently not used
 output logic [31:0] quotient;
-output logic [5:0]flag_w;
 // output logic result_valid;
 
 logic [23:0] dividend_mantissa_normalized;
@@ -31,10 +30,9 @@ logic [4:0] final_shift,compl_divisor_shift,compl_dividend_shift;
 assign compl_dividend_shift=~dividend_shift+1;
 assign compl_divisor_shift=~divisor_shift+1; 
 assign final_shift=(dividend_shift >= divisor_shift)?dividend_shift+compl_divisor_shift:divisor_shift+compl_dividend_shift;
-logic right_shift;
-assign right_shift=(dividend_shift >= divisor_shift)?1'b1:1'b0;
+logic right_shift=(dividend_shift >= divisor_shift)?1'b1:1'b0;
 
-div_normalizer norm (dividend,divisor,dividend_mantissa_normalized, divisor_mantissa_normalized,current_exponent,result_sign,dividend_shift,divisor_shift);
+normalizer norm (dividend,divisor,dividend_mantissa_normalized, divisor_mantissa_normalized,current_exponent,result_sign,dividend_shift,divisor_shift);
 
 logic [25:0]current_dividend;
 logic [25:0]current_divisor;
@@ -49,17 +47,17 @@ logic [4:0] d_idx;		// divisor index
 logic [2:0]mid_quotient;        // middle quotient
 
 assign d_idx = current_divisor[24:20];
-logic [29:0] Q_pos,Q_neg;
-logic [29:0] Q_pos_next ,Q_neg_next;
+logic [27:0] Q_pos,Q_neg;
+logic [27:0] Q_pos_next ,Q_neg_next;
 logic [5:0] flag;
 logic [5:0]flag_1;
 always_ff @(posedge clk or negedge rst) begin
 if (~rst)begin
     // flag <= 12'd1;
     flag<=6'd0;
-    current_remainder <= 26'b0;
-    Q_pos<=26'b0;
-    Q_neg<=26'b0;
+    current_remainder <= current_dividend;
+    Q_pos<=28'b0;
+    Q_neg<=28'b0;
   end 
   else begin
     current_remainder<=next_remainder;
@@ -69,20 +67,18 @@ if (~rst)begin
 end
 end
 
-assign r_idx = (flag==6'd0)?current_dividend[25:21]:current_remainder[25:21];
+assign r_idx = current_remainder[25:21];
 // assign result_valid = (flag == 12'd2048) ? 1'b1 : 1'b0; 
 
 assign flag_1=flag+1;
 
-qds  q_selelct_table (r_idx, d_idx, mid_quotient);
+quo_sel_tab  q_selelct_table (r_idx, d_idx, mid_quotient);
 qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
 
-logic [25:0] input_remainder;
-assign input_remainder=(flag==6'd0)?current_dividend:current_remainder;
-next_remainder_gen next_remainder_gen1 (input_remainder,current_q_d,next_remainder,mid_quotient);
+next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
 
-assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[30-3:0], mid_quotient[1:0]} : {Q_neg[30-3:0], mid_quotient[1:0]};
-assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[30-3:0], mid_quotient[2:1]} : {Q_neg[30-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
+assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[28-3:0], mid_quotient[1:0]} : {Q_neg[28-3:0], mid_quotient[1:0]};
+assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[28-3:0], mid_quotient[2:1]} : {Q_neg[28-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
 logic [23:0]q_rounding;
 // logic [23:0]rounding_data;
 
@@ -95,18 +91,18 @@ logic guard;
 logic round;
 logic sticky;
 logic exp_add;
-assign guard=Q_pos[4];
-assign round=Q_pos[3];
-assign sticky=Q_pos[2]|Q_pos[1]|Q_pos[0];
+assign guard=Q_pos[2];
+assign round=Q_pos[1];
+assign sticky=Q_pos[0];
 
-rounding_grs rounding_grs_1 (Q_pos[28:5],guard,round,sticky,q_rounding,exp_add);
-assign flag_w=flag;
+rounding_grs rounding_grs_1 (Q_pos[26:3],guard,round,sticky,q_rounding,exp_add);
+
 
 logic [23:0]result_before_ieee;
 
-assign result_before_ieee=(flag == 6'd15)?q_rounding:24'b0;
+assign result_before_ieee=(flag == 6'd14)?q_rounding:24'b0;
 
-div_post_processing dut (
+post_processing dut (
         .result(result_before_ieee),
         .shift_nums(final_shift),
         .exp_add(exp_add),
