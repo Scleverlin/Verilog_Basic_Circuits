@@ -35,17 +35,17 @@ logic use_adder_or_not;// use adder or not
 assign use_adder_or_not=(e1_e2>8'd26)?1'b0:1'b1; // give two bits for guard and round
 
 assign reverse_e1_e2= 8'd26-e1_e2;
-logic [25:0] extent_a,extent_b;
+logic [24:0] extent_a,extent_b;
 logic [23:0]man_b_shift;
 assign man_b_shift=man_b>>e1_e2;
-assign extent_a={1'b0,man_a,1'b0};
-assign extent_b={1'b0,man_b_shift,1'b0};
-logic [25:0]final_man_tmp;
-adder_26 adder (extent_a,extent_b,add_or_sub,final_man_tmp);
+assign extent_a={1'b0,man_a};
+assign extent_b={1'b0,man_b_shift};
+logic [24:0]final_man_tmp;
+adder_25 adder (extent_a,extent_b,add_or_sub,final_man_tmp);
 logic [7:0]max_shift;
 assign max_shift=current_exponent_tmp;
 logic [7:0]shift;
-logic [25:0]final_man_tmp_2;
+logic [24:0]final_man_tmp_2;
 m_n_gen_add_v2 shifter(final_man_tmp,final_man_tmp_2,shift,max_shift);
 //e1-e2 need to be added in final exponent
 
@@ -69,7 +69,7 @@ assign round= use_adder_or_not?sticky_check[24]:1'b0;
 logic [23:0]final_man_rounded;
 
 logic [23:0]rounding_man;
-assign rounding_man=use_adder_or_not?final_man_tmp_2[25:2]:man_a;
+assign rounding_man=use_adder_or_not?final_man_tmp_2[24:1]:man_a;
 
 rounding_grs_add rounding (rounding_man, guard, round, sticky,final_man_rounded, exp_add);
 logic [7:0]final_exp;
@@ -80,50 +80,49 @@ assign result={result_sign,final_exp,final_man_rounded[22:0]};
 endmodule
 
 
-module adder_26 (a,b,add_or_sub,sum);
-input logic [25:0] a;
-input logic [25:0] b;
+module adder_25 (a,b,add_or_sub,sum);
+input logic [24:0] a;
+input logic [24:0] b;
 input add_or_sub;
 // output logic cout;
-output logic [25:0] sum;
+output logic [24:0] sum;
 
 assign sum=add_or_sub?a+b:a-b;
 
 endmodule
 
 module m_n_gen_add_v2 (
-  input logic [25:0] data,
-  output logic [25:0] outdata,
+  input logic [24:0] data,
+  output logic [24:0] outdata,
   output logic [7:0] shift,
   input logic [7:0] max_shift
 );
 logic [7:0]shift_tmp;
-assign shift_tmp = (data[25] == 1) ? 0 :
-                   (data[24] == 1) ? 1 :
-                   (data[23] == 1) ? 2 :
-                   (data[22] == 1) ? 3 :
-                   (data[21] == 1) ? 4 :
-                   (data[20] == 1) ? 5 :
-                   (data[19] == 1) ? 6 :
-                   (data[18] == 1) ? 7 :
-                   (data[17] == 1) ? 8 :
-                   (data[16] == 1) ? 9 :
-                   (data[15] == 1) ? 10 :
-                   (data[14] == 1) ? 11 :
-                   (data[13] == 1) ? 12 :
-                   (data[12] == 1) ? 13 :
-                   (data[11] == 1) ? 14 :
-                   (data[10] == 1) ? 15 :
-                   (data [9] == 1) ? 16 :
-                   (data [8] == 1) ? 17 :
-                   (data [7] == 1) ? 18 :
-                   (data [6] == 1) ? 19 :
-                   (data [5] == 1) ? 20 :
-                   (data [4] == 1) ? 21 :
-                   (data [3] == 1) ? 22 :
-                   (data [2] == 1) ? 23 :
-                   (data [1] == 1) ? 24 :
-                   (data [0] == 1) ? 25 :23;
+assign shift_tmp = (data[24] == 1) ? 0 :
+                   (data[23] == 1) ? 1 :
+                   (data[22] == 1) ? 2 :
+                   (data[21] == 1) ? 3 :
+                   (data[20] == 1) ? 4 :
+                   (data[19] == 1) ? 5 :
+                   (data[18] == 1) ? 6 :
+                   (data[17] == 1) ? 7 :
+                   (data[16] == 1) ? 8 :
+                   (data[15] == 1) ? 9 :
+                   (data[14] == 1) ? 10 :
+                   (data[13] == 1) ? 11 :
+                   (data[12] == 1) ? 12 :
+                   (data[11] == 1) ? 13 :
+                   (data[10] == 1) ? 14 :
+                   (data [9] == 1) ? 15 :
+                   (data [8] == 1) ? 16 :
+                   (data [7] == 1) ? 17 :
+                   (data [6] == 1) ? 18 :
+                   (data [5] == 1) ? 19 :
+                   (data [4] == 1) ? 20 :
+                   (data [3] == 1) ? 21 :
+                   (data [2] == 1) ? 22 :
+                   (data [1] == 1) ? 23 :
+                   (data [0] == 1) ? 24 : 0;
 logic [7:0]shift_tmp2;
 assign shift_tmp2=(shift_tmp>max_shift)?max_shift:shift_tmp;
 assign outdata = data << shift_tmp2;
