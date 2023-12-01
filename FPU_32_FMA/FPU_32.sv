@@ -1,6 +1,5 @@
-`include "FP_32_add_or_sub.sv"
 `include "SRT_divider_FP32.sv"
-`include "FP32_mul.sv"
+`include "FMA_32.sv"
 // RNE rounding mode````
 
 module decoder(func_code,op_code,mode);
@@ -23,6 +22,7 @@ always @(*) begin
     end
 end
 endmodule
+
 module FPU_32(mode,a,b,result,clk,rst);
 input logic [31:0]a,b;
 input logic [2:0]mode;
@@ -30,9 +30,9 @@ input logic clk,rst;
 output logic [31:0]result;
 
 
-logic [31:0]result_mul,result_add,result_div;
+logic [31:0]result_FMA,result_div;
 // reg [31:0]a,b;
-logic gated_clk_mul,gated_clk_add_or_sub,gated_clk_div;
+logic gated_clk_FMA,gated_clk_div;
 logic mul;
 // assign mul=(mode==3'b000)?1'b1:1'b0;
 logic add;
@@ -45,14 +45,25 @@ logic sub;
 // assign gated_clk_mul = clk & mul;
 // assign gated_clk_add_or_sub = clk & (add^sub);
 // assign gated_clk_div = clk & div;
-func_selector func_selector (mode,gated_clk_mul,gated_clk_add_or_sub,gated_clk_div,clk,mul,add,sub,div);
+
+func_selector_FMA func_selector (mode,gated_clk_FMA,gated_clk_div,clk,mul,add,sub,div);
 
 logic [5:0]flag;
-FP32_mul mul_instance (.clk(gated_clk_mul),.mul1(a),.mul2(b),.product(result_mul));
+
+logic [31:0]real_b,real_c;
+
+assign real_b= (add || sub )? 32'h3F800000:  b;         // mul : a*b+c c=0  add or sub  : a*b+c b=1 
+assign real_c =mul?32'b0:c;  
+
+
+
+
+FMA_32   FMA_32(a,real_b,real_c,result_FMA,gated_clk_FMA);
 SRT_divider_FP32 SRT_divider_FP32 (a,b,gated_clk_div,rst,result_div,flag);
-FP_32_add_or_sub add_sub (a,b,add,result_add,gated_clk_add_or_sub);
+
 logic [2:0]mode_reg;
-result_selector select (mode_reg,result_mul,result_add,result_div,result,flag);
+result_selector_fma result_selector(mode,result_FMA,result_div,output_r,flag);
+
 always @(posedge clk) begin
     if (~rst) begin
      mode_reg<= 3'b111;
@@ -62,29 +73,29 @@ always @(posedge clk) begin
 end
 endmodule
 
-module result_selector(mode,result_mul,result_add,result_div,output_r,flag);
+module result_selector_fma (mode,result_FMA,result_div,output_r,flag);
     // 000:mul 001:add 010:sub, 011:div,111:others
 input logic [2:0]mode;
 input logic [5:0] flag;
-input logic [31:0]result_mul,result_add,result_div;
+input logic [31:0]result_FMA,result_div;
 output logic [31:0]output_r;
 
 
 always @(*) begin
     case (mode)
-        3'b000: output_r = result_mul;
-        3'b001: output_r = result_add;
-        3'b010: output_r = result_add;
+        3'b000: output_r = result_FMA;
+        3'b001: output_r = result_FMA;
+        3'b010: output_r = result_FMA;
         3'b011: output_r = (flag == 14) ? result_div : 32'b0;
         default: output_r = 32'b0;
     endcase
 end
 endmodule
 
-module func_selector (mode,gated_clk_mul,gated_clk_add_or_sub,gated_clk_div,clk,mul,add,sub,div);
+module func_selector_FMA (mode,gated_clk_FMA,gated_clk_div,clk,mul,add,sub,div);
 input logic [2:0] mode;
 input logic clk;
-output gated_clk_mul,gated_clk_add_or_sub,gated_clk_div;
+output gated_clk_FMA,gated_clk_div;
 output mul;
 output add;
 output div;
@@ -94,7 +105,6 @@ assign mul=(mode==3'b000)?1'b1:1'b0;
 assign add=(mode==3'b001)?1'b1:1'b0;
 assign sub=(mode==3'b010)?1'b1:1'b0;
 assign div=(mode==3'b011)?1'b1:1'b0;
-assign gated_clk_mul = clk & mul;
-assign gated_clk_add_or_sub = clk & (add^sub);
+assign gated_clk_FMA = clk & (add|sub|mul);
 assign gated_clk_div = clk & div;
 endmodule
