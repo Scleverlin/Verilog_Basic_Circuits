@@ -52,8 +52,8 @@ logic [5:0]flag;
 
 logic [31:0]real_b,real_c;
 
-assign real_b= (add || sub )? 32'h3F800000:  b;         // mul : a*b+c c=0  add or sub  : a*b+c b=1 
-assign real_c =mul?32'b0:c;  
+assign real_b= (add || sub )? 32'h3F800000:  b;         // mul : a*b+c c=0  add or sub  : a*b +- c b=1 
+assign real_c =mul?32'b0:(sub)?{~b[31],b[30:0]}:b;  
 
 
 
@@ -62,7 +62,7 @@ FMA_32   FMA_32(a,real_b,real_c,result_FMA,gated_clk_FMA);
 SRT_divider_FP32 SRT_divider_FP32 (a,b,gated_clk_div,rst,result_div,flag);
 
 logic [2:0]mode_reg;
-result_selector_fma result_selector(mode,result_FMA,result_div,output_r,flag);
+result_selector_fma result_selector(mode,result_FMA,result_div,result,flag);
 
 always @(posedge clk) begin
     if (~rst) begin

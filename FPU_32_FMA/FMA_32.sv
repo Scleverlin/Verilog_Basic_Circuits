@@ -74,7 +74,7 @@ logic [7:0] max_shift;
 
 assign max_shift=8'd126-exp_comple[7:0];
 
-m_n_gen_2 m_n_gen2(add_result_copy,max_shift,add_result_copy_shifted,exp_minus_from_copy);
+m_n_gen_fma m_n_gen2(add_result_copy,max_shift,add_result_copy_shifted,exp_minus_from_copy);
 
 logic [74:0] final_result;
 
@@ -229,7 +229,7 @@ assign shift=8'd28+ ~shift_tmp+8'd1;
 endmodule
 
 
-module m_n_gen_2 (
+module m_n_gen_fma (
     input logic [74:0] data,
     input logic [7:0]max_shift,
     output logic [74:0] outdata,
