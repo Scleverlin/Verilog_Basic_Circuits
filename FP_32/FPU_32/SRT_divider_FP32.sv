@@ -55,7 +55,7 @@ always_ff @(posedge clk or negedge rst) begin
 if (~rst)begin
     // flag <= 12'd1;
     flag<=6'd0;
-    current_remainder <= current_dividend;
+    current_remainder <= 26'b0;
     Q_pos<=28'b0;
     Q_neg<=28'b0;
   end 
@@ -74,8 +74,10 @@ assign flag_1=flag+1;
 
 qds  q_selelct_table (r_idx, d_idx, mid_quotient);
 qd_gen qd_gen1 (current_q_d,mid_quotient,current_divisor);
+logic [25:0] input_remainder;
+assign input_remainder=(flag==6'd0)?current_dividend:current_remainder;
 
-next_remainder_gen next_remainder_gen1 (current_remainder,current_q_d,next_remainder,mid_quotient);
+next_remainder_gen next_remainder_gen1 (input_remainder,current_q_d,next_remainder,mid_quotient);
 
 assign Q_pos_next = ~mid_quotient[2] ? {Q_pos[28-3:0], mid_quotient[1:0]} : {Q_neg[28-3:0], mid_quotient[1:0]};
 assign Q_neg_next = (~mid_quotient[2] & (mid_quotient[1] ^ mid_quotient[0])) ? {Q_pos[28-3:0], mid_quotient[2:1]} : {Q_neg[28-3:0], ~(mid_quotient[1] ^ mid_quotient[0]), ~mid_quotient[0]};
