@@ -41,6 +41,12 @@ endmodule
 
 module FMA_stage2();
 
+// Note:  in this stage, it should run the Wallace tree to handle the partial products.
+// The booth encoder result only gives the coefficients of the partial products, they still need to be shifted according to the Alg.
+// In ideal condition, the addition in the a*b+c, should be also included in the Wallace tree.
+// Find a good cut point that we dont need so many registers to cut the wallace tree into two stages.
+
+
 
 endmodule
 
