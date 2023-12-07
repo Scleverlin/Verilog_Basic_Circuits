@@ -166,24 +166,37 @@ assign true_exp_c_minus_ab_signed=true_c+ ~true_exp_ab_signed + 1'b1;
 endmodule
 
 module rounding(
-  input wire [23:0] man,  // 24-bit mantissa with implicit bit
-  input wire guard,       // Guard bit
-  input wire round,       // Round bit
-  input wire sticky,      // Sticky bit
-  output wire [23:0] rounded_man,  // Rounded mantissa
-  output wire exp_add              // Set if there's a carry that affects the exponent
+    input wire [23:0] man,  // 24-bit mantissa with implicit bit
+    input wire guard,       // Guard bit
+    input wire round,       // Round bit
+    input wire sticky,      // Sticky bit
+    output reg [23:0] rounded_man,  // Rounded mantissa
+    output reg exp_add              // Set if there's a carry that affects the exponent
 );
-  wire halfway = guard && !round && !sticky;  // Exactly between two representable values
-  wire lsb = man[0];  // Least Significant Bit of the mantissa
-  // Increment the mantissa if guard bit is set and (round or sticky bit is set or the mantissa is odd)
-  wire increment = guard && (round || sticky || lsb);
-  // Calculate the potential new mantissa with the increment
-  wire [23:0] new_man = man + 24'd1;
-  // Check if an increment would cause a carry, which implies the exponent needs to be incremented
-  assign exp_add = increment && (new_man[23] == 1'b0);
-  // Select the final rounded mantissa
-  assign rounded_man = increment ? new_man : man;
+
+    wire tie; // 平局情况：保护位为1，而舍入位和粘滞位都为0
+    assign tie = guard && !round && !sticky;
+
+    always @(*) begin
+        if (tie) begin
+            // 平局到偶数：如果尾数最后一位是0，保持不变；如果是1，则向上舍入
+            if (man[0]) begin
+                {exp_add, rounded_man} = man + 24'h1;
+            end else begin
+                exp_add = 1'b0;
+                rounded_man = man;
+            end
+        end else if (guard && (round || sticky)) begin
+            // 非平局情况且需要向上舍入
+            {exp_add, rounded_man} = man + 24'h1;
+        end else begin
+            // 不需要舍入
+            exp_add = 1'b0;
+            rounded_man = man;
+        end
+    end
 endmodule
+
 
 
 module m_n_gen (
