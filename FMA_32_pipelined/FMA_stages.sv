@@ -1,6 +1,6 @@
 // ignore the clk and rst first.
 
-module FMA_stage1(a,b,c,current_exp,man_a,man_b,sign_a,sign_b,sign_c); // 
+module FMA_stage1(a,b,c,current_exp,man_a,man_b,sign_ab,sign_real_c); // 
 input logic [31:0]a,b,c;
 
 // output logic pipeline stage 1
@@ -16,10 +16,21 @@ extractor_FP_32 ex_b(b,sign_b,exp_b,man_b);
 extractor_FP_32 ex_c(c,sign_c,exp_c,man_c);
 pre_processing  pre_processing (exp_a,exp_b,exp_c,current_exp,shift,right_or_left);
 
+logic sign_ab,sign_real_c;
+
+assign sign_ab=sign_a+sign_b;
+
+assign sign_real_c=sign_ab+sign_c;
 
 // adder shift could be removed here.
 logic [7:0]shift; // shift abs 
 logic right_or_left; // 1 is right, 0 is left
+
+logic [47:0]c_for_right;
+assign ext_c={1'b0,man_c,23'b0};
+
+logic [47:0]c_for_left;
+
 
 
 
@@ -43,6 +54,14 @@ module FMA_stage2();
 endmodule
 
 module FMA_stage3();
+
+
+// final result add
+// if 0<c-a-b<24,need another add.
+// if -48<c-a-b<0, need another add.
+// other, concat.
+
+// need judge the operation 
 
 endmodule
 

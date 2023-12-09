@@ -30,7 +30,12 @@ logic guard,round,sticky,sign_of_add;
 logic [7:0] exp_add_first;
 logic [74:0] add_result,add_result_shifted;
 
-adder_76 adder_76 (ext_mul_ab,ext_man_c,add_result,sign_c,sign_of_add);  // when shift <=27, need add
+logic sign_ab,sign_real_c;
+
+assign sign_ab=sign_a+sign_b;
+assign sign_real_c=sign_ab+sign_c;
+
+adder_76 adder_76 (ext_mul_ab,ext_man_c,add_result,sign_real_c,sign_of_add);  // when shift <=27, need add
 logic shift_l_27;
 assign shift_l_27 = (true_exp_c_minus_ab_signed[8]||shift<=27)?1'b1:1'b0;// if exp of c-ab <0, it means a leftshift of minus number.
 
