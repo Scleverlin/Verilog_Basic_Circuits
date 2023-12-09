@@ -1,38 +1,25 @@
 // ignore the clk and rst first.
 
-module FMA_stage1(a,b,c,current_exp,partial_mul,right_or_left,shift,man_a,man_c,sign_a,sign_b,sign_c); // 
+module FMA_stage1(a,b,c,current_exp,man_a,man_b,sign_a,sign_b,sign_c); // 
 input logic [31:0]a,b,c;
 
 // output logic pipeline stage 1
 output logic [7:0] current_exp;
-output logic [2:0]partial_mul [11:0];
-output logic [7:0]shift; // shift abs 
-output logic right_or_left; // 1 is right, 0 is left
-output logic [23:0]man_a,man_c;
+output logic [23:0]man_a,man_b;
 output logic sign_a,sign_b,sign_c;
 logic [7:0]exp_a,exp_b,exp_c;
-logic [23:0]man_b;
+logic [23:0] man_c;
+
 
 extractor_FP_32 ex_a(a,sign_a,exp_a,man_a);
 extractor_FP_32 ex_b(b,sign_b,exp_b,man_b);
 extractor_FP_32 ex_c(c,sign_c,exp_c,man_c);
-
-
 pre_processing  pre_processing (exp_a,exp_b,exp_c,current_exp,shift,right_or_left);
 
 
-booth4_encoding booth4_encoding   ({man_b[1:0],1'b0},partial_mul[0]);
-booth4_encoding booth4_encoding2  (man_b[3:1],partial_mul[1]);
-booth4_encoding booth4_encoding3  (man_b[5:3],partial_mul[2]);
-booth4_encoding booth4_encoding4  (man_b[7:5],partial_mul[3]);
-booth4_encoding booth4_encoding5  (man_b[9:7],partial_mul[4]);
-booth4_encoding booth4_encoding6  (man_b[11:9],partial_mul[5]);
-booth4_encoding booth4_encoding7  (man_b[13:11],partial_mul[6]);
-booth4_encoding booth4_encoding8  (man_b[15:13],partial_mul[7]);
-booth4_encoding booth4_encoding9  (man_b[17:15],partial_mul[8]);
-booth4_encoding booth4_encoding10 (man_b[19:17],partial_mul[9]);
-booth4_encoding booth4_encoding11 (man_b[21:19],partial_mul[10]);
-booth4_encoding booth4_encoding12 (man_b[23:21],partial_mul[11]);
+// adder shift could be removed here.
+logic [7:0]shift; // shift abs 
+logic right_or_left; // 1 is right, 0 is left
 
 
 
@@ -46,6 +33,11 @@ module FMA_stage2();
 // In ideal condition, the addition in the a*b+c, should be also included in the Wallace tree.
 // Find a good cut point that we dont need so many registers to cut the wallace tree into two stages.
 
+
+
+// booth4_encoder
+// CSA tree, which should includes the addition of c.  c should be  input from the stage 1.
+// find a good cut point to cut the CSA tree into two stages.
 
 
 endmodule
@@ -110,25 +102,57 @@ endmodule
 
 // booth4 encoding
 
-module booth4_encoding(code,encode);
+// module booth4_encoding(code,encode);
+//    input logic [2:0] code;
+//    output logic signed [2:0] encode;
+// //    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+// //    assign b={24'b0,man_b} ;
+// //    assign two_b=b<< 1;
+// //    assign minus_b=~b+1'b1;
+// //    assign minus_two_b=~two_b+1'b1;
+//     always_comb begin
+//         case (code)
+//             3'b000, 3'b111:  encode = 0;    //  0
+//             3'b001, 3'b010:  encode = 1;            //  1
+//             3'b011:          encode = 2;        //  2
+//             3'b100:          encode = -2;  // -2
+//             3'b101, 3'b110:  encode = -1;      // -1
+//             default:         encode = 0;      
+//         endcase
+//     end
+
+// endmodule
+
+module booth4_encoding(a,code,partial_product,shift);
+   input logic [23:0]a;
    input logic [2:0] code;
-   output logic signed [2:0] encode;
+   input [4:0] shift;
+   output logic [47:0] partial_product;
+
 //    logic [47:0] two_b,b,minus_b,minus_two_b;
 
-//    assign b={24'b0,man_b} ;
+//    assign b={24'b0,b} ;
 //    assign two_b=b<< 1;
 //    assign minus_b=~b+1'b1;
 //    assign minus_two_b=~two_b+1'b1;
+logic [47:0] one;
+assign one =a[23]?{24'hFFFFFF,a}:{24'b0,a};
+logic [47:0] two;
+assign two =a[23]?{3'b111,20'hFFFFF,a,1'b0}:{23'b0,a,1'b0};
+logic [47:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [47:0] minus_two;
+assign minus_two = ~two+1'b1;
+
     always_comb begin
         case (code)
-            3'b000, 3'b111:  encode = 0;    //  0
-            3'b001, 3'b010:  encode = 1;            //  1
-            3'b011:          encode = 2;        //  2
-            3'b100:          encode = -2;  // -2
-            3'b101, 3'b110:  encode = -1;      // -1
-            default:         encode = 0;      
+            3'b000, 3'b111:  partial_product = 48'b0;    //  0
+            3'b001, 3'b010:  partial_product = one<<shift;            //  1
+            3'b011:          partial_product = two<<shift;        //  2
+            3'b100:          partial_product = minus_two<<shift;  // -2
+            3'b101, 3'b110:  partial_product = minus_one<<shift;      // -1
+            default:         partial_product = 48'b0;      
         endcase
     end
-
 endmodule
-
