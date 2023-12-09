@@ -1,12 +1,18 @@
 // ignore the clk and rst first.
 
-module FMA_stage1(a,b,c,current_exp,man_a,man_b,sign_ab,sign_real_c); // 
+module FMA_stage1(a,b,c,current_exp,man_a,man_b,sign_ab,sign_real_c,op_mode,shift_ex_c); // 
 input logic [31:0]a,b,c;
 
 // output logic pipeline stage 1
 output logic [7:0] current_exp;
 output logic [23:0]man_a,man_b;
 output logic sign_a,sign_b,sign_c;
+output logic [1:0]op_mode; //00 : right shift but concat
+                           //01 : right shift but need add
+                           //10 : left  shift but concat
+                           //11 : left  shift but need add  
+output logic [73:0]shift_ex_c;
+output logic sign_ab,sign_real_c;
 logic [7:0]exp_a,exp_b,exp_c;
 logic [23:0] man_c;
 
@@ -16,7 +22,7 @@ extractor_FP_32 ex_b(b,sign_b,exp_b,man_b);
 extractor_FP_32 ex_c(c,sign_c,exp_c,man_c);
 pre_processing  pre_processing (exp_a,exp_b,exp_c,current_exp,shift,right_or_left);
 
-logic sign_ab,sign_real_c;
+
 
 assign sign_ab=sign_a+sign_b;
 
@@ -26,12 +32,19 @@ assign sign_real_c=sign_ab+sign_c;
 logic [7:0]shift; // shift abs 
 logic right_or_left; // 1 is right, 0 is left
 
-logic [47:0]c_for_right;
-assign ext_c={1'b0,man_c,23'b0};
+logic [73:0]ext_c;
+assign ext_c={26'b0,1'b0,man_c,23'b0};
 
-logic [47:0]c_for_left;
-
-
+always_comb begin
+        case (right_or_left)
+             1'b1 : op_mode=(shift>47)?2'b00:2'b01; // right
+                    shift_ex_c=ext_c>>shift;
+             1'b0 : op_mode=(shift>26)?2'b10:2'b11;
+                    shift_ex_c=ext_c<<shift;
+            default:         op_mode = 0; 
+                             shift_ex_c=0;     
+        endcase
+end
 
 
 endmodule
