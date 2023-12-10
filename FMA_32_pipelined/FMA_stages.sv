@@ -6,7 +6,6 @@ input logic [31:0]a,b,c;
 // output logic pipeline stage 1
 output logic [7:0] current_exp;
 output logic [23:0]man_a,man_b;
-output logic sign_a,sign_b,sign_c;
 output logic [1:0]op_mode; //00 : right shift but concat
                            //01 : right shift but need add
                            //10 : left  shift but concat
@@ -50,18 +49,108 @@ end
 endmodule
 
 
-module FMA_stage2();
+module FMA_stage2(current_exp,man_a,man_b,sign_ab,sign_real_c,op_mode,shift_ex_c);
 
 // Note:  in this stage, it should run the Wallace tree to handle the partial products.
 // The booth encoder result only gives the coefficients of the partial products, they still need to be shifted according to the Alg.
 // In ideal condition, the addition in the a*b+c, should be also included in the Wallace tree.
 // Find a good cut point that we dont need so many registers to cut the wallace tree into two stages.
 
-
-
 // booth4_encoder
 // CSA tree, which should includes the addition of c.  c should be  input from the stage 1.
 // find a good cut point to cut the CSA tree into two stages.
+
+input logic [7:0] current_exp;
+input logic [23:0]man_a,man_b;
+input logic [1:0]op_mode; //00 : right shift but concat
+                           //01 : right shift but need add
+                           //10 : left  shift but concat
+                           //11 : left  shift but need add  
+input logic [73:0]shift_ex_c;
+input logic sign_ab,sign_real_c;
+
+output logic [47:0] csa_final1;
+output logic [47:0] csa_final2;
+
+logic [47:0] partial_product [11:0];
+
+
+
+booth4_encoding booth4_encoding   (man_a,{man_b[1:0],1'b0},partial_product[0],5'd0);
+booth4_encoding booth4_encoding2  (man_a,man_b[3:1],partial_product[1],5'd2);
+booth4_encoding booth4_encoding3  (man_a,man_b[5:3],partial_product[2],5'd4);
+booth4_encoding booth4_encoding4  (man_a,man_b[7:5],partial_product[3],5'd6);
+booth4_encoding booth4_encoding5  (man_a,man_b[9:7],partial_product[4],5'd8);
+booth4_encoding booth4_encoding6  (man_a,man_b[11:9],partial_product[5],5'd10);
+booth4_encoding booth4_encoding7  (man_a,man_b[13:11],partial_product[6],5'd12);
+booth4_encoding booth4_encoding8  (man_a,man_b[15:13],partial_product[7],5'd14);
+booth4_encoding booth4_encoding9  (man_a,man_b[17:15],partial_product[8],5'd16);
+booth4_encoding booth4_encoding10 (man_a,man_b[19:17],partial_product[9],5'd18);
+booth4_encoding booth4_encoding11 (man_a,man_b[21:19],partial_product[10],5'd20);
+booth4_encoding booth4_encoding12 (man_a,man_b[23:21],partial_product[11],5'd22);
+
+
+function [95:0] FA_function ([47:0] x, [47:0] y, [47:0] z);
+    reg [95:0] result;
+    result[47:0] = x ^ y ^ z;         
+    result[48] = 0;                  
+    result[95:49] = (x & y) | (y & z) | (z & x); 
+    return result;
+endfunction
+
+logic [95:0] result_1,result_2,result_3,result_4;
+
+// CSA level 1 
+assign result_1 = FA_function(partial_product[0], partial_product[1], partial_product[2]);
+assign result_2 = FA_function(partial_product[3], partial_product[4], partial_product[5]);
+assign result_3 = FA_function(partial_product[6], partial_product[7], partial_product[8]);
+assign result_4 = FA_function(partial_product[9], partial_product[10], partial_product[11]);
+logic [47:0] tmp_level1 [7:0];
+assign tmp_level1[0]=result_1[47:0];
+assign tmp_level1[1]=result_1[95:48];
+assign tmp_level1[2]=result_2[47:0];
+assign tmp_level1[3]=result_2[95:48];
+assign tmp_level1[4]=result_3[47:0];
+assign tmp_level1[5]=result_3[95:48];
+assign tmp_level1[6]=result_4[47:0];
+assign tmp_level1[7]=result_4[95:48];
+
+// CSA level 2
+logic [95:0] result_5,result_6;
+assign result_5 = FA_function(tmp_level1[0],tmp_level1[1],tmp_level1[2]);
+assign result_6 = FA_function(tmp_level1[3],tmp_level1[4],tmp_level1[5]);
+logic [47:0] tmp_level2 [3:0];
+assign tmp_level2[0]=result_5[47:0];
+assign tmp_level2[1]=result_5[95:48];
+assign tmp_level2[2]=result_6[47:0];
+assign tmp_level2[3]=result_6[95:48];
+
+//CSA level 3
+logic [47:0] tmp_level3[3:0];
+logic [95:0] result_7,result_8;
+assign result_7 = FA_function(tmp_level2[0],tmp_level2[1],tmp_level2[2]);
+assign result_8 = FA_function(tmp_level2[3],tmp_level1[6],tmp_level1[7]);
+assign tmp_level3[0]=result_7[47:0];
+assign tmp_level3[1]=result_7[95:48];
+assign tmp_level3[2]=result_8[47:0];
+assign tmp_level3[3]=result_8[95:48];
+
+//CSA level 4
+logic [47:0] tmp_level4[1:0];
+logic [95:0] result_9;
+
+assign result_9 = FA_function(tmp_level3[0],tmp_level3[1],tmp_level3[2]);
+assign tmp_level4[0]=result_9[47:0];
+assign tmp_level4[1]=result_9[95:48];
+
+// CSA level 5
+
+logic [95:0] result_10;
+
+assign result_10 = FA_function(tmp_level4[0],tmp_level4[1],tmp_level3[3]);
+assign csa_final1=result_10[47:0];
+assign csa_final2=result_10[95:48];
+
 
 
 endmodule
@@ -131,30 +220,6 @@ assign right_or_left=shift_tmp[8];//1 is right, 0 is left
 
 endmodule
 
-
-// booth4 encoding
-
-// module booth4_encoding(code,encode);
-//    input logic [2:0] code;
-//    output logic signed [2:0] encode;
-// //    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-// //    assign b={24'b0,man_b} ;
-// //    assign two_b=b<< 1;
-// //    assign minus_b=~b+1'b1;
-// //    assign minus_two_b=~two_b+1'b1;
-//     always_comb begin
-//         case (code)
-//             3'b000, 3'b111:  encode = 0;    //  0
-//             3'b001, 3'b010:  encode = 1;            //  1
-//             3'b011:          encode = 2;        //  2
-//             3'b100:          encode = -2;  // -2
-//             3'b101, 3'b110:  encode = -1;      // -1
-//             default:         encode = 0;      
-//         endcase
-//     end
-
-// endmodule
 
 module booth4_encoding(a,code,partial_product,shift);
    input logic [23:0]a;
