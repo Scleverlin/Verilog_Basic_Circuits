@@ -151,7 +151,8 @@ assign result_10 = FA_function(tmp_level4[0],tmp_level4[1],tmp_level3[3]);
 assign csa_final1=result_10[47:0];
 assign csa_final2=result_10[95:48];
 
-
+// in right shift mode, need 26+2+23 bits adder
+// in left shift mode, it can be fused with CSA tree.
 
 endmodule
 
