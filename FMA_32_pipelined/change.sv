@@ -10,3 +10,5 @@ booth4_encoding booth4_encoding9  (man_a,man_b[17:15],partial_product[8],5'd16);
 booth4_encoding booth4_encoding10 (man_a,man_b[19:17],partial_product[9],5'd18);
 booth4_encoding booth4_encoding11 (man_a,man_b[21:19],partial_product[10],5'd20);
 booth4_encoding booth4_encoding12 (man_a,man_b[23:21],partial_product[11],5'd22);
+
+new 
