@@ -58,19 +58,35 @@ logic [49:0] csa_final2;
 
 logic [49:0] partial_product [12:0];
 
-booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
-booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
-booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
-booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
-booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
-booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
-booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
-booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
-booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
-booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
-booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
-booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
-booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
+// booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
+// booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
+// booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
+// booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
+// booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
+// booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
+// booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
+// booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
+// booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
+// booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
+// booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
+// booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
+// booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
+
+
+booth4_encoding_0 booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0]);
+booth4_encoding_1 booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1]);
+booth4_encoding_2 booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2]);
+booth4_encoding_3 booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3]);
+booth4_encoding_4 booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4]);
+booth4_encoding_5 booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5]);
+booth4_encoding_6 booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6]);
+booth4_encoding_7 booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7]);
+booth4_encoding_8 booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8]);
+booth4_encoding_9 booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9]);
+booth4_encoding_10 booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10]);
+booth4_encoding_11 booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11]);
+booth4_encoding_12 booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12]);
+
 function [99:0] FA_function ([49:0] x, [49:0] y, [49:0] z);
     reg [99:0] result;
     result[49:0] = x ^ y ^ z;         
@@ -650,4 +666,415 @@ module leading_zero_counter_76 (
         endcase
     end
 
+endmodule
+
+
+
+module booth4_encoding_0 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = one;            //  1
+            3'b011:          partial_product = two;        //  2
+            3'b100:          partial_product = minus_two;  // -2
+            3'b101, 3'b110:  partial_product = minus_one;      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+
+module booth4_encoding_1 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[47:0],2'b0};            //  1
+            3'b011:          partial_product = {two[47:0],2'b0};        //  2
+            3'b100:          partial_product = {minus_two[47:0],2'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[47:0],2'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+
+module booth4_encoding_2 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[45:0],4'b0};            //  1
+            3'b011:          partial_product = {two[45:0],4'b0};        //  2
+            3'b100:          partial_product = {minus_two[45:0],4'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[45:0],4'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+
+module booth4_encoding_3 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[43:0],6'b0};            //  1
+            3'b011:          partial_product = {two[43:0],6'b0};        //  2
+            3'b100:          partial_product = {minus_two[43:0],6'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[43:0],6'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_4 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[41:0],8'b0};            //  1
+            3'b011:          partial_product = {two[41:0],8'b0};        //  2
+            3'b100:          partial_product = {minus_two[41:0],8'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[41:0],8'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_5 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[39:0],10'b0};            //  1
+            3'b011:          partial_product = {two[39:0],10'b0};        //  2
+            3'b100:          partial_product = {minus_two[39:0],10'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[39:0],10'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_6 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[37:0],12'b0};            //  1
+            3'b011:          partial_product = {two[37:0],12'b0};        //  2
+            3'b100:          partial_product = {minus_two[37:0],12'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[37:0],12'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_7 (a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[35:0],14'b0};            //  1
+            3'b011:          partial_product = {two[35:0],14'b0};        //  2
+            3'b100:          partial_product = {minus_two[35:0],14'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[35:0],14'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+
+module booth4_encoding_8(a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[33:0],16'b0};            //  1
+            3'b011:          partial_product = {two[33:0],16'b0};        //  2
+            3'b100:          partial_product = {minus_two[33:0],16'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[33:0],16'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_9(a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[31:0],18'b0};            //  1
+            3'b011:          partial_product = {two[31:0],18'b0};        //  2
+            3'b100:          partial_product = {minus_two[31:0],18'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[31:0],18'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_10(a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[29:0],20'b0};            //  1
+            3'b011:          partial_product = {two[29:0],20'b0};        //  2
+            3'b100:          partial_product = {minus_two[29:0],20'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[29:0],20'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+
+module booth4_encoding_11(a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[27:0],22'b0};            //  1
+            3'b011:          partial_product = {two[27:0],22'b0};        //  2
+            3'b100:          partial_product = {minus_two[27:0],22'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[27:0],22'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
+endmodule
+module booth4_encoding_12(a,code,partial_product);
+   input logic [24:0]a;
+   input logic [2:0] code;
+   output logic [49:0] partial_product;
+
+//    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+//    assign b={24'b0,b} ;
+//    assign two_b=b<< 1;
+//    assign minus_b=~b+1'b1;
+//    assign minus_two_b=~two_b+1'b1;
+logic [49:0] one;
+assign one ={25'b0,a};
+logic [49:0] two;
+assign two ={24'b0,a,1'b0};
+logic [49:0] minus_one;
+assign minus_one = ~one+1'b1;
+logic [49:0] minus_two;
+assign minus_two = ~two+1'b1;
+
+always_comb begin
+        case (code)
+            3'b000, 3'b111:  partial_product = 50'b0;    //  0
+            3'b001, 3'b010:  partial_product = {one[25:0],24'b0};            //  1
+            3'b011:          partial_product = {two[25:0],24'b0};        //  2
+            3'b100:          partial_product = {minus_two[25:0],24'b0};  // -2
+            3'b101, 3'b110:  partial_product = {minus_one[25:0],24'b0};      // -1
+            default:         partial_product = 50'b0;      
+        endcase
+    end
 endmodule
