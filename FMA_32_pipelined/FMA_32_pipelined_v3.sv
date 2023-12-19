@@ -120,9 +120,6 @@ logic right_or_left_stage3_reg;
 logic cin2_reg;
 logic [7:0]left_mul_reg;
 logic [35:0]left_ext_c_reg;
-
-FMA_stage4 stage4 (func_sign_reg,left_mul_reg,left_ext_c_reg,add_result_tmp_reg,cin2_reg,current_exp_stage3_reg,mode_reg,right_or_left_stage3_reg,exp_c_stage3_reg,left_shift_add_result, current_exp_round,final_sign_v2,exp_c_final,shift_left,mode_and_direction,real_shift_stage4);
-
 logic [1:0] mode_and_direction;
 logic [7:0] current_exp_round;
 logic final_sign_v2;
@@ -130,6 +127,10 @@ logic [7:0] exp_c_final;
 logic [37:0]left_shift_add_result;
 logic signed [8:0]real_shift_stage4;
 logic signed [8:0]shift_left;
+
+FMA_stage4 stage4 (func_sign_reg,left_mul_reg,left_ext_c_reg,add_result_tmp_reg,cin2_reg,current_exp_stage3_reg,mode_reg,right_or_left_stage3_reg,exp_c_stage3_reg,left_shift_add_result, current_exp_round,final_sign_v2,exp_c_final,shift_left,mode_and_direction,real_shift_stage4);
+
+
 
 
 logic [1:0] mode_and_direction_reg;
@@ -139,10 +140,11 @@ logic [7:0] exp_c_final_reg;
 logic [37:0]left_shift_add_result_reg;
 logic signed [8:0]real_shift_stage4_reg;
 logic signed [8:0]shift_left_reg;
+logic [31:0] result_wire;
 
 FMA_stage5 stage5 (real_shift_stage4_reg, mode_and_direction_reg, left_shift_add_result_reg     ,shift_left_reg, current_exp_round_reg,final_sign_v2_reg,exp_c_final_reg,result_wire);
 
-logic [31:0] result_wire;
+
 always_ff @(posedge clk or posedge rst)
 begin
    if (rst)begin
