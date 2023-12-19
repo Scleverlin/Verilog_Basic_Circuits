@@ -1,4 +1,4 @@
-`include "FMA_32_pipelined_v2.sv"
+`include "FMA_32_pipelined_v3.sv"
 
 module FMA_32_tb;
 

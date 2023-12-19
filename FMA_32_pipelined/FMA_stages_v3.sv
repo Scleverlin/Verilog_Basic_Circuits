@@ -211,7 +211,7 @@ assign add_result_tmp[35:0]=half_result;
 endmodule
 
 
-module FMA_stage4(func_sign,left_mul,left_ext_c,add_result_tmp,cin2,current_exp,mode,right_or_left,exp_c,left_shift_add_result, current_exp_round,final_sign_v2,exp_c_final,mode_and_direction,exp_shift,rounded_man);
+module FMA_stage4(func_sign,left_mul,left_ext_c,add_result_tmp,cin2,current_exp,mode,right_or_left,exp_c, current_exp_round,final_sign_v2,exp_c_final,mode_and_direction,exp_shift,rounded_man);
 input logic [7:0]left_mul;
 input logic func_sign;
 input logic [35:0]left_ext_c;
