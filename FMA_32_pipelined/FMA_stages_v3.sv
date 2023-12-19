@@ -58,34 +58,34 @@ logic [49:0] csa_final2;
 
 logic [49:0] partial_product [12:0];
 
-// booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
-// booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
-// booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
-// booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
-// booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
-// booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
-// booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
-// booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
-// booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
-// booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
-// booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
-// booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
-// booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
+booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
+booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
+booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
+booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
+booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
+booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
+booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
+booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
+booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
+booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
+booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
+booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
+booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
 
 
-booth4_encoding_0 booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0]);
-booth4_encoding_1 booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1]);
-booth4_encoding_2 booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2]);
-booth4_encoding_3 booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3]);
-booth4_encoding_4 booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4]);
-booth4_encoding_5 booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5]);
-booth4_encoding_6 booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6]);
-booth4_encoding_7 booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7]);
-booth4_encoding_8 booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8]);
-booth4_encoding_9 booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9]);
-booth4_encoding_10 booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10]);
-booth4_encoding_11 booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11]);
-booth4_encoding_12 booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12]);
+// booth4_encoding_0 booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0]);
+// booth4_encoding_1 booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1]);
+// booth4_encoding_2 booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2]);
+// booth4_encoding_3 booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3]);
+// booth4_encoding_4 booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4]);
+// booth4_encoding_5 booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5]);
+// booth4_encoding_6 booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6]);
+// booth4_encoding_7 booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7]);
+// booth4_encoding_8 booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8]);
+// booth4_encoding_9 booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9]);
+// booth4_encoding_10 booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10]);
+// booth4_encoding_11 booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11]);
+// booth4_encoding_12 booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12]);
 
 function [99:0] FA_function ([49:0] x, [49:0] y, [49:0] z);
     reg [99:0] result;
@@ -207,21 +207,22 @@ assign func_sign=sign[1];
 
 logic [75:0] input_b;
 logic cin;
-logic [35:0]half_result;
-logic cout;
+// logic [35:0]half_result;
+// logic cout;
 
 assign cin=(sign[0])?1'b1:1'b0;
 
 assign input_b=(sign[0])?{1'b1,~shift_ex_c}:{1'b0,shift_ex_c};
 assign left_ext_c=input_b[75:40];
-logic [35:0]tmp_b;
-logic [3:0]tmp_b_2;
-assign tmp_b=input_b[35:0];
-assign tmp_b_2=input_b[39:36];
-adder_36_cin adder_36 (mul[35:0],tmp_b,cin,half_result,cout);
-adder_4_cin  adder_4  (mul[39:36],tmp_b_2,cout,add_result_tmp[39:36],cin2);
+// logic [35:0]tmp_b;
+// logic [3:0]tmp_b_2;
+// assign tmp_b=input_b[35:0];
+// assign tmp_b_2=input_b[39:36];
+// adder_36_cin adder_36 (mul[35:0],tmp_b,cin,half_result,cout);
+// adder_4_cin  adder_4  (mul[39:36],tmp_b_2,cout,add_result_tmp[39:36],cin2);
 
-assign add_result_tmp[35:0]=half_result;
+adder_40  HCA_32_PLUS_8 (mul[39:0],input_b[39:0],cin,add_result_tmp[39:0],cin2);
+
 
 
 endmodule
@@ -247,9 +248,10 @@ assign current_exp_round=current_exp;
 
 assign exp_c_final=exp_c;
 assign mode_and_direction={mode,right_or_left};
-
+logic cout;
 logic [35:0]half_result;
-adder_36_no_cout  adder_36_stage4 ({28'b0,left_mul},left_ext_c,cin2,half_result);
+// adder_36_no_cout  adder_36_stage4 ({28'b0,left_mul},left_ext_c,cin2,half_result);
+adder_36 hca_32_plus_4 ({28'b0,left_mul},left_ext_c,cin2,half_result,cout);
 logic [75:0]add_result_tmp_2,add_result;
 
 assign add_result_tmp_2={half_result,add_result_tmp};
@@ -670,411 +672,264 @@ endmodule
 
 
 
-module booth4_encoding_0 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = one;            //  1
-            3'b011:          partial_product = two;        //  2
-            3'b100:          partial_product = minus_two;  // -2
-            3'b101, 3'b110:  partial_product = minus_one;      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
+module P_G_gen_hc_32 (a,b,cin,p,g);
+input [31:0]a;
+input [31:0]b;
+input cin;
+output [32:0]p;
+output [32:0]g;
+assign g[0]=cin;
+assign p[0]=0;
+assign p[32:1]=a^b;
+assign g[32:1]=a&b;
 endmodule
 
-module booth4_encoding_1 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
+module HC_32_BK0_KS5 (a,b,cin,sum,cout);
 
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
+input [32:1]a;
+input [32:1]b;
+input cin;
+output [32:1]sum;
+output cout;
+wire [32:0]p;
+wire [32:0]g;
+P_G_gen_hc_32 pg_gen_hc (a,b,cin,p,g);
+genvar i;
 
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[47:0],2'b0};            //  1
-            3'b011:          partial_product = {two[47:0],2'b0};        //  2
-            3'b100:          partial_product = {minus_two[47:0],2'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[47:0],2'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
+wire [31:0] gnpg_level1;
+wire [31:0] pp_level1;
+assign gnpg_level1[0]=g[0];
+assign pp_level1[0]=p[0];
+        generate
+            for (i = 1;i<32 ;i=i+1 ) begin
+             assign gnpg_level1[i]=g[i]|p[i]&g[i-1];  
+             assign pp_level1[i]=p[i]&p[i-1];            
+            end
+        endgenerate
+wire [31:0] gnpg_level2;
+wire [31:0] pp_level2;
+       generate
+         for (i = 2;i<32 ;i=i+1 ) begin
+           assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
+           assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<2;i=i+1) begin
+            assign gnpg_level2[i]=gnpg_level1[i];
+            assign pp_level2[i]=pp_level1[i];
+         end
+       endgenerate  
+         
+wire [31:0] gnpg_level3;
+wire [31:0] pp_level3;
+       generate
+         for (i = 4;i<32 ;i=i+1 ) begin
+           assign gnpg_level3[i]=gnpg_level2[i]|pp_level2[i]&gnpg_level2[i-4];  
+           assign pp_level3[i]=pp_level2[i]&pp_level2[i-4];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<4;i=i+1) begin
+            assign gnpg_level3[i]=gnpg_level2[i];
+            assign pp_level3[i]=pp_level2[i];
+         end
+       endgenerate  
+         
+wire [31:0] gnpg_level4;
+wire [31:0] pp_level4;
+       generate
+         for (i = 8;i<32 ;i=i+1 ) begin
+           assign gnpg_level4[i]=gnpg_level3[i]|pp_level3[i]&gnpg_level3[i-8];  
+           assign pp_level4[i]=pp_level3[i]&pp_level3[i-8];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<8;i=i+1) begin
+            assign gnpg_level4[i]=gnpg_level3[i];
+            assign pp_level4[i]=pp_level3[i];
+         end
+       endgenerate  
+         
+wire [31:0] gnpg_level5;
+wire [31:0] pp_level5;
+       generate
+         for (i = 16;i<32 ;i=i+1 ) begin
+           assign gnpg_level5[i]=gnpg_level4[i]|pp_level4[i]&gnpg_level4[i-16];  
+           assign pp_level5[i]=pp_level4[i]&pp_level4[i-16];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<16;i=i+1) begin
+            assign gnpg_level5[i]=gnpg_level4[i];
+            assign pp_level5[i]=pp_level4[i];
+         end
+       endgenerate  
+         
+assign cout= g[32]|p[32]&gnpg_level5[31];
+generate
+   for (i = 1;i<33 ;i=i+1 ) begin
+        assign  sum[i]= p[i]^gnpg_level5[i-1];    
+   end
+endgenerate
+ // ks adder, no post process
 endmodule
 
-module booth4_encoding_2 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
 
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[45:0],4'b0};            //  1
-            3'b011:          partial_product = {two[45:0],4'b0};        //  2
-            3'b100:          partial_product = {minus_two[45:0],4'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[45:0],4'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
+module P_G_gen_hc_4 (a,b,cin,p,g);
+input [3:0]a;
+input [3:0]b;
+input cin;
+output [4:0]p;
+output [4:0]g;
+assign g[0]=cin;
+assign p[0]=0;
+assign p[4:1]=a^b;
+assign g[4:1]=a&b;
 endmodule
 
-module booth4_encoding_3 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
+module HC_4_BK0_KS2 (a,b,cin,sum,cout);
 
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
+input [4:1]a;
+input [4:1]b;
+input cin;
+output [4:1]sum;
+output cout;
+wire [4:0]p;
+wire [4:0]g;
+P_G_gen_hc_4 pg_gen_hc (a,b,cin,p,g);
+genvar i;
 
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[43:0],6'b0};            //  1
-            3'b011:          partial_product = {two[43:0],6'b0};        //  2
-            3'b100:          partial_product = {minus_two[43:0],6'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[43:0],6'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
-endmodule
-module booth4_encoding_4 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[41:0],8'b0};            //  1
-            3'b011:          partial_product = {two[41:0],8'b0};        //  2
-            3'b100:          partial_product = {minus_two[41:0],8'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[41:0],8'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
-endmodule
-module booth4_encoding_5 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[39:0],10'b0};            //  1
-            3'b011:          partial_product = {two[39:0],10'b0};        //  2
-            3'b100:          partial_product = {minus_two[39:0],10'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[39:0],10'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
-endmodule
-module booth4_encoding_6 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[37:0],12'b0};            //  1
-            3'b011:          partial_product = {two[37:0],12'b0};        //  2
-            3'b100:          partial_product = {minus_two[37:0],12'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[37:0],12'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
-endmodule
-module booth4_encoding_7 (a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[35:0],14'b0};            //  1
-            3'b011:          partial_product = {two[35:0],14'b0};        //  2
-            3'b100:          partial_product = {minus_two[35:0],14'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[35:0],14'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
+wire [3:0] gnpg_level1;
+wire [3:0] pp_level1;
+assign gnpg_level1[0]=g[0];
+assign pp_level1[0]=p[0];
+        generate
+            for (i = 1;i<4 ;i=i+1 ) begin
+             assign gnpg_level1[i]=g[i]|p[i]&g[i-1];  
+             assign pp_level1[i]=p[i]&p[i-1];            
+            end
+        endgenerate
+wire [3:0] gnpg_level2;
+wire [3:0] pp_level2;
+       generate
+         for (i = 2;i<4 ;i=i+1 ) begin
+           assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
+           assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<2;i=i+1) begin
+            assign gnpg_level2[i]=gnpg_level1[i];
+            assign pp_level2[i]=pp_level1[i];
+         end
+       endgenerate  
+         
+assign cout= g[4]|p[4]&gnpg_level2[3];
+generate
+   for (i = 1;i<5 ;i=i+1 ) begin
+        assign  sum[i]= p[i]^gnpg_level2[i-1];    
+   end
+endgenerate
+ // ks adder, no post process
 endmodule
 
-module booth4_encoding_8(a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
 
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[33:0],16'b0};            //  1
-            3'b011:          partial_product = {two[33:0],16'b0};        //  2
-            3'b100:          partial_product = {minus_two[33:0],16'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[33:0],16'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
-endmodule
-module booth4_encoding_9(a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[31:0],18'b0};            //  1
-            3'b011:          partial_product = {two[31:0],18'b0};        //  2
-            3'b100:          partial_product = {minus_two[31:0],18'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[31:0],18'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
-endmodule
-module booth4_encoding_10(a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
-
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[29:0],20'b0};            //  1
-            3'b011:          partial_product = {two[29:0],20'b0};        //  2
-            3'b100:          partial_product = {minus_two[29:0],20'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[29:0],20'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
+module P_G_gen_hc_8 (a,b,cin,p,g);
+input [7:0]a;
+input [7:0]b;
+input cin;
+output [8:0]p;
+output [8:0]g;
+assign g[0]=cin;
+assign p[0]=0;
+assign p[8:1]=a^b;
+assign g[8:1]=a&b;
 endmodule
 
-module booth4_encoding_11(a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
+module HC_8_BK0_KS3 (a,b,cin,sum,cout);
 
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
+input [8:1]a;
+input [8:1]b;
+input cin;
+output [8:1]sum;
+output cout;
+wire [8:0]p;
+wire [8:0]g;
+P_G_gen_hc_8 pg_gen_hc (a,b,cin,p,g);
+genvar i;
 
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
-
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[27:0],22'b0};            //  1
-            3'b011:          partial_product = {two[27:0],22'b0};        //  2
-            3'b100:          partial_product = {minus_two[27:0],22'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[27:0],22'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
+wire [7:0] gnpg_level1;
+wire [7:0] pp_level1;
+assign gnpg_level1[0]=g[0];
+assign pp_level1[0]=p[0];
+        generate
+            for (i = 1;i<8 ;i=i+1 ) begin
+             assign gnpg_level1[i]=g[i]|p[i]&g[i-1];  
+             assign pp_level1[i]=p[i]&p[i-1];            
+            end
+        endgenerate
+wire [7:0] gnpg_level2;
+wire [7:0] pp_level2;
+       generate
+         for (i = 2;i<8 ;i=i+1 ) begin
+           assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
+           assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<2;i=i+1) begin
+            assign gnpg_level2[i]=gnpg_level1[i];
+            assign pp_level2[i]=pp_level1[i];
+         end
+       endgenerate  
+         
+wire [7:0] gnpg_level3;
+wire [7:0] pp_level3;
+       generate
+         for (i = 4;i<8 ;i=i+1 ) begin
+           assign gnpg_level3[i]=gnpg_level2[i]|pp_level2[i]&gnpg_level2[i-4];  
+           assign pp_level3[i]=pp_level2[i]&pp_level2[i-4];            
+         end
+       endgenerate
+       generate 
+         for (i=0;i<4;i=i+1) begin
+            assign gnpg_level3[i]=gnpg_level2[i];
+            assign pp_level3[i]=pp_level2[i];
+         end
+       endgenerate  
+         
+assign cout= g[8]|p[8]&gnpg_level3[7];
+generate
+   for (i = 1;i<9 ;i=i+1 ) begin
+        assign  sum[i]= p[i]^gnpg_level3[i-1];    
+   end
+endgenerate
+ // ks adder, no post process
 endmodule
-module booth4_encoding_12(a,code,partial_product);
-   input logic [24:0]a;
-   input logic [2:0] code;
-   output logic [49:0] partial_product;
 
-//    logic [47:0] two_b,b,minus_b,minus_two_b;
+module adder_40 (a,b,cin,sum,cout);
+input [39:0]a,b;
+input cin;
+output [39:0]sum;
+output cout;
+logic cout1;
 
-//    assign b={24'b0,b} ;
-//    assign two_b=b<< 1;
-//    assign minus_b=~b+1'b1;
-//    assign minus_two_b=~two_b+1'b1;
-logic [49:0] one;
-assign one ={25'b0,a};
-logic [49:0] two;
-assign two ={24'b0,a,1'b0};
-logic [49:0] minus_one;
-assign minus_one = ~one+1'b1;
-logic [49:0] minus_two;
-assign minus_two = ~two+1'b1;
+HC_32_BK0_KS5 hca32 (a[31:0],b[31:0],cin,sum[31:0],cout1);
+HC_8_BK0_KS3 hca8 (a[39:32],b[39:32],cout1,sum[39:32],cout);
 
-always_comb begin
-        case (code)
-            3'b000, 3'b111:  partial_product = 50'b0;    //  0
-            3'b001, 3'b010:  partial_product = {one[25:0],24'b0};            //  1
-            3'b011:          partial_product = {two[25:0],24'b0};        //  2
-            3'b100:          partial_product = {minus_two[25:0],24'b0};  // -2
-            3'b101, 3'b110:  partial_product = {minus_one[25:0],24'b0};      // -1
-            default:         partial_product = 50'b0;      
-        endcase
-    end
 endmodule
+
+
+module adder_36 (a,b,cin,sum,cout);
+input [35:0]a,b;
+input cin;
+output [35:0]sum;
+output cout;
+logic cout1;
+
+HC_32_BK0_KS5 hca32 (a[31:0],b[31:0],cin,sum[31:0],cout1);
+HC_4_BK0_KS2 hca4 (a[35:32],b[35:32],cout1,sum[35:32],cout);
+
+endmodule
+
