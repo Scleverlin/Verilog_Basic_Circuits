@@ -224,9 +224,9 @@ assign final_sign_v2=final_sign;
 assign exp_c_final=exp_c;
 assign mode_and_direction={mode,right_or_left};
 
-
-leading_zero_counter_76 leading_zero_counter_76 (add_result,shift_tmp );
 logic [6:0]shift_tmp;
+leading_zero_counter_76 leading_zero_counter_76 (add_result,shift_tmp );
+
 
 logic signed [8:0]real_shift;
 
