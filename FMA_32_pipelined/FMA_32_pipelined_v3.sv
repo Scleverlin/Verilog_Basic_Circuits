@@ -44,7 +44,7 @@ logic [1:0] mode_and_direction;
 logic [7:0] current_exp_round;
 logic final_sign_v2;
 logic [7:0] exp_c_final;
-logic [38:0]left_shift_add_result;
+logic [37:0]left_shift_add_result;
 logic signed [8:0]real_shift_stage4;
 logic signed [8:0]shift_left;
 FMA_stage4 stage4 (func_sign,left_mul,left_ext_c,add_result_tmp,cin2,current_exp_stage3,mode,right_or_left_stage3,exp_c_stage3,left_shift_add_result, current_exp_round,final_sign_v2,exp_c_final,shift_left,mode_and_direction,real_shift_stage4);
@@ -127,7 +127,7 @@ logic [1:0] mode_and_direction;
 logic [7:0] current_exp_round;
 logic final_sign_v2;
 logic [7:0] exp_c_final;
-logic [38:0]left_shift_add_result;
+logic [37:0]left_shift_add_result;
 logic signed [8:0]real_shift_stage4;
 logic signed [8:0]shift_left;
 
@@ -136,7 +136,7 @@ logic [1:0] mode_and_direction_reg;
 logic [7:0] current_exp_round_reg;
 logic final_sign_v2_reg;
 logic [7:0] exp_c_final_reg;
-logic [38:0]left_shift_add_result_reg;
+logic [37:0]left_shift_add_result_reg;
 logic signed [8:0]real_shift_stage4_reg;
 logic signed [8:0]shift_left_reg;
 

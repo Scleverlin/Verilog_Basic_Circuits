@@ -1,4 +1,4 @@
-module leading_zero_counter (
+module leading_zero_counter_76 (
     input [75:0] data,
     output reg [6:0] lz_count
 );
@@ -81,7 +81,7 @@ module leading_zero_counter (
             76'b00000000000000000000000000000000000000000000000000000000000000000000000001??: lz_count = 73;
             76'b000000000000000000000000000000000000000000000000000000000000000000000000001?: lz_count = 74;
             76'b0000000000000000000000000000000000000000000000000000000000000000000000000001: lz_count = 75;
-            default: lz_count = 76; // for unknown or high-impedance states
+            default: lz_count = 75; // for unknown or high-impedance states
         endcase
     end
 
