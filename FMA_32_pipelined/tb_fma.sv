@@ -5,27 +5,27 @@ module FMA_32_tb;
     // 输入和输出
     reg [31:0] a, b, c;
     wire [31:0] result;
-//    logic clk,rst;
+   logic clk,rst;
     // 实例化FMA_32模块
-    FMA_32_pipelined_v3 uut(
-        .a(a),
-        .b(b),
-        .c(c),
-        .result(result)
-    );
-    // FMA_clk uut(
-    //     .clk(clk),
-    //     .rst(rst),
+    // FMA_32_pipelined_v3 uut(
     //     .a(a),
     //     .b(b),
     //     .c(c),
     //     .result(result)
     // );
+    FMA_clk uut(
+        .clk(clk),
+        .rst(rst),
+        .a(a),
+        .b(b),
+        .c(c),
+        .result(result)
+    );
 
-//  initial begin
-//   clk=0;
-//      forever #5 clk = ~clk;  
-// end 
+ initial begin
+  clk=0;
+     forever #5 clk = ~clk;  
+end 
 
 real a_real, b_real, c_real, result_real;
     // 生成波形文件
