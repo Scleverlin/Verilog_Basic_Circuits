@@ -165,7 +165,7 @@ endmodule
 
 
 
-module FMA_stage3(r_or_l,shift_ex_c,e_c,op_mode,cur_exp,mul,sign,final_sign,add_result,current_exp,exp_c,mode,right_or_left);
+module FMA_stage3(r_or_l,shift_ex_c,e_c,op_mode,cur_exp,mul,sign,add_result_tmp,current_exp,exp_c,mode,right_or_left,cin2,left_mul,left_ext_c,func_sign);
 input logic r_or_l;
 input logic [74:0]shift_ex_c;
 input logic [7:0]e_c;
@@ -173,60 +173,80 @@ input  logic op_mode;
 input  logic [7:0]cur_exp;
 input  logic [47:0]mul;
 input  logic [1:0] sign;
-output logic  [75:0]  add_result;
+output logic  [39:0] add_result_tmp;
 output logic [7:0]current_exp;
 output logic [7:0] exp_c;
-output logic final_sign;
 output logic mode;
+output logic func_sign;
 output logic right_or_left;
-
-
+output logic cin2;
+output logic [7:0]left_mul;
+output logic [35:0]left_ext_c;
+assign left_mul=mul[47:40];
 assign right_or_left=r_or_l;
 assign mode=op_mode;
 assign exp_c=e_c;
 assign current_exp=cur_exp;
+assign func_sign=sign[1];   
 
-
-logic [75:0]add_result_tmp;
 logic [75:0] input_b;
 logic cin;
+logic [35:0]half_result;
+logic cout;
 
 assign cin=(sign[0])?1'b1:1'b0;
+
 assign input_b=(sign[0])?{1'b1,~shift_ex_c}:{1'b0,shift_ex_c};
+assign left_ext_c=input_b[75:40];
+logic [35:0]tmp_b;
+logic [3:0]tmp_b_2;
+assign tmp_b=input_b[35:0];
+assign tmp_b_2=input_b[39:36];
+adder_36_cin adder_36 (mul[35:0],tmp_b,cin,half_result,cout);
+adder_4_cin  adder_4  (mul[39:36],tmp_b_2,cout,add_result_tmp[39:36],cin2);
 
-adder_76 adder_76({28'b0,mul},input_b,cin,add_result_tmp);
-// assign add_result_tmp=(sign[0])?
-logic sign_of_add;
-assign sign_of_add=add_result_tmp[75];
-assign add_result=(sign_of_add)?~add_result_tmp+1'b1:add_result_tmp;
+assign add_result_tmp[35:0]=half_result;
 
-assign final_sign=sign[1]+sign_of_add;
 
 endmodule
 
 
-module FMA_stage4(add_result,current_exp,final_sign,mode,right_or_left,exp_c,rounded_man, current_exp_round,final_sign_v2,exp_c_final,exp_shift,mode_and_direction);
-
-input logic [75:0]add_result;
+module FMA_stage4(func_sign,left_mul,left_ext_c,add_result_tmp,cin2,current_exp,mode,right_or_left,exp_c,left_shift_add_result, current_exp_round,final_sign_v2,exp_c_final,shift_left,mode_and_direction,real_shift);
+input logic [7:0]left_mul;
+input logic func_sign;
+input logic [35:0]left_ext_c;
+input logic [39:0]add_result_tmp;
+input logic cin2;
 input logic [7:0]current_exp;
 input logic [7:0] exp_c;
-input logic final_sign;
 input logic mode;
 input logic right_or_left;
 output logic [1:0] mode_and_direction;
-output logic [26:0] rounded_man;
 output logic [7:0] current_exp_round;
 output logic final_sign_v2;
 output logic [7:0] exp_c_final;
-output logic signed [7:0] exp_shift;
+output logic [38:0]left_shift_add_result;
+output logic signed [8:0]real_shift;
+output logic signed [8:0]shift_left;
 assign current_exp_round=current_exp;
-assign final_sign_v2=final_sign;
+
 assign exp_c_final=exp_c;
 assign mode_and_direction={mode,right_or_left};
 
+logic [35:0]half_result;
+adder_36_no_cout  adder_36_stage4 ({28'b0,left_mul},left_ext_c,cin2,half_result);
+logic [75:0]add_result_tmp_2,add_result;
+
+assign add_result_tmp_2={half_result,add_result_tmp};
+logic sign_of_add;
+assign sign_of_add=add_result_tmp_2[75];
+assign add_result=(sign_of_add)?~add_result_tmp_2+1'b1:add_result_tmp_2;
+assign final_sign_v2=func_sign+sign_of_add;
+
+
 function automatic [7:0] leading_zeros_count;
         input[75:0] x;
-        for(leading_zeros_count = 0; leading_zeros_count <= 75; leading_zeros_count = leading_zeros_count + 1)
+        for(leading_zeros_count = 0; leading_zeros_count <= 37; leading_zeros_count = leading_zeros_count + 1)
             if(x[75-leading_zeros_count]) break;
 endfunction
 
@@ -234,33 +254,54 @@ logic [7:0]shift_tmp;
 
 assign shift_tmp = leading_zeros_count(add_result);
 
-logic signed [8:0]real_shift;
+
 
 logic signed [8:0] shift_max_check;
-assign shift_max_check={1'b0,shift_tmp}-46;
+assign shift_max_check={1'b0,shift_tmp}-29;
 
-assign real_shift=($signed({1'b0, current_exp})>$signed(shift_max_check))?{1'b0,shift_tmp}:{1'b0,current_exp};
-// assign real_shift = ((shift_tmp-47)>current_exp)?{1'b0,current_exp}:{1'b0,shift_tmp};
+assign shift_left=$signed({1'b0, current_exp})-$signed(shift_max_check);
+
+assign real_shift=(~shift_left[8])?{1'b0,shift_tmp}:{1'b0,current_exp};
+
 logic  [75:0]shift_add_result;
 assign shift_add_result=add_result<<real_shift;
-assign rounded_man=shift_add_result[75:49];
 
-assign exp_shift= 8'd29-real_shift[7:0];
-
+assign left_shift_add_result=shift_add_result[75:37];
 endmodule
 
-module FMA_stage5 (mode_and_direction,rounded_man, current_exp_round,final_sign_v2,exp_c_final,exp_shift,result);
+module FMA_stage5 (real_shift_stage4, mode_and_direction, left_shift_add_result     ,shift_left, current_exp_round,final_sign_v2,exp_c_final,result);
 input logic [1:0] mode_and_direction;
-input logic [26:0] rounded_man;
+input logic signed [8:0]real_shift_stage4;
+input logic [38:0]left_shift_add_result;
+input logic signed [8:0]shift_left;
 input logic [7:0] current_exp_round;
 input logic final_sign_v2;
 input logic [7:0] exp_c_final;
-input logic signed [7:0] exp_shift;
+
 
 output logic [31:0] result;
 
-logic guard,round,sticky;
 
+function automatic [7:0] leading_zeros_count;
+        input[38:0] x;
+        for(leading_zeros_count = 0; leading_zeros_count <= 38; leading_zeros_count = leading_zeros_count + 1)
+            if(x[38-leading_zeros_count]) break;
+endfunction
+
+logic [7:0]shift_tmp;
+assign shift_tmp = leading_zeros_count(left_shift_add_result);
+logic signed [8:0]real_shift;
+logic signed [8:0] shift_max_check;
+assign shift_max_check={1'b0,shift_tmp}+8;
+assign real_shift=(shift_left[8])?9'b0:(shift_max_check>shift_left)?shift_left:{1'b0,shift_tmp};
+logic [38:0]final_shift_result;
+assign final_shift_result=left_shift_add_result<<real_shift;
+logic [7:0]exp_shift;
+assign exp_shift= 8'd29-real_shift_stage4[7:0]-real_shift[7:0];
+
+logic [26:0]rounded_man;
+assign rounded_man=final_shift_result[38:12];
+logic guard,round,sticky;
 assign guard=(mode_and_direction[1])?rounded_man[2]:1'b0;
 assign round=(mode_and_direction[1])?rounded_man[1]:1'b0;
 assign sticky=(mode_and_direction[1])?rounded_man[0]:1'b0;
@@ -416,5 +457,27 @@ output [75:0]add_result;
 assign add_result=a+b+cin;
 endmodule
 
+module adder_36_cin (a,b,cin,half_result,cout);
+input [35:0]a,b;
+input cin;
+output [35:0]half_result;
+output cout;
 
+assign {cout,half_result}=a+b+cin;
+endmodule
 
+module adder_36_no_cout (a,b,cin,half_result);
+input [35:0]a,b;
+input cin;
+output [35:0]half_result;
+assign half_result=a+b+cin;
+endmodule
+
+module adder_4_cin (a,b,cin,half_result,cout);
+input [3:0]a,b;
+input cin;
+output [3:0]half_result;
+output cout;
+
+assign {cout,half_result}=a+b+cin;
+endmodule
