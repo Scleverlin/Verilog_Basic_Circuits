@@ -276,6 +276,7 @@ logic [7:0]final_exp;
 always_comb begin
    case (mode_and_direction)
         2'b00:begin final_exp= exp_c_final+{7'b0,exp_add} ;end
+
         2'b11,2'b10,2'b01:begin final_exp= current_exp_round+exp_shift+{7'b0,exp_add};end
         default:begin final_exp=0; end
 endcase
