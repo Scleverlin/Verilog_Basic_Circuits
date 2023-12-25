@@ -1,0 +1,11 @@
+
+perl ./HC_adder_generator.pl -w 0 2 4
+perl ./BK_SA_adder_generator.pl -w 0 2 4
+
+perl ./HC_adder_generator.pl -w 1 1 4
+perl ./BK_SA_adder_generator.pl -w 1 1 4
+
+perl ./HC_adder_generator.pl -w 2 0 4
+perl ./BK_SA_adder_generator.pl -w 2 0 4
+
+perl ./BK_Knowles_adder_generator.pl -w 0 2 2 4

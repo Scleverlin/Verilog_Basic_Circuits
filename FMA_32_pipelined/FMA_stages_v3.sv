@@ -709,6 +709,43 @@ endmodule
 
 
 
+module adder_40 (a,b,cin,sum,cout);
+input [39:0]a,b;
+input cin;
+output [39:0]sum;
+output cout;
+logic cout1;
+
+HC_32_BK0_KS5 hca32 (a[31:0],b[31:0],cin,sum[31:0],cout1);
+HC_8_BK0_KS3 hca8 (a[39:32],b[39:32],cout1,sum[39:32],cout);
+
+endmodule
+
+
+module adder_36 (a,b,cin,sum,cout);
+input [35:0]a,b;
+input cin;
+output [35:0]sum;
+output cout;
+logic cout1;
+
+HC_32_BK0_KS5 hca32 (a[31:0],b[31:0],cin,sum[31:0],cout1);
+HC_4_BK0_KS2 hca4 (a[35:32],b[35:32],cout1,sum[35:32],cout);
+
+endmodule
+
+
+
+module AO21 ( a, b, d, y_bar );
+  input a, b, d;
+    // wire y;
+  output   y_bar;
+
+    AOI21_X2 aoi21_1 ( .A1(a), .A2(b), .B(d), .ZN(y) );
+   INV_X1 inv_1 ( .I(y), .ZN(y_bar) );
+    // AO21x1_ASAP7_75t_SL aoi21_1 (y_bar,a,b,d);
+endmodule
+
 module P_G_gen_hc_32 (a,b,cin,p,g);
 input [31:0]a;
 input [31:0]b;
@@ -738,17 +775,21 @@ wire [31:0] pp_level1;
 assign gnpg_level1[0]=g[0];
 assign pp_level1[0]=p[0];
         generate
-            for (i = 1;i<32 ;i=i+1 ) begin
-             assign gnpg_level1[i]=g[i]|p[i]&g[i-1];  
-             assign pp_level1[i]=p[i]&p[i-1];            
+            for (i = 1;i<32 ;i=i+1 ) begin:gen_1
+             //assign gnpg_level1[i]=g[i]|p[i]&g[i-1]; 
+             AO21 a1 (p[i],g[i-1],g[i],gnpg_level1[i]); 
+            //  assign pp_level1[i]=p[i]&p[i-1];    
+            AND2_X1 and1 (p[i],p[i-1],pp_level1[i]);   
             end
         endgenerate
 wire [31:0] gnpg_level2;
 wire [31:0] pp_level2;
        generate
-         for (i = 2;i<32 ;i=i+1 ) begin
-           assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
-           assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];            
+         for (i = 2;i<32 ;i=i+1 ) begin:gen_2
+           // assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
+             AO21 a22 (pp_level1[i],gnpg_level1[i-2],gnpg_level1[i],gnpg_level2[i]);
+          //  assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];  
+             AND2_X1 and2 (pp_level1[i],pp_level1[i-2],pp_level2[i]);          
          end
        endgenerate
        generate 
@@ -761,9 +802,11 @@ wire [31:0] pp_level2;
 wire [31:0] gnpg_level3;
 wire [31:0] pp_level3;
        generate
-         for (i = 4;i<32 ;i=i+1 ) begin
-           assign gnpg_level3[i]=gnpg_level2[i]|pp_level2[i]&gnpg_level2[i-4];  
-           assign pp_level3[i]=pp_level2[i]&pp_level2[i-4];            
+         for (i = 4;i<32 ;i=i+1 ) begin:gen_3
+           // assign gnpg_level3[i]=gnpg_level2[i]|pp_level2[i]&gnpg_level2[i-4];  
+             AO21 a23 (pp_level2[i],gnpg_level2[i-4],gnpg_level2[i],gnpg_level3[i]);
+          //  assign pp_level3[i]=pp_level2[i]&pp_level2[i-4];  
+             AND2_X1 and2 (pp_level2[i],pp_level2[i-4],pp_level3[i]);          
          end
        endgenerate
        generate 
@@ -776,9 +819,11 @@ wire [31:0] pp_level3;
 wire [31:0] gnpg_level4;
 wire [31:0] pp_level4;
        generate
-         for (i = 8;i<32 ;i=i+1 ) begin
-           assign gnpg_level4[i]=gnpg_level3[i]|pp_level3[i]&gnpg_level3[i-8];  
-           assign pp_level4[i]=pp_level3[i]&pp_level3[i-8];            
+         for (i = 8;i<32 ;i=i+1 ) begin:gen_4
+           // assign gnpg_level4[i]=gnpg_level3[i]|pp_level3[i]&gnpg_level3[i-8];  
+             AO21 a24 (pp_level3[i],gnpg_level3[i-8],gnpg_level3[i],gnpg_level4[i]);
+          //  assign pp_level4[i]=pp_level3[i]&pp_level3[i-8];  
+             AND2_X1 and2 (pp_level3[i],pp_level3[i-8],pp_level4[i]);          
          end
        endgenerate
        generate 
@@ -791,9 +836,11 @@ wire [31:0] pp_level4;
 wire [31:0] gnpg_level5;
 wire [31:0] pp_level5;
        generate
-         for (i = 16;i<32 ;i=i+1 ) begin
-           assign gnpg_level5[i]=gnpg_level4[i]|pp_level4[i]&gnpg_level4[i-16];  
-           assign pp_level5[i]=pp_level4[i]&pp_level4[i-16];            
+         for (i = 16;i<32 ;i=i+1 ) begin:gen_5
+           // assign gnpg_level5[i]=gnpg_level4[i]|pp_level4[i]&gnpg_level4[i-16];  
+             AO21 a25 (pp_level4[i],gnpg_level4[i-16],gnpg_level4[i],gnpg_level5[i]);
+          //  assign pp_level5[i]=pp_level4[i]&pp_level4[i-16];  
+             AND2_X1 and2 (pp_level4[i],pp_level4[i-16],pp_level5[i]);          
          end
        endgenerate
        generate 
@@ -809,66 +856,7 @@ generate
         assign  sum[i]= p[i]^gnpg_level5[i-1];    
    end
 endgenerate
- // ks adder, no post process
-endmodule
-
-
-module P_G_gen_hc_4 (a,b,cin,p,g);
-input [3:0]a;
-input [3:0]b;
-input cin;
-output [4:0]p;
-output [4:0]g;
-assign g[0]=cin;
-assign p[0]=0;
-assign p[4:1]=a^b;
-assign g[4:1]=a&b;
-endmodule
-
-module HC_4_BK0_KS2 (a,b,cin,sum,cout);
-
-input [4:1]a;
-input [4:1]b;
-input cin;
-output [4:1]sum;
-output cout;
-wire [4:0]p;
-wire [4:0]g;
-P_G_gen_hc_4 pg_gen_hc (a,b,cin,p,g);
-genvar i;
-
-wire [3:0] gnpg_level1;
-wire [3:0] pp_level1;
-assign gnpg_level1[0]=g[0];
-assign pp_level1[0]=p[0];
-        generate
-            for (i = 1;i<4 ;i=i+1 ) begin
-             assign gnpg_level1[i]=g[i]|p[i]&g[i-1];  
-             assign pp_level1[i]=p[i]&p[i-1];            
-            end
-        endgenerate
-wire [3:0] gnpg_level2;
-wire [3:0] pp_level2;
-       generate
-         for (i = 2;i<4 ;i=i+1 ) begin
-           assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
-           assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];            
-         end
-       endgenerate
-       generate 
-         for (i=0;i<2;i=i+1) begin
-            assign gnpg_level2[i]=gnpg_level1[i];
-            assign pp_level2[i]=pp_level1[i];
-         end
-       endgenerate  
-         
-assign cout= g[4]|p[4]&gnpg_level2[3];
-generate
-   for (i = 1;i<5 ;i=i+1 ) begin
-        assign  sum[i]= p[i]^gnpg_level2[i-1];    
-   end
-endgenerate
- // ks adder, no post process
+ //  is deep enough , no post process
 endmodule
 
 
@@ -901,17 +889,21 @@ wire [7:0] pp_level1;
 assign gnpg_level1[0]=g[0];
 assign pp_level1[0]=p[0];
         generate
-            for (i = 1;i<8 ;i=i+1 ) begin
-             assign gnpg_level1[i]=g[i]|p[i]&g[i-1];  
-             assign pp_level1[i]=p[i]&p[i-1];            
+            for (i = 1;i<8 ;i=i+1 ) begin:gen_1
+             //assign gnpg_level1[i]=g[i]|p[i]&g[i-1]; 
+             AO21 a1 (p[i],g[i-1],g[i],gnpg_level1[i]); 
+            //  assign pp_level1[i]=p[i]&p[i-1];    
+            AND2_X1 and1 (p[i],p[i-1],pp_level1[i]);   
             end
         endgenerate
 wire [7:0] gnpg_level2;
 wire [7:0] pp_level2;
        generate
-         for (i = 2;i<8 ;i=i+1 ) begin
-           assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
-           assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];            
+         for (i = 2;i<8 ;i=i+1 ) begin:gen_2
+           // assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
+             AO21 a22 (pp_level1[i],gnpg_level1[i-2],gnpg_level1[i],gnpg_level2[i]);
+          //  assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];  
+             AND2_X1 and2 (pp_level1[i],pp_level1[i-2],pp_level2[i]);          
          end
        endgenerate
        generate 
@@ -924,9 +916,11 @@ wire [7:0] pp_level2;
 wire [7:0] gnpg_level3;
 wire [7:0] pp_level3;
        generate
-         for (i = 4;i<8 ;i=i+1 ) begin
-           assign gnpg_level3[i]=gnpg_level2[i]|pp_level2[i]&gnpg_level2[i-4];  
-           assign pp_level3[i]=pp_level2[i]&pp_level2[i-4];            
+         for (i = 4;i<8 ;i=i+1 ) begin:gen_3
+           // assign gnpg_level3[i]=gnpg_level2[i]|pp_level2[i]&gnpg_level2[i-4];  
+             AO21 a23 (pp_level2[i],gnpg_level2[i-4],gnpg_level2[i],gnpg_level3[i]);
+          //  assign pp_level3[i]=pp_level2[i]&pp_level2[i-4];  
+             AND2_X1 and2 (pp_level2[i],pp_level2[i-4],pp_level3[i]);          
          end
        endgenerate
        generate 
@@ -942,179 +936,69 @@ generate
         assign  sum[i]= p[i]^gnpg_level3[i-1];    
    end
 endgenerate
- // ks adder, no post process
+ //  is deep enough , no post process
 endmodule
 
-module adder_40 (a,b,cin,sum,cout);
-input [39:0]a,b;
+
+
+module P_G_gen_hc_4 (a,b,cin,p,g);
+input [3:0]a;
+input [3:0]b;
 input cin;
-output [39:0]sum;
-output cout;
-logic cout1;
-
-HC_32_BK0_KS5 hca32 (a[31:0],b[31:0],cin,sum[31:0],cout1);
-HC_8_BK0_KS3 hca8 (a[39:32],b[39:32],cout1,sum[39:32],cout);
-
+output [4:0]p;
+output [4:0]g;
+assign g[0]=cin;
+assign p[0]=0;
+assign p[4:1]=a^b;
+assign g[4:1]=a&b;
 endmodule
 
+module HC_4_BK0_KS2 (a,b,cin,sum,cout);
 
-module adder_36 (a,b,cin,sum,cout);
-input [35:0]a,b;
+input [4:1]a;
+input [4:1]b;
 input cin;
-output [35:0]sum;
+output [4:1]sum;
 output cout;
-logic cout1;
+wire [4:0]p;
+wire [4:0]g;
+P_G_gen_hc_4 pg_gen_hc (a,b,cin,p,g);
+genvar i;
 
-HC_32_BK0_KS5 hca32 (a[31:0],b[31:0],cin,sum[31:0],cout1);
-HC_4_BK0_KS2 hca4 (a[35:32],b[35:32],cout1,sum[35:32],cout);
-
-endmodule
-
-
-// module booth4_encoder_collection (a,b,partial_product);
-
-
-// endmodule
-
-// module booth4_encoding(a,code,partial_product,shift);
-//    input logic [24:0]a;
-//    input logic [2:0] code;
-//    input [4:0] shift;
-//    output logic [49:0] partial_product;
-
-// //    logic [47:0] two_b,b,minus_b,minus_two_b;
-
-// //    assign b={24'b0,b} ;
-// //    assign two_b=b<< 1;
-// //    assign minus_b=~b+1'b1;
-// //    assign minus_two_b=~two_b+1'b1;
-// logic [49:0] one;
-// assign one ={25'b0,a};
-// logic [49:0] two;
-// assign two ={24'b0,a,1'b0};
-// logic [49:0] minus_one;
-// assign minus_one = ~one+1'b1;
-// logic [49:0] minus_two;
-// assign minus_two = ~two+1'b1;
-
-// always_comb begin
-//         case (code)
-//             3'b000, 3'b111:  partial_product = 50'b0;    //  0
-//             3'b001, 3'b010:  partial_product = one<<shift;            //  1
-//             3'b011:          partial_product = two<<shift;        //  2
-//             3'b100:          partial_product = minus_two<<shift;  // -2
-//             3'b101, 3'b110:  partial_product = minus_one<<shift;      // -1
-//             default:         partial_product = 50'b0;      
-//         endcase
-//     end
-// endmodule
-
-// module booth4_encoding_combined(input logic [24:0] man_a, input logic [23:0] man_b, output logic [49:0] partial_products[12:0]);
-//     logic [49:0] one, two, minus_one, minus_two;
-//     logic [49:0] a_extended;
-//     logic [2:0] code;
-//     logic [4:0] shift;
-//     integer i;
-
-//     // 扩展A输入
-//     assign a_extended = {25'b0, man_a};
-
-//     // 生成one, two, minus_one, minus_two
-//     assign one = a_extended;
-//     assign two = {24'b0, man_a, 1'b0};
-//     assign minus_one = ~one + 1'b1;
-//     assign minus_two = ~two + 1'b1;
-
-//     // 对每个部分乘积进行计算
-//     always@(*) begin
-//         for (i = 0; i <= 12; i++) begin
-//             // 设置code和shift值
-//             if (i == 0) begin
-//                 code = {man_b[1:0], 1'b0};
-//                 shift = 5'd0;
-//             end else if (i == 12) begin
-//                 code = {2'b0, man_b[23]};
-//                 shift = 5'd24;
-//             end else begin
-//               code = man_b[i*2+1 -: 3];
-//                 shift = i * 5'd2;
-//             end
-
-//             // 根据code计算部分乘积
-//             case (code)
-//                 3'b000, 3'b111: partial_products[i] = 50'b0;          // 0
-//                 3'b001, 3'b010: partial_products[i] = one << shift;  // 1
-//                 3'b011:         partial_products[i] = two << shift;  // 2
-//                 3'b100:         partial_products[i] = minus_two << shift; // -2
-//                 3'b101, 3'b110: partial_products[i] = minus_one << shift; // -1
-//                 default:        partial_products[i] = 50'b0;
-//             endcase
-//         end
-//     end
-// endmodule
-module booth4_encoding_combined(input logic [24:0] man_a, input logic [23:0] man_b, output logic [49:0] partial_products[12:0]);
-    logic [49:0] one, two, minus_one, minus_two;
-    logic [2:0] codes[12:0];
-    logic [4:0] shifts[12:0];
-
-    // 扩展A输入
-    assign one = {25'b0, man_a};
-    assign two = {24'b0, man_a, 1'b0};
-    assign minus_one = ~one + 1'b1;
-    assign minus_two = ~two + 1'b1;
-
-    // 设置code和shift值
-    assign codes[0] = {man_b[1:0], 1'b0};
-    assign shifts[0] = 5'd0;
-
-    assign codes[1] = man_b[3:1];
-    assign shifts[1] = 5'd2;
-
-    assign codes[2] = man_b[5:3];
-    assign shifts[2] = 5'd4;
-
-    assign codes[3] = man_b[7:5];
-    assign shifts[3] = 5'd6;
-
-    assign codes[4] = man_b[9:7];
-    assign shifts[4] = 5'd8;
-
-    assign codes[5] = man_b[11:9];
-    assign shifts[5] = 5'd10;
-
-    assign codes[6] = man_b[13:11];
-    assign shifts[6] = 5'd12;
-
-    assign codes[7] = man_b[15:13];
-    assign shifts[7] = 5'd14;
-
-    assign codes[8] = man_b[17:15];
-    assign shifts[8] = 5'd16;
-
-    assign codes[9] = man_b[19:17];
-    assign shifts[9] = 5'd18;
-
-    assign codes[10] = man_b[21:19];
-    assign shifts[10] = 5'd20;
-
-    assign codes[11] = man_b[23:21];
-    assign shifts[11] = 5'd22;
-
-    assign codes[12] = {2'b0, man_b[23]};
-    assign shifts[12] = 5'd24;
-
-    // 对每个部分乘积进行计算
-    always_comb begin
-        integer i;
-        for (i = 0; i <= 12; i++) begin
-            case (codes[i])
-                3'b000, 3'b111: partial_products[i] = 50'b0;           // 0
-                3'b001, 3'b010: partial_products[i] = one << shifts[i];  // 1
-                3'b011:         partial_products[i] = two << shifts[i];  // 2
-                3'b100:         partial_products[i] = minus_two << shifts[i]; // -2
-                3'b101, 3'b110: partial_products[i] = minus_one << shifts[i]; // -1
-                default:        partial_products[i] = 50'b0;
-            endcase
-        end
-    end
+wire [3:0] gnpg_level1;
+wire [3:0] pp_level1;
+assign gnpg_level1[0]=g[0];
+assign pp_level1[0]=p[0];
+        generate
+            for (i = 1;i<4 ;i=i+1 ) begin:gen_1
+             //assign gnpg_level1[i]=g[i]|p[i]&g[i-1]; 
+             AO21 a1 (p[i],g[i-1],g[i],gnpg_level1[i]); 
+            //  assign pp_level1[i]=p[i]&p[i-1];    
+            AND2_X1 and1 (p[i],p[i-1],pp_level1[i]);   
+            end
+        endgenerate
+wire [3:0] gnpg_level2;
+wire [3:0] pp_level2;
+       generate
+         for (i = 2;i<4 ;i=i+1 ) begin:gen_2
+           // assign gnpg_level2[i]=gnpg_level1[i]|pp_level1[i]&gnpg_level1[i-2];  
+             AO21 a22 (pp_level1[i],gnpg_level1[i-2],gnpg_level1[i],gnpg_level2[i]);
+          //  assign pp_level2[i]=pp_level1[i]&pp_level1[i-2];  
+             AND2_X1 and2 (pp_level1[i],pp_level1[i-2],pp_level2[i]);          
+         end
+       endgenerate
+       generate 
+         for (i=0;i<2;i=i+1) begin
+            assign gnpg_level2[i]=gnpg_level1[i];
+            assign pp_level2[i]=pp_level1[i];
+         end
+       endgenerate  
+         
+assign cout= g[4]|p[4]&gnpg_level2[3];
+generate
+   for (i = 1;i<5 ;i=i+1 ) begin
+        assign  sum[i]= p[i]^gnpg_level2[i-1];    
+   end
+endgenerate
+ //  is deep enough , no post process
 endmodule
