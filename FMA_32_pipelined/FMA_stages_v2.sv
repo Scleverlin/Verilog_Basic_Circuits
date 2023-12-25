@@ -53,11 +53,37 @@ output logic [1:0] sign;
 assign sign={sign_ab,sign_real_c};
 assign cur_exp=current_exp;
 assign r_or_l=right_or_left;
+
+mul_24 mul_inst (man_a,man_b,mul);
+
+
+logic [74:0]ext_c;
+assign ext_c={27'b0,1'b0,man_c,23'b0};
+logic [74:0]left_ext_c,right_ext_c;
+shifter_stage2_2 left_shhifter (ext_c,shift,left_ext_c);
+shifter_stage2 right_shhifter (ext_c,shift,right_ext_c);
+always_comb begin
+        case (right_or_left)
+             1'b1 : begin op_mode= (shift>47)?1'b0:1'b1; shift_ex_c=left_ext_c;  // concat is 0, add is 1
+             end
+             1'b0 : begin op_mode=(shift>28)?1'b0:1'b1; shift_ex_c=(shift>28)?{1'b0,man_c,50'b0}:right_ext_c; 
+             end   
+            default:begin    
+                          op_mode=0;
+                          shift_ex_c=0;  
+             end    
+        endcase
+end
+
+endmodule
+
+module mul_24 (man_a,man_b,mul);
+
+input logic [23:0]man_a,man_b;
+output logic [47:0] mul;
+logic [49:0] partial_product [12:0];
 logic [49:0] csa_final1;
 logic [49:0] csa_final2;
-
-logic [49:0] partial_product [12:0];
-
 function automatic logic [49:0] booth4_encode(input logic [24:0] a, input logic [2:0] codex, input logic [4:0] shiftx);
     logic [49:0] one, two, minus_one, minus_two;
 
@@ -165,25 +191,23 @@ logic [49:0]mul_ext;
 assign mul_ext =csa_last1+csa_last2;
 assign mul=mul_ext[47:0];
 
-
-logic [74:0]ext_c;
-assign ext_c={27'b0,1'b0,man_c,23'b0};
-
-always_comb begin
-        case (right_or_left)
-             1'b1 : begin op_mode= (shift>47)?1'b0:1'b1; shift_ex_c=ext_c>>shift;  // concat is 0, add is 1
-             end
-             1'b0 : begin op_mode=(shift>28)?1'b0:1'b1; shift_ex_c=(shift>28)?{1'b0,man_c,50'b0}:ext_c<<shift; 
-             end   
-            default:begin    
-                          op_mode=0;
-                          shift_ex_c=0;  
-             end    
-        endcase
-end
-
 endmodule
 
+module shifter_stage2(a,shift,b);
+input logic [74:0]a;
+input logic [7:0]shift;
+output logic [74:0]b;
+
+assign b=a<<shift;
+endmodule
+
+module shifter_stage2_2(a,shift,b);
+input logic [74:0]a;
+input logic [7:0]shift;
+output logic [74:0]b;
+
+assign b=a>>shift;
+endmodule
 
 
 module FMA_stage3(r_or_l,shift_ex_c,e_c,op_mode,cur_exp,mul,sign,final_sign,add_result,current_exp,exp_c,mode,right_or_left);
@@ -259,7 +283,8 @@ assign shift_max_check={2'b0,shift_tmp}-46;
 assign real_shift=($signed({1'b0, current_exp})>$signed(shift_max_check))?{2'b0,shift_tmp}:{1'b0,current_exp};
 // assign real_shift = ((shift_tmp-47)>current_exp)?{1'b0,current_exp}:{1'b0,shift_tmp};
 logic  [75:0]shift_add_result;
-assign shift_add_result=add_result<<real_shift;
+// assign shift_add_result=add_result<<real_shift;
+shifter shifter (add_result,real_shift[7:0],shift_add_result);
 assign rounded_man=shift_add_result[75:49];
 
 assign exp_shift= 8'd29-real_shift[7:0];
@@ -303,6 +328,13 @@ assign result={final_sign_v2,final_exp,rounded_man_tmp[22:0]};
 endmodule
 
 
+module shifter(a,shift,b);
+input logic [75:0]a;
+input logic [7:0]shift;
+output logic [75:0]b;
+
+assign b=a<<shift;
+endmodule
 
 
 

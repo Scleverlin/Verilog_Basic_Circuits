@@ -53,11 +53,148 @@ output logic [1:0] sign;
 assign sign={sign_ab,sign_real_c};
 assign cur_exp=current_exp;
 assign r_or_l=right_or_left;
+mul_24 mul_inst (man_a,man_b,mul);
+// logic [49:0] csa_final1;
+// logic [49:0] csa_final2;
+
+// logic [49:0] partial_product [12:0];
+
+// function automatic logic [49:0] booth4_encode(input logic [24:0] a, input logic [2:0] codex, input logic [4:0] shiftx);
+//     logic [49:0] one, two, minus_one, minus_two;
+
+//     // 计算加数和减数
+//     one = {25'b0, a};
+//     two = {24'b0, a, 1'b0};
+//     minus_one = ~one + 1'b1;
+//     minus_two = ~two + 1'b1;
+
+//     // 根据code计算部分乘积
+//     case (codex)
+//         3'b000, 3'b111:  return 50'b0;                  // 0
+//         3'b001, 3'b010:  return one << shiftx;           // 1
+//         3'b011:          return two << shiftx;           // 2
+//         3'b100:          return minus_two << shiftx;     // -2
+//         3'b101, 3'b110:  return minus_one << shiftx;     // -1
+//         default:         return 50'b0; 
+//     endcase
+// endfunction
+
+// assign partial_product[0] = booth4_encode({1'b0,man_a},{man_b[1:0],1'b0},5'd0);
+// assign partial_product[1] = booth4_encode({1'b0,man_a},man_b[3:1],5'd2);
+// assign partial_product[2] = booth4_encode({1'b0,man_a},man_b[5:3],5'd4);
+// assign partial_product[3] = booth4_encode({1'b0,man_a},man_b[7:5],5'd6);
+// assign partial_product[4] = booth4_encode({1'b0,man_a},man_b[9:7],5'd8);
+// assign partial_product[5] = booth4_encode({1'b0,man_a},man_b[11:9],5'd10);
+// assign partial_product[6] = booth4_encode({1'b0,man_a},man_b[13:11],5'd12);
+// assign partial_product[7] = booth4_encode({1'b0,man_a},man_b[15:13],5'd14);
+// assign partial_product[8] = booth4_encode({1'b0,man_a},man_b[17:15],5'd16);
+// assign partial_product[9] = booth4_encode({1'b0,man_a},man_b[19:17],5'd18);
+// assign partial_product[10] = booth4_encode({1'b0,man_a},man_b[21:19],5'd20);
+// assign partial_product[11] = booth4_encode({1'b0,man_a},man_b[23:21],5'd22);
+// assign partial_product[12] = booth4_encode({1'b0,man_a},{2'b0,man_b[23]},5'd24);
+
+// function [99:0] FA_function ([49:0] x, [49:0] y, [49:0] z);
+//     reg [99:0] result;
+//     result[49:0] = x ^ y ^ z;         
+//     result[50] = 0;                  
+//     result[99:51] = (x & y) | (y & z) | (z & x); 
+//     return result;
+// endfunction
+
+// logic [99:0] result_1,result_2,result_3,result_4;
+
+// // CSA level 1 
+// assign result_1 = FA_function(partial_product[0], partial_product[1], partial_product[2]);
+// assign result_2 = FA_function(partial_product[3], partial_product[4], partial_product[5]);
+// assign result_3 = FA_function(partial_product[6], partial_product[7], partial_product[8]);
+// assign result_4 = FA_function(partial_product[9], partial_product[10], partial_product[11]);
+// logic [49:0] tmp_level1 [7:0];
+// assign tmp_level1[0]=result_1[49:0];
+// assign tmp_level1[1]=result_1[99:50];
+// assign tmp_level1[2]=result_2[49:0];
+// assign tmp_level1[3]=result_2[99:50];
+// assign tmp_level1[4]=result_3[49:0];
+// assign tmp_level1[5]=result_3[99:50];
+// assign tmp_level1[6]=result_4[49:0];
+// assign tmp_level1[7]=result_4[99:50];
+
+// // CSA level 2
+// logic [99:0] result_5,result_6;
+// assign result_5 = FA_function(tmp_level1[0],tmp_level1[1],tmp_level1[2]);
+// assign result_6 = FA_function(tmp_level1[3],tmp_level1[4],tmp_level1[5]);
+// logic [49:0] tmp_level2 [3:0];
+// assign tmp_level2[0]=result_5[49:0];
+// assign tmp_level2[1]=result_5[99:50];
+// assign tmp_level2[2]=result_6[49:0];
+// assign tmp_level2[3]=result_6[99:50];
+
+// //CSA level 3
+// logic [49:0] tmp_level3[3:0];
+// logic [99:0] result_7,result_8;
+// assign result_7 = FA_function(tmp_level2[0],tmp_level2[1],tmp_level2[2]);
+// assign result_8 = FA_function(tmp_level2[3],tmp_level1[6],tmp_level1[7]);
+// assign tmp_level3[0]=result_7[49:0];
+// assign tmp_level3[1]=result_7[99:50];
+// assign tmp_level3[2]=result_8[49:0];
+// assign tmp_level3[3]=result_8[99:50];
+
+// //CSA level 4
+// logic [49:0] tmp_level4[1:0];
+// logic [99:0] result_9;
+
+// assign result_9 = FA_function(tmp_level3[0],tmp_level3[1],tmp_level3[2]);
+// assign tmp_level4[0]=result_9[49:0];
+// assign tmp_level4[1]=result_9[99:50];
+
+// // CSA level 5
+
+// logic [99:0] result_10;
+
+// assign result_10 = FA_function(tmp_level4[0],tmp_level4[1],tmp_level3[3]);
+// assign csa_final1=result_10[49:0];
+// assign csa_final2=result_10[99:50];
+
+// logic [49:0]csa_last1,csa_last2;
+
+// logic [99:0] fa_result;
+// assign fa_result = FA_function(csa_final1, csa_final2, partial_product[12]);
+// assign {csa_last1, csa_last2} = fa_result;
+
+
+// logic [49:0]mul_ext;
+
+// assign mul_ext =csa_last1+csa_last2;
+// assign mul=mul_ext[47:0];
+
+
+logic [74:0]ext_c;
+assign ext_c={27'b0,1'b0,man_c,23'b0};
+logic [74:0]left_ext_c,right_ext_c;
+shifter_stage2_2 left_shhifter (ext_c,shift,left_ext_c);
+shifter_stage2 right_shhifter (ext_c,shift,right_ext_c);
+
+always_comb begin
+        case (right_or_left)
+             1'b1 : begin op_mode= (shift>47)?1'b0:1'b1; shift_ex_c=left_ext_c;  // concat is 0, add is 1
+             end
+             1'b0 : begin op_mode=(shift>28)?1'b0:1'b1; shift_ex_c=(shift>28)?{1'b0,man_c,50'b0}:right_ext_c; 
+             end   
+            default:begin    
+                          op_mode=0;
+                          shift_ex_c=0;  
+             end    
+        endcase
+end
+
+endmodule
+
+module mul_24 (man_a,man_b,mul);
+
+input logic [23:0]man_a,man_b;
+output logic [47:0] mul;
+logic [49:0] partial_product [12:0];
 logic [49:0] csa_final1;
 logic [49:0] csa_final2;
-
-logic [49:0] partial_product [12:0];
-
 function automatic logic [49:0] booth4_encode(input logic [24:0] a, input logic [2:0] codex, input logic [4:0] shiftx);
     logic [49:0] one, two, minus_one, minus_two;
 
@@ -91,38 +228,6 @@ assign partial_product[9] = booth4_encode({1'b0,man_a},man_b[19:17],5'd18);
 assign partial_product[10] = booth4_encode({1'b0,man_a},man_b[21:19],5'd20);
 assign partial_product[11] = booth4_encode({1'b0,man_a},man_b[23:21],5'd22);
 assign partial_product[12] = booth4_encode({1'b0,man_a},{2'b0,man_b[23]},5'd24);
-
-
-
-
-// booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
-// booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
-// booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
-// booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
-// booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
-// booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
-// booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
-// booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
-// booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
-// booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
-// booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
-// booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
-// booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
-//  booth4_encoding_combined booth ({1'b0,man_a},man_b,partial_product);
-
-// booth4_encoding_0 booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0]);
-// booth4_encoding_1 booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1]);
-// booth4_encoding_2 booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2]);
-// booth4_encoding_3 booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3]);
-// booth4_encoding_4 booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4]);
-// booth4_encoding_5 booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5]);
-// booth4_encoding_6 booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6]);
-// booth4_encoding_7 booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7]);
-// booth4_encoding_8 booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8]);
-// booth4_encoding_9 booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9]);
-// booth4_encoding_10 booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10]);
-// booth4_encoding_11 booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11]);
-// booth4_encoding_12 booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12]);
 
 function [99:0] FA_function ([49:0] x, [49:0] y, [49:0] z);
     reg [99:0] result;
@@ -197,26 +302,23 @@ logic [49:0]mul_ext;
 assign mul_ext =csa_last1+csa_last2;
 assign mul=mul_ext[47:0];
 
-
-logic [74:0]ext_c;
-assign ext_c={27'b0,1'b0,man_c,23'b0};
-
-always_comb begin
-        case (right_or_left)
-             1'b1 : begin op_mode= (shift>47)?1'b0:1'b1; shift_ex_c=ext_c>>shift;  // concat is 0, add is 1
-             end
-             1'b0 : begin op_mode=(shift>28)?1'b0:1'b1; shift_ex_c=(shift>28)?{1'b0,man_c,50'b0}:ext_c<<shift; 
-             end   
-            default:begin    
-                          op_mode=0;
-                          shift_ex_c=0;  
-             end    
-        endcase
-end
-
 endmodule
 
+module shifter_stage2(a,shift,b);
+input logic [74:0]a;
+input logic [7:0]shift;
+output logic [74:0]b;
 
+assign b=a<<shift;
+endmodule
+
+module shifter_stage2_2(a,shift,b);
+input logic [74:0]a;
+input logic [7:0]shift;
+output logic [74:0]b;
+
+assign b=a>>shift;
+endmodule
 
 module FMA_stage3(r_or_l,shift_ex_c,e_c,op_mode,cur_exp,mul,sign,add_result_tmp,current_exp,exp_c,mode,right_or_left,cin2,left_mul,left_ext_c,func_sign);
 input logic r_or_l;
@@ -317,13 +419,21 @@ assign shift_max_check={2'b0,shift_tmp}-46;
 assign real_shift=($signed({1'b0, current_exp})>$signed(shift_max_check))?{2'b0,shift_tmp}:{1'b0,current_exp};
 // assign real_shift = ((shift_tmp-47)>current_exp)?{1'b0,current_exp}:{1'b0,shift_tmp};
 logic  [75:0]shift_add_result;
-assign shift_add_result=add_result<<real_shift;
+// assign shift_add_result=add_result<<real_shift;
+shifter shifter (add_result,real_shift[7:0],shift_add_result);
 assign rounded_man=shift_add_result[75:49];
 
 assign exp_shift= 8'd29-real_shift[7:0];
 
 endmodule
 
+module shifter(a,shift,b);
+input logic [75:0]a;
+input logic [7:0]shift;
+output logic [75:0]b;
+
+assign b=a<<shift;
+endmodule
 
 
 module FMA_stage5 (mode_and_direction,rounded_man, current_exp_round,final_sign_v2,exp_c_final,exp_shift,result);
