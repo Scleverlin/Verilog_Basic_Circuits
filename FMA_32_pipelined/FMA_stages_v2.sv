@@ -58,19 +58,40 @@ logic [49:0] csa_final2;
 
 logic [49:0] partial_product [12:0];
 
-booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
-booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
-booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
-booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
-booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
-booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
-booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
-booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
-booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
-booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
-booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
-booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
-booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
+function automatic logic [49:0] booth4_encode(input logic [24:0] a, input logic [2:0] codex, input logic [4:0] shiftx);
+    logic [49:0] one, two, minus_one, minus_two;
+
+    // 计算加数和减数
+    one = {25'b0, a};
+    two = {24'b0, a, 1'b0};
+    minus_one = ~one + 1'b1;
+    minus_two = ~two + 1'b1;
+
+    // 根据code计算部分乘积
+    case (codex)
+        3'b000, 3'b111:  return 50'b0;                  // 0
+        3'b001, 3'b010:  return one << shiftx;           // 1
+        3'b011:          return two << shiftx;           // 2
+        3'b100:          return minus_two << shiftx;     // -2
+        3'b101, 3'b110:  return minus_one << shiftx;     // -1
+        default:         return 50'b0; 
+    endcase
+endfunction
+
+assign partial_product[0] = booth4_encode({1'b0,man_a},{man_b[1:0],1'b0},5'd0);
+assign partial_product[1] = booth4_encode({1'b0,man_a},man_b[3:1],5'd2);
+assign partial_product[2] = booth4_encode({1'b0,man_a},man_b[5:3],5'd4);
+assign partial_product[3] = booth4_encode({1'b0,man_a},man_b[7:5],5'd6);
+assign partial_product[4] = booth4_encode({1'b0,man_a},man_b[9:7],5'd8);
+assign partial_product[5] = booth4_encode({1'b0,man_a},man_b[11:9],5'd10);
+assign partial_product[6] = booth4_encode({1'b0,man_a},man_b[13:11],5'd12);
+assign partial_product[7] = booth4_encode({1'b0,man_a},man_b[15:13],5'd14);
+assign partial_product[8] = booth4_encode({1'b0,man_a},man_b[17:15],5'd16);
+assign partial_product[9] = booth4_encode({1'b0,man_a},man_b[19:17],5'd18);
+assign partial_product[10] = booth4_encode({1'b0,man_a},man_b[21:19],5'd20);
+assign partial_product[11] = booth4_encode({1'b0,man_a},man_b[23:21],5'd22);
+assign partial_product[12] = booth4_encode({1'b0,man_a},{2'b0,man_b[23]},5'd24);
+
 function [99:0] FA_function ([49:0] x, [49:0] y, [49:0] z);
     reg [99:0] result;
     result[49:0] = x ^ y ^ z;         

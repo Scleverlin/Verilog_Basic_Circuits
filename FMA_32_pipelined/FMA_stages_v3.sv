@@ -58,20 +58,57 @@ logic [49:0] csa_final2;
 
 logic [49:0] partial_product [12:0];
 
-booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
-booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
-booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
-booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
-booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
-booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
-booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
-booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
-booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
-booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
-booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
-booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
-booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
+function automatic logic [49:0] booth4_encode(input logic [24:0] a, input logic [2:0] codex, input logic [4:0] shiftx);
+    logic [49:0] one, two, minus_one, minus_two;
 
+    // 计算加数和减数
+    one = {25'b0, a};
+    two = {24'b0, a, 1'b0};
+    minus_one = ~one + 1'b1;
+    minus_two = ~two + 1'b1;
+
+    // 根据code计算部分乘积
+    case (codex)
+        3'b000, 3'b111:  return 50'b0;                  // 0
+        3'b001, 3'b010:  return one << shiftx;           // 1
+        3'b011:          return two << shiftx;           // 2
+        3'b100:          return minus_two << shiftx;     // -2
+        3'b101, 3'b110:  return minus_one << shiftx;     // -1
+        default:         return 50'b0; 
+    endcase
+endfunction
+
+assign partial_product[0] = booth4_encode({1'b0,man_a},{man_b[1:0],1'b0},5'd0);
+assign partial_product[1] = booth4_encode({1'b0,man_a},man_b[3:1],5'd2);
+assign partial_product[2] = booth4_encode({1'b0,man_a},man_b[5:3],5'd4);
+assign partial_product[3] = booth4_encode({1'b0,man_a},man_b[7:5],5'd6);
+assign partial_product[4] = booth4_encode({1'b0,man_a},man_b[9:7],5'd8);
+assign partial_product[5] = booth4_encode({1'b0,man_a},man_b[11:9],5'd10);
+assign partial_product[6] = booth4_encode({1'b0,man_a},man_b[13:11],5'd12);
+assign partial_product[7] = booth4_encode({1'b0,man_a},man_b[15:13],5'd14);
+assign partial_product[8] = booth4_encode({1'b0,man_a},man_b[17:15],5'd16);
+assign partial_product[9] = booth4_encode({1'b0,man_a},man_b[19:17],5'd18);
+assign partial_product[10] = booth4_encode({1'b0,man_a},man_b[21:19],5'd20);
+assign partial_product[11] = booth4_encode({1'b0,man_a},man_b[23:21],5'd22);
+assign partial_product[12] = booth4_encode({1'b0,man_a},{2'b0,man_b[23]},5'd24);
+
+
+
+
+// booth4_encoding booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0],5'd0);
+// booth4_encoding booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1],5'd2);
+// booth4_encoding booth4_encoding3  ({1'b0,man_a},man_b[5:3],partial_product[2],5'd4);
+// booth4_encoding booth4_encoding4  ({1'b0,man_a},man_b[7:5],partial_product[3],5'd6);
+// booth4_encoding booth4_encoding5  ({1'b0,man_a},man_b[9:7],partial_product[4],5'd8);
+// booth4_encoding booth4_encoding6  ({1'b0,man_a},man_b[11:9],partial_product[5],5'd10);
+// booth4_encoding booth4_encoding7  ({1'b0,man_a},man_b[13:11],partial_product[6],5'd12);
+// booth4_encoding booth4_encoding8  ({1'b0,man_a},man_b[15:13],partial_product[7],5'd14);
+// booth4_encoding booth4_encoding9  ({1'b0,man_a},man_b[17:15],partial_product[8],5'd16);
+// booth4_encoding booth4_encoding10 ({1'b0,man_a},man_b[19:17],partial_product[9],5'd18);
+// booth4_encoding booth4_encoding11 ({1'b0,man_a},man_b[21:19],partial_product[10],5'd20);
+// booth4_encoding booth4_encoding12 ({1'b0,man_a},man_b[23:21],partial_product[11],5'd22);
+// booth4_encoding booth4_encoding13 ({1'b0,man_a},{2'b0,man_b[23]},partial_product[12],5'd24);
+//  booth4_encoding_combined booth ({1'b0,man_a},man_b,partial_product);
 
 // booth4_encoding_0 booth4_encoding   ({1'b0,man_a},{man_b[1:0],1'b0},partial_product[0]);
 // booth4_encoding_1 booth4_encoding2  ({1'b0,man_a},man_b[3:1],partial_product[1]);
@@ -933,3 +970,151 @@ HC_4_BK0_KS2 hca4 (a[35:32],b[35:32],cout1,sum[35:32],cout);
 
 endmodule
 
+
+// module booth4_encoder_collection (a,b,partial_product);
+
+
+// endmodule
+
+// module booth4_encoding(a,code,partial_product,shift);
+//    input logic [24:0]a;
+//    input logic [2:0] code;
+//    input [4:0] shift;
+//    output logic [49:0] partial_product;
+
+// //    logic [47:0] two_b,b,minus_b,minus_two_b;
+
+// //    assign b={24'b0,b} ;
+// //    assign two_b=b<< 1;
+// //    assign minus_b=~b+1'b1;
+// //    assign minus_two_b=~two_b+1'b1;
+// logic [49:0] one;
+// assign one ={25'b0,a};
+// logic [49:0] two;
+// assign two ={24'b0,a,1'b0};
+// logic [49:0] minus_one;
+// assign minus_one = ~one+1'b1;
+// logic [49:0] minus_two;
+// assign minus_two = ~two+1'b1;
+
+// always_comb begin
+//         case (code)
+//             3'b000, 3'b111:  partial_product = 50'b0;    //  0
+//             3'b001, 3'b010:  partial_product = one<<shift;            //  1
+//             3'b011:          partial_product = two<<shift;        //  2
+//             3'b100:          partial_product = minus_two<<shift;  // -2
+//             3'b101, 3'b110:  partial_product = minus_one<<shift;      // -1
+//             default:         partial_product = 50'b0;      
+//         endcase
+//     end
+// endmodule
+
+// module booth4_encoding_combined(input logic [24:0] man_a, input logic [23:0] man_b, output logic [49:0] partial_products[12:0]);
+//     logic [49:0] one, two, minus_one, minus_two;
+//     logic [49:0] a_extended;
+//     logic [2:0] code;
+//     logic [4:0] shift;
+//     integer i;
+
+//     // 扩展A输入
+//     assign a_extended = {25'b0, man_a};
+
+//     // 生成one, two, minus_one, minus_two
+//     assign one = a_extended;
+//     assign two = {24'b0, man_a, 1'b0};
+//     assign minus_one = ~one + 1'b1;
+//     assign minus_two = ~two + 1'b1;
+
+//     // 对每个部分乘积进行计算
+//     always@(*) begin
+//         for (i = 0; i <= 12; i++) begin
+//             // 设置code和shift值
+//             if (i == 0) begin
+//                 code = {man_b[1:0], 1'b0};
+//                 shift = 5'd0;
+//             end else if (i == 12) begin
+//                 code = {2'b0, man_b[23]};
+//                 shift = 5'd24;
+//             end else begin
+//               code = man_b[i*2+1 -: 3];
+//                 shift = i * 5'd2;
+//             end
+
+//             // 根据code计算部分乘积
+//             case (code)
+//                 3'b000, 3'b111: partial_products[i] = 50'b0;          // 0
+//                 3'b001, 3'b010: partial_products[i] = one << shift;  // 1
+//                 3'b011:         partial_products[i] = two << shift;  // 2
+//                 3'b100:         partial_products[i] = minus_two << shift; // -2
+//                 3'b101, 3'b110: partial_products[i] = minus_one << shift; // -1
+//                 default:        partial_products[i] = 50'b0;
+//             endcase
+//         end
+//     end
+// endmodule
+module booth4_encoding_combined(input logic [24:0] man_a, input logic [23:0] man_b, output logic [49:0] partial_products[12:0]);
+    logic [49:0] one, two, minus_one, minus_two;
+    logic [2:0] codes[12:0];
+    logic [4:0] shifts[12:0];
+
+    // 扩展A输入
+    assign one = {25'b0, man_a};
+    assign two = {24'b0, man_a, 1'b0};
+    assign minus_one = ~one + 1'b1;
+    assign minus_two = ~two + 1'b1;
+
+    // 设置code和shift值
+    assign codes[0] = {man_b[1:0], 1'b0};
+    assign shifts[0] = 5'd0;
+
+    assign codes[1] = man_b[3:1];
+    assign shifts[1] = 5'd2;
+
+    assign codes[2] = man_b[5:3];
+    assign shifts[2] = 5'd4;
+
+    assign codes[3] = man_b[7:5];
+    assign shifts[3] = 5'd6;
+
+    assign codes[4] = man_b[9:7];
+    assign shifts[4] = 5'd8;
+
+    assign codes[5] = man_b[11:9];
+    assign shifts[5] = 5'd10;
+
+    assign codes[6] = man_b[13:11];
+    assign shifts[6] = 5'd12;
+
+    assign codes[7] = man_b[15:13];
+    assign shifts[7] = 5'd14;
+
+    assign codes[8] = man_b[17:15];
+    assign shifts[8] = 5'd16;
+
+    assign codes[9] = man_b[19:17];
+    assign shifts[9] = 5'd18;
+
+    assign codes[10] = man_b[21:19];
+    assign shifts[10] = 5'd20;
+
+    assign codes[11] = man_b[23:21];
+    assign shifts[11] = 5'd22;
+
+    assign codes[12] = {2'b0, man_b[23]};
+    assign shifts[12] = 5'd24;
+
+    // 对每个部分乘积进行计算
+    always_comb begin
+        integer i;
+        for (i = 0; i <= 12; i++) begin
+            case (codes[i])
+                3'b000, 3'b111: partial_products[i] = 50'b0;           // 0
+                3'b001, 3'b010: partial_products[i] = one << shifts[i];  // 1
+                3'b011:         partial_products[i] = two << shifts[i];  // 2
+                3'b100:         partial_products[i] = minus_two << shifts[i]; // -2
+                3'b101, 3'b110: partial_products[i] = minus_one << shifts[i]; // -1
+                default:        partial_products[i] = 50'b0;
+            endcase
+        end
+    end
+endmodule
