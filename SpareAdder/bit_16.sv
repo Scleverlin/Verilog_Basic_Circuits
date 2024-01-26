@@ -7,7 +7,8 @@ output logic cout;
 
 // p g generator:
 logic [15:0] p, g;
-assign p = a ^ b;
+assign p[0] = a[0] ^ b[0];
+assign p [15:1]= a[15:1] ^ b[15:1];
 assign g = a & b;
 
 
@@ -81,56 +82,61 @@ assign sum[0]=cin?~p[0]:p[0];
 
 // assign mux0=cin?~pplevel1[0]:~gglevel1[0];
 // assign sum[1]=mux0^p[1];
-assign sum[1]=cin?~(~pplevel1[0]^p[0]):~(~gglevel1[0]^p[0]);
-logic ggmux1,ppmux1,ggmux11,ppmux11;
-assign ggmux1=~(g[2]|p[2]&g[1]);
-assign ppmux1=~(p[2]&p[1]);
+assign sum[1]=cin?(p[0]|g[0]^p[1]):(g[0]^p[1]);
+logic ggmux11,ppmux11;
+// assign ggmux1=(g[2]|p[2]&g[1]);
+// assign ppmux1=(p[2]&p[1]);
 
-assign sum[2]=cin?~(ppmux1^p[1]):~(ggmux1^p[1]);
+assign sum[2]=cin?((pplevel1[0]|gglevel1[0])^p[2]):(gglevel1[0]^p[2]);
+// assign sum[2]=p[2]^ (gglevel1[0]|pplevel1[0]&cin);
 // assign sum[3]=final_g[0]^p[3];
-assign ggmux11=~(g[3]|p[3]&g[2]);
-assign ppmux11=~(p[3]&p[2]);
+assign ggmux11=(g[2]|p[2]&gglevel1[0]);
+assign ppmux11=(p[2]&pplevel1[0]);
 
-assign sum[3]=cin?~(ppmux11^p[2]):~(ggmux11^p[2]);
+assign sum[3]=cin?((ppmux11|ggmux11)^p[3]):(ggmux11^p[3]);
 
-assign sum[4]=final_g[0]?~p[3]:p[3];
-assign sum[5]=final_g[0]?~(~pplevel1[2]^p[4]):~(~gglevel1[2]^p[4]);
+assign sum[4]=final_g[0]?~p[4]:p[4];
+assign sum[5]=final_g[0]?(p[4]|g[4]^p[5]):(g[4]^p[5]);
 
 logic ggmux2,ppmux2,ggmux22,ppmux22;
-assign ggmux2=~(g[6]|p[6]&g[5]);
-assign ppmux2=~(p[6]&p[5]);
+// assign ggmux2=~(g[6]|p[6]&g[5]);
+// assign ppmux2=~(p[6]&p[5]);
 
-assign sum[6]=final_g[0]?~(ppmux2^p[5]):~(ggmux2^p[5]);
+assign sum[6]=final_g[0]?(gglevel1[2]|pplevel1[2]^p[6]):(gglevel1[2]^p[6]);
 // assign sum[7]=final_g[1]^p[7];
-assign ggmux22=~(g[7]|p[7]&g[6]);
-assign ppmux22=~(p[7]&p[6]);
+assign ggmux22=(g[6]|p[6]&gglevel1[2]);
+assign ppmux22=(p[6]&pplevel1[2]);
 
-assign sum[7]=final_g[0]?~(ppmux22^p[6]):~(ggmux22^p[6]);
+assign sum[7]=final_g[0]?((ppmux22|ggmux22)^p[7]):(ggmux22^p[7]);
 
-assign sum[8]=final_g[1]?~p[7]:p[7];
-assign sum[9]=final_g[1]?~(~pplevel1[4]^p[8]):~(~gglevel1[4]^p[8]);
+assign sum[8]=final_g[1]?~p[8]:p[8];
+assign sum[9]=final_g[1]?(p[8]|g[8]^p[9]):(g[8]^p[9]);
 
 logic ggmux3,ppmux3,ggmux33,ppmux33;
-assign ggmux3=~(g[10]|p[10]&g[9]);
-assign ppmux3=~(p[10]&p[9]);
+// assign ggmux3=(g[10]|p[10]&g[9]);
+// assign ppmux3=(p[10]&p[9]);
 
-assign sum[10]=final_g[1]?~(ppmux3^p[9]):~(ggmux3^p[9]);
-assign ggmux33=~(g[11]|p[11]&g[10]);
-assign ppmux33=~(p[11]&p[10]);
+assign sum[10]=final_g[1]?((gglevel1[4]|pplevel1[4])^p[10]):(gglevel1[4]^p[10]);
+// assign ggmux33=~(g[11]|p[11]&g[10]);
+// assign ppmux33=~(p[11]&p[10]);
+assign ggmux33=(g[10]|p[10]&gglevel1[4]);
+assign ppmux33=(p[10]&pplevel1[4]);
 
-assign sum[11]=final_g[1]?~(ppmux33^p[10]):~(ggmux33^p[10]);
+assign sum[11]=final_g[1]?((ppmux33|ggmux33)^p[11]):(ggmux33^p[11]);
 
-assign sum[12]=final_g[2]?~p[11]:p[11];
-assign sum[13]=final_g[2]?~(~pplevel1[6]^p[12]):~(~gglevel1[6]^p[12]);
+
+
+assign sum[12]=final_g[2]?~p[12]:p[12];
+assign sum[13]=final_g[2]?(p[12]|g[12]^p[13]):(g[12]^p[13]);
 logic ggmux4,ppmux4,ggmux44,ppmux44;
-assign ggmux4=~(g[14]|p[14]&g[13]);
-assign ppmux4=~(p[14]&p[13]);
+// assign ggmux4=~(g[14]|p[14]&g[13]);
+// assign ppmux4=~(p[14]&p[13]);
 
-assign sum[14]=final_g[2]?~(ppmux4^p[13]):~(ggmux4^p[13]);
-assign ggmux44=~(g[15]|p[15]&g[14]);
-assign ppmux44=~(p[15]&p[14]);
+assign sum[14]=final_g[2]?(gglevel1[6]|pplevel1[6]^p[14]):(gglevel1[6]^p[14]);
+assign ggmux44=(g[14]|p[14]&gglevel1[6]);
+assign ppmux44=(p[14]&pplevel1[6]);
 
-assign sum[15]=final_g[2]?~(ppmux44^p[14]):~(ggmux44^p[14]);
+assign sum[15]=final_g[2]?(ppmux44|ggmux44^p[14]):(ggmux44^p[14]);
 assign cout=final_g[3];
 endmodule
 

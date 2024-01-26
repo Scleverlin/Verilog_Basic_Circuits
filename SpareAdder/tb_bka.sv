@@ -26,6 +26,12 @@ initial begin
 #delay a=1024;b=1500;cin=0;   
 #delay a=2000;b=2000;cin=0;   
 #delay a=6500;b=2000;cin=0;   
+
+$display("The value of gg33 is %d", shi.ggmux33);
+$display("The value of pp33 is %d", shi.ppmux33);
+$display("The value of p11 is %d", shi.p[11]);
+$display("The value of cin=1 is %d",(shi.ppmux33|shi.ggmux33)^shi.p[11]);
+
 // #delay a=65000;b=200;cin=1;
 // #delay a=6500000000000;b=2000000;cin=1;
 

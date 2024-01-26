@@ -1,5 +1,5 @@
 $date
-	Fri Jan 26 20:09:48 2024
+	Sat Jan 27 01:11:57 2024
 $end
 $version
 	Icarus Verilog
@@ -19,111 +19,95 @@ $var wire 16 ' a [15:0] $end
 $var wire 16 ( b [15:0] $end
 $var wire 1 & cin $end
 $var wire 16 ) g [15:0] $end
-$var wire 1 * ggmux1 $end
-$var wire 1 + ggmux11 $end
-$var wire 1 , ggmux2 $end
-$var wire 1 - ggmux22 $end
-$var wire 1 . ggmux3 $end
-$var wire 1 / ggmux33 $end
-$var wire 1 0 ggmux4 $end
-$var wire 1 1 ggmux44 $end
-$var wire 16 2 p [15:0] $end
-$var wire 1 3 ppmux1 $end
-$var wire 1 4 ppmux11 $end
-$var wire 1 5 ppmux2 $end
-$var wire 1 6 ppmux22 $end
-$var wire 1 7 ppmux3 $end
-$var wire 1 8 ppmux33 $end
-$var wire 1 9 ppmux4 $end
-$var wire 1 : ppmux44 $end
-$var wire 16 ; sum [15:0] $end
-$var wire 4 < pplevel4 [3:0] $end
-$var wire 4 = pplevel3 [3:0] $end
-$var wire 4 > pplevel2 [3:0] $end
-$var wire 8 ? pplevel1 [7:0] $end
-$var wire 4 @ gglevel4 [3:0] $end
-$var wire 4 A gglevel3 [3:0] $end
-$var wire 4 B gglevel2 [3:0] $end
-$var wire 8 C gglevel1 [7:0] $end
-$var wire 4 D final_p [3:0] $end
-$var wire 4 E final_g [3:0] $end
+$var wire 1 * ggmux11 $end
+$var wire 1 + ggmux22 $end
+$var wire 1 , ggmux33 $end
+$var wire 1 - ggmux44 $end
+$var wire 1 . ppmux11 $end
+$var wire 1 / ppmux22 $end
+$var wire 1 0 ppmux33 $end
+$var wire 1 1 ppmux44 $end
+$var wire 16 2 sum [15:0] $end
+$var wire 4 3 pplevel4 [3:0] $end
+$var wire 4 4 pplevel3 [3:0] $end
+$var wire 4 5 pplevel2 [3:0] $end
+$var wire 8 6 pplevel1 [7:0] $end
+$var wire 16 7 p [15:0] $end
+$var wire 4 8 gglevel4 [3:0] $end
+$var wire 4 9 gglevel3 [3:0] $end
+$var wire 4 : gglevel2 [3:0] $end
+$var wire 8 ; gglevel1 [7:0] $end
+$var wire 4 < final_p [3:0] $end
+$var wire 4 = final_g [3:0] $end
 $var wire 1 " cout $end
 $scope begin genblk1[1] $end
-$var parameter 2 F i $end
+$var parameter 2 > i $end
 $upscope $end
 $scope begin genblk1[2] $end
-$var parameter 3 G i $end
+$var parameter 3 ? i $end
 $upscope $end
 $scope begin genblk1[3] $end
-$var parameter 3 H i $end
+$var parameter 3 @ i $end
 $upscope $end
 $scope begin genblk1[4] $end
-$var parameter 4 I i $end
+$var parameter 4 A i $end
 $upscope $end
 $scope begin genblk1[5] $end
-$var parameter 4 J i $end
+$var parameter 4 B i $end
 $upscope $end
 $scope begin genblk1[6] $end
-$var parameter 4 K i $end
+$var parameter 4 C i $end
 $upscope $end
 $scope begin genblk1[7] $end
-$var parameter 4 L i $end
+$var parameter 4 D i $end
 $upscope $end
 $scope begin genblk1[8] $end
-$var parameter 5 M i $end
+$var parameter 5 E i $end
 $upscope $end
 $scope begin genblk2[1] $end
-$var parameter 2 N i $end
+$var parameter 2 F i $end
 $upscope $end
 $scope begin genblk2[2] $end
-$var parameter 3 O i $end
+$var parameter 3 G i $end
 $upscope $end
 $scope begin genblk2[3] $end
-$var parameter 3 P i $end
+$var parameter 3 H i $end
 $upscope $end
 $scope begin genblk2[4] $end
-$var parameter 4 Q i $end
+$var parameter 4 I i $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b100 Q
-b11 P
-b10 O
-b1 N
-b1000 M
-b111 L
-b110 K
-b101 J
 b100 I
 b11 H
 b10 G
 b1 F
+b1000 E
+b111 D
+b110 C
+b101 B
+b100 A
+b11 @
+b10 ?
+b1 >
 b10100 #
 $end
 #0
 $dumpvars
-bx E
-b0 D
-bx C
-bx B
-bx A
-bx @
-bx ?
-bx >
-bx0 =
-bx000 <
+bx =
+b0 <
 bx ;
-x:
-x9
-x8
-x7
-x6
-x5
-x4
-x3
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+bx0 4
+bx000 3
 bx 2
 x1
 x0
@@ -144,34 +128,26 @@ bx !
 $end
 #10
 0"
-b0 E
-b0 @
-b0 <
-b0 A
 b0 =
-b0 B
-b0 >
-03
-14
-15
-16
-17
-18
-19
-1:
-1*
-1+
-1,
-1-
+b0 8
+b0 3
+b0 9
+b0 4
+0*
+b0 :
+b0 5
 1.
-1/
-10
-11
-b1 ?
-b1111 !
-b1111 ;
-b0 C
+0+
+0,
+0-
+b111 !
 b111 2
+0/
+00
+01
+b1 6
+b0 ;
+b111 7
 b0 )
 0&
 b101 %
@@ -179,20 +155,20 @@ b101 (
 b10 $
 b10 '
 #30
-13
-b0 ?
-b0 !
-b0 ;
-b0 2
+b10 !
+b10 2
+0.
+b0 6
+b0 7
 b1 )
 b1 %
 b1 (
 b1 $
 b1 '
 #50
-0*
-b1 !
-b1 ;
+1*
+b101001 !
+b101001 2
 b10100 )
 1&
 b10100 %
@@ -200,32 +176,29 @@ b10100 (
 b10100 $
 b10100 '
 #70
-b1 E
-b1 @
-b1 A
-b10001 !
-b10001 ;
-b1 B
-1*
-0+
-0,
-b11 C
+b1 =
+b1 8
+b1 9
+b1 :
+b10010111 !
+b10010111 2
+b11 ;
+0*
+1+
 b1001011 )
 b1001011 %
 b1001011 (
 b1001011 $
 b1001011 '
 #90
-b10 E
-b10 @
-b10 A
-b10 B
-1+
-1,
-0-
-b1000 C
-b110000000 !
-b110000000 ;
+b10 =
+b10 8
+b10 9
+b10 :
+b1000 ;
+0+
+b100000000 !
+b100000000 2
 b10000000 )
 0&
 b10000000 %
@@ -233,66 +206,57 @@ b10000000 (
 b10000000 $
 b10000000 '
 #110
-b0 E
-b0 @
-b0 A
-b0 B
-04
-06
-1-
-b1010 ?
-b110111000 !
-b110111000 ;
-b0 C
+b0 =
+b0 8
+b0 9
+b0 :
+b11011100 !
 b11011100 2
+b1010 6
+b0 ;
+b11011100 7
 b0 )
 b10100 %
 b10100 (
 b11001000 $
 b11001000 '
 #130
-b11110111000 !
-b11110111000 ;
-0.
-b111011100 2
+b100111011100 !
+b100111011100 2
+1,
+b111011100 7
 b10000000000 )
 b10111011100 %
 b10111011100 (
 b10000000000 $
 b10000000000 '
 #150
-b10 E
-b10 @
-b10 A
-b10 B
-14
-16
-0,
-0-
-b0 ?
-b111000000 !
-b111000000 ;
-b11000 C
-b0 2
+b10 =
+b10 8
+b10 9
+b10 :
+b111110100000 !
+b111110100000 2
+b0 6
+b11000 ;
+1+
+b0 7
 b11111010000 )
 b11111010000 %
 b11111010000 (
 b11111010000 $
 b11111010000 '
 #170
-b110 E
-b110 @
-b110 A
-b110 B
-07
-08
-0-
-1.
-b100100 ?
-b10000010101000 !
-b10000010101000 ;
-b11000 C
-b1111010110100 2
+b110 =
+b110 8
+b110 9
+b110 :
+b10000100110100 !
+b10000100110100 2
+b100100 6
+b11000 ;
+1,
+b1111010110100 7
 b101000000 )
 b1100101100100 $
 b1100101100100 '
