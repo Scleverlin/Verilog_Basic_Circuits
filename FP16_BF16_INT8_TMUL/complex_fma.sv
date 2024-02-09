@@ -63,9 +63,6 @@ typedef logic [10:0] Row [15:0];
 input logic Row RowB_mantissa;
 input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
 
-
-
-
 logic [3:0]lookup_table [15:0];
 assign lookup_table[0]=4'b0000;
 assign lookup_table[1]=4'b0001;
@@ -83,6 +80,92 @@ assign lookup_table[12]=4'b1100;
 assign lookup_table[13]=4'b1101;
 assign lookup_table[14]=4'b1110;
 assign lookup_table[15]=4'b1111;
+
+// multiplexer 0
+always_comb begin
+        case ({ RowB_mantissa[0][2:0],1'b0})
+             lookup_table[0],lookup_table[15] : begin op_mode=(shift>47)?2'b00:2'b01; // right
+                    shift_ex_c=ext_c>>shift;
+             end
+             lookup_table[1],lookup_table[2] : begin op_mode=(shift>27)?2'b10:2'b11;
+                    shift_ex_c=(shift>27)?{man_c,50'b0}:ext_c<<shift;
+             end
+             lookup_table[3],lookup_table[4]:begin
+             end
+             lookup_table[5],lookup_table[6]:begin
+             end
+             lookup_table[7]:begin
+             end
+             lookup_table[8]:begin
+              
+             end
+             lookup_table[9],lookup_table[10]:begin
+             end
+             lookup_table[11],lookup_table[12]:begin
+             end
+             lookup_table[13],lookup_table[14]:begin
+             end
+
+
+            default:begin    op_mode = 0; 
+                             shift_ex_c=0; 
+             end    
+        endcase
+end
+    
+ 
+  
+ 
+
+
+
+
+//multiplexer 1
+
+
+
+//multiplexer 2
+
+
+//multiplexer 3
+
+
+
+//multiplexer 4
+
+//multiplexer 5
+
+//multiplexer 6
+
+//multiplexer 7
+
+//multiplexer 8
+
+//multiplexer 9
+
+//multiplexer 10
+
+//multiplexer 11
+
+
+//multiplexer 12
+
+//multiplexer 13
+
+//multiplexer 14
+
+//multiplexer 15
+
+
+
+
+
+
+
+
+
+
+
 
 
 endmodule
