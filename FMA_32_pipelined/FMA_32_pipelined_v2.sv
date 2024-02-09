@@ -144,10 +144,7 @@ begin
    end
    else begin
     //stage1
-    current_exp_reg<=current_exp;
-    man_a_reg<=man_a;
-    man_b_reg<=man_b;
-    man_c_reg<=man_c;  
+assign four={mantissa_a_with_si
     shift_reg<=shift;
     right_or_left_reg<=right_or_left;
     shift_ex_c_reg<=shift_ex_c;
