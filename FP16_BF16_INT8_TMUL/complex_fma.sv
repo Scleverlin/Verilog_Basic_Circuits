@@ -53,6 +53,145 @@ endmodule
 
 // endmodule
 
+module multiplexer_small(B_mantissa,lookup_table,Row_A_mul);
+input logic [10:0] B_mantissa;
+input logic [3:0]lookup_table [15:0];
+output logic [95:0] Row_A_mul ;
+
+always_comb begin
+        case ({ B_mantissa[2:0],1'b0})
+             lookup_table[0],lookup_table[15]:begin // 0
+             Row_A_mul[23:0]=24'b0; Row_A_mul[24]=1'b0;
+             end
+             lookup_table[1],lookup_table[2] : begin //1
+             Row_A_mul[23:0]={12'b0,one}; Row_A_mul[24]=1'b0;  
+             end
+             lookup_table[3],lookup_table[4]:begin  // 2
+             Row_A_mul[23:0]={11'b0,two}; Row_A_mul[24]=1'b0; 
+             end
+             lookup_table[5],lookup_table[6]:begin  // 3
+             Row_A_mul[23:0]={10'b0,three}; Row_A_mul[24]=1'b0; 
+             end
+             lookup_table[7]:begin                  //4
+             Row_A_mul[23:0]={10'b0,four}; Row_A_mul[24]=1'b0; 
+             end
+             lookup_table[8]:begin                  //-4
+             Row_A_mul[23:0]={10'b1111111111,minus_four}; Row_A_mul[24]=1'b1; 
+             end
+             lookup_table[9],lookup_table[10]:begin // -3
+             Row_A_mul[23:0]={10'b1111111111,minus_three}; Row_A_mul[24]=1'b1; 
+             end
+             lookup_table[11],lookup_table[12]:begin // -2
+             Row_A_mul[23:0]={11'b11111111111,minus_two}; Row_A_mul[24]=1'b1; 
+             end
+             lookup_table[13],lookup_table[14]:begin //-1
+             Row_A_mul[23:0]={12'b111111111111,minus_one}; Row_A_mul[24]=1'b1;  
+             end
+            default:begin 
+             Row_A_mul[23:0]=24'b0; Row_A_mul[48]=1'b0;    
+             end    
+        endcase
+end
+
+always_comb begin
+        case ( B_mantissa[5:2]) // shift 3 zeros
+             lookup_table[0],lookup_table[15]:begin 
+             Row_A_mul[47:25]=23'b0; Row_A_mul[48]=1'b0;
+             end
+             lookup_table[1],lookup_table[2]:begin 
+             Row_A_mul[47:25]={9'b0,one,2'b0}; Row_A_mul[48]=1'b0;  
+             end
+             lookup_table[3],lookup_table[4]:begin
+             Row_A_mul[47:25]={8'b0,two,2'b0}; Row_A_mul[48]=1'b0;  
+             end
+             lookup_table[5],lookup_table[6]:begin
+             Row_A_mul[47:25]={7'b0,three,2'b0}; Row_A_mul[48]=1'b0;  
+             end
+             lookup_table[7]:begin
+             Row_A_mul[47:25]={7'b0,four,2'b0}; Row_A_mul[48]=1'b0;  
+             end
+             lookup_table[8]:begin
+             Row_A_mul[47:25]={7'b1111111,minus_four,2'b0}; Row_A_mul[48]=1'b1; 
+             end
+             lookup_table[9],lookup_table[10]:begin
+             Row_A_mul[47:25]={7'b1111111,minus_three,2'b0}; Row_A_mul[48]=1'b1; 
+             end
+             lookup_table[11],lookup_table[12]:begin
+             Row_A_mul[47:25]={8'b11111111,minus_two,2'b0}; Row_A_mul[48]=1'b1; 
+             end
+             lookup_table[13],lookup_table[14]:begin
+             Row_A_mul[47:25]={9'b111111111,minus_one,2'b0}; Row_A_mul[48]=1'b1; 
+             end
+
+            default:begin    
+             Row_A_mul[47:25]=24'b0; Row_A_mul[48]=1'b0;   
+             end    
+        endcase
+end
+ 
+
+always_comb begin
+        case ( B_mantissa[8:5])  // shift 6 zeros
+             lookup_table[0],lookup_table[15] : 
+             begin 
+             Row_A_mul[71:49]=23'b0; Row_A_mul[72]=1'b0;
+             end
+             lookup_table[1],lookup_table[2] : begin 
+             Row_A_mul[71:49]={6'b0,one,5'b0}; Row_A_mul[72]=1'b0; 
+             end
+             lookup_table[3],lookup_table[4]:begin
+             Row_A_mul[71:49]={5'b0,two,5'b0}; Row_A_mul[72]=1'b0; 
+             end
+             lookup_table[5],lookup_table[6]:begin
+             Row_A_mul[71:49]={4'b0,three,5'b0}; Row_A_mul[72]=1'b0;  
+             end
+             lookup_table[7]:begin
+             Row_A_mul[71:49]={4'b0,four,5'b0}; Row_A_mul[72]=1'b0; 
+             end
+             lookup_table[8]:begin
+             Row_A_mul[71:49]={4'b1111,minus_four,5'b0}; Row_A_mul[72]=1'b1; 
+             end
+             lookup_table[9],lookup_table[10]:begin
+             Row_A_mul[71:49]={4'b1111,minus_three,5'b0}; Row_A_mul[72]=1'b1; 
+             end
+             lookup_table[11],lookup_table[12]:begin
+             Row_A_mul[71:49]={5'b11111,minus_two,5'b0}; Row_A_mul[72]=1'b1; 
+             end
+             lookup_table[13],lookup_table[14]:begin
+             Row_A_mul[71:49]={6'b111111,minus_one,5'b0}; Row_A_mul[72]=1'b1;     
+             end
+            default:begin   
+             Row_A_mul[71:49]=24'b0; Row_A_mul[72]=1'b0; 
+             end    
+        endcase
+end
+ 
+always_comb begin
+        case ( {1'b0,B_mantissa[10:8]})  // shift 9 zeros, the first bit is always zero, 
+                                        //so no need to consider the extra addition of 1 
+                                        // in the case of complement                                                                                                                
+             lookup_table[0],lookup_table[15] : 
+             begin 
+             Row_A_mul[95:73]=23'b0; 
+             end
+             lookup_table[1],lookup_table[2] : begin 
+             Row_A_mul[95:73]={3'b0,one,8'b0};
+             end
+             lookup_table[3],lookup_table[4]:begin
+             Row_A_mul[95:73]={2'b0,two,8'b0};
+             end
+             lookup_table[5],lookup_table[6]:begin
+             Row_A_mul[95:73]={1'b0,three,8'b0};
+             end
+             lookup_table[7]:begin
+             Row_A_mul[95:73]={1'b0,four,8'b0};
+             end
+            default:begin   
+             end    
+        endcase
+end
+
+endmodule
 
 
 module multiplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode);
@@ -84,157 +223,23 @@ assign lookup_table[13]=4'b1101;
 assign lookup_table[14]=4'b1110;
 assign lookup_table[15]=4'b1111;
 
-// multiplexer 0
-always_comb begin
-        case ({ RowB_mantissa[0][2:0],1'b0})
-             lookup_table[0],lookup_table[15]:begin // 0
-             Row_A_mul[0][23:0]=24'b0; Row_A_mul[0][24]=1'b0;
-             end
-             lookup_table[1],lookup_table[2] : begin //1
-             Row_A_mul[0][23:0]={12'b0,one}; Row_A_mul[0][24]=1'b0;  
-             end
-             lookup_table[3],lookup_table[4]:begin  // 2
-             Row_A_mul[0][23:0]={11'b0,two}; Row_A_mul[0][24]=1'b0; 
-             end
-             lookup_table[5],lookup_table[6]:begin  // 3
-             Row_A_mul[0][23:0]={10'b0,three}; Row_A_mul[0][24]=1'b0; 
-             end
-             lookup_table[7]:begin                  //4
-             Row_A_mul[0][23:0]={10'b0,four}; Row_A_mul[0][24]=1'b0; 
-             end
-             lookup_table[8]:begin                  //-4
-             Row_A_mul[0][23:0]={10'b1111111111,minus_four}; Row_A_mul[0][24]=1'b1; 
-             end
-             lookup_table[9],lookup_table[10]:begin // -3
-             Row_A_mul[0][23:0]={10'b1111111111,minus_three}; Row_A_mul[0][24]=1'b1; 
-             end
-             lookup_table[11],lookup_table[12]:begin // -2
-             Row_A_mul[0][23:0]={11'b11111111111,minus_two}; Row_A_mul[0][24]=1'b1; 
-             end
-             lookup_table[13],lookup_table[14]:begin //-1
-             Row_A_mul[0][23:0]={12'b111111111111,minus_one}; Row_A_mul[0][24]=1'b1;  
-             end
-            default:begin 
-             Row_A_mul[0][23:0]=24'b0; Row_A_mul[1][0]=1'b0;    
-             end    
-        endcase
-end
 
-always_comb begin
-        case ( RowB_mantissa[0][5:2]) // shift 3 zeros
-             lookup_table[0],lookup_table[15]:begin 
-             Row_A_mul[1][47:25]=23'b0; Row_A_mul[0][48]=1'b0;
-             end
-             lookup_table[1],lookup_table[2]:begin 
-             Row_A_mul[1][47:25]={9'b0,one,2'b0}; Row_A_mul[0][48]=1'b0;  
-             end
-             lookup_table[3],lookup_table[4]:begin
-             Row_A_mul[1][47:25]={8'b0,two,2'b0}; Row_A_mul[0][48]=1'b0;  
-             end
-             lookup_table[5],lookup_table[6]:begin
-
-             end
-             lookup_table[7]:begin
-
-             end
-             lookup_table[8]:begin
-              
-             end
-             lookup_table[9],lookup_table[10]:begin
-
-             end
-             lookup_table[11],lookup_table[12]:begin
-
-             end
-             lookup_table[13],lookup_table[14]:begin
-
-              
-             end
-
-
-            default:begin    
-             end    
-        endcase
-end
- 
-
-always_comb begin
-        case ( RowB_mantissa[0][8:5])  // shift 6 zeros
-             lookup_table[0],lookup_table[15] : 
-             begin 
-
-             end
-             lookup_table[1],lookup_table[2] : begin 
-
-             end
-             lookup_table[3],lookup_table[4]:begin
-
-             end
-             lookup_table[5],lookup_table[6]:begin
-
-             end
-             lookup_table[7]:begin
-
-             end
-             lookup_table[8]:begin
-              
-             end
-             lookup_table[9],lookup_table[10]:begin
-
-             end
-             lookup_table[11],lookup_table[12]:begin
-
-             end
-             lookup_table[13],lookup_table[14]:begin
-
-              
-             end
-
-
-            default:begin   
-             end    
-        endcase
-end
- 
-always_comb begin
-        case ( {1'b0,RowB_mantissa[0][10:8]})  // shift 9 zeros
-             lookup_table[0],lookup_table[15] : 
-             begin 
-
-             end
-             lookup_table[1],lookup_table[2] : begin 
-
-             end
-             lookup_table[3],lookup_table[4]:begin
-
-             end
-             lookup_table[5],lookup_table[6]:begin
-
-             end
-             lookup_table[7]:begin
-
-             end
-             lookup_table[8]:begin
-              
-             end
-             lookup_table[9],lookup_table[10]:begin
-
-             end
-             lookup_table[11],lookup_table[12]:begin
-
-             end
-             lookup_table[13],lookup_table[14]:begin
-
-              
-             end
-
-
-            default:begin   
-             end    
-        endcase
-end
-
-
+multiplexer_small  multiplexer_0 (RowB_mantissa[0],lookup_table,Row_A_mul[0]);
+multiplexer_small  multiplexer_1 (RowB_mantissa[1],lookup_table,Row_A_mul[1]);
+multiplexer_small  multiplexer_2 (RowB_mantissa[2],lookup_table,Row_A_mul[2]);
+multiplexer_small  multiplexer_3 (RowB_mantissa[3],lookup_table,Row_A_mul[3]);
+multiplexer_small  multiplexer_4 (RowB_mantissa[4],lookup_table,Row_A_mul[4]);
+multiplexer_small  multiplexer_5 (RowB_mantissa[5],lookup_table,Row_A_mul[5]);
+multiplexer_small  multiplexer_6 (RowB_mantissa[6],lookup_table,Row_A_mul[6]);
+multiplexer_small  multiplexer_7 (RowB_mantissa[7],lookup_table,Row_A_mul[7]);
+multiplexer_small  multiplexer_8 (RowB_mantissa[8],lookup_table,Row_A_mul[8]);
+multiplexer_small  multiplexer_9 (RowB_mantissa[8],lookup_table,Row_A_mul[9]);
+multiplexer_small  multiplexer_10 (RowB_mantissa[10],lookup_table,Row_A_mul[10]);
+multiplexer_small  multiplexer_11 (RowB_mantissa[11],lookup_table,Row_A_mul[11]);
+multiplexer_small  multiplexer_12 (RowB_mantissa[12],lookup_table,Row_A_mul[12]);
+multiplexer_small  multiplexer_13 (RowB_mantissa[13],lookup_table,Row_A_mul[13]);
+multiplexer_small  multiplexer_14 (RowB_mantissa[14],lookup_table,Row_A_mul[14]);
+multiplexer_small  multiplexer_15 (RowB_mantissa[15],lookup_table,Row_A_mul[15]);
 
 
 
