@@ -38,7 +38,6 @@ assign minus_three=~three;
 assign four={mantissa_a_with_sign,2'b0};
 assign minus_four=~four;
 
-// for two, three, four, needneed consider the total amount of bits  
 endmodule
 
 
@@ -194,7 +193,16 @@ end
 endmodule
 
 
-module multiplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode);
+module multiplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode,Row_A_mul);
+
+input logic [11:0] one;
+input logic [11:0] minus_one;
+input logic [12:0] two;
+input logic [12:0] minus_two;
+input logic [13:0] three;
+input logic [13:0] minus_three;
+input logic [13:0] four;
+input logic [13:0] minus_four;
 
 typedef logic [10:0] Row [15:0];
 // typedef logic [10:0] Row_with_sign [15:0];
@@ -243,6 +251,7 @@ multiplexer_small  multiplexer_15 (RowB_mantissa[15],lookup_table,Row_A_mul[15])
 
 
 
+
 endmodule
 
 
@@ -255,6 +264,47 @@ endmodule
 // endmodule
 
 
+module extractor(a,b,c,sign_a,exp_a,sign_b,exp_b,sign_c,exp_c,mantissa_a,mantissa_b,mantissa_c);
+
+input logic [15:0] a,
+input logic [15:0] b,
+input logic [15:0] c,
+output logic sign_a,
+output logic [4:0] exp_a, // True exponent, considering denormalized numbers
+output logic sign_b,
+output logic [4:0] exp_b, // True exponent, considering denormalized numbers
+output logic sign_c,
+output logic [4:0] exp_c, // True exponent, considering denormalized numbers
+output logic [10:0] mantissa_a, // Includes implicit leading 1 for normalized
+output logic [10:0] mantissa_b, // Includes implicit leading 1 for normalized
+output logic [10:0] mantissa_c  // Includes implicit leading 1 for normalized
+
+
+// Extract sign bits
+assign sign_a = a[15];
+assign sign_b = b[15];
+assign sign_c = c[15];
+
+// Adjust exponents for bias, directly setting for denormalized numbers
+assign exp_a = (a[14:10] == 5'b00000) ? 5'b10010 : a[14:10] + 5'b10001; // -14 for denormalized
+assign exp_b = (b[14:10] == 5'b00000) ? 5'b10010 : b[14:10] + 5'b10001; // -14 for denormalized
+assign exp_c = (c[14:10] == 5'b00000) ? 5'b10010 : c[14:10] + 5'b10001; // -14 for denormalized
+
+// Extract mantissas, adding implicit leading 1 for normalized numbers
+assign mantissa_a = (a[14:10] != 5'b00000) ? {1'b1, a[9:0]} : {1'b0, a[9:0]};
+assign mantissa_b = (b[14:10] != 5'b00000) ? {1'b1, b[9:0]} : {1'b0, b[9:0]};
+assign mantissa_c = (c[14:10] != 5'b00000) ? {1'b1, c[9:0]} : {1'b0, c[9:0]};
+
+endmodule
+
+
+
+
 module simple_FMA();
+
+endmodule
+
+module FMA_Row(RowA,RowB,RowC,Row_product);
+
 
 endmodule
