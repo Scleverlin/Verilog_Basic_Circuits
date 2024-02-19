@@ -29,8 +29,8 @@ logic [11:0] mantissa_a_with_sign;
 assign mantissa_a_with_sign[11]=1'b0;
 
 // assign zero=1'b0;
-assign one=mantissa_a_with_sign
-assign minus_one=~mantissa_a_with_sign
+assign one=mantissa_a_with_sign; 
+assign minus_one=~mantissa_a_with_sign;
 assign two={mantissa_a_with_sign,1'b0};
 assign minus_two=~{mantissa_a_with_sign,1'b0};
 assign three={2'b0,one}+{1'b0,two};
@@ -264,21 +264,19 @@ endmodule
 // endmodule
 
 
-module extractor(a,b,c,sign_a,exp_a,sign_b,exp_b,sign_c,exp_c,mantissa_a,mantissa_b,mantissa_c);
+module extractor(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);
 
-input logic [15:0] a,
-input logic [15:0] b,
-input logic [15:0] c,
-output logic sign_a,
-output logic [4:0] exp_a, // True exponent, considering denormalized numbers
-output logic sign_b,
-output logic [4:0] exp_b, // True exponent, considering denormalized numbers
-output logic sign_c,
-output logic [4:0] exp_c, // True exponent, considering denormalized numbers
-output logic [10:0] mantissa_a, // Includes implicit leading 1 for normalized
-output logic [10:0] mantissa_b, // Includes implicit leading 1 for normalized
-output logic [10:0] mantissa_c  // Includes implicit leading 1 for normalized
-
+input logic [15:0] a,b,c;
+output logic sign_ab;
+logic sign_a;
+logic [5:0] exp_a; // True exponent, considering denormalized numbers
+ logic sign_b;
+logic [5:0] exp_b; // True exponent, considering denormalized numbers
+output logic sign_c;
+ logic [5:0] exp_c; // True exponent, considering denormalized numbers
+output logic [5:0] exp_c_minus_ab;
+output logic [10:0] mantissa_a, mantissa_b, mantissa_c;  // Includes implicit leading 1 for normalized
+output logic [5:0] exp_ab;
 
 // Extract sign bits
 assign sign_a = a[15];
@@ -286,21 +284,38 @@ assign sign_b = b[15];
 assign sign_c = c[15];
 
 // Adjust exponents for bias, directly setting for denormalized numbers
-assign exp_a = (a[14:10] == 5'b00000) ? 5'b10010 : a[14:10] + 5'b10001; // -14 for denormalized
-assign exp_b = (b[14:10] == 5'b00000) ? 5'b10010 : b[14:10] + 5'b10001; // -14 for denormalized
-assign exp_c = (c[14:10] == 5'b00000) ? 5'b10010 : c[14:10] + 5'b10001; // -14 for denormalized
+assign exp_a = (a[14:10] == 5'b00000) ? 6'b110010 : {1'b0,a[14:10]} + 6'b110001; // -14 for denormalized
+assign exp_b = (b[14:10] == 5'b00000) ? 6'b110010 : {1'b0,b[14:10]} + 6'b110001; // -14 for denormalized
+assign exp_c = (c[14:10] == 5'b00000) ? 6'b110010 : {1'b0,c[14:10]} + 6'b110001; // -14 for denormalized
 
 // Extract mantissas, adding implicit leading 1 for normalized numbers
 assign mantissa_a = (a[14:10] != 5'b00000) ? {1'b1, a[9:0]} : {1'b0, a[9:0]};
 assign mantissa_b = (b[14:10] != 5'b00000) ? {1'b1, b[9:0]} : {1'b0, b[9:0]};
 assign mantissa_c = (c[14:10] != 5'b00000) ? {1'b1, c[9:0]} : {1'b0, c[9:0]};
 
+assign exp_ab = exp_a + exp_b;// process the offset in the final noprmalization
+assign sign_ab = sign_a ^ sign_b;
+assign exp_c_minus_ab = exp_c - exp_ab; //shift for Fc
 endmodule
 
 
 
 
-module simple_FMA();
+module simple_FMA(Row_A_mul,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_c,product);
+input logic [95:0] Row_A_mul;
+input logic sign_ab;
+input logic [5:0] exp_ab;
+input logic sign_c;
+input logic [5:0] exp_c_minus_ab;
+input logic [10:0] mantissa_c;
+output logic [15:0] product;
+
+
+logic [5:0] shift_nums;
+assign shift_nums=exp_c_minus_ab;
+
+
+
 
 endmodule
 
