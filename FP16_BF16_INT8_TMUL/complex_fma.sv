@@ -52,11 +52,18 @@ endmodule
 
 // endmodule
 
-module multiplexer_small(B_mantissa,lookup_table,Row_A_mul);
+module multiplexer_small(B_mantissa,lookup_table,Row_A_mul,one,minus_one,two,minus_two,three,minus_three,four,minus_four);
 input logic [10:0] B_mantissa;
 input logic [3:0]lookup_table [15:0];
 output logic [95:0] Row_A_mul ;
-
+input logic [11:0] one;
+input logic [11:0] minus_one;
+input logic [12:0] two;
+input logic [12:0] minus_two;
+input logic [13:0] three;
+input logic [13:0] minus_three;
+input logic [13:0] four;
+input logic [13:0] minus_four;
 always_comb begin
         case ({ B_mantissa[2:0],1'b0})
              lookup_table[0],lookup_table[15]:begin // 0
@@ -232,22 +239,22 @@ assign lookup_table[14]=4'b1110;
 assign lookup_table[15]=4'b1111;
 
 
-multiplexer_small  multiplexer_0 (RowB_mantissa[0],lookup_table,Row_A_mul[0]);
-multiplexer_small  multiplexer_1 (RowB_mantissa[1],lookup_table,Row_A_mul[1]);
-multiplexer_small  multiplexer_2 (RowB_mantissa[2],lookup_table,Row_A_mul[2]);
-multiplexer_small  multiplexer_3 (RowB_mantissa[3],lookup_table,Row_A_mul[3]);
-multiplexer_small  multiplexer_4 (RowB_mantissa[4],lookup_table,Row_A_mul[4]);
-multiplexer_small  multiplexer_5 (RowB_mantissa[5],lookup_table,Row_A_mul[5]);
-multiplexer_small  multiplexer_6 (RowB_mantissa[6],lookup_table,Row_A_mul[6]);
-multiplexer_small  multiplexer_7 (RowB_mantissa[7],lookup_table,Row_A_mul[7]);
-multiplexer_small  multiplexer_8 (RowB_mantissa[8],lookup_table,Row_A_mul[8]);
-multiplexer_small  multiplexer_9 (RowB_mantissa[8],lookup_table,Row_A_mul[9]);
-multiplexer_small  multiplexer_10 (RowB_mantissa[10],lookup_table,Row_A_mul[10]);
-multiplexer_small  multiplexer_11 (RowB_mantissa[11],lookup_table,Row_A_mul[11]);
-multiplexer_small  multiplexer_12 (RowB_mantissa[12],lookup_table,Row_A_mul[12]);
-multiplexer_small  multiplexer_13 (RowB_mantissa[13],lookup_table,Row_A_mul[13]);
-multiplexer_small  multiplexer_14 (RowB_mantissa[14],lookup_table,Row_A_mul[14]);
-multiplexer_small  multiplexer_15 (RowB_mantissa[15],lookup_table,Row_A_mul[15]);
+multiplexer_small  multiplexer_0 (RowB_mantissa[0],lookup_table,Row_A_mul[0],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_1 (RowB_mantissa[1],lookup_table,Row_A_mul[1],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_2 (RowB_mantissa[2],lookup_table,Row_A_mul[2],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_3 (RowB_mantissa[3],lookup_table,Row_A_mul[3],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_4 (RowB_mantissa[4],lookup_table,Row_A_mul[4],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_5 (RowB_mantissa[5],lookup_table,Row_A_mul[5],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_6 (RowB_mantissa[6],lookup_table,Row_A_mul[6],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_7 (RowB_mantissa[7],lookup_table,Row_A_mul[7],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_8 (RowB_mantissa[8],lookup_table,Row_A_mul[8],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_9 (RowB_mantissa[8],lookup_table,Row_A_mul[9],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_10 (RowB_mantissa[10],lookup_table,Row_A_mul[10],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_11 (RowB_mantissa[11],lookup_table,Row_A_mul[11],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_12 (RowB_mantissa[12],lookup_table,Row_A_mul[12],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_13 (RowB_mantissa[13],lookup_table,Row_A_mul[13],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_14 (RowB_mantissa[14],lookup_table,Row_A_mul[14],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_15 (RowB_mantissa[15],lookup_table,Row_A_mul[15],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
 
 
 
