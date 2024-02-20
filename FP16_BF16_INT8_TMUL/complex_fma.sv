@@ -284,7 +284,7 @@ output logic sign_c;
 output logic [5:0] exp_c_minus_ab;
 output logic [10:0] mantissa_a, mantissa_b, mantissa_c;  // Includes implicit leading 1 for normalized
 output logic [5:0] exp_ab;
-
+// output logic [5:0]exp_c_with_offset;
 // Extract sign bits
 assign sign_a = a[15];
 assign sign_b = b[15];
@@ -322,13 +322,13 @@ logic [5:0] shift_nums;
 assign shift_nums=exp_c_minus_ab;
 
 logic left_no_add;
-logic right_no_add;
+// logic right_no_add; // looks like we don't need this
 logic left_or_right;// 0 for left, 1 for right
 assign left_or_right=shift_nums[5];
 logic [5:0]comple_shift;
 assign comple_shift=shift_nums[5]?~shift_nums+1:shift_nums;
 assign left_no_add=(~shift_nums[5])&&(comple_shift>6'd13);
-assign right_no_add=(shift_nums[5])&&(comple_shift>6'd19);
+// assign right_no_add=(shift_nums[5])&&(comple_shift>6'd19);
 
 
 function [47:0] FA_function ([23:0] x, [23:0] y, [23:0] z);
@@ -394,10 +394,18 @@ logic exp_add;
 logic guard;
 logic round;
 logic sticky;
-assign guard=left_no_add?0:// TBD
+assign guard=left_no_add?0:shifted_man[23];
+assign round=left_no_add?0:shifted_man[22];
+assign sticky=left_no_add?0:shifted_man[21];
 
 rounding rounding( man_before_round,   guard,  round, sticky, rounded_man, exp_add );
 
+logic signed [5:0]final_exp_tmp;
+logic [5:0]final_exp;
+
+assign final_exp_tmp=left_no_add?exp_c_minus_ab+exp_add:exp_ab+exp_offset+exp_add;
+assign final_exp= (final_exp_tmp>=-14&&rounded_man[10])?final_exp_tmp+6'd15:0;
+assign product={fianl_sign,final_exp[4:0],rounded_man[9:0]};
 
 endmodule
 
