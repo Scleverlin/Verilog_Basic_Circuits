@@ -321,12 +321,276 @@ output logic [15:0] product;
 logic [5:0] shift_nums;
 assign shift_nums=exp_c_minus_ab;
 
+logic left_no_add;
+logic right_no_add;
+logic left_or_right;// 0 for left, 1 for right
+assign left_or_right=shift_nums[5];
+logic [5:0]comple_shift;
+assign comple_shift=shift_nums[5]?~shift_nums+1:shift_nums;
+assign left_no_add=(~shift_nums[5])&&(comple_shift>6'd13);
+assign right_no_add=(shift_nums[5])&&(comple_shift>6'd19);
 
+
+function [47:0] FA_function ([23:0] x, [23:0] y, [23:0] z);
+    logic [47:0] result;
+    result[23:0] = x^y^z;
+    result[24] = 0;
+    result[47:25] = (x&y) | (y&z) | (z&x);
+    return result;
+endfunction
+
+//CSA Tree
+logic [47:0] result_l1;
+assign result_l1=FA_function(Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48]);
+logic [23:0] l1_1,l1_2;
+assign l1_1= result_l1[23:0];
+assign l1_2= result_l1[47:24];
+logic [47:0] result_l2;
+assign result_l2=FA_function(l1_1,l1_2,Row_A_mul[95:72]);
+
+logic [21:0] CSA_result;
+assign CSA_result={result_l2[47:24]+result_l2[23:0]}[21:0];
+// Tree end
+logic [31:0]ext_man_c,shifted_man_c;
+
+assign ext_man_c={13'b0,mantissa_c,10'b0};
+assign shifted_man_c=left_or_right?ext_man_c<<comple_shift:ext_man_c>>comple_shift;
+
+logic [34:0]add_result;
+logic [33:0]ext_add;
+logic [34:0]add_ext_c;
+assign add_ext_c=sign_c?~{1'b0,ext_man_c}:{1'b0,ext_man_c};
+
+assign add_result=add_ext_c+{13'b0,CSA_result}+sign_c;
+
+logic add_sign;
+assign add_sign=add_result[34];
+logic fianl_sign=sign_ab^add_sign;
+logic [34:0]comple_add_result;
+assign comple_add_result=add_sign?~add_result+1'b1:add_result;
+assign ext_add=comple_add_result[33:0];
+logic signed [5:0]shift_man;
+logic [5:0]lz_count;
+
+leading_zero_counter_34 lzc (ext_add,lz_count,shift_man);
+logic signed [5:0]max_offset;
+assign max_offset=exp_ab+6'd14;
+logic signed [5:0]shift_when_max_offset;
+logic use_max_offset;
+assign use_max_offset=((exp_ab+shift_man)>=-14)?0:1;
+assign shift_when_max_offset=13-max_offset;
+
+logic [32:0] shifted_man;
+logic signed [5:0] exp_offset;
+assign shifted_man=use_max_offset?ext_add<<shift_when_max_offset:ext_add<<lz_count;
+assign exp_offset=use_max_offset?max_offset:shift_man;
+
+logic [10:0] man_before_round;
+
+assign man_before_round=left_no_add?mantissa_c:shifted_man[32:22];
+
+logic [10:0] rounded_man;
+logic exp_add;
+logic guard;
+logic round;
+logic sticky;
+assign guard=left_no_add?0:sh
+
+rounding rounding( man_before_round,   guard,  round, sticky, rounded_man, exp_add );
 
 
 endmodule
 
+
+
+
 module FMA_Row(RowA,RowB,RowC,Row_product);
 
 
+endmodule
+
+
+
+module leading_zero_counter_334 (
+    input [33:0] data,
+    output logic [5:0] lz_count,  //shift_nums
+    output logic signed [5:0] exp_offset //exp_offset
+);
+
+    always @(*) begin
+        casez(data)
+            34'b1?????????????????????????????????: begin 
+                lz_count = 0;
+                exp_offset = 13;
+            end
+            34'b01????????????????????????????????:  begin 
+                lz_count = 1;
+                exp_offset = 12;
+            end
+            34'b001???????????????????????????????: begin
+                lz_count = 2;
+                exp_offset = 11;
+                end
+            34'b0001??????????????????????????????: begin
+                lz_count = 3;
+                exp_offset = 10;
+                end
+            34'b00001?????????????????????????????: begin
+                lz_count = 4;
+                exp_offset = 9;
+                end
+            34'b000001????????????????????????????: begin
+                lz_count = 5;
+                exp_offset = 8;
+                end
+            34'b0000001???????????????????????????: begin
+                lz_count = 6;
+                exp_offset = 6;
+                end
+            34'b00000001??????????????????????????: begin 
+                lz_count = 7;
+                exp_offset = 6;
+                end
+            34'b000000001?????????????????????????: begin 
+                lz_count = 8;
+                exp_offset = 5;
+                end
+            34'b0000000001????????????????????????: begin 
+                lz_count = 9;
+                exp_offset = 4;
+                end
+            34'b00000000001???????????????????????: begin 
+                lz_count = 10;
+                exp_offset = 3;
+                end
+            34'b000000000001??????????????????????: begin
+                lz_count = 11;
+                exp_offset = 2;
+                end
+            34'b0000000000001?????????????????????: begin 
+                lz_count = 12;
+                exp_offset = 1;
+                end
+            34'b00000000000001????????????????????: begin
+                lz_count = 13;
+                exp_offset =0;
+                end
+            34'b000000000000001???????????????????: begin
+                lz_count = 14;
+                exp_offset =-1;
+                end
+            34'b0000000000000001??????????????????: begin 
+                lz_count = 15;
+                exp_offset =-2;
+                end
+            34'b00000000000000001?????????????????: begin 
+                lz_count = 16;
+                exp_offset =-3;
+                end
+            34'b000000000000000001????????????????: begin 
+                lz_count = 17;
+                exp_offset =-4;
+                end
+            34'b0000000000000000001???????????????: begin 
+                lz_count = 18;
+                exp_offset =-5;
+                end
+            34'b00000000000000000001??????????????: begin 
+                lz_count = 19;
+                exp_offset =-6;
+                end
+            34'b000000000000000000001?????????????: begin 
+                lz_count = 20;
+                exp_offset =-7;
+                end
+            34'b0000000000000000000001????????????: begin 
+                lz_count = 21;
+                exp_offset =-8;
+                end
+            34'b00000000000000000000001???????????: begin 
+                lz_count = 22;
+                exp_offset =-9;
+                end
+            34'b000000000000000000000001??????????: begin 
+                lz_count = 23;
+                exp_offset =-10;
+                end
+            34'b0000000000000000000000001?????????: begin 
+                lz_count = 24;
+                exp_offset =-11;
+                end
+            34'b00000000000000000000000001????????: begin 
+                lz_count = 25;
+                exp_offset =-12;
+                end
+            34'b000000000000000000000000001???????: begin 
+                lz_count = 26;
+                exp_offset =-13;
+                end
+            34'b0000000000000000000000000001??????: begin 
+                lz_count = 27;
+                exp_offset =-14;
+                end
+            34'b00000000000000000000000000001?????: begin 
+                lz_count = 28;
+                exp_offset =-15;
+                end
+            34'b000000000000000000000000000001?????: begin 
+                lz_count = 29;
+                exp_offset =-16;
+                end
+            34'b0000000000000000000000000000001???: begin 
+                lz_count = 30;
+                exp_offset =-17;
+                end
+            34'b00000000000000000000000000000001??: begin 
+                lz_count = 31;
+                exp_offset =-18;
+                end
+            34'b000000000000000000000000000000001??: begin 
+                lz_count = 32;
+                exp_offset =-19;
+                end
+            34'b0000000000000000000000000000000001?: begin 
+                lz_count = 33;
+                exp_offset =-20;
+                end                
+            default: begin lz_count = 0; // for unknown or high-impedance states
+                exp_offset = 0;
+            end
+        endcase
+    end
+
+endmodule
+
+module rounding(
+    input wire [10:0] man,  // 24-bit mantissa with implicit bit
+    input wire guard,       // Guard bit
+    input wire round,       // Round bit
+    input wire sticky,      // Sticky bit
+    output logic [10:0] rounded_man,  // Rounded mantissa
+    output logic exp_add              // Set if there's a carry that affects the exponent
+);
+
+    wire tie; // 平局情况：保护位为1，而舍入位和粘滞位都为0
+    assign tie = guard && !round && !sticky;
+
+    always @(*) begin
+        if (tie) begin
+            // 平局到偶数：如果尾数最后一位是0，保持不变；如果是1，则向上舍入
+            if (man[0]) begin
+                {exp_add, rounded_man} = man + 11'h1;
+            end else begin
+                exp_add = 1'b0;
+                rounded_man = man;
+            end
+        end else if (guard && (round || sticky)) begin
+            // 非平局情况且需要向上舍入
+            {exp_add, rounded_man} = man + 11'h1;
+        end else begin
+            // 不需要舍入
+            exp_add = 1'b0;
+            rounded_man = man;
+        end
+    end
 endmodule
