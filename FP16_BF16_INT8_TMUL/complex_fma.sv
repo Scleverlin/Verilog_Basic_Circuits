@@ -361,9 +361,11 @@ assign shifted_man_c=left_or_right?ext_man_c<<comple_shift:ext_man_c>>comple_shi
 logic [34:0]add_result;
 logic [34:0]ext_add;
 logic [34:0]add_ext_c;
-assign add_ext_c=sign_c?~{1'b0,shifted_man_c}:{1'b0,shifted_man_c};
+logic c_add_sign;
+assign c_add_sign=sign_c^sign_ab;
+assign add_ext_c=c_add_sign?~{1'b0,shifted_man_c}:{1'b0,shifted_man_c};
 
-assign add_result=add_ext_c+{13'b0,CSA_result}+sign_c; // here should use an adder with carry in
+assign add_result=add_ext_c+{13'b0,CSA_result}+c_add_sign; // here should use an adder with carry in
 
 logic add_sign;
 assign add_sign=add_result[34];
