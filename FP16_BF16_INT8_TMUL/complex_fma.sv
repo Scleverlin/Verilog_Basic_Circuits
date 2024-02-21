@@ -23,7 +23,7 @@ output logic [13:0] minus_four;
 // assign exp_a=a[14:10];
  
 logic [11:0] mantissa_a_with_sign;
-
+assign mantissa_a_with_sign[10:0]=mantissa_a;
 // assign mantissa_a[10]=(exp_a==0)?0:1;
 // assign mantissa_a[9:0]=a[9:0];
 assign mantissa_a_with_sign[11]=1'b0;
@@ -64,7 +64,7 @@ input logic [13:0] three;
 input logic [13:0] minus_three;
 input logic [13:0] four;
 input logic [13:0] minus_four;
-always_comb begin
+always @ (*) begin
         case ({ B_mantissa[2:0],1'b0})
              lookup_table[0],lookup_table[15]:begin // 0
              Row_A_mul[23:0]=24'b0; Row_A_mul[24]=1'b0;
@@ -99,7 +99,7 @@ always_comb begin
         endcase
 end
 
-always_comb begin
+always @ (*) begin
         case ( B_mantissa[5:2]) // shift 3 zeros
              lookup_table[0],lookup_table[15]:begin 
              Row_A_mul[47:25]=23'b0; Row_A_mul[48]=1'b0;
@@ -136,7 +136,7 @@ always_comb begin
 end
  
 
-always_comb begin
+always @ (*) begin
         case ( B_mantissa[8:5])  // shift 6 zeros
              lookup_table[0],lookup_table[15] : 
              begin 
@@ -172,7 +172,7 @@ always_comb begin
         endcase
 end
  
-always_comb begin
+always @ (*) begin
         case ( {1'b0,B_mantissa[10:8]})  // shift 9 zeros, the first bit is always zero, 
                                         //so no need to consider the extra addition of 1 
                                         // in the case of complement                                                                                                                
@@ -216,6 +216,7 @@ typedef logic [10:0] Row [15:0];
 typedef logic [95:0] a_mul [15:0];
 input Row RowB_mantissa;
 input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
+// now we only consider the FP16
 
 output a_mul Row_A_mul;
 
@@ -347,11 +348,12 @@ assign l1_1= result_l1[23:0];
 assign l1_2= result_l1[47:24];
 logic [47:0] result_l2;
 assign result_l2=FA_function(l1_1,l1_2,Row_A_mul[95:72]);
-
+logic [23:0] CSA_result_tmp;
 logic [21:0] CSA_result;
-assign CSA_result={result_l2[47:24]+result_l2[23:0]}[21:0];
+assign CSA_result_tmp=result_l2[47:24]+result_l2[23:0];
+assign CSA_result=CSA_result_tmp[21:0];
 // Tree end
-logic [31:0]ext_man_c,shifted_man_c;
+logic [33:0]ext_man_c,shifted_man_c;
 
 assign ext_man_c={13'b0,mantissa_c,10'b0};
 assign shifted_man_c=left_or_right?ext_man_c<<comple_shift:ext_man_c>>comple_shift;
@@ -359,9 +361,9 @@ assign shifted_man_c=left_or_right?ext_man_c<<comple_shift:ext_man_c>>comple_shi
 logic [34:0]add_result;
 logic [34:0]ext_add;
 logic [34:0]add_ext_c;
-assign add_ext_c=sign_c?~{1'b0,ext_man_c}:{1'b0,ext_man_c};
+assign add_ext_c=sign_c?~{1'b0,shifted_man_c}:{1'b0,shifted_man_c};
 
-assign add_result=add_ext_c+{13'b0,CSA_result}+sign_c;
+assign add_result=add_ext_c+{13'b0,CSA_result}+sign_c; // here should use an adder with carry in
 
 logic add_sign;
 assign add_sign=add_result[34];
@@ -412,7 +414,36 @@ endmodule
 
 
 
-module FMA_Row(RowA,RowB,RowC,Row_product);
+module FMA_Row(A,RowB,RowC,Row_product,mode);
+typedef logic [15:0] RowM [15:0];
+input logic [15:0]A;
+input RowM RowB,RowC;
+output RowM Row_product;
+
+
+typedef logic [10:0] Row [15:0];
+typedef logic [95:0] a_mul [15:0];
+Row RowB_mantissa;
+input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
+// now we only consider the FP16
+a_mul Row_A_mul;
+
+ logic [10:0]mantissa_a;
+ logic [11:0] one;
+ logic [11:0] minus_one;
+ logic [12:0] two;
+ logic [12:0] minus_two;
+ logic [13:0] three;
+ logic [13:0] minus_three;
+ logic [13:0] four;
+ logic [13:0] minus_four;
+
+
+extractor ext0(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);// it looks like the extractor of A only need to be done once.
+
+partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,minus_three,minus_four);
+multiplexer_for_row  mulplexer0 (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode,Row_A_mul);
+
 
 
 endmodule
@@ -555,16 +586,16 @@ module leading_zero_counter_35 (
                 lz_count = 31;
                 exp_offset =-17;
                 end
-            35'b000000000000000000000000000000001???: begin 
+            35'b000000000000000000000000000000001??: begin 
                 lz_count = 32;
                 exp_offset =-18;
                 end
-            35'b0000000000000000000000000000000001??: begin 
+            35'b0000000000000000000000000000000001?: begin 
                 lz_count = 33;
                 exp_offset =-19;
                 end                
-            35'b00000000000000000000000000000000001?: begin 
-                lz_count = 33;
+            35'b00000000000000000000000000000000001: begin 
+                lz_count = 34;
                 exp_offset =-20;
                 end          
             default: begin lz_count = 0; // for unknown or high-impedance states
