@@ -308,7 +308,6 @@ endmodule
 
 
 
-
 module simple_FMA(Row_A_mul,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_c,product);
 input logic [95:0] Row_A_mul;
 input logic sign_ab;
@@ -442,6 +441,14 @@ a_mul Row_A_mul;
 
 
 extractor ext0(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);// it looks like the extractor of A only need to be done once.
+// for the hardware in the extractor,
+// a should be only use one time, but exp_c-exp_a+b need to be used 16 times.
+// so we need a big extractor and inside the extractor, a will be extracted 1 time and reused 16 times,
+// b and c need to be extracted 16 times.
+// so the above module need to be modified to fit the hardware.
+
+
+
 
 partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,minus_three,minus_four);
 multiplexer_for_row  mulplexer0 (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode,Row_A_mul);
