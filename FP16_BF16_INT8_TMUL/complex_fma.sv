@@ -271,33 +271,71 @@ endmodule
 
 // endmodule
 
+module extractor_for_row (a,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);
 
-module extractor(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);
+typedef logic [15:0] RowM [15:0];
+input logic [15:0]a;
+input RowM RowB,RowC;
 
-input logic [15:0] a,b,c;
-output logic sign_ab;
+output logic [5:0] exp_ab [15:0];
+output logic [15:0] sign_ab;
+output logic [15:0] sign_c;
+output logic [5:0] exp_c_minus_ab [15:0];
+output logic [10:0] mantissa_a;
+output logic [10:0] mantissa_b [15:0];
+output logic [10:0] mantissa_c [15:0];  // Includes implicit leading 1 for normalized
+
 logic sign_a;
 logic [5:0] exp_a; // True exponent, considering denormalized numbers
+
+assign sign_a = a[15];
+// Adjust exponents for bias, directly setting for denormalized numbers
+assign exp_a = (a[14:10] == 5'b00000) ? 6'b110010 : {1'b0,a[14:10]} + 6'b110001; // -14 for denormalized
+assign mantissa_a = (a[14:10] != 5'b00000) ? {1'b1, a[9:0]} : {1'b0, a[9:0]};
+
+extractor ex0  (sign_a,exp_a,RowB[0],RowC[0],sign_ab[0],exp_ab[0],sign_c[0],exp_c_minus_ab[0],mantissa_b[0],mantissa_c[0]);
+extractor ex1  (sign_a,exp_a,RowB[1],RowC[1],sign_ab[1],exp_ab[1],sign_c[1],exp_c_minus_ab[1],mantissa_b[1],mantissa_c[1]);
+extractor ex2  (sign_a,exp_a,RowB[2],RowC[2],sign_ab[2],exp_ab[2],sign_c[2],exp_c_minus_ab[2],mantissa_b[2],mantissa_c[2]);
+extractor ex3  (sign_a,exp_a,RowB[3],RowC[3],sign_ab[3],exp_ab[3],sign_c[3],exp_c_minus_ab[3],mantissa_b[3],mantissa_c[3]);
+extractor ex4  (sign_a,exp_a,RowB[4],RowC[4],sign_ab[4],exp_ab[4],sign_c[4],exp_c_minus_ab[4],mantissa_b[4],mantissa_c[4]);
+extractor ex5  (sign_a,exp_a,RowB[5],RowC[5],sign_ab[5],exp_ab[5],sign_c[5],exp_c_minus_ab[5],mantissa_b[5],mantissa_c[5]);
+extractor ex6  (sign_a,exp_a,RowB[6],RowC[6],sign_ab[6],exp_ab[6],sign_c[6],exp_c_minus_ab[6],mantissa_b[6],mantissa_c[6]);
+extractor ex7  (sign_a,exp_a,RowB[7],RowC[7],sign_ab[7],exp_ab[7],sign_c[7],exp_c_minus_ab[7],mantissa_b[7],mantissa_c[7]);
+extractor ex8  (sign_a,exp_a,RowB[8],RowC[8],sign_ab[8],exp_ab[8],sign_c[8],exp_c_minus_ab[8],mantissa_b[8],mantissa_c[8]);
+extractor ex9  (sign_a,exp_a,RowB[9],RowC[9],sign_ab[9],exp_ab[9],sign_c[9],exp_c_minus_ab[9],mantissa_b[9],mantissa_c[9]);
+extractor ex10 (sign_a,exp_a,RowB[10],RowC[10],sign_ab[10],exp_ab[10],sign_c[10],exp_c_minus_ab[10],mantissa_b[10],mantissa_c[10]);
+extractor ex11 (sign_a,exp_a,RowB[11],RowC[11],sign_ab[11],exp_ab[11],sign_c[11],exp_c_minus_ab[11],mantissa_b[11],mantissa_c[11]);
+extractor ex12 (sign_a,exp_a,RowB[12],RowC[12],sign_ab[12],exp_ab[12],sign_c[12],exp_c_minus_ab[12],mantissa_b[12],mantissa_c[12]);
+extractor ex13 (sign_a,exp_a,RowB[13],RowC[13],sign_ab[13],exp_ab[13],sign_c[13],exp_c_minus_ab[13],mantissa_b[13],mantissa_c[13]);
+extractor ex14 (sign_a,exp_a,RowB[14],RowC[14],sign_ab[14],exp_ab[14],sign_c[14],exp_c_minus_ab[14],mantissa_b[14],mantissa_c[14]);
+extractor ex15 (sign_a,exp_a,RowB[15],RowC[15],sign_ab[15],exp_ab[15],sign_c[15],exp_c_minus_ab[15],mantissa_b[15],mantissa_c[15]);
+
+
+endmodule
+
+module extractor(sign_a,exp_a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_b,mantissa_c);
+input logic sign_a;
+input logic [15:0] b,c;
+output logic sign_ab;
+
+input logic [5:0] exp_a; // True exponent, considering denormalized numbers
  logic sign_b;
 logic [5:0] exp_b; // True exponent, considering denormalized numbers
 output logic sign_c;
  logic [5:0] exp_c; // True exponent, considering denormalized numbers
 output logic [5:0] exp_c_minus_ab;
-output logic [10:0] mantissa_a, mantissa_b, mantissa_c;  // Includes implicit leading 1 for normalized
+output logic [10:0] mantissa_b, mantissa_c;  // Includes implicit leading 1 for normalized
 output logic [5:0] exp_ab;
 // output logic [5:0]exp_c_with_offset;
 // Extract sign bits
-assign sign_a = a[15];
 assign sign_b = b[15];
 assign sign_c = c[15];
 
 // Adjust exponents for bias, directly setting for denormalized numbers
-assign exp_a = (a[14:10] == 5'b00000) ? 6'b110010 : {1'b0,a[14:10]} + 6'b110001; // -14 for denormalized
 assign exp_b = (b[14:10] == 5'b00000) ? 6'b110010 : {1'b0,b[14:10]} + 6'b110001; // -14 for denormalized
 assign exp_c = (c[14:10] == 5'b00000) ? 6'b110010 : {1'b0,c[14:10]} + 6'b110001; // -14 for denormalized
 
 // Extract mantissas, adding implicit leading 1 for normalized numbers
-assign mantissa_a = (a[14:10] != 5'b00000) ? {1'b1, a[9:0]} : {1'b0, a[9:0]};
 assign mantissa_b = (b[14:10] != 5'b00000) ? {1'b1, b[9:0]} : {1'b0, b[9:0]};
 assign mantissa_c = (c[14:10] != 5'b00000) ? {1'b1, c[9:0]} : {1'b0, c[9:0]};
 
@@ -418,18 +456,23 @@ endmodule
 module FMA_Row(A,RowB,RowC,Row_product,mode);
 typedef logic [15:0] RowM [15:0];
 input logic [15:0]A;
+input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
 input RowM RowB,RowC;
+
 output RowM Row_product;
 
-
+logic [5:0] exp_ab [15:0];
+logic [15:0] sign_ab;
+logic [15:0] sign_c;
+logic [5:0] exp_c_minus_ab [15:0];
+logic [10:0] mantissa_a;
 typedef logic [10:0] Row [15:0];
 typedef logic [95:0] a_mul [15:0];
-Row RowB_mantissa;
-input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
+Row mantissa_b,mantissa_c;
+
 // now we only consider the FP16
 a_mul Row_A_mul;
 
- logic [10:0]mantissa_a;
  logic [11:0] one;
  logic [11:0] minus_one;
  logic [12:0] two;
@@ -440,19 +483,34 @@ a_mul Row_A_mul;
  logic [13:0] minus_four;
 
 
-extractor ext0(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);// it looks like the extractor of A only need to be done once.
+// extractor ext0(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);// it looks like the extractor of A only need to be done once.
 // for the hardware in the extractor,
 // a should be only use one time, but exp_c-exp_a+b need to be used 16 times.
 // so we need a big extractor and inside the extractor, a will be extracted 1 time and reused 16 times,
 // b and c need to be extracted 16 times.
 // so the above module need to be modified to fit the hardware.
 
-
-
-
+extractor_for_row  extractor (A,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);
 partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,minus_three,minus_four);
-multiplexer_for_row  mulplexer0 (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode,Row_A_mul);
 
+multiplexer_for_row  mulplexer0 (one,two,three,four,minus_one,minus_two,minus_three,minus_four,mantissa_b,mode,Row_A_mul);
+
+simple_FMA FMA0 (Row_A_mul[0],sign_ab[0],exp_ab[0],sign_c[0],exp_c_minus_ab[0],mantissa_c[0],Row_product[0]);
+simple_FMA FMA1 (Row_A_mul[1],sign_ab[1],exp_ab[1],sign_c[1],exp_c_minus_ab[1],mantissa_c[1],Row_product[1]);
+simple_FMA FMA2 (Row_A_mul[2],sign_ab[2],exp_ab[2],sign_c[2],exp_c_minus_ab[2],mantissa_c[2],Row_product[2]);
+simple_FMA FMA3 (Row_A_mul[3],sign_ab[3],exp_ab[3],sign_c[3],exp_c_minus_ab[3],mantissa_c[3],Row_product[3]);
+simple_FMA FMA4 (Row_A_mul[4],sign_ab[4],exp_ab[4],sign_c[4],exp_c_minus_ab[4],mantissa_c[4],Row_product[4]);
+simple_FMA FMA5 (Row_A_mul[5],sign_ab[5],exp_ab[5],sign_c[5],exp_c_minus_ab[5],mantissa_c[5],Row_product[5]);
+simple_FMA FMA6 (Row_A_mul[6],sign_ab[6],exp_ab[6],sign_c[6],exp_c_minus_ab[6],mantissa_c[6],Row_product[6]);
+simple_FMA FMA7 (Row_A_mul[7],sign_ab[7],exp_ab[7],sign_c[7],exp_c_minus_ab[7],mantissa_c[7],Row_product[7]);
+simple_FMA FMA8 (Row_A_mul[8],sign_ab[8],exp_ab[8],sign_c[8],exp_c_minus_ab[8],mantissa_c[8],Row_product[8]);
+simple_FMA FMA9 (Row_A_mul[9],sign_ab[9],exp_ab[9],sign_c[9],exp_c_minus_ab[9],mantissa_c[9],Row_product[9]);
+simple_FMA FMA10 (Row_A_mul[10],sign_ab[10],exp_ab[10],sign_c[10],exp_c_minus_ab[10],mantissa_c[10],Row_product[10]);
+simple_FMA FMA11 (Row_A_mul[11],sign_ab[11],exp_ab[11],sign_c[11],exp_c_minus_ab[11],mantissa_c[11],Row_product[11]);
+simple_FMA FMA12 (Row_A_mul[12],sign_ab[12],exp_ab[12],sign_c[12],exp_c_minus_ab[12],mantissa_c[12],Row_product[12]);
+simple_FMA FMA13 (Row_A_mul[13],sign_ab[13],exp_ab[13],sign_c[13],exp_c_minus_ab[13],mantissa_c[13],Row_product[13]);
+simple_FMA FMA14 (Row_A_mul[14],sign_ab[14],exp_ab[14],sign_c[14],exp_c_minus_ab[14],mantissa_c[14],Row_product[14]);
+simple_FMA FMA15 (Row_A_mul[15],sign_ab[15],exp_ab[15],sign_c[15],exp_c_minus_ab[15],mantissa_c[15],Row_product[15]);
 
 
 endmodule
