@@ -130,7 +130,7 @@ always @ (*) begin
              end
 
             default:begin    
-             Row_A_mul[47:25]=24'b0; Row_A_mul[48]=1'b0;   
+             Row_A_mul[47:25]=23'b0; Row_A_mul[48]=1'b0;   
              end    
         endcase
 end
@@ -167,7 +167,7 @@ always @ (*) begin
              Row_A_mul[71:49]={6'b111111,minus_one,5'b0}; Row_A_mul[72]=1'b1;     
              end
             default:begin   
-             Row_A_mul[71:49]=24'b0; Row_A_mul[72]=1'b0; 
+             Row_A_mul[71:49]=23'b0; Row_A_mul[72]=1'b0; 
              end    
         endcase
 end
@@ -200,8 +200,9 @@ end
 endmodule
 
 
-module multiplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,mode,Row_A_mul);
+module multiplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,Row_A_mul);
 
+// input logic mode; 
 input logic [11:0] one;
 input logic [11:0] minus_one;
 input logic [12:0] two;
@@ -210,15 +211,15 @@ input logic [13:0] three;
 input logic [13:0] minus_three;
 input logic [13:0] four;
 input logic [13:0] minus_four;
-
-typedef logic [10:0] Row [15:0];
+input logic [10:0] RowB_mantissa [15:0];
+output logic [95:0] Row_A_mul [15:0];
+// typedef logic [10:0] Row [15:0];
 // typedef logic [10:0] Row_with_sign [15:0];
-typedef logic [95:0] a_mul [15:0];
-input Row RowB_mantissa;
-input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
+// typedef logic [95:0] a_mul [15:0];
+
+// BF16 OR FP16.. INT8 should be same processed as FP16
 // now we only consider the FP16
 
-output a_mul Row_A_mul;
 
 
 logic [3:0]lookup_table [15:0];
@@ -453,10 +454,10 @@ endmodule
 
 
 
-module FMA_Row(A,RowB,RowC,Row_product,mode);
+module FMA_Row(a,RowB,RowC,Row_product);
 typedef logic [15:0] RowM [15:0];
-input logic [15:0]A;
-input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
+input logic [15:0]a;
+// input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
 input RowM RowB,RowC;
 
 output RowM Row_product;
@@ -466,10 +467,11 @@ logic [15:0] sign_ab;
 logic [15:0] sign_c;
 logic [5:0] exp_c_minus_ab [15:0];
 logic [10:0] mantissa_a;
-typedef logic [10:0] Row [15:0];
+// typedef logic [10:0] Row [15:0];
 typedef logic [95:0] a_mul [15:0];
-Row mantissa_b,mantissa_c;
-
+// Row mantissa_b,mantissa_c;
+logic [10:0] RowB_mantissa [15:0];
+logic [10:0] mantissa_c [15:0];  // Includes implicit leading 1 for normalized
 // now we only consider the FP16
 a_mul Row_A_mul;
 
@@ -490,10 +492,10 @@ a_mul Row_A_mul;
 // b and c need to be extracted 16 times.
 // so the above module need to be modified to fit the hardware.
 
-extractor_for_row  extractor (A,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);
+extractor_for_row  extractor (a,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,RowB_mantissa,mantissa_c);
 partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,minus_three,minus_four);
 
-multiplexer_for_row  mulplexer0 (one,two,three,four,minus_one,minus_two,minus_three,minus_four,mantissa_b,mode,Row_A_mul);
+multiplexer_for_row  mulplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,Row_A_mul);
 
 simple_FMA FMA0 (Row_A_mul[0],sign_ab[0],exp_ab[0],sign_c[0],exp_c_minus_ab[0],mantissa_c[0],Row_product[0]);
 simple_FMA FMA1 (Row_A_mul[1],sign_ab[1],exp_ab[1],sign_c[1],exp_c_minus_ab[1],mantissa_c[1],Row_product[1]);

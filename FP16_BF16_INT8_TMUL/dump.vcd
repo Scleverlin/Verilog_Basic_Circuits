@@ -1,0 +1,558 @@
+$date
+	Mon Feb 26 16:14:40 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module FMA_Row_tb $end
+$scope module mul $end
+$var wire 14 ! four [13:0] $end
+$var wire 14 " minus_four [13:0] $end
+$var wire 12 # minus_one [11:0] $end
+$var wire 14 $ minus_three [13:0] $end
+$var wire 13 % minus_two [12:0] $end
+$var wire 12 & one [11:0] $end
+$var wire 14 ' three [13:0] $end
+$var wire 13 ( two [12:0] $end
+$scope module multiplexer_0 $end
+$var wire 11 ) B_mantissa [10:0] $end
+$var wire 14 * four [13:0] $end
+$var wire 14 + minus_four [13:0] $end
+$var wire 12 , minus_one [11:0] $end
+$var wire 14 - minus_three [13:0] $end
+$var wire 13 . minus_two [12:0] $end
+$var wire 12 / one [11:0] $end
+$var wire 14 0 three [13:0] $end
+$var wire 13 1 two [12:0] $end
+$var reg 96 2 Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_1 $end
+$var wire 11 3 B_mantissa [10:0] $end
+$var wire 14 4 four [13:0] $end
+$var wire 14 5 minus_four [13:0] $end
+$var wire 12 6 minus_one [11:0] $end
+$var wire 14 7 minus_three [13:0] $end
+$var wire 13 8 minus_two [12:0] $end
+$var wire 12 9 one [11:0] $end
+$var wire 14 : three [13:0] $end
+$var wire 13 ; two [12:0] $end
+$var reg 96 < Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_10 $end
+$var wire 11 = B_mantissa [10:0] $end
+$var wire 14 > four [13:0] $end
+$var wire 14 ? minus_four [13:0] $end
+$var wire 12 @ minus_one [11:0] $end
+$var wire 14 A minus_three [13:0] $end
+$var wire 13 B minus_two [12:0] $end
+$var wire 12 C one [11:0] $end
+$var wire 14 D three [13:0] $end
+$var wire 13 E two [12:0] $end
+$var reg 96 F Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_11 $end
+$var wire 11 G B_mantissa [10:0] $end
+$var wire 14 H four [13:0] $end
+$var wire 14 I minus_four [13:0] $end
+$var wire 12 J minus_one [11:0] $end
+$var wire 14 K minus_three [13:0] $end
+$var wire 13 L minus_two [12:0] $end
+$var wire 12 M one [11:0] $end
+$var wire 14 N three [13:0] $end
+$var wire 13 O two [12:0] $end
+$var reg 96 P Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_12 $end
+$var wire 11 Q B_mantissa [10:0] $end
+$var wire 14 R four [13:0] $end
+$var wire 14 S minus_four [13:0] $end
+$var wire 12 T minus_one [11:0] $end
+$var wire 14 U minus_three [13:0] $end
+$var wire 13 V minus_two [12:0] $end
+$var wire 12 W one [11:0] $end
+$var wire 14 X three [13:0] $end
+$var wire 13 Y two [12:0] $end
+$var reg 96 Z Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_13 $end
+$var wire 11 [ B_mantissa [10:0] $end
+$var wire 14 \ four [13:0] $end
+$var wire 14 ] minus_four [13:0] $end
+$var wire 12 ^ minus_one [11:0] $end
+$var wire 14 _ minus_three [13:0] $end
+$var wire 13 ` minus_two [12:0] $end
+$var wire 12 a one [11:0] $end
+$var wire 14 b three [13:0] $end
+$var wire 13 c two [12:0] $end
+$var reg 96 d Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_14 $end
+$var wire 11 e B_mantissa [10:0] $end
+$var wire 14 f four [13:0] $end
+$var wire 14 g minus_four [13:0] $end
+$var wire 12 h minus_one [11:0] $end
+$var wire 14 i minus_three [13:0] $end
+$var wire 13 j minus_two [12:0] $end
+$var wire 12 k one [11:0] $end
+$var wire 14 l three [13:0] $end
+$var wire 13 m two [12:0] $end
+$var reg 96 n Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_15 $end
+$var wire 11 o B_mantissa [10:0] $end
+$var wire 14 p four [13:0] $end
+$var wire 14 q minus_four [13:0] $end
+$var wire 12 r minus_one [11:0] $end
+$var wire 14 s minus_three [13:0] $end
+$var wire 13 t minus_two [12:0] $end
+$var wire 12 u one [11:0] $end
+$var wire 14 v three [13:0] $end
+$var wire 13 w two [12:0] $end
+$var reg 96 x Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_2 $end
+$var wire 11 y B_mantissa [10:0] $end
+$var wire 14 z four [13:0] $end
+$var wire 14 { minus_four [13:0] $end
+$var wire 12 | minus_one [11:0] $end
+$var wire 14 } minus_three [13:0] $end
+$var wire 13 ~ minus_two [12:0] $end
+$var wire 12 !" one [11:0] $end
+$var wire 14 "" three [13:0] $end
+$var wire 13 #" two [12:0] $end
+$var reg 96 $" Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_3 $end
+$var wire 11 %" B_mantissa [10:0] $end
+$var wire 14 &" four [13:0] $end
+$var wire 14 '" minus_four [13:0] $end
+$var wire 12 (" minus_one [11:0] $end
+$var wire 14 )" minus_three [13:0] $end
+$var wire 13 *" minus_two [12:0] $end
+$var wire 12 +" one [11:0] $end
+$var wire 14 ," three [13:0] $end
+$var wire 13 -" two [12:0] $end
+$var reg 96 ." Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_4 $end
+$var wire 11 /" B_mantissa [10:0] $end
+$var wire 14 0" four [13:0] $end
+$var wire 14 1" minus_four [13:0] $end
+$var wire 12 2" minus_one [11:0] $end
+$var wire 14 3" minus_three [13:0] $end
+$var wire 13 4" minus_two [12:0] $end
+$var wire 12 5" one [11:0] $end
+$var wire 14 6" three [13:0] $end
+$var wire 13 7" two [12:0] $end
+$var reg 96 8" Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_5 $end
+$var wire 11 9" B_mantissa [10:0] $end
+$var wire 14 :" four [13:0] $end
+$var wire 14 ;" minus_four [13:0] $end
+$var wire 12 <" minus_one [11:0] $end
+$var wire 14 =" minus_three [13:0] $end
+$var wire 13 >" minus_two [12:0] $end
+$var wire 12 ?" one [11:0] $end
+$var wire 14 @" three [13:0] $end
+$var wire 13 A" two [12:0] $end
+$var reg 96 B" Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_6 $end
+$var wire 11 C" B_mantissa [10:0] $end
+$var wire 14 D" four [13:0] $end
+$var wire 14 E" minus_four [13:0] $end
+$var wire 12 F" minus_one [11:0] $end
+$var wire 14 G" minus_three [13:0] $end
+$var wire 13 H" minus_two [12:0] $end
+$var wire 12 I" one [11:0] $end
+$var wire 14 J" three [13:0] $end
+$var wire 13 K" two [12:0] $end
+$var reg 96 L" Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_7 $end
+$var wire 11 M" B_mantissa [10:0] $end
+$var wire 14 N" four [13:0] $end
+$var wire 14 O" minus_four [13:0] $end
+$var wire 12 P" minus_one [11:0] $end
+$var wire 14 Q" minus_three [13:0] $end
+$var wire 13 R" minus_two [12:0] $end
+$var wire 12 S" one [11:0] $end
+$var wire 14 T" three [13:0] $end
+$var wire 13 U" two [12:0] $end
+$var reg 96 V" Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_8 $end
+$var wire 11 W" B_mantissa [10:0] $end
+$var wire 14 X" four [13:0] $end
+$var wire 14 Y" minus_four [13:0] $end
+$var wire 12 Z" minus_one [11:0] $end
+$var wire 14 [" minus_three [13:0] $end
+$var wire 13 \" minus_two [12:0] $end
+$var wire 12 ]" one [11:0] $end
+$var wire 14 ^" three [13:0] $end
+$var wire 13 _" two [12:0] $end
+$var reg 96 `" Row_A_mul [95:0] $end
+$upscope $end
+$scope module multiplexer_9 $end
+$var wire 11 a" B_mantissa [10:0] $end
+$var wire 14 b" four [13:0] $end
+$var wire 14 c" minus_four [13:0] $end
+$var wire 12 d" minus_one [11:0] $end
+$var wire 14 e" minus_three [13:0] $end
+$var wire 13 f" minus_two [12:0] $end
+$var wire 12 g" one [11:0] $end
+$var wire 14 h" three [13:0] $end
+$var wire 13 i" two [12:0] $end
+$var reg 96 j" Row_A_mul [95:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 j"
+bx i"
+bx h"
+bx g"
+bx f"
+bx e"
+bx d"
+bx c"
+bx b"
+bx a"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 `"
+bx _"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+bx Y"
+bx X"
+bx W"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 V"
+bx U"
+bx T"
+bx S"
+bx R"
+bx Q"
+bx P"
+bx O"
+bx N"
+bx M"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 L"
+bx K"
+bx J"
+bx I"
+bx H"
+bx G"
+bx F"
+bx E"
+bx D"
+bx C"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 B"
+bx A"
+bx @"
+bx ?"
+bx >"
+bx ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 8"
+bx 7"
+bx 6"
+bx 5"
+bx 4"
+bx 3"
+bx 2"
+bx 1"
+bx 0"
+bx /"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 ."
+bx -"
+bx ,"
+bx +"
+bx *"
+bx )"
+bx ("
+bx '"
+bx &"
+bx %"
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 $"
+bx #"
+bx ""
+bx !"
+bx ~
+bx }
+bx |
+bx {
+bx z
+bx y
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 x
+bx w
+bx v
+bx u
+bx t
+bx s
+bx r
+bx q
+bx p
+bx o
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 Z
+bx Y
+bx X
+bx W
+bx V
+bx U
+bx T
+bx S
+bx R
+bx Q
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 P
+bx O
+bx N
+bx M
+bx L
+bx K
+bx J
+bx I
+bx H
+bx G
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 F
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx000000000000000000000000000000000000000000000000x000000000000000000000000 2
+bx 1
+bx 0
+bx /
+bx .
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
+bx $
+bx #
+bx "
+bx !
+$end
+#10
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 2
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 <
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 F
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 P
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 Z
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 d
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 n
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 x
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 $"
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 ."
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 8"
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 B"
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 L"
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 V"
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 `"
+b10000000000000000000000000000000000000000000000000000001000000000000000000000000000 j"
+b10000001000 o
+b10000001000 e
+b10000001000 [
+b10000001000 Q
+b10000001000 G
+b10000001000 =
+b10000001000 W"
+b10000001000 a"
+b10000001000 M"
+b10000001000 C"
+b10000001000 9"
+b10000001000 /"
+b10000001000 %"
+b10000001000 y
+b10000001000 3
+b10000001000 )
+b11111111111100 "
+b11111111111100 +
+b11111111111100 5
+b11111111111100 ?
+b11111111111100 I
+b11111111111100 S
+b11111111111100 ]
+b11111111111100 g
+b11111111111100 q
+b11111111111100 {
+b11111111111100 '"
+b11111111111100 1"
+b11111111111100 ;"
+b11111111111100 E"
+b11111111111100 O"
+b11111111111100 Y"
+b11111111111100 c"
+b11111111111101 $
+b11111111111101 -
+b11111111111101 7
+b11111111111101 A
+b11111111111101 K
+b11111111111101 U
+b11111111111101 _
+b11111111111101 i
+b11111111111101 s
+b11111111111101 }
+b11111111111101 )"
+b11111111111101 3"
+b11111111111101 ="
+b11111111111101 G"
+b11111111111101 Q"
+b11111111111101 ["
+b11111111111101 e"
+b1111111111110 %
+b1111111111110 .
+b1111111111110 8
+b1111111111110 B
+b1111111111110 L
+b1111111111110 V
+b1111111111110 `
+b1111111111110 j
+b1111111111110 t
+b1111111111110 ~
+b1111111111110 *"
+b1111111111110 4"
+b1111111111110 >"
+b1111111111110 H"
+b1111111111110 R"
+b1111111111110 \"
+b1111111111110 f"
+b111111111111 #
+b111111111111 ,
+b111111111111 6
+b111111111111 @
+b111111111111 J
+b111111111111 T
+b111111111111 ^
+b111111111111 h
+b111111111111 r
+b111111111111 |
+b111111111111 ("
+b111111111111 2"
+b111111111111 <"
+b111111111111 F"
+b111111111111 P"
+b111111111111 Z"
+b111111111111 d"
+b100 !
+b100 *
+b100 4
+b100 >
+b100 H
+b100 R
+b100 \
+b100 f
+b100 p
+b100 z
+b100 &"
+b100 0"
+b100 :"
+b100 D"
+b100 N"
+b100 X"
+b100 b"
+b11 '
+b11 0
+b11 :
+b11 D
+b11 N
+b11 X
+b11 b
+b11 l
+b11 v
+b11 ""
+b11 ,"
+b11 6"
+b11 @"
+b11 J"
+b11 T"
+b11 ^"
+b11 h"
+b10 (
+b10 1
+b10 ;
+b10 E
+b10 O
+b10 Y
+b10 c
+b10 m
+b10 w
+b10 #"
+b10 -"
+b10 7"
+b10 A"
+b10 K"
+b10 U"
+b10 _"
+b10 i"
+b1 &
+b1 /
+b1 9
+b1 C
+b1 M
+b1 W
+b1 a
+b1 k
+b1 u
+b1 !"
+b1 +"
+b1 5"
+b1 ?"
+b1 I"
+b1 S"
+b1 ]"
+b1 g"
+#110
