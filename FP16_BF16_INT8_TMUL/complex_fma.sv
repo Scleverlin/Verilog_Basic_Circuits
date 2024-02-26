@@ -211,8 +211,8 @@ input logic [13:0] three;
 input logic [13:0] minus_three;
 input logic [13:0] four;
 input logic [13:0] minus_four;
-input logic [10:0] RowB_mantissa [15:0];
-output logic [95:0] Row_A_mul [15:0];
+input logic [175:0] RowB_mantissa ;
+output logic [1535:0] Row_A_mul ;
 // typedef logic [10:0] Row [15:0];
 // typedef logic [10:0] Row_with_sign [15:0];
 // typedef logic [95:0] a_mul [15:0];
@@ -241,22 +241,22 @@ assign lookup_table[14]=4'b1110;
 assign lookup_table[15]=4'b1111;
 
 
-multiplexer_small  multiplexer_0 (RowB_mantissa[0],lookup_table,Row_A_mul[0],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_1 (RowB_mantissa[1],lookup_table,Row_A_mul[1],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_2 (RowB_mantissa[2],lookup_table,Row_A_mul[2],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_3 (RowB_mantissa[3],lookup_table,Row_A_mul[3],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_4 (RowB_mantissa[4],lookup_table,Row_A_mul[4],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_5 (RowB_mantissa[5],lookup_table,Row_A_mul[5],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_6 (RowB_mantissa[6],lookup_table,Row_A_mul[6],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_7 (RowB_mantissa[7],lookup_table,Row_A_mul[7],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_8 (RowB_mantissa[8],lookup_table,Row_A_mul[8],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_9 (RowB_mantissa[8],lookup_table,Row_A_mul[9],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_10 (RowB_mantissa[10],lookup_table,Row_A_mul[10],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_11 (RowB_mantissa[11],lookup_table,Row_A_mul[11],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_12 (RowB_mantissa[12],lookup_table,Row_A_mul[12],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_13 (RowB_mantissa[13],lookup_table,Row_A_mul[13],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_14 (RowB_mantissa[14],lookup_table,Row_A_mul[14],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
-multiplexer_small  multiplexer_15 (RowB_mantissa[15],lookup_table,Row_A_mul[15],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_0 (RowB_mantissa[10:0],lookup_table,Row_A_mul[95:0],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_1 (RowB_mantissa[21:11],lookup_table,Row_A_mul[191:96],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_2 (RowB_mantissa[32:22],lookup_table,Row_A_mul[287:192],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_3 (RowB_mantissa[43:33],lookup_table,Row_A_mul[383:288],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_4 (RowB_mantissa[54:44],lookup_table,Row_A_mul[479:384],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_5 (RowB_mantissa[65:55],lookup_table,Row_A_mul[575:480],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_6 (RowB_mantissa[76:66],lookup_table,Row_A_mul[671:576],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_7 (RowB_mantissa[87:77],lookup_table,Row_A_mul[767:672],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_8 (RowB_mantissa[98:88],lookup_table,Row_A_mul[863:768],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_9 (RowB_mantissa[109:99],lookup_table,Row_A_mul[959:864],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_10 (RowB_mantissa[120:110],lookup_table,Row_A_mul[1055:960],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_11 (RowB_mantissa[131:121],lookup_table,Row_A_mul[1151:1056],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_12 (RowB_mantissa[142:132],lookup_table,Row_A_mul[1247:1152],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_13 (RowB_mantissa[153:143],lookup_table,Row_A_mul[1343:1248],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_14 (RowB_mantissa[164:154],lookup_table,Row_A_mul[1439:1344],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_15 (RowB_mantissa[175:165],lookup_table,Row_A_mul[1535:1440],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
 
 
 
@@ -278,13 +278,12 @@ typedef logic [15:0] RowM [15:0];
 input logic [15:0]a;
 input RowM RowB,RowC;
 
-output logic [5:0] exp_ab [15:0];
+output logic [95:0] exp_ab;
 output logic [15:0] sign_ab;
 output logic [15:0] sign_c;
-output logic [5:0] exp_c_minus_ab [15:0];
+output logic [95:0] exp_c_minus_ab;
 output logic [10:0] mantissa_a;
-output logic [10:0] mantissa_b [15:0];
-output logic [10:0] mantissa_c [15:0];  // Includes implicit leading 1 for normalized
+output logic [175:0] mantissa_b,mantissa_c;  // Includes implicit leading 1 for normalized
 
 logic sign_a;
 logic [5:0] exp_a; // True exponent, considering denormalized numbers
@@ -294,22 +293,22 @@ assign sign_a = a[15];
 assign exp_a = (a[14:10] == 5'b00000) ? 6'b110010 : {1'b0,a[14:10]} + 6'b110001; // -14 for denormalized
 assign mantissa_a = (a[14:10] != 5'b00000) ? {1'b1, a[9:0]} : {1'b0, a[9:0]};
 
-extractor ex0  (sign_a,exp_a,RowB[0],RowC[0],sign_ab[0],exp_ab[0],sign_c[0],exp_c_minus_ab[0],mantissa_b[0],mantissa_c[0]);
-extractor ex1  (sign_a,exp_a,RowB[1],RowC[1],sign_ab[1],exp_ab[1],sign_c[1],exp_c_minus_ab[1],mantissa_b[1],mantissa_c[1]);
-extractor ex2  (sign_a,exp_a,RowB[2],RowC[2],sign_ab[2],exp_ab[2],sign_c[2],exp_c_minus_ab[2],mantissa_b[2],mantissa_c[2]);
-extractor ex3  (sign_a,exp_a,RowB[3],RowC[3],sign_ab[3],exp_ab[3],sign_c[3],exp_c_minus_ab[3],mantissa_b[3],mantissa_c[3]);
-extractor ex4  (sign_a,exp_a,RowB[4],RowC[4],sign_ab[4],exp_ab[4],sign_c[4],exp_c_minus_ab[4],mantissa_b[4],mantissa_c[4]);
-extractor ex5  (sign_a,exp_a,RowB[5],RowC[5],sign_ab[5],exp_ab[5],sign_c[5],exp_c_minus_ab[5],mantissa_b[5],mantissa_c[5]);
-extractor ex6  (sign_a,exp_a,RowB[6],RowC[6],sign_ab[6],exp_ab[6],sign_c[6],exp_c_minus_ab[6],mantissa_b[6],mantissa_c[6]);
-extractor ex7  (sign_a,exp_a,RowB[7],RowC[7],sign_ab[7],exp_ab[7],sign_c[7],exp_c_minus_ab[7],mantissa_b[7],mantissa_c[7]);
-extractor ex8  (sign_a,exp_a,RowB[8],RowC[8],sign_ab[8],exp_ab[8],sign_c[8],exp_c_minus_ab[8],mantissa_b[8],mantissa_c[8]);
-extractor ex9  (sign_a,exp_a,RowB[9],RowC[9],sign_ab[9],exp_ab[9],sign_c[9],exp_c_minus_ab[9],mantissa_b[9],mantissa_c[9]);
-extractor ex10 (sign_a,exp_a,RowB[10],RowC[10],sign_ab[10],exp_ab[10],sign_c[10],exp_c_minus_ab[10],mantissa_b[10],mantissa_c[10]);
-extractor ex11 (sign_a,exp_a,RowB[11],RowC[11],sign_ab[11],exp_ab[11],sign_c[11],exp_c_minus_ab[11],mantissa_b[11],mantissa_c[11]);
-extractor ex12 (sign_a,exp_a,RowB[12],RowC[12],sign_ab[12],exp_ab[12],sign_c[12],exp_c_minus_ab[12],mantissa_b[12],mantissa_c[12]);
-extractor ex13 (sign_a,exp_a,RowB[13],RowC[13],sign_ab[13],exp_ab[13],sign_c[13],exp_c_minus_ab[13],mantissa_b[13],mantissa_c[13]);
-extractor ex14 (sign_a,exp_a,RowB[14],RowC[14],sign_ab[14],exp_ab[14],sign_c[14],exp_c_minus_ab[14],mantissa_b[14],mantissa_c[14]);
-extractor ex15 (sign_a,exp_a,RowB[15],RowC[15],sign_ab[15],exp_ab[15],sign_c[15],exp_c_minus_ab[15],mantissa_b[15],mantissa_c[15]);
+extractor ex0  (sign_a,exp_a,RowB[0],RowC[0],sign_ab[0],exp_ab[5:0],sign_c[0],exp_c_minus_ab[5:0],mantissa_b[10:0],mantissa_c[10:0]);
+extractor ex1  (sign_a,exp_a,RowB[1],RowC[1],sign_ab[1],exp_ab[11:6],sign_c[1],exp_c_minus_ab[11:6],mantissa_b[21:11],mantissa_c[21:11]);
+extractor ex2  (sign_a,exp_a,RowB[2],RowC[2],sign_ab[2],exp_ab[17:12],sign_c[2],exp_c_minus_ab[17:12],mantissa_b[32:22],mantissa_c[32:22]);
+extractor ex3  (sign_a,exp_a,RowB[3],RowC[3],sign_ab[3],exp_ab[23:18],sign_c[3],exp_c_minus_ab[23:18],mantissa_b[43:33],mantissa_c[43:33]);
+extractor ex4  (sign_a,exp_a,RowB[4],RowC[4],sign_ab[4],exp_ab[29:24],sign_c[4],exp_c_minus_ab[29:24],mantissa_b[54:44],mantissa_c[54:44]);
+extractor ex5  (sign_a,exp_a,RowB[5],RowC[5],sign_ab[5],exp_ab[35:30],sign_c[5],exp_c_minus_ab[35:30],mantissa_b[65:55],mantissa_c[65:55]);
+extractor ex6  (sign_a,exp_a,RowB[6],RowC[6],sign_ab[6],exp_ab[41:36],sign_c[6],exp_c_minus_ab[41:36],mantissa_b[76:66],mantissa_c[76:66]);
+extractor ex7  (sign_a,exp_a,RowB[7],RowC[7],sign_ab[7],exp_ab[47:42],sign_c[7],exp_c_minus_ab[47:42],mantissa_b[87:77],mantissa_c[87:77]);
+extractor ex8  (sign_a,exp_a,RowB[8],RowC[8],sign_ab[8],exp_ab[53:48],sign_c[8],exp_c_minus_ab[53:48],mantissa_b[98:88],mantissa_c[98:88]);
+extractor ex9  (sign_a,exp_a,RowB[9],RowC[9],sign_ab[9],exp_ab[59:54],sign_c[9],exp_c_minus_ab[59:54],mantissa_b[109:99],mantissa_c[109:99]);
+extractor ex10 (sign_a,exp_a,RowB[10],RowC[10],sign_ab[10],exp_ab[65:60],sign_c[10],exp_c_minus_ab[65:60],mantissa_b[120:110],mantissa_c[120:110]);
+extractor ex11 (sign_a,exp_a,RowB[11],RowC[11],sign_ab[11],exp_ab[71:66],sign_c[11],exp_c_minus_ab[71:66],mantissa_b[131:121],mantissa_c[131:121]);
+extractor ex12 (sign_a,exp_a,RowB[12],RowC[12],sign_ab[12],exp_ab[77:72],sign_c[12],exp_c_minus_ab[77:72],mantissa_b[142:132],mantissa_c[142:132]);
+extractor ex13 (sign_a,exp_a,RowB[13],RowC[13],sign_ab[13],exp_ab[83:78],sign_c[13],exp_c_minus_ab[83:78],mantissa_b[153:143],mantissa_c[153:143]);
+extractor ex14 (sign_a,exp_a,RowB[14],RowC[14],sign_ab[14],exp_ab[89:84],sign_c[14],exp_c_minus_ab[89:84],mantissa_b[164:154],mantissa_c[164:154]);
+extractor ex15 (sign_a,exp_a,RowB[15],RowC[15],sign_ab[15],exp_ab[95:90],sign_c[15],exp_c_minus_ab[95:90],mantissa_b[175:165],mantissa_c[175:165]);
 
 
 endmodule
@@ -394,7 +393,7 @@ assign CSA_result=CSA_result_tmp[21:0];
 logic [33:0]ext_man_c,shifted_man_c;
 
 assign ext_man_c={13'b0,mantissa_c,10'b0};
-assign shifted_man_c=left_or_right?ext_man_c<<comple_shift:ext_man_c>>comple_shift;
+assign shifted_man_c=left_or_right?ext_man_c>>comple_shift:ext_man_c<<comple_shift;
 
 logic [34:0]add_result;
 logic [34:0]ext_add;
@@ -407,7 +406,8 @@ assign add_result=add_ext_c+{13'b0,CSA_result}+c_add_sign; // here should use an
 
 logic add_sign;
 assign add_sign=add_result[34];
-logic fianl_sign=sign_ab^add_sign;
+logic final_sign;
+assign final_sign=sign_ab^add_sign;
 logic [34:0]comple_add_result;
 assign comple_add_result=add_sign?~add_result+1'b1:add_result;
 assign ext_add=comple_add_result[34:0];
@@ -419,7 +419,7 @@ logic signed [5:0]max_offset;
 assign max_offset=exp_ab+6'd14;
 logic signed [5:0]shift_when_max_offset;
 logic use_max_offset;
-assign use_max_offset=((exp_ab+shift_man)>=-14)?0:1;
+assign use_max_offset=($signed(exp_ab+shift_man)>=-14)?0:1;
 assign shift_when_max_offset=14-max_offset;
 
 logic [34:0] shifted_man;
@@ -447,7 +447,7 @@ logic [5:0]final_exp;
 
 assign final_exp_tmp=left_no_add?exp_c_minus_ab+exp_add:exp_ab+exp_offset+exp_add;
 assign final_exp= (final_exp_tmp>=-14&&rounded_man[10])?final_exp_tmp+6'd15:0;
-assign product={fianl_sign,final_exp[4:0],rounded_man[9:0]};
+assign product={final_sign,final_exp[4:0],rounded_man[9:0]};
 
 endmodule
 
@@ -460,20 +460,20 @@ input logic [15:0]a;
 // input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
 input RowM RowB,RowC;
 
-output RowM Row_product;
+output [255:0] Row_product;
 
-logic [5:0] exp_ab [15:0];
+logic [95:0] exp_ab;
 logic [15:0] sign_ab;
 logic [15:0] sign_c;
-logic [5:0] exp_c_minus_ab [15:0];
+logic [95:0] exp_c_minus_ab;
 logic [10:0] mantissa_a;
 // typedef logic [10:0] Row [15:0];
-typedef logic [95:0] a_mul [15:0];
+// typedef logic [95:0] a_mul [15:0];
 // Row mantissa_b,mantissa_c;
-logic [10:0] RowB_mantissa [15:0];
-logic [10:0] mantissa_c [15:0];  // Includes implicit leading 1 for normalized
+logic [175:0] RowB_mantissa ;
+logic [175:0] mantissa_c;  // Includes implicit leading 1 for normalized
 // now we only consider the FP16
-a_mul Row_A_mul;
+logic [1535:0]Row_A_mul;
 
  logic [11:0] one;
  logic [11:0] minus_one;
@@ -497,22 +497,22 @@ partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,m
 
 multiplexer_for_row  mulplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,Row_A_mul);
 
-simple_FMA FMA0 (Row_A_mul[0],sign_ab[0],exp_ab[0],sign_c[0],exp_c_minus_ab[0],mantissa_c[0],Row_product[0]);
-simple_FMA FMA1 (Row_A_mul[1],sign_ab[1],exp_ab[1],sign_c[1],exp_c_minus_ab[1],mantissa_c[1],Row_product[1]);
-simple_FMA FMA2 (Row_A_mul[2],sign_ab[2],exp_ab[2],sign_c[2],exp_c_minus_ab[2],mantissa_c[2],Row_product[2]);
-simple_FMA FMA3 (Row_A_mul[3],sign_ab[3],exp_ab[3],sign_c[3],exp_c_minus_ab[3],mantissa_c[3],Row_product[3]);
-simple_FMA FMA4 (Row_A_mul[4],sign_ab[4],exp_ab[4],sign_c[4],exp_c_minus_ab[4],mantissa_c[4],Row_product[4]);
-simple_FMA FMA5 (Row_A_mul[5],sign_ab[5],exp_ab[5],sign_c[5],exp_c_minus_ab[5],mantissa_c[5],Row_product[5]);
-simple_FMA FMA6 (Row_A_mul[6],sign_ab[6],exp_ab[6],sign_c[6],exp_c_minus_ab[6],mantissa_c[6],Row_product[6]);
-simple_FMA FMA7 (Row_A_mul[7],sign_ab[7],exp_ab[7],sign_c[7],exp_c_minus_ab[7],mantissa_c[7],Row_product[7]);
-simple_FMA FMA8 (Row_A_mul[8],sign_ab[8],exp_ab[8],sign_c[8],exp_c_minus_ab[8],mantissa_c[8],Row_product[8]);
-simple_FMA FMA9 (Row_A_mul[9],sign_ab[9],exp_ab[9],sign_c[9],exp_c_minus_ab[9],mantissa_c[9],Row_product[9]);
-simple_FMA FMA10 (Row_A_mul[10],sign_ab[10],exp_ab[10],sign_c[10],exp_c_minus_ab[10],mantissa_c[10],Row_product[10]);
-simple_FMA FMA11 (Row_A_mul[11],sign_ab[11],exp_ab[11],sign_c[11],exp_c_minus_ab[11],mantissa_c[11],Row_product[11]);
-simple_FMA FMA12 (Row_A_mul[12],sign_ab[12],exp_ab[12],sign_c[12],exp_c_minus_ab[12],mantissa_c[12],Row_product[12]);
-simple_FMA FMA13 (Row_A_mul[13],sign_ab[13],exp_ab[13],sign_c[13],exp_c_minus_ab[13],mantissa_c[13],Row_product[13]);
-simple_FMA FMA14 (Row_A_mul[14],sign_ab[14],exp_ab[14],sign_c[14],exp_c_minus_ab[14],mantissa_c[14],Row_product[14]);
-simple_FMA FMA15 (Row_A_mul[15],sign_ab[15],exp_ab[15],sign_c[15],exp_c_minus_ab[15],mantissa_c[15],Row_product[15]);
+simple_FMA FMA0 (Row_A_mul[95:0],sign_ab[0],exp_ab[5:0],sign_c[0],exp_c_minus_ab[5:0],mantissa_c[10:0],Row_product[15:0]);
+simple_FMA FMA1 (Row_A_mul[191:96],sign_ab[1],exp_ab[11:6],sign_c[1],exp_c_minus_ab[11:6],mantissa_c[21:11],Row_product[31:16]);
+simple_FMA FMA2 (Row_A_mul[287:192],sign_ab[2],exp_ab[17:12],sign_c[2],exp_c_minus_ab[17:12],mantissa_c[32:22],Row_product[47:32]);
+simple_FMA FMA3 (Row_A_mul[383:288],sign_ab[3],exp_ab[23:18],sign_c[3],exp_c_minus_ab[23:18],mantissa_c[43:33],Row_product[63:48]);
+simple_FMA FMA4 (Row_A_mul[479:384],sign_ab[4],exp_ab[29:24],sign_c[4],exp_c_minus_ab[29:24],mantissa_c[54:44],Row_product[79:64]);
+simple_FMA FMA5 (Row_A_mul[575:480],sign_ab[5],exp_ab[35:30],sign_c[5],exp_c_minus_ab[35:30],mantissa_c[65:55],Row_product[95:80]);
+simple_FMA FMA6 (Row_A_mul[671:576],sign_ab[6],exp_ab[41:36],sign_c[6],exp_c_minus_ab[41:36],mantissa_c[76:66],Row_product[111:96]);
+simple_FMA FMA7 (Row_A_mul[767:672],sign_ab[7],exp_ab[47:42],sign_c[7],exp_c_minus_ab[47:42],mantissa_c[87:77],Row_product[127:112]);
+simple_FMA FMA8 (Row_A_mul[863:768],sign_ab[8],exp_ab[53:48],sign_c[8],exp_c_minus_ab[53:48],mantissa_c[98:88],Row_product[143:128]);
+simple_FMA FMA9 (Row_A_mul[959:864],sign_ab[9],exp_ab[59:54],sign_c[9],exp_c_minus_ab[59:54],mantissa_c[109:99],Row_product[159:144]);
+simple_FMA FMA10 (Row_A_mul[1055:960],sign_ab[10],exp_ab[65:60],sign_c[10],exp_c_minus_ab[65:60],mantissa_c[120:110],Row_product[175:160]);
+simple_FMA FMA11 (Row_A_mul[1151:1056],sign_ab[11],exp_ab[71:66],sign_c[11],exp_c_minus_ab[71:66],mantissa_c[131:121],Row_product[191:176]);
+simple_FMA FMA12 (Row_A_mul[1247:1152],sign_ab[12],exp_ab[77:72],sign_c[12],exp_c_minus_ab[77:72],mantissa_c[142:132],Row_product[207:192]);
+simple_FMA FMA13 (Row_A_mul[1343:1248],sign_ab[13],exp_ab[83:78],sign_c[13],exp_c_minus_ab[83:78],mantissa_c[153:143],Row_product[223:208]);
+simple_FMA FMA14 (Row_A_mul[1439:1344],sign_ab[14],exp_ab[89:84],sign_c[14],exp_c_minus_ab[89:84],mantissa_c[164:154],Row_product[239:224]);
+simple_FMA FMA15 (Row_A_mul[1535:1440],sign_ab[15],exp_ab[95:90],sign_c[15],exp_c_minus_ab[95:90],mantissa_c[175:165],Row_product[255:240]);
 
 
 endmodule
