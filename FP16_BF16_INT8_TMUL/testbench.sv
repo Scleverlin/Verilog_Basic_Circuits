@@ -5,9 +5,10 @@ module FMA_Row_tb;
 typedef logic [15:0] RowM [15:0];
 logic [15:0]a;
 // logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
-RowM RowB,RowC;
+logic [15:0] RowB [15:0];
+logic [15:0] RowC [15:0];
 
-RowM Row_product;
+logic [15:0] Row_product[15:0];
 
 FMA_Row FMA_ROW (a,RowB,RowC,Row_product);
 

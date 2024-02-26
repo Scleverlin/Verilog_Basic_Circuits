@@ -79,11 +79,11 @@ CDS_AUTO_64BIT=ALL
 0
 2
 1708931861 complex_fma.sv
-1708931861 ./testbench.sv
+1708932372 ./testbench.sv
 4
 1701104330 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/libvirsim.so
 1701103518 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/liberrorinf.so
 1701103440 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/libsnpsmalloc.so
 1701103511 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/libvfs.so
-1708932083 simv.daidir
+1708932406 simv.daidir
 -1 partitionlib
