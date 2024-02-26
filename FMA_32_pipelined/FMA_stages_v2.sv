@@ -716,9 +716,9 @@ module AO21 ( a, b, d, y_bar );
     // wire y;
   output   y_bar;
 
-    AOI21_X2 aoi21_1 ( .A1(a), .A2(b), .B(d), .ZN(y) );
-   INV_X1 inv_1 ( .I(y), .ZN(y_bar) );
-    // AO21x1_ASAP7_75t_SL aoi21_1 (y_bar,a,b,d);
+    // AOI21_X2 aoi21_1 ( .A1(a), .A2(b), .B(d), .ZN(y) );
+  //  INV_X1 inv_1 ( .I(y), .ZN(y_bar) );
+    AO21x1_ASAP7_75t_SL aoi21_1 (y_bar,a,b,d);
 endmodule
 
 module P_G_gen_hc_64 (a,b,cin,p,g);
@@ -850,3 +850,10 @@ generate
 endgenerate
  //  is deep enough , no post process
 endmodule
+module AND2_X1 (A,B,Y);
+input A,B;
+output Y;
+
+AND2x2_ASAP7_75t_SL and2 (Y,A,B);
+
+endmodule 
