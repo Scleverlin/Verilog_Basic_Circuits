@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SVCompilerDirectivesDefines">
+    <option name="define">
+      <map>
+        <entry key="BIAS">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="70" />
+                    <option name="replacementList" value="9'd127" />
+                    <option name="source" value="prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="70" />
+                    <option name="replacementList" value="9'd127" />
+                    <option name="source" value="div_prepare_exponet.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="EXP_WIDTH">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="28" />
+                    <option name="replacementList" value="8" />
+                    <option name="source" value="prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="28" />
+                    <option name="replacementList" value="8" />
+                    <option name="source" value="div_prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="28" />
+                    <option name="replacementList" value="8" />
+                    <option name="source" value="mul_prepare_exponet.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="FP_WIDTH">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="32" />
+                    <option name="source" value="prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="32" />
+                    <option name="source" value="div_prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="32" />
+                    <option name="source" value="mul_prepare_exponet.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="GROUPSIZE">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="124" />
+                    <option name="replacementList" value="1&#9;&#9;//set the group size = 1, 2, 4 or 8" />
+                    <option name="source" value="BK_64.v" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="INPUTSIZE">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="79" />
+                    <option name="replacementList" value="64&#9;&#9;//set the input size n" />
+                    <option name="source" value="BK_64.v" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="INTWIDTH">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="32 // A tmp value, should be changed depending on the design spec" />
+                    <option name="source" value="on_the_fly_conversion_srt4.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="MANT_WIDTH">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="48" />
+                    <option name="replacementList" value="23" />
+                    <option name="source" value="prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="48" />
+                    <option name="replacementList" value="23" />
+                    <option name="source" value="div_prepare_exponet.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="48" />
+                    <option name="replacementList" value="23" />
+                    <option name="source" value="mul_prepare_exponet.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="NEG_one">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="163" />
+                    <option name="replacementList" value="3'b111" />
+                    <option name="source" value="on_the_fly_conversion_srt4.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="NEG_two">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="115" />
+                    <option name="replacementList" value="3'b110" />
+                    <option name="source" value="on_the_fly_conversion_srt4.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="POS_one">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="139" />
+                    <option name="replacementList" value="3'b001" />
+                    <option name="source" value="on_the_fly_conversion_srt4.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="POS_two">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="91" />
+                    <option name="replacementList" value="3'b010" />
+                    <option name="source" value="on_the_fly_conversion_srt4.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="POS_zero">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="187" />
+                    <option name="replacementList" value="3'b000" />
+                    <option name="source" value="on_the_fly_conversion_srt4.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="minus">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="27" />
+                    <option name="replacementList" value="2'b01" />
+                    <option name="source" value="add_preprocessing.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="27" />
+                    <option name="replacementList" value="2'b01" />
+                    <option name="source" value="preprocessing.sv" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="one">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="23" />
+                    <option name="replacementList" value="1" />
+                    <option name="source" value="booth_coding.v" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="plus">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="2'b00" />
+                    <option name="source" value="add_preprocessing.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="2'b00" />
+                    <option name="source" value="preprocessing.sv" />
+                  </Body>
+                </list>
+              </option>
+              <option name="dependencies">
+                <set>
+                  <option value="normalization.sv" />
+                  <option value="add_normalization.sv" />
+                </set>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="plus_then_mius">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="80" />
+                    <option name="replacementList" value="2'b11" />
+                    <option name="source" value="add_preprocessing.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="80" />
+                    <option name="replacementList" value="2'b11" />
+                    <option name="source" value="preprocessing.sv" />
+                  </Body>
+                </list>
+              </option>
+              <option name="dependencies">
+                <set>
+                  <option value="normalization.sv" />
+                  <option value="add_normalization.sv" />
+                </set>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="reverse_minus">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="52" />
+                    <option name="replacementList" value="2'b10" />
+                    <option name="source" value="add_preprocessing.sv" />
+                  </Body>
+                  <Body>
+                    <option name="offset" value="52" />
+                    <option name="replacementList" value="2'b10" />
+                    <option name="source" value="preprocessing.sv" />
+                  </Body>
+                </list>
+              </option>
+              <option name="dependencies">
+                <set>
+                  <option value="normalization.sv" />
+                  <option value="add_normalization.sv" />
+                </set>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="two">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="37" />
+                    <option name="replacementList" value="2" />
+                    <option name="source" value="booth_coding.v" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+        <entry key="zero">
+          <value>
+            <Define>
+              <option name="definitions">
+                <list>
+                  <Body>
+                    <option name="offset" value="8" />
+                    <option name="replacementList" value="0" />
+                    <option name="source" value="booth_coding.v" />
+                  </Body>
+                </list>
+              </option>
+            </Define>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
