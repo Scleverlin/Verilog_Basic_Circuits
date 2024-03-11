@@ -74,25 +74,24 @@ initial begin
    
     #10 rst = 1; // 在10个时间单位后释放复位
     #10 rst=0;
-
-    for(i = 0; i <16; i = i+1) begin // 10 cycles
-        for(j = 0; j < 16; j++) begin
-            RowA[j] = $urandom%65536; // 这将为a赋值 1,2,3...等
-            $display("a[%d]=%h", j,  RowA[j]);
-
-        for (m=0;m<32;m=m+1)begin
-        $display("c[%d]=%h", m, result[m]);
-         end
-    end
-     for(k = 0; k < 32; k++) begin
+    #10    for(k = 0; k < 32; k++) begin
          for(j = 0; j < 16; j++) begin
           b[j][k] = $urandom%65536; // 这将为b的每个元素赋值1,2,3...等
           $display("b[%d][%d]=%h", j, k, b[j][k]);
          end
+    end;
+    for(i = 0; i <16; i = i+1) begin // 10 cycles
+        for(j = 0; j < 16; j++) begin
+            RowA[j] = $urandom%65536; // 这将为a赋值 1,2,3...等
+            $display("a[%d]=%h", j,  RowA[j]);
+        for (m=0;m<32;m=m+1)begin
+        $display("c[%d]=%h", m, result[m]);
+         end
     end
-    #10; // 等待一个时钟周期
-    $finish; // 结束仿真
-end
 
+    #10; // 等待一个时钟周期
+
+end
+    $finish; // 结束仿真
 end
 endmodule

@@ -22,12 +22,12 @@
 -picarchive
 -sverilog
 /opt/eda/synopsys/vcs/V-2023.12/linux64/bin/vcs1
-./testbench.sv
+./tb_tmul.sv
 51
-XDG_SESSION_ID=30375
+XDG_SESSION_ID=32776
 XDG_RUNTIME_DIR=/run/user/1001
 XDG_DATA_DIRS=/home/shi/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
-VSCODE_IPC_HOOK_CLI=/run/user/1001/vscode-ipc-e4fdc709-9fb3-49a4-9168-b9469e8cd2b8.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1001/vscode-ipc-361ca21e-3947-401a-bc26-fdd4c0ab4fd6.sock
 VSCODE_GIT_IPC_HANDLE=/run/user/1001/vscode-git-39d8ce2303.sock
 VSCODE_GIT_ASKPASS_NODE=/home/shi/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node
 VSCODE_GIT_ASKPASS_MAIN=/home/shi/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/extensions/git/dist/askpass-main.js
@@ -48,8 +48,8 @@ TERM_PROGRAM_VERSION=1.86.2
 TERM_PROGRAM=vscode
 SYNOPSYS_LC_ROOT=/opt/eda/synopsys/lc/U-2022.12-SP4
 SYNOPSYS=/opt/eda/synopsys/
-SSH_CONNECTION=130.153.208.151 59242 130.153.208.152 22
-SSH_CLIENT=130.153.208.151 59242 22
+SSH_CONNECTION=130.153.208.151 32960 130.153.208.152 22
+SSH_CLIENT=130.153.208.151 32960 22
 SNPS_VCS_PYTHON3=/opt/eda/synopsys/vcs/V-2023.12/linux64/bin/Python-3.6.1/bin/python3
 SNPS_VCS_CLANG_PATH=/opt/eda/synopsys/vcs/V-2023.12/linux64/clang
 SNPS_INTERNAL_VCS_LINUX_OS=linux
@@ -77,13 +77,15 @@ CDS_LIC_FILE=5280@vdec-cad1:5280@vdec-cad2:5280@vdec-cad3
 CDS_AUTO_64BIT=ALL
 0
 0
-2
-1708931861 complex_fma.sv
-1708932372 ./testbench.sv
+4
+1710152442 tile_a.sv
+1710152442 complex_fma.sv
+1710152442 TMUL_FP16.sv
+1710152603 ./tb_tmul.sv
 4
 1701104330 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/libvirsim.so
 1701103518 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/liberrorinf.so
 1701103440 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/libsnpsmalloc.so
 1701103511 /opt/eda/synopsys/vcs/V-2023.12/linux64/lib/libvfs.so
-1708932406 simv.daidir
+1710152619 simv.daidir
 -1 partitionlib
