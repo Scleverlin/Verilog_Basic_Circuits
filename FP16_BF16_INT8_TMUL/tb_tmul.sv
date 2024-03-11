@@ -96,6 +96,14 @@ initial begin
         for (m=0;m<32;m=m+1)begin
         $display("c[%d]=%h", m, result[m]);
          end
+        $display("Row Result");
+        $display("```````````");
+        $display("row00_product=%h",tmul.out_row0[15:0]);
+
+        $display("A1=%h",tmul.RowA[1]);
+        $display("B_1_0=%h",tmul.MatrixB1[0]);
+        $display("row10_product=%h",tmul.out_row1[15:0]);
+
  
 
     #2; // 等待一个时钟周期
