@@ -211,8 +211,8 @@ input logic [13:0] three;
 input logic [13:0] minus_three;
 input logic [13:0] four;
 input logic [13:0] minus_four;
-input logic [175:0] RowB_mantissa ;
-output logic [1535:0] Row_A_mul ;
+input logic [351:0] RowB_mantissa ;
+output logic [3071:0] Row_A_mul ;
 // typedef logic [10:0] Row [15:0];
 // typedef logic [10:0] Row_with_sign [15:0];
 // typedef logic [95:0] a_mul [15:0];
@@ -258,6 +258,24 @@ multiplexer_small  multiplexer_13 (RowB_mantissa[153:143],lookup_table,Row_A_mul
 multiplexer_small  multiplexer_14 (RowB_mantissa[164:154],lookup_table,Row_A_mul[1439:1344],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
 multiplexer_small  multiplexer_15 (RowB_mantissa[175:165],lookup_table,Row_A_mul[1535:1440],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
 
+multiplexer_small  multiplexer_16 (RowB_mantissa[186:176],lookup_table,Row_A_mul[1631:1536],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_17 (RowB_mantissa[197:187],lookup_table,Row_A_mul[1727:1632],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_18 (RowB_mantissa[208:198],lookup_table,Row_A_mul[1823:1728],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_19 (RowB_mantissa[219:209],lookup_table,Row_A_mul[1919:1824],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_20 (RowB_mantissa[230:220],lookup_table,Row_A_mul[2015:1920],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_21 (RowB_mantissa[241:231],lookup_table,Row_A_mul[2111:2016],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_22 (RowB_mantissa[252:242],lookup_table,Row_A_mul[2207:2112],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_23 (RowB_mantissa[263:253],lookup_table,Row_A_mul[2303:2208],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_24 (RowB_mantissa[274:264],lookup_table,Row_A_mul[2399:2304],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_25 (RowB_mantissa[285:275],lookup_table,Row_A_mul[2495:2400],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_26 (RowB_mantissa[296:286],lookup_table,Row_A_mul[2591:2496],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_27 (RowB_mantissa[307:297],lookup_table,Row_A_mul[2687:2592],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_28 (RowB_mantissa[318:308],lookup_table,Row_A_mul[2783:2688],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_29 (RowB_mantissa[329:319],lookup_table,Row_A_mul[2879:2784],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_30 (RowB_mantissa[340:330],lookup_table,Row_A_mul[2975:2880],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+multiplexer_small  multiplexer_31 (RowB_mantissa[351:341],lookup_table,Row_A_mul[3071:2976],one,minus_one,two,minus_two,three,minus_three,four,minus_four);
+
+
 
 
 
@@ -274,16 +292,17 @@ endmodule
 
 module extractor_for_row (a,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);
 
-typedef logic [15:0] RowM [15:0];
+typedef logic [15:0] RowM [31:0];
 input logic [15:0]a;
-input RowM RowB,RowC;
+input RowM RowB;
+input [511:0] RowC;
 
-output logic [95:0] exp_ab;
-output logic [15:0] sign_ab;
-output logic [15:0] sign_c;
-output logic [95:0] exp_c_minus_ab;
+output logic [191:0] exp_ab;
+output logic [31:0] sign_ab;
+output logic [31:0] sign_c;
+output logic [191:0] exp_c_minus_ab;
 output logic [10:0] mantissa_a;
-output logic [175:0] mantissa_b,mantissa_c;  // Includes implicit leading 1 for normalized
+output logic [351:0] mantissa_b,mantissa_c;  // Includes implicit leading 1 for normalized
 
 logic sign_a;
 logic [5:0] exp_a; // True exponent, considering denormalized numbers
@@ -293,23 +312,38 @@ assign sign_a = a[15];
 assign exp_a = (a[14:10] == 5'b00000) ? 6'b110010 : {1'b0,a[14:10]} + 6'b110001; // -14 for denormalized
 assign mantissa_a = (a[14:10] != 5'b00000) ? {1'b1, a[9:0]} : {1'b0, a[9:0]};
 
-extractor ex0  (sign_a,exp_a,RowB[0],RowC[0],sign_ab[0],exp_ab[5:0],sign_c[0],exp_c_minus_ab[5:0],mantissa_b[10:0],mantissa_c[10:0]);
-extractor ex1  (sign_a,exp_a,RowB[1],RowC[1],sign_ab[1],exp_ab[11:6],sign_c[1],exp_c_minus_ab[11:6],mantissa_b[21:11],mantissa_c[21:11]);
-extractor ex2  (sign_a,exp_a,RowB[2],RowC[2],sign_ab[2],exp_ab[17:12],sign_c[2],exp_c_minus_ab[17:12],mantissa_b[32:22],mantissa_c[32:22]);
-extractor ex3  (sign_a,exp_a,RowB[3],RowC[3],sign_ab[3],exp_ab[23:18],sign_c[3],exp_c_minus_ab[23:18],mantissa_b[43:33],mantissa_c[43:33]);
-extractor ex4  (sign_a,exp_a,RowB[4],RowC[4],sign_ab[4],exp_ab[29:24],sign_c[4],exp_c_minus_ab[29:24],mantissa_b[54:44],mantissa_c[54:44]);
-extractor ex5  (sign_a,exp_a,RowB[5],RowC[5],sign_ab[5],exp_ab[35:30],sign_c[5],exp_c_minus_ab[35:30],mantissa_b[65:55],mantissa_c[65:55]);
-extractor ex6  (sign_a,exp_a,RowB[6],RowC[6],sign_ab[6],exp_ab[41:36],sign_c[6],exp_c_minus_ab[41:36],mantissa_b[76:66],mantissa_c[76:66]);
-extractor ex7  (sign_a,exp_a,RowB[7],RowC[7],sign_ab[7],exp_ab[47:42],sign_c[7],exp_c_minus_ab[47:42],mantissa_b[87:77],mantissa_c[87:77]);
-extractor ex8  (sign_a,exp_a,RowB[8],RowC[8],sign_ab[8],exp_ab[53:48],sign_c[8],exp_c_minus_ab[53:48],mantissa_b[98:88],mantissa_c[98:88]);
-extractor ex9  (sign_a,exp_a,RowB[9],RowC[9],sign_ab[9],exp_ab[59:54],sign_c[9],exp_c_minus_ab[59:54],mantissa_b[109:99],mantissa_c[109:99]);
-extractor ex10 (sign_a,exp_a,RowB[10],RowC[10],sign_ab[10],exp_ab[65:60],sign_c[10],exp_c_minus_ab[65:60],mantissa_b[120:110],mantissa_c[120:110]);
-extractor ex11 (sign_a,exp_a,RowB[11],RowC[11],sign_ab[11],exp_ab[71:66],sign_c[11],exp_c_minus_ab[71:66],mantissa_b[131:121],mantissa_c[131:121]);
-extractor ex12 (sign_a,exp_a,RowB[12],RowC[12],sign_ab[12],exp_ab[77:72],sign_c[12],exp_c_minus_ab[77:72],mantissa_b[142:132],mantissa_c[142:132]);
-extractor ex13 (sign_a,exp_a,RowB[13],RowC[13],sign_ab[13],exp_ab[83:78],sign_c[13],exp_c_minus_ab[83:78],mantissa_b[153:143],mantissa_c[153:143]);
-extractor ex14 (sign_a,exp_a,RowB[14],RowC[14],sign_ab[14],exp_ab[89:84],sign_c[14],exp_c_minus_ab[89:84],mantissa_b[164:154],mantissa_c[164:154]);
-extractor ex15 (sign_a,exp_a,RowB[15],RowC[15],sign_ab[15],exp_ab[95:90],sign_c[15],exp_c_minus_ab[95:90],mantissa_b[175:165],mantissa_c[175:165]);
-
+extractor ex0  (sign_a,exp_a,RowB[0],RowC[15:0],sign_ab[0],exp_ab[5:0],sign_c[0],exp_c_minus_ab[5:0],mantissa_b[10:0],mantissa_c[10:0]);
+extractor ex1  (sign_a,exp_a,RowB[1],RowC[31:16],sign_ab[1],exp_ab[11:6],sign_c[1],exp_c_minus_ab[11:6],mantissa_b[21:11],mantissa_c[21:11]);
+extractor ex2  (sign_a,exp_a,RowB[2],RowC[47:32],sign_ab[2],exp_ab[17:12],sign_c[2],exp_c_minus_ab[17:12],mantissa_b[32:22],mantissa_c[32:22]);
+extractor ex3  (sign_a,exp_a,RowB[3],RowC[63:48],sign_ab[3],exp_ab[23:18],sign_c[3],exp_c_minus_ab[23:18],mantissa_b[43:33],mantissa_c[43:33]);
+extractor ex4  (sign_a,exp_a,RowB[4],RowC[79:64],sign_ab[4],exp_ab[29:24],sign_c[4],exp_c_minus_ab[29:24],mantissa_b[54:44],mantissa_c[54:44]);
+extractor ex5  (sign_a,exp_a,RowB[5],RowC[95:80],sign_ab[5],exp_ab[35:30],sign_c[5],exp_c_minus_ab[35:30],mantissa_b[65:55],mantissa_c[65:55]);
+extractor ex6  (sign_a,exp_a,RowB[6],RowC[111:96],sign_ab[6],exp_ab[41:36],sign_c[6],exp_c_minus_ab[41:36],mantissa_b[76:66],mantissa_c[76:66]);
+extractor ex7  (sign_a,exp_a,RowB[7],RowC[127:112],sign_ab[7],exp_ab[47:42],sign_c[7],exp_c_minus_ab[47:42],mantissa_b[87:77],mantissa_c[87:77]);
+extractor ex8  (sign_a,exp_a,RowB[8],RowC[143:128],sign_ab[8],exp_ab[53:48],sign_c[8],exp_c_minus_ab[53:48],mantissa_b[98:88],mantissa_c[98:88]);
+extractor ex9  (sign_a,exp_a,RowB[9],RowC[159:144],sign_ab[9],exp_ab[59:54],sign_c[9],exp_c_minus_ab[59:54],mantissa_b[109:99],mantissa_c[109:99]);
+extractor ex10 (sign_a,exp_a,RowB[10],RowC[175:160],sign_ab[10],exp_ab[65:60],sign_c[10],exp_c_minus_ab[65:60],mantissa_b[120:110],mantissa_c[120:110]);
+extractor ex11 (sign_a,exp_a,RowB[11],RowC[191:176],sign_ab[11],exp_ab[71:66],sign_c[11],exp_c_minus_ab[71:66],mantissa_b[131:121],mantissa_c[131:121]);
+extractor ex12 (sign_a,exp_a,RowB[12],RowC[207:192],sign_ab[12],exp_ab[77:72],sign_c[12],exp_c_minus_ab[77:72],mantissa_b[142:132],mantissa_c[142:132]);
+extractor ex13 (sign_a,exp_a,RowB[13],RowC[223:208],sign_ab[13],exp_ab[83:78],sign_c[13],exp_c_minus_ab[83:78],mantissa_b[153:143],mantissa_c[153:143]);
+extractor ex14 (sign_a,exp_a,RowB[14],RowC[239:224],sign_ab[14],exp_ab[89:84],sign_c[14],exp_c_minus_ab[89:84],mantissa_b[164:154],mantissa_c[164:154]);
+extractor ex15 (sign_a,exp_a,RowB[15],RowC[255:240],sign_ab[15],exp_ab[95:90],sign_c[15],exp_c_minus_ab[95:90],mantissa_b[175:165],mantissa_c[175:165]);
+extractor ex16 (sign_a,exp_a,RowB[16],RowC[271:256],sign_ab[16],exp_ab[101:96],sign_c[16],exp_c_minus_ab[101:96],mantissa_b[186:176],mantissa_c[186:176]);
+extractor ex17 (sign_a,exp_a,RowB[17],RowC[287:272],sign_ab[17],exp_ab[107:102],sign_c[17],exp_c_minus_ab[107:102],mantissa_b[197:187],mantissa_c[197:187]);
+extractor ex18 (sign_a,exp_a,RowB[18],RowC[303:288],sign_ab[18],exp_ab[113:108],sign_c[18],exp_c_minus_ab[113:108],mantissa_b[208:198],mantissa_c[208:198]);
+extractor ex19 (sign_a,exp_a,RowB[19],RowC[319:304],sign_ab[19],exp_ab[119:114],sign_c[19],exp_c_minus_ab[119:114],mantissa_b[219:209],mantissa_c[219:209]);
+extractor ex20 (sign_a,exp_a,RowB[20],RowC[335:320],sign_ab[20],exp_ab[125:120],sign_c[20],exp_c_minus_ab[125:120],mantissa_b[230:220],mantissa_c[230:220]);
+extractor ex21 (sign_a,exp_a,RowB[21],RowC[351:336],sign_ab[21],exp_ab[131:126],sign_c[21],exp_c_minus_ab[131:126],mantissa_b[241:231],mantissa_c[241:231]);
+extractor ex22 (sign_a,exp_a,RowB[22],RowC[367:352],sign_ab[22],exp_ab[137:132],sign_c[22],exp_c_minus_ab[137:132],mantissa_b[252:242],mantissa_c[252:242]);
+extractor ex23 (sign_a,exp_a,RowB[23],RowC[383:368],sign_ab[23],exp_ab[143:138],sign_c[23],exp_c_minus_ab[143:138],mantissa_b[263:253],mantissa_c[263:253]);
+extractor ex24 (sign_a,exp_a,RowB[24],RowC[399:384],sign_ab[24],exp_ab[149:144],sign_c[24],exp_c_minus_ab[149:144],mantissa_b[274:264],mantissa_c[274:264]);
+extractor ex25 (sign_a,exp_a,RowB[25],RowC[415:400],sign_ab[25],exp_ab[155:150],sign_c[25],exp_c_minus_ab[155:150],mantissa_b[285:275],mantissa_c[285:275]);
+extractor ex26 (sign_a,exp_a,RowB[26],RowC[431:416],sign_ab[26],exp_ab[161:156],sign_c[26],exp_c_minus_ab[161:156],mantissa_b[296:286],mantissa_c[296:286]);
+extractor ex27 (sign_a,exp_a,RowB[27],RowC[447:432],sign_ab[27],exp_ab[167:162],sign_c[27],exp_c_minus_ab[167:162],mantissa_b[307:297],mantissa_c[307:297]);
+extractor ex28 (sign_a,exp_a,RowB[28],RowC[463:448],sign_ab[28],exp_ab[173:168],sign_c[28],exp_c_minus_ab[173:168],mantissa_b[318:308],mantissa_c[318:308]);
+extractor ex29 (sign_a,exp_a,RowB[29],RowC[479:464],sign_ab[29],exp_ab[179:174],sign_c[29],exp_c_minus_ab[179:174],mantissa_b[329:319],mantissa_c[329:319]);
+extractor ex30 (sign_a,exp_a,RowB[30],RowC[495:480],sign_ab[30],exp_ab[185:180],sign_c[30],exp_c_minus_ab[185:180],mantissa_b[340:330],mantissa_c[340:330]);
+extractor ex31 (sign_a,exp_a,RowB[31],RowC[511:496],sign_ab[31],exp_ab[191:186],sign_c[31],exp_c_minus_ab[191:186],mantissa_b[351:341],mantissa_c[351:341]);
 
 endmodule
 
@@ -452,70 +486,6 @@ assign product={final_sign,final_exp[4:0],rounded_man[9:0]};
 endmodule
 
 
-
-
-module FMA_Row(a,RowB,RowC,Row_product);
-typedef logic [15:0] RowM [15:0];
-input logic [15:0]a;
-// input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
-input RowM RowB,RowC;
-
-output [255:0] Row_product;
-
-logic [95:0] exp_ab;
-logic [15:0] sign_ab;
-logic [15:0] sign_c;
-logic [95:0] exp_c_minus_ab;
-logic [10:0] mantissa_a;
-// typedef logic [10:0] Row [15:0];
-// typedef logic [95:0] a_mul [15:0];
-// Row mantissa_b,mantissa_c;
-logic [175:0] RowB_mantissa ;
-logic [175:0] mantissa_c;  // Includes implicit leading 1 for normalized
-// now we only consider the FP16
-logic [1535:0]Row_A_mul;
-
- logic [11:0] one;
- logic [11:0] minus_one;
- logic [12:0] two;
- logic [12:0] minus_two;
- logic [13:0] three;
- logic [13:0] minus_three;
- logic [13:0] four;
- logic [13:0] minus_four;
-
-
-// extractor ext0(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);// it looks like the extractor of A only need to be done once.
-// for the hardware in the extractor,
-// a should be only use one time, but exp_c-exp_a+b need to be used 16 times.
-// so we need a big extractor and inside the extractor, a will be extracted 1 time and reused 16 times,
-// b and c need to be extracted 16 times.
-// so the above module need to be modified to fit the hardware.
-
-extractor_for_row  extractor (a,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,RowB_mantissa,mantissa_c);
-partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,minus_three,minus_four);
-
-multiplexer_for_row  mulplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,Row_A_mul);
-
-simple_FMA FMA0 (Row_A_mul[95:0],sign_ab[0],exp_ab[5:0],sign_c[0],exp_c_minus_ab[5:0],mantissa_c[10:0],Row_product[15:0]);
-simple_FMA FMA1 (Row_A_mul[191:96],sign_ab[1],exp_ab[11:6],sign_c[1],exp_c_minus_ab[11:6],mantissa_c[21:11],Row_product[31:16]);
-simple_FMA FMA2 (Row_A_mul[287:192],sign_ab[2],exp_ab[17:12],sign_c[2],exp_c_minus_ab[17:12],mantissa_c[32:22],Row_product[47:32]);
-simple_FMA FMA3 (Row_A_mul[383:288],sign_ab[3],exp_ab[23:18],sign_c[3],exp_c_minus_ab[23:18],mantissa_c[43:33],Row_product[63:48]);
-simple_FMA FMA4 (Row_A_mul[479:384],sign_ab[4],exp_ab[29:24],sign_c[4],exp_c_minus_ab[29:24],mantissa_c[54:44],Row_product[79:64]);
-simple_FMA FMA5 (Row_A_mul[575:480],sign_ab[5],exp_ab[35:30],sign_c[5],exp_c_minus_ab[35:30],mantissa_c[65:55],Row_product[95:80]);
-simple_FMA FMA6 (Row_A_mul[671:576],sign_ab[6],exp_ab[41:36],sign_c[6],exp_c_minus_ab[41:36],mantissa_c[76:66],Row_product[111:96]);
-simple_FMA FMA7 (Row_A_mul[767:672],sign_ab[7],exp_ab[47:42],sign_c[7],exp_c_minus_ab[47:42],mantissa_c[87:77],Row_product[127:112]);
-simple_FMA FMA8 (Row_A_mul[863:768],sign_ab[8],exp_ab[53:48],sign_c[8],exp_c_minus_ab[53:48],mantissa_c[98:88],Row_product[143:128]);
-simple_FMA FMA9 (Row_A_mul[959:864],sign_ab[9],exp_ab[59:54],sign_c[9],exp_c_minus_ab[59:54],mantissa_c[109:99],Row_product[159:144]);
-simple_FMA FMA10 (Row_A_mul[1055:960],sign_ab[10],exp_ab[65:60],sign_c[10],exp_c_minus_ab[65:60],mantissa_c[120:110],Row_product[175:160]);
-simple_FMA FMA11 (Row_A_mul[1151:1056],sign_ab[11],exp_ab[71:66],sign_c[11],exp_c_minus_ab[71:66],mantissa_c[131:121],Row_product[191:176]);
-simple_FMA FMA12 (Row_A_mul[1247:1152],sign_ab[12],exp_ab[77:72],sign_c[12],exp_c_minus_ab[77:72],mantissa_c[142:132],Row_product[207:192]);
-simple_FMA FMA13 (Row_A_mul[1343:1248],sign_ab[13],exp_ab[83:78],sign_c[13],exp_c_minus_ab[83:78],mantissa_c[153:143],Row_product[223:208]);
-simple_FMA FMA14 (Row_A_mul[1439:1344],sign_ab[14],exp_ab[89:84],sign_c[14],exp_c_minus_ab[89:84],mantissa_c[164:154],Row_product[239:224]);
-simple_FMA FMA15 (Row_A_mul[1535:1440],sign_ab[15],exp_ab[95:90],sign_c[15],exp_c_minus_ab[95:90],mantissa_c[175:165],Row_product[255:240]);
-
-
-endmodule
 
 
 
@@ -706,3 +676,90 @@ module rounding(
         end
     end
 endmodule
+
+
+module FMA_Row(a,RowB,RowC,Row_product);
+typedef logic [15:0] RowM [31:0];
+input logic [15:0]a;
+// input logic mode; // BF16 OR FP16.. INT8 should be same processed as FP16
+input RowM RowB;
+input [511:0]RowC;
+
+output [511:0] Row_product;
+// output logic [15:0] Row_product [31:0];
+
+
+logic [191:0] exp_ab;
+logic [31:0] sign_ab;
+logic [31:0] sign_c;
+logic [191:0] exp_c_minus_ab;
+logic [10:0] mantissa_a;
+// typedef logic [10:0] Row [15:0];
+// typedef logic [95:0] a_mul [15:0];
+// Row mantissa_b,mantissa_c;
+logic [351:0] RowB_mantissa ;
+logic [351:0] mantissa_c;  // Includes implicit leading 1 for normalized
+// now we only consider the FP16
+logic [3071:0]Row_A_mul;
+
+ logic [11:0] one;
+ logic [11:0] minus_one;
+ logic [12:0] two;
+ logic [12:0] minus_two;
+ logic [13:0] three;
+ logic [13:0] minus_three;
+ logic [13:0] four;
+ logic [13:0] minus_four;
+
+
+// extractor ext0(a,b,c,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,mantissa_b,mantissa_c);// it looks like the extractor of A only need to be done once.
+// for the hardware in the extractor,
+// a should be only use one time, but exp_c-exp_a+b need to be used 16 times.
+// so we need a big extractor and inside the extractor, a will be extracted 1 time and reused 16 times,
+// b and c need to be extracted 16 times.
+// so the above module need to be modified to fit the hardware.
+
+extractor_for_row  extractor (a,RowB,RowC,sign_ab,exp_ab,sign_c,exp_c_minus_ab,mantissa_a,RowB_mantissa,mantissa_c);
+partialproductgenerator ppg (mantissa_a,one,two,three,four,minus_one,minus_two,minus_three,minus_four);
+
+multiplexer_for_row  mulplexer_for_row (one,two,three,four,minus_one,minus_two,minus_three,minus_four,RowB_mantissa,Row_A_mul);
+
+simple_FMA FMA0 (Row_A_mul[95:0],sign_ab[0],exp_ab[5:0],sign_c[0],exp_c_minus_ab[5:0],mantissa_c[10:0],Row_product[15:0]);
+simple_FMA FMA1 (Row_A_mul[191:96],sign_ab[1],exp_ab[11:6],sign_c[1],exp_c_minus_ab[11:6],mantissa_c[21:11],Row_product[31:16]);
+simple_FMA FMA2 (Row_A_mul[287:192],sign_ab[2],exp_ab[17:12],sign_c[2],exp_c_minus_ab[17:12],mantissa_c[32:22],Row_product[47:32]);
+simple_FMA FMA3 (Row_A_mul[383:288],sign_ab[3],exp_ab[23:18],sign_c[3],exp_c_minus_ab[23:18],mantissa_c[43:33],Row_product[63:48]);
+simple_FMA FMA4 (Row_A_mul[479:384],sign_ab[4],exp_ab[29:24],sign_c[4],exp_c_minus_ab[29:24],mantissa_c[54:44],Row_product[79:64]);
+simple_FMA FMA5 (Row_A_mul[575:480],sign_ab[5],exp_ab[35:30],sign_c[5],exp_c_minus_ab[35:30],mantissa_c[65:55],Row_product[95:80]);
+simple_FMA FMA6 (Row_A_mul[671:576],sign_ab[6],exp_ab[41:36],sign_c[6],exp_c_minus_ab[41:36],mantissa_c[76:66],Row_product[111:96]);
+simple_FMA FMA7 (Row_A_mul[767:672],sign_ab[7],exp_ab[47:42],sign_c[7],exp_c_minus_ab[47:42],mantissa_c[87:77],Row_product[127:112]);
+simple_FMA FMA8 (Row_A_mul[863:768],sign_ab[8],exp_ab[53:48],sign_c[8],exp_c_minus_ab[53:48],mantissa_c[98:88],Row_product[143:128]);
+simple_FMA FMA9 (Row_A_mul[959:864],sign_ab[9],exp_ab[59:54],sign_c[9],exp_c_minus_ab[59:54],mantissa_c[109:99],Row_product[159:144]);
+simple_FMA FMA10 (Row_A_mul[1055:960],sign_ab[10],exp_ab[65:60],sign_c[10],exp_c_minus_ab[65:60],mantissa_c[120:110],Row_product[175:160]);
+simple_FMA FMA11 (Row_A_mul[1151:1056],sign_ab[11],exp_ab[71:66],sign_c[11],exp_c_minus_ab[71:66],mantissa_c[131:121],Row_product[191:176]);
+simple_FMA FMA12 (Row_A_mul[1247:1152],sign_ab[12],exp_ab[77:72],sign_c[12],exp_c_minus_ab[77:72],mantissa_c[142:132],Row_product[207:192]);
+simple_FMA FMA13 (Row_A_mul[1343:1248],sign_ab[13],exp_ab[83:78],sign_c[13],exp_c_minus_ab[83:78],mantissa_c[153:143],Row_product[223:208]);
+simple_FMA FMA14 (Row_A_mul[1439:1344],sign_ab[14],exp_ab[89:84],sign_c[14],exp_c_minus_ab[89:84],mantissa_c[164:154],Row_product[239:224]);
+simple_FMA FMA15 (Row_A_mul[1535:1440],sign_ab[15],exp_ab[95:90],sign_c[15],exp_c_minus_ab[95:90],mantissa_c[175:165],Row_product[255:240]);
+
+simple_FMA FMA16 (Row_A_mul[1631:1536],sign_ab[16],exp_ab[101:96],sign_c[16],exp_c_minus_ab[101:96],mantissa_c[186:176],Row_product[271:256]);
+simple_FMA FMA17 (Row_A_mul[1727:1632],sign_ab[17],exp_ab[107:102],sign_c[17],exp_c_minus_ab[107:102],mantissa_c[197:187],Row_product[287:272]);
+simple_FMA FMA18 (Row_A_mul[1823:1728],sign_ab[18],exp_ab[113:108],sign_c[18],exp_c_minus_ab[113:108],mantissa_c[208:198],Row_product[303:288]);
+simple_FMA FMA19 (Row_A_mul[1919:1824],sign_ab[19],exp_ab[119:114],sign_c[19],exp_c_minus_ab[119:114],mantissa_c[219:209],Row_product[319:304]);
+simple_FMA FMA20 (Row_A_mul[2015:1920],sign_ab[20],exp_ab[125:120],sign_c[20],exp_c_minus_ab[125:120],mantissa_c[230:220],Row_product[335:320]);
+simple_FMA FMA21 (Row_A_mul[2111:2016],sign_ab[21],exp_ab[131:126],sign_c[21],exp_c_minus_ab[131:126],mantissa_c[241:231],Row_product[351:336]);
+simple_FMA FMA22 (Row_A_mul[2207:2112],sign_ab[22],exp_ab[137:132],sign_c[22],exp_c_minus_ab[137:132],mantissa_c[252:242],Row_product[367:352]);
+simple_FMA FMA23 (Row_A_mul[2303:2208],sign_ab[23],exp_ab[143:138],sign_c[23],exp_c_minus_ab[143:138],mantissa_c[263:253],Row_product[383:368]);
+simple_FMA FMA24 (Row_A_mul[2399:2304],sign_ab[24],exp_ab[149:144],sign_c[24],exp_c_minus_ab[149:144],mantissa_c[274:264],Row_product[399:384]);
+simple_FMA FMA25 (Row_A_mul[2495:2400],sign_ab[25],exp_ab[155:150],sign_c[25],exp_c_minus_ab[155:150],mantissa_c[285:275],Row_product[415:400]);
+simple_FMA FMA26 (Row_A_mul[2591:2496],sign_ab[26],exp_ab[161:156],sign_c[26],exp_c_minus_ab[161:156],mantissa_c[296:286],Row_product[431:416]);
+simple_FMA FMA27 (Row_A_mul[2687:2592],sign_ab[27],exp_ab[167:162],sign_c[27],exp_c_minus_ab[167:162],mantissa_c[307:297],Row_product[447:432]);
+simple_FMA FMA28 (Row_A_mul[2783:2688],sign_ab[28],exp_ab[173:168],sign_c[28],exp_c_minus_ab[173:168],mantissa_c[318:308],Row_product[463:448]);
+simple_FMA FMA29 (Row_A_mul[2879:2784],sign_ab[29],exp_ab[179:174],sign_c[29],exp_c_minus_ab[179:174],mantissa_c[329:319],Row_product[479:464]);
+simple_FMA FMA30 (Row_A_mul[2975:2880],sign_ab[30],exp_ab[185:180],sign_c[30],exp_c_minus_ab[185:180],mantissa_c[340:330],Row_product[495:480]);
+simple_FMA FMA31 (Row_A_mul[3071:2976],sign_ab[31],exp_ab[191:186],sign_c[31],exp_c_minus_ab[191:186],mantissa_c[351:341],Row_product[511:496]);
+
+
+
+endmodule
+
+
