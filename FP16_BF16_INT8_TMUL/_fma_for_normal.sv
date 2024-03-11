@@ -82,7 +82,7 @@ always @ (*) begin
              Row_A_mul[23:0]={12'b111111111111,minus_one}; Row_A_mul[24]=1'b1;  
              end
             default:begin 
-             Row_A_mul[23:0]=24'b0; Row_A_mul[48]=1'b0;    
+             Row_A_mul[23:0]=24'b0; Row_A_mul[24]=1'b0;    
              end    
         endcase
 end
