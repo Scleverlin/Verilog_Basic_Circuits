@@ -1,6 +1,6 @@
 module tile_a (a,clk,a_out,rst);
 input logic [15:0] a [15:0];
-output logic [15:0] a_out [15:0];
+output logic [255:0]a_out ;
 input clk,rst; 
 
 
@@ -63,21 +63,21 @@ always @(posedge clk)
  end
  end
 
-assign a_out[0]=reg_file_inst0[15:0];
-assign a_out[1]=reg_file_inst1[15:0];
-assign a_out[2]=reg_file_inst2[15:0];
-assign a_out[3]=reg_file_inst3[15:0];
-assign a_out[4]=reg_file_inst4[15:0];
-assign a_out[5]=reg_file_inst5[15:0];
-assign a_out[6]=reg_file_inst6[15:0];
-assign a_out[7]=reg_file_inst7[15:0];
-assign a_out[8]=reg_file_inst8[15:0];
-assign a_out[9]=reg_file_inst9[15:0];
-assign a_out[10]=reg_file_inst10[15:0];
-assign a_out[11]=reg_file_inst11[15:0];
-assign a_out[12]=reg_file_inst12[15:0];
-assign a_out[13]=reg_file_inst13[15:0];
-assign a_out[14]=reg_file_inst14[15:0];
-assign a_out[15]=reg_file_inst15[15:0];
+assign a_out[15:0]=reg_file_inst0[15:0];
+assign a_out[31:16]=reg_file_inst1[15:0];
+assign a_out[47:32]=reg_file_inst2[15:0];
+assign a_out[63:48]=reg_file_inst3[15:0];
+assign a_out[79:64]=reg_file_inst4[15:0];
+assign a_out[95:80]=reg_file_inst5[15:0];
+assign a_out[111:96]=reg_file_inst6[15:0];
+assign a_out[127:112]=reg_file_inst7[15:0];
+assign a_out[143:128]=reg_file_inst8[15:0];
+assign a_out[159:144]=reg_file_inst9[15:0];
+assign a_out[175:160]=reg_file_inst10[15:0];
+assign a_out[191:176]=reg_file_inst11[15:0];
+assign a_out[207:192]=reg_file_inst12[15:0];
+assign a_out[223:208]=reg_file_inst13[15:0];
+assign a_out[239:224]=reg_file_inst14[15:0];
+assign a_out[255:240]=reg_file_inst15[15:0];
 
 endmodule

@@ -4,7 +4,8 @@
 module wal_mul_tb;
 
 logic [15:0] RowA [15:0];
-logic [15:0] a_out [15:0];
+logic [15:0] a_arr [15:0];
+logic [255:0] a_out ;
 logic [15:0] MatrixB0 [31:0];
 logic [15:0] MatrixB1 [31:0];
 logic [15:0] MatrixB2 [31:0];
@@ -23,12 +24,19 @@ logic [15:0] MatrixB14 [31:0];
 logic [15:0] MatrixB15 [31:0];
 logic clk,rst;
 logic [511:0] RowProduct;
-
-TMUL_FP16_16_32  tmul  (a_out, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
 tile_a  tile_a_inst0 (RowA,clk,a_out,rst);
+genvar l;
+generate
+    for (l=0; l<16; l=l+1) begin
+        assign a_arr[l]= a_out[(l+1)*16-1:l*16];
+    end 
+endgenerate
+
+TMUL_FP16_16_32  tmul  (a_arr, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
+
 logic [15:0] result [31:0];
 logic [15:0] b [16][32];
-genvar l;
+
 generate
     for (l=0; l<32; l=l+1) begin: genC
         assign result[l]=RowProduct[(l+1)*16-1:l*16];
@@ -58,7 +66,7 @@ endgenerate
 
 // 时钟生成器
 always begin
-    #5 clk = ~clk;
+    #1 clk = ~clk;
 end
 initial begin
    $dumpfile("dump.vcd"); 
@@ -72,24 +80,25 @@ initial begin
     clk = 0;
     // rst = 1;
    
-    #10 rst = 1; // 在10个时间单位后释放复位
-    #10 rst=0;
-    #10    for(k = 0; k < 32; k++) begin
+    #2 rst = 1; // 在10个时间单位后释放复位
+    #2 rst=0;
+    #2    for(k = 0; k < 32; k++) begin
          for(j = 0; j < 16; j++) begin
           b[j][k] = $urandom%65536; // 这将为b的每个元素赋值1,2,3...等
           $display("b[%d][%d]=%h", j, k, b[j][k]);
          end
     end;
-    for(i = 0; i <16; i = i+1) begin // 10 cycles
+    for(i = 0; i <32; i = i+1) begin // 10 cycles
         for(j = 0; j < 16; j++) begin
             RowA[j] = $urandom%65536; // 这将为a赋值 1,2,3...等
             $display("a[%d]=%h", j,  RowA[j]);
+        end
         for (m=0;m<32;m=m+1)begin
         $display("c[%d]=%h", m, result[m]);
          end
-    end
+ 
 
-    #10; // 等待一个时钟周期
+    #2; // 等待一个时钟周期
 
 end
     $finish; // 结束仿真
