@@ -396,7 +396,7 @@ output logic [5:0] exp_ab;
 assign sign_a = a[15];
 assign sign_b = b[15];
 assign sign_c = c[15];
-
+logic [5:0] exp_a;
 // Adjust exponents for bias, directly setting for denormalized numbers
 assign exp_a = (a[14:10] == 5'b00000) ? 6'b110010 : {1'b0,a[14:10]} + 6'b110001; // -14 for denormalized
 assign exp_b = (b[14:10] == 5'b00000) ? 6'b110010 : {1'b0,b[14:10]} + 6'b110001; // -14 for denormalized

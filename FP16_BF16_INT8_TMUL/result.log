@@ -561,6 +561,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=xxxx
+B_0_0=3524
 row00_product=xxxx
 A1=0000
 B_1_0=5e81
@@ -615,6 +617,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=9b4a
+B_0_0=3524
 row00_product=94af
 A1=xxxx
 B_1_0=5e81
@@ -669,6 +673,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=6bed
+B_0_0=3524
 row00_product=6518
 A1=0db9
 B_1_0=5e81
@@ -723,6 +729,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=89f6
+B_0_0=3524
 row00_product=8352
 A1=00c9
 B_1_0=5e81
@@ -777,6 +785,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=f10c
+B_0_0=3524
 row00_product=ea7c
 A1=ce5c
 B_1_0=5e81
@@ -831,6 +841,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=a640
+B_0_0=3524
 row00_product=a004
 A1=7a39
 B_1_0=5e81
@@ -885,6 +897,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=a66a
+B_0_0=3524
 row00_product=a01f
 A1=0325
 B_1_0=5e81
@@ -939,6 +953,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=f490
+B_0_0=3524
 row00_product=eddd
 A1=65bc
 B_1_0=5e81
@@ -993,6 +1009,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=8e3e
+B_0_0=3524
 row00_product=8803
 A1=a55a
 B_1_0=5e81
@@ -1047,6 +1065,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=73eb
+B_0_0=3524
 row00_product=6d16
 A1=c0f3
 B_1_0=5e81
@@ -1101,6 +1121,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=a557
+B_0_0=3524
 row00_product=9edd
 A1=b9f8
 B_1_0=5e81
@@ -1155,6 +1177,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=21eb
+B_0_0=3524
 row00_product=1b9b
 A1=8b36
 B_1_0=5e81
@@ -1209,6 +1233,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=eb1c
+B_0_0=3524
 row00_product=e491
 A1=3bb5
 B_1_0=5e81
@@ -1263,6 +1289,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=00c5
+B_0_0=3524
 row00_product=03f4
 A1=c798
 B_1_0=5e81
@@ -1317,6 +1345,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=618d
+B_0_0=3524
 row00_product=5b22
 A1=2efe
 B_1_0=5e81
@@ -1371,6 +1401,8 @@ c[         30]=xxxx
 c[         31]=xxxx
 Row Result
 ```````````
+A0=0f43
+B_0_0=3524
 row00_product=08aa
 A1=70e1
 B_1_0=5e81
@@ -1425,6 +1457,8 @@ c[         30]=d240
 c[         31]=9000
 Row Result
 ```````````
+A0=0740
+B_0_0=3524
 row00_product=0145
 A1=91f8
 B_1_0=5e81
@@ -1479,6 +1513,8 @@ c[         30]=9404
 c[         31]=9cc3
 Row Result
 ```````````
+A0=4cc7
+B_0_0=3524
 row00_product=4624
 A1=8d94
 B_1_0=5e81
@@ -1533,6 +1569,8 @@ c[         30]=f938
 c[         31]=e304
 Row Result
 ```````````
+A0=df65
+B_0_0=3524
 row00_product=d8c0
 A1=6282
 B_1_0=5e81
@@ -1587,6 +1625,8 @@ c[         30]=d46e
 c[         31]=be69
 Row Result
 ```````````
+A0=bb4f
+B_0_0=3524
 row00_product=b4b2
 A1=17ea
 B_1_0=5e81
@@ -1641,6 +1681,8 @@ c[         30]=3fac
 c[         31]=2073
 Row Result
 ```````````
+A0=e5c3
+B_0_0=3524
 row00_product=df68
 A1=a630
 B_1_0=5e81
@@ -1695,6 +1737,8 @@ c[         30]=fb00
 c[         31]=e4d2
 Row Result
 ```````````
+A0=596c
+B_0_0=3524
 row00_product=52f8
 A1=13d4
 B_1_0=5e81
@@ -1749,6 +1793,8 @@ c[         30]=4a2e
 c[         31]=34a5
 Row Result
 ```````````
+A0=1aba
+B_0_0=3524
 row00_product=1452
 A1=5850
 B_1_0=5e81
@@ -1803,6 +1849,8 @@ c[         30]=94a8
 c[         31]=8007
 Row Result
 ```````````
+A0=2849
+B_0_0=3524
 row00_product=2182
 A1=7cfb
 B_1_0=5e81
@@ -1857,6 +1905,8 @@ c[         30]=70c6
 c[         31]=430c
 Row Result
 ```````````
+A0=813f
+B_0_0=3524
 row00_product=8268
 A1=7de7
 B_1_0=5e81
@@ -1911,6 +1961,8 @@ c[         30]=0552
 c[         31]=2454
 Row Result
 ```````````
+A0=27ab
+B_0_0=3524
 row00_product=20ed
 A1=56c2
 B_1_0=5e81
@@ -1965,6 +2017,8 @@ c[         30]=59ac
 c[         31]=4586
 Row Result
 ```````````
+A0=16e4
+B_0_0=3524
 row00_product=106d
 A1=0fb4
 B_1_0=5e81
@@ -2019,6 +2073,8 @@ c[         30]=9320
 c[         31]=fd34
 Row Result
 ```````````
+A0=55ec
+B_0_0=3524
 row00_product=4f9c
 A1=a241
 B_1_0=5e81
@@ -2073,6 +2129,8 @@ c[         30]=5dae
 c[         31]=0ba4
 Row Result
 ```````````
+A0=dfce
+B_0_0=3524
 row00_product=d904
 A1=122a
 B_1_0=5e81
@@ -2127,6 +2185,8 @@ c[         30]=fb9a
 c[         31]=e5db
 Row Result
 ```````````
+A0=b3ff
+B_0_0=3524
 row00_product=ad23
 A1=5c4a
 B_1_0=5e81
@@ -2181,6 +2241,8 @@ c[         30]=f89c
 c[         31]=2b76
 Row Result
 ```````````
+A0=d4bd
+B_0_0=3524
 row00_product=ce17
 A1=8578
 B_1_0=5e81
@@ -2235,8 +2297,10 @@ c[         30]=d4d0
 c[         31]=e19a
 Row Result
 ```````````
+A0=4170
+B_0_0=3524
 row00_product=3afd
 A1=8966
 B_1_0=5e81
 row10_product=ce1b
-./tb_tmul.sv:112: $finish called at 70 (1s)
+./tb_tmul.sv:115: $finish called at 70 (1s)
