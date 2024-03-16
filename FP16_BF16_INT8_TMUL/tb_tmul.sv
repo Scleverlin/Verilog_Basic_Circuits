@@ -1,4 +1,4 @@
-`include "TMUL_fma.sv"
+`include "TMUL_fma_booth4.sv"
 `include "tile_a.sv"
 
 module wal_mul_tb;

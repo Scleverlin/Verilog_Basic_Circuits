@@ -212,14 +212,14 @@ output logic [4607:0] Row_A_mul ;
 
 
 logic [2:0]lookup_table [7:0];
-assign lookup_table[0]=4'b000;
-assign lookup_table[1]=4'b001;
-assign lookup_table[2]=4'b010;
-assign lookup_table[3]=4'b011;
-assign lookup_table[4]=4'b100;
-assign lookup_table[5]=4'b101;
-assign lookup_table[6]=4'b110;
-assign lookup_table[7]=4'b111;
+assign lookup_table[0]=3'b000;
+assign lookup_table[1]=3'b001;
+assign lookup_table[2]=3'b010;
+assign lookup_table[3]=3'b011;
+assign lookup_table[4]=3'b100;
+assign lookup_table[5]=3'b101;
+assign lookup_table[6]=3'b110;
+assign lookup_table[7]=3'b111;
 
 multiplexer_small  multiplexer_0 (RowB_mantissa[10:0],lookup_table,Row_A_mul[143:0],one,minus_one,two,minus_two);
 multiplexer_small  multiplexer_1 (RowB_mantissa[21:11],lookup_table,Row_A_mul[287:144],one,minus_one,two,minus_two);

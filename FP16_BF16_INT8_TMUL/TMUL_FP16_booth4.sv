@@ -1,4 +1,4 @@
-`include "complex_fma.sv"
+`include "complex_fma_booth4.sv"
 
 module TMUL_FP16_16_32 (RowA, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
 input logic [15:0] RowA [15:0];
