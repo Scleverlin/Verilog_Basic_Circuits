@@ -404,26 +404,27 @@ assign left_no_add=(~shift_nums[5])&&(comple_shift>6'd13);
 // assign right_no_add=(shift_nums[5])&&(comple_shift>6'd19);
 
 
-function [47:0] FA_function ([23:0] x, [23:0] y, [23:0] z);
-    logic [47:0] result;
-    result[23:0] = x^y^z;
-    result[24] = 0;
-    result[47:25] = (x&y) | (y&z) | (z&x);
-    return result;
-endfunction
-
-//CSA Tree
-logic [47:0] result_l1;
-assign result_l1=FA_function(Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48]);
-logic [23:0] l1_1,l1_2;
-assign l1_1= result_l1[23:0];
-assign l1_2= result_l1[47:24];
-logic [47:0] result_l2;
-assign result_l2=FA_function(l1_1,l1_2,Row_A_mul[95:72]);
-logic [23:0] CSA_result_tmp;
+// function [47:0] FA_function ([23:0] x, [23:0] y, [23:0] z);
+//     logic [47:0] result;
+//     result[23:0] = x^y^z;
+//     result[24] = 0;
+//     result[47:25] = (x&y) | (y&z) | (z&x);
+//     return result;
+// endfunction
 logic [21:0] CSA_result;
-assign CSA_result_tmp=result_l2[47:24]+result_l2[23:0];
-assign CSA_result=CSA_result_tmp[21:0];
+mul_csa  mul (Row_A_mul,CSA_result);
+//CSA Tree
+// logic [47:0] result_l1;
+// assign result_l1=FA_function(Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48]);
+// logic [23:0] l1_1,l1_2;
+// assign l1_1= result_l1[23:0];
+// assign l1_2= result_l1[47:24];
+// logic [47:0] result_l2;
+// assign result_l2=FA_function(l1_1,l1_2,Row_A_mul[95:72]);
+// logic [23:0] CSA_result_tmp;
+
+// assign CSA_result_tmp=result_l2[47:24]+result_l2[23:0];
+// assign CSA_result=CSA_result_tmp[21:0];
 // Tree end
 logic [33:0]ext_man_c,shifted_man_c;
 
@@ -764,3 +765,35 @@ simple_FMA FMA31 (Row_A_mul[3071:2976],sign_ab[31],exp_ab[191:186],sign_c[31],ex
 endmodule
 
 
+module mul_csa (Row_A_mul,CSA_result);
+input logic [95:0] Row_A_mul;
+output logic [21:0] CSA_result;
+logic [47:0] result_l1;
+
+// assign result_l1=FA_function(Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48]);
+CSA  csa1 (Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48],result_l1);
+logic [23:0] l1_1,l1_2;
+assign l1_1= result_l1[23:0];
+assign l1_2= result_l1[47:24];
+logic [47:0] result_l2;
+
+// assign result_l2=FA_function(l1_1,l1_2,Row_A_mul[95:72]);
+CSA  csa2 (l1_1,l1_2,Row_A_mul[95:72],result_l2);
+logic [23:0] CSA_result_tmp;
+
+assign CSA_result_tmp=result_l2[47:24]+result_l2[23:0];
+assign CSA_result=CSA_result_tmp[21:0];
+
+endmodule
+
+
+module CSA (x,y,z,result);
+
+input logic [23:0] x, y,  z;
+output logic [47:0] result;
+
+assign result[23:0] = x^y^z;
+assign result[24] = 0;
+assign result[47:25] = (x&y) | (y&z) | (z&x);
+
+endmodule

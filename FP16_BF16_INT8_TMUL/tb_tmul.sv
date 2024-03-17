@@ -1,4 +1,4 @@
-`include "TMUL_fma_booth4.sv"
+`include "TMUL_FP16.sv"
 `include "tile_a.sv"
 
 module wal_mul_tb;
@@ -32,8 +32,8 @@ generate
     end 
 endgenerate
 
-// TMUL_FP16_16_32  tmul  (a_arr, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
-TMUL_fma  tmul  (a_arr, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
+TMUL_FP16_16_32  tmul  (a_arr, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
+// TMUL_fma  tmul  (a_arr, MatrixB0, MatrixB1,MatrixB2,MatrixB3,MatrixB4,MatrixB5,MatrixB6,MatrixB7,MatrixB8,MatrixB9,MatrixB10,MatrixB11,MatrixB12,MatrixB13,MatrixB14,MatrixB15,RowProduct,  clk , rst);
 
 logic [15:0] result [31:0];
 logic [15:0] b [16][32];
@@ -101,11 +101,11 @@ initial begin
         $display("```````````");
         $display("A0=%h",tmul.RowA[0]);
         $display("B_0_0=%h",tmul.MatrixB0[0]);
-        $display("row00_product=%h",tmul.out0[15:0]);
+        $display("row00_product=%h",tmul.out_row0[15:0]);
 
         $display("A1=%h",tmul.RowA[1]);
         $display("B_1_0=%h",tmul.MatrixB1[0]);
-        $display("row10_product=%h",tmul.out1[15:0]);
+        $display("row10_product=%h",tmul.out_row1[15:0]);
 
  
 
