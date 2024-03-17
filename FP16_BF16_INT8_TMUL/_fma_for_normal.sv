@@ -572,14 +572,44 @@ assign CSA_result=CSA_result_tmp[21:0];
 endmodule
 
 
-module CSA (x,y,z,result);
+module CSA (
+    input logic [23:0] x,
+    input logic [23:0] y,
+    input logic [23:0] z,
+     output logic [47:0] result
+);
+logic [23:0] sum;
+logic [23:0] carry;
+// Instantiate 24 Full Adders
+genvar i;
+generate
+    for (i = 0; i < 24; i++) begin : full_adder_loop
+        FullAdder fa(
+            .a(x[i]),
+            .b(y[i]),
+            .cin(z[i]),
+            .sum(sum[i]),
+            .cout(carry[i])
+        );
+    end
+endgenerate
+assign result={carry,1'b0,sum};
 
-input logic [23:0] x, y,  z;
-output logic [47:0] result;
+endmodule
 
-assign result[23:0] = x^y^z;
-assign result[24] = 0;
-assign result[47:25] = (x&y) | (y&z) | (z&x);
+module FullAdder(
+    input logic a,
+    input logic b,
+    input logic cin,
+    output logic sum,
+    output logic cout
+);
+
+// Sum is the XOR of the three inputs
+assign sum = a ^ b ^ cin;
+
+// Carry out is set if any two or more inputs are 1
+assign cout = (a & b) | (b & cin) | (cin & a);
 
 endmodule
 
