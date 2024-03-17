@@ -460,38 +460,39 @@ assign left_no_add=(~shift_nums[5])&&(comple_shift>6'd13);
 // assign right_no_add=(shift_nums[5])&&(comple_shift>6'd19);
 
 
-function [47:0] FA_function ([23:0] x, [23:0] y, [23:0] z);
-    logic [47:0] result;
-    result[23:0] = x^y^z;
-    result[24] = 0;
-    result[47:25] = (x&y) | (y&z) | (z&x);
-    return result;
-endfunction
-
-//CSA Tree
-logic [47:0] result_l1,result_l11;
-assign result_l1=FA_function(Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48]);
-assign result_l11=FA_function(Row_A_mul[95:72],Row_A_mul[119:96],Row_A_mul[143:120]);
-
-logic [23:0] l1_1,l1_2,l1_3,l1_4;
-assign l1_1= result_l1[23:0];
-assign l1_2= result_l1[47:24];
-assign l1_3= result_l11[23:0];
-assign l1_4= result_l11[47:24];
-
-logic [47:0] result_l2;
-assign result_l2=FA_function(l1_1,l1_2,l1_3);
-logic [23:0]l2_1,l2_2;
-assign l2_1= result_l2[23:0];
-assign l2_2= result_l2[47:24];
-
-logic [47:0] result_l3;
-assign result_l3=FA_function(l2_1,l2_2,l1_4);
-
-logic [23:0] CSA_result_tmp;
+// function [47:0] FA_function ([23:0] x, [23:0] y, [23:0] z);
+//     logic [47:0] result;
+//     result[23:0] = x^y^z;
+//     result[24] = 0;
+//     result[47:25] = (x&y) | (y&z) | (z&x);
+//     return result;
+// endfunction
 logic [21:0] CSA_result;
-assign CSA_result_tmp=result_l3[47:24]+result_l3[23:0];
-assign CSA_result=CSA_result_tmp[21:0];
+mul_csa  mul_csa (Row_A_mul,CSA_result);
+// //CSA Tree
+// logic [47:0] result_l1,result_l11;
+// assign result_l1=FA_function(Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48]);
+// assign result_l11=FA_function(Row_A_mul[95:72],Row_A_mul[119:96],Row_A_mul[143:120]);
+
+// logic [23:0] l1_1,l1_2,l1_3,l1_4;
+// assign l1_1= result_l1[23:0];
+// assign l1_2= result_l1[47:24];
+// assign l1_3= result_l11[23:0];
+// assign l1_4= result_l11[47:24];
+
+// logic [47:0] result_l2;
+// assign result_l2=FA_function(l1_1,l1_2,l1_3);
+// logic [23:0]l2_1,l2_2;
+// assign l2_1= result_l2[23:0];
+// assign l2_2= result_l2[47:24];
+
+// logic [47:0] result_l3;
+// assign result_l3=FA_function(l2_1,l2_2,l1_4);
+
+// logic [23:0] CSA_result_tmp;
+// logic [21:0] CSA_result;
+// assign CSA_result_tmp=result_l3[47:24]+result_l3[23:0];
+// assign CSA_result=CSA_result_tmp[21:0];
 
 // Tree end
 
@@ -553,5 +554,49 @@ logic [5:0]final_exp;
 assign final_exp_tmp=left_no_add?exp_c_minus_ab+exp_add:exp_ab+exp_offset+exp_add;
 assign final_exp= (final_exp_tmp>=-14&&rounded_man[10])?final_exp_tmp+6'd15:0;
 assign product={final_sign,final_exp[4:0],rounded_man[9:0]};
+
+endmodule
+
+module mul_csa (Row_A_mul,CSA_result);
+input logic [143:0] Row_A_mul;
+output logic [21:0] CSA_result;
+
+logic [47:0] result_l1,result_l11;
+
+CSA csa0 (Row_A_mul[23:0],Row_A_mul[47:24],Row_A_mul[71:48],result_l1);
+CSA csa1 (Row_A_mul[95:72],Row_A_mul[119:96],Row_A_mul[143:120],result_l11);
+
+logic [23:0] l1_1,l1_2,l1_3,l1_4;
+assign l1_1= result_l1[23:0];
+assign l1_2= result_l1[47:24];
+assign l1_3= result_l11[23:0];
+assign l1_4= result_l11[47:24];
+
+logic [47:0] result_l2;
+CSA csa2 (l1_1,l1_2,l1_3,result_l2);
+logic [23:0]l2_1,l2_2;
+assign l2_1= result_l2[23:0];
+assign l2_2= result_l2[47:24];
+
+logic [47:0] result_l3;
+
+CSA csa3 (l2_1,l2_2,l1_4,result_l3);
+
+logic [23:0] CSA_result_tmp;
+
+assign CSA_result_tmp=result_l3[47:24]+result_l3[23:0];
+assign CSA_result=CSA_result_tmp[21:0];
+
+endmodule
+
+
+module CSA (x,y,z,result);
+
+input logic [23:0] x, y,  z;
+output logic [47:0] result;
+
+assign result[23:0] = x^y^z;
+assign result[24] = 0;
+assign result[47:25] = (x&y) | (y&z) | (z&x);
 
 endmodule
